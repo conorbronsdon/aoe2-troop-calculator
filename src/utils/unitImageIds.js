@@ -323,7 +323,7 @@ export const getGameUnitId = (unitId) => {
 export const getUnitImagePath = (unitId) => {
   const gameId = unitToGameId[unitId];
   if (gameId) {
-    return `/unit-icons/${gameId}.png`;
+    return `${import.meta.env.BASE_URL}unit-icons/${gameId}.png`;
   }
   return null;
 };
