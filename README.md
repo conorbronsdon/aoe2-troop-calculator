@@ -1,8 +1,39 @@
+<div align="center">
+
 # Age of Empires II: Army Composition Calculator
 
-A comprehensive web-based calculator for planning army compositions in Age of Empires II: Definitive Edition. Plan your armies, compare civilizations, and optimize resource allocation with accurate costs and bonuses.
+### 🏰 Plan Your Armies Like a Pro • No Excel Needed 🏰
 
-Inspired by pro players ([Hera vs. Lewis](https://youtu.be/6WyRs7SY0Tk?si=RHdJiWtagC0ZG1rA)) using Excel sheets for 200 unit battles.
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Try_Now-4F46E5?style=for-the-badge)](https://conorbronsdon.github.io/aoe2-troop-calculator/)
+[![GitHub Stars](https://img.shields.io/github/stars/conorbronsdon/aoe2-troop-calculator?style=for-the-badge&logo=github)](https://github.com/conorbronsdon/aoe2-troop-calculator)
+[![License](https://img.shields.io/badge/License-Game_Content_Usage-blue?style=for-the-badge)](https://www.xbox.com/en-US/developers/rules)
+
+**A comprehensive web-based calculator for planning army compositions in Age of Empires II: Definitive Edition**
+
+Plan your armies • Compare civilizations • Optimize resources • Calculate bonuses
+
+![AoE2 Army Calculator](images/og-image.png)
+
+---
+
+💡 **Inspired by pro players** ([Hera vs. Lewis](https://youtu.be/6WyRs7SY0Tk?si=RHdJiWtagC0ZG1rA)) using Excel sheets for 200 unit battles.
+
+</div>
+
+---
+
+## 📋 Table of Contents
+
+- [✨ Features](#-features)
+- [📖 How to Use](#-how-to-use)
+- [🚀 Development](#-development)
+- [🧪 Testing](#-testing)
+- [📊 Data Accuracy](#-data-accuracy)
+- [🎯 Roadmap](#-roadmap)
+- [🙏 Credits](#-credits)
+- [🐛 Support & Feedback](#-support--feedback)
+
+---
 
 ## ✨ Features
 
@@ -112,9 +143,12 @@ Inspired by pro players ([Hera vs. Lewis](https://youtu.be/6WyRs7SY0Tk?si=RHdJiW
 ## 🚀 Development
 
 ### Prerequisites
-- Node.js 18+ and npm
+
+![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat&logo=node.js&logoColor=white)
+![npm](https://img.shields.io/badge/npm-latest-CB3837?style=flat&logo=npm&logoColor=white)
 
 ### Installation
+
 ```bash
 # Clone the repository
 git clone https://github.com/conorbronsdon/aoe2-troop-calculator.git
@@ -130,12 +164,15 @@ npm run dev
 npm run build
 ```
 
-### Tech Stack
-- **React 18**: UI framework with hooks and context
-- **Vite**: Lightning-fast build tool
-- **Tailwind CSS**: Utility-first styling
-- **React Context API**: State management
-- **Local Storage**: Composition persistence
+### 🛠️ Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| **React 18** | UI framework with hooks and context |
+| **Vite** | Lightning-fast build tool |
+| **Tailwind CSS** | Utility-first styling |
+| **React Context API** | State management |
+| **Local Storage** | Composition persistence |
 
 ### Project Structure
 ```
@@ -199,7 +236,9 @@ All unit costs, population values, and civilization bonuses are based on Age of 
 
 ## 🎯 Roadmap
 
-### Recently Completed ✅
+<details open>
+<summary><b>✅ Recently Completed</b></summary>
+
 - ✅ Complete unit roster (100+ units)
 - ✅ All unique units (101 units for 51 civilizations)
 - ✅ **Flexible Display Modes** (Units Only, Units & Fortifications, Fortifications Only)
@@ -213,28 +252,38 @@ All unit costs, population values, and civilization bonuses are based on Age of 
 - ✅ **Official Unit Icons** (real AoE2 icons with smart fallbacks)
 - ✅ **Definitive Edition Alignment** (2025 content update)
 
-### Next Steps 🔜
-1. **Complete Civilization Bonuses**
-   - Add team bonuses for remaining civilizations
-   - Document all military and economic bonuses for all 51 civs
+</details>
 
-2. **Unit Statistics**
-   - Add HP, attack, armor stats
-   - Show range, rate of fire, movement speed
-   - Include training time and upgrade costs
+<details>
+<summary><b>🔜 Next Steps</b></summary>
 
-3. **Technology System**
-   - Add Blacksmith upgrades
-   - Include unique technologies
-   - Calculate upgraded unit stats
+### 1. Complete Civilization Bonuses
+- [ ] Add team bonuses for remaining civilizations
+- [ ] Document all military and economic bonuses for all 51 civs
 
-### Future Enhancements 💡
+### 2. Unit Statistics
+- [ ] Add HP, attack, armor stats
+- [ ] Show range, rate of fire, movement speed
+- [ ] Include training time and upgrade costs
+
+### 3. Technology System
+- [ ] Add Blacksmith upgrades
+- [ ] Include unique technologies
+- [ ] Calculate upgraded unit stats
+
+</details>
+
+<details>
+<summary><b>💡 Future Enhancements</b></summary>
+
 - Backend database for cloud saving
 - User accounts and syncing
 - Community shared compositions
 - Tournament presets
 - Mobile app version
 - Real-time multiplayer planning
+
+</details>
 
 ## 🌐 Browser Compatibility
 
@@ -263,38 +312,65 @@ This calculator is created under Microsoft's Game Content Usage Rules and is not
 
 ## 🙏 Credits
 
-**Created by [Conor Bronsdon](https://conorbronsdon.com/)**
+<div align="center">
 
-Connect with me:
-- 🐙 GitHub: [@conorbronsdon](https://github.com/conorbronsdon/)
-- 🐦 Twitter: [@ConorBronsdon](https://x.com/ConorBronsdon)
-- 💼 LinkedIn: [conorbronsdon](https://www.linkedin.com/in/conorbronsdon/)
-- 📝 Substack: [conorbronsdon.substack.com](https://conorbronsdon.substack.com/)
-- 🌐 Website: [conorbronsdon.com](https://conorbronsdon.com/)
+### Created by [Conor Bronsdon](https://conorbronsdon.com/)
+
+[![GitHub](https://img.shields.io/badge/GitHub-conorbronsdon-181717?style=flat&logo=github)](https://github.com/conorbronsdon/)
+[![Twitter](https://img.shields.io/badge/Twitter-@ConorBronsdon-1DA1F2?style=flat&logo=twitter)](https://x.com/ConorBronsdon)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-conorbronsdon-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/conorbronsdon/)
+[![Substack](https://img.shields.io/badge/Substack-conorbronsdon-FF6719?style=flat&logo=substack)](https://conorbronsdon.substack.com/)
+[![Website](https://img.shields.io/badge/Website-conorbronsdon.com-4F46E5?style=flat&logo=google-chrome)](https://conorbronsdon.com/)
+
+</div>
 
 ---
 
+### 💭 Inspiration
+
 Built for Age of Empires II players who want to plan army compositions efficiently.
 
-**Inspired by:**
-- @faruksarihan's YouTube comment on [Hera's 200 Army vs 200 Army match](https://youtu.be/6WyRs7SY0Tk?si=RHdJiWtagC0ZG1rA)
-- Pro players who meticulously plan compositions
-- The amazing AoE2 community
+| Source | Description |
+|--------|-------------|
+| 💡 [@faruksarihan](https://youtu.be/6WyRs7SY0Tk?si=RHdJiWtagC0ZG1rA) | YouTube comment on Hera's 200 vs 200 Army match |
+| 🎮 Pro Players | Meticulous composition planning strategies |
+| 🏰 AoE2 Community | The amazing Age of Empires II community |
 
-**Special thanks to:**
-- [aoe2techtree.net](https://aoe2techtree.net) for reference data
-- [aoestats.io](https://aoestats.io) for civilization statistics
-- All contributors and testers
+### 🌟 Special Thanks
+
+| Resource | Purpose |
+|----------|---------|
+| [aoe2techtree.net](https://aoe2techtree.net) | Tech tree reference data |
+| [aoestats.io](https://aoestats.io) | Civilization statistics |
+| [AoE Fandom Wiki](https://ageofempires.fandom.com) | Unit icons |
+| All Contributors | Testing and feedback |
 
 ## 🐛 Support & Feedback
 
 Found a bug or have a suggestion?
-- Open an issue on GitHub
-- Contribute via Pull Request
-- Share feedback on Discord/Reddit
+
+| Channel | Action |
+|---------|--------|
+| 🐛 GitHub Issues | [Open an issue](https://github.com/conorbronsdon/aoe2-troop-calculator/issues) |
+| 🔀 Pull Requests | [Contribute code](https://github.com/conorbronsdon/aoe2-troop-calculator/pulls) |
+| 💬 Community | Share feedback on Discord/Reddit |
 
 ---
 
-**Version**: 2.2.1
-**Last Updated**: November 2025
-**Status**: Production Ready - 100+ Units, Fortifications, 101 Unique Units, 51 Civilizations, Tech Tree Restrictions
+<div align="center">
+
+### 📊 Project Stats
+
+![Version](https://img.shields.io/badge/Version-2.2.1-brightgreen?style=flat)
+![Last Updated](https://img.shields.io/badge/Last_Updated-November_2025-blue?style=flat)
+![Status](https://img.shields.io/badge/Status-Production_Ready-success?style=flat)
+
+**100+ Units • 101 Unique Units • 51 Civilizations • Tech Tree Restrictions • Fortifications**
+
+---
+
+**Made with ❤️ for the Age of Empires II community**
+
+[![Star this repo](https://img.shields.io/github/stars/conorbronsdon/aoe2-troop-calculator?style=social)](https://github.com/conorbronsdon/aoe2-troop-calculator)
+
+</div>
