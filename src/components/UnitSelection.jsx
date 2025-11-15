@@ -9,7 +9,7 @@ export default function UnitSelection() {
   const { config } = state;
 
   // Filter units by age and civilization (includes unique units)
-  const availableUnits = getUnitsForCiv(config.selectedCivilization, config.selectedAge);
+  const availableUnits = getUnitsForCiv(config.selectedCiv, config.selectedAge);
 
   // Group units by category
   const unitsByCategory = groupUnitsByCategory(availableUnits);

@@ -12,7 +12,8 @@ const initialState = {
     totalResourceLimit: 20000,
     populationCap: 200,
     selectedAge: 'imperial',
-    selectedCiv: 'generic'
+    selectedCiv: 'generic', // The applied civilization (affects calculations)
+    previewCiv: 'generic' // The civilization being previewed in the dropdown
   },
   savedCompositions: [],
   comparisonMode: false,
@@ -29,7 +30,8 @@ export const ACTION_TYPES = {
   LOAD_COMPOSITION: 'LOAD_COMPOSITION',
   SET_SAVED_COMPOSITIONS: 'SET_SAVED_COMPOSITIONS',
   TOGGLE_COMPARISON_MODE: 'TOGGLE_COMPARISON_MODE',
-  UPDATE_COMPARISON_ARMY: 'UPDATE_COMPARISON_ARMY'
+  UPDATE_COMPARISON_ARMY: 'UPDATE_COMPARISON_ARMY',
+  APPLY_CIVILIZATION: 'APPLY_CIVILIZATION'
 };
 
 // Reducer function
@@ -102,6 +104,16 @@ function armyReducer(state, action) {
         comparisonArmies: {
           ...state.comparisonArmies,
           [action.side]: action.composition
+        }
+      };
+
+    case ACTION_TYPES.APPLY_CIVILIZATION:
+      return {
+        ...state,
+        config: {
+          ...state.config,
+          selectedCiv: action.civId,
+          previewCiv: action.civId
         }
       };
 
