@@ -12,7 +12,7 @@
 
 Plan your armies • Compare civilizations • Optimize resources • Calculate bonuses
 
-![AoE2 Army Calculator](images/og-image.png)
+![AoE2 Army Calculator](public/images/og-image.png)
 
 ---
 
@@ -162,12 +162,14 @@ Plan your armies • Compare civilizations • Optimize resources • Calculate 
 
 ## 🚀 Development
 
+For detailed setup instructions, see **[DEVELOPMENT.md](./DEVELOPMENT.md)**.
+
 ### Prerequisites
 
 ![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat&logo=node.js&logoColor=white)
 ![npm](https://img.shields.io/badge/npm-latest-CB3837?style=flat&logo=npm&logoColor=white)
 
-### Installation
+### Quick Start
 
 ```bash
 # Clone the repository
@@ -179,6 +181,12 @@ npm install
 
 # Start development server
 npm run dev
+
+# Run tests
+npm test
+
+# Lint code
+npm run lint
 
 # Build for production
 npm run build
@@ -321,11 +329,13 @@ Works in all modern browsers:
 
 ## 📝 Contributing
 
-Contributions welcome! Please feel free to submit a Pull Request. Areas where help is needed:
-- Additional unique units for newer civilizations
-- Verification of civilization bonuses
-- UI/UX improvements
-- Test coverage expansion
+Contributions welcome! Please see **[CONTRIBUTING.md](./CONTRIBUTING.md)** for detailed guidelines.
+
+Areas where help is especially needed:
+- Expanding test coverage for components and services
+- Verification of civilization bonuses against game data
+- UI/UX improvements and accessibility
+- Tech tree restriction completeness
 - Documentation improvements
 
 ## 📄 License & Attribution

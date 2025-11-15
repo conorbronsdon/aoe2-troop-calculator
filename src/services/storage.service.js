@@ -3,6 +3,8 @@
  * Handles saving and loading army compositions to browser localStorage
  */
 
+import { logger } from '../utils/errorHandler';
+
 const STORAGE_KEY = 'aoe2_army_compositions';
 
 export const StorageService = {
@@ -38,7 +40,7 @@ export const StorageService = {
       const data = localStorage.getItem(STORAGE_KEY);
       return data ? JSON.parse(data) : [];
     } catch (error) {
-      console.error('Failed to load compositions from storage:', error);
+      logger.error('Failed to load compositions from storage', error);
       return [];
     }
   },
@@ -99,7 +101,7 @@ export const StorageService = {
       localStorage.removeItem(STORAGE_KEY);
       return true;
     } catch (error) {
-      console.error('Failed to clear storage:', error);
+      logger.error('Failed to clear storage', error);
       return false;
     }
   },

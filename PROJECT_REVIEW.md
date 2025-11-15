@@ -2,7 +2,7 @@
 
 ## Current Status: Production Ready ✅
 
-**Version**: 2.2.1
+**Version**: 2.3.0
 **Tests**: 62/62 passing ✅
 **Build**: Successful ✅
 **Documentation**: Complete ✅
@@ -86,7 +86,7 @@
 ### 2. Documentation Now Updated ✅
 **Status**: Fixed
 **Impact**: None
-**All documentation updated**: All files now correctly reference 51 civilizations and version 2.2.1
+**All documentation updated**: All files now correctly reference 51 civilizations and version 2.3.0
 
 ### 3. Missing Bonuses for Some Civilizations
 **Status**: Partially complete

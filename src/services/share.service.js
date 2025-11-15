@@ -3,6 +3,8 @@
  * Handles encoding/decoding army compositions for shareable URLs
  */
 
+import { logger } from '../utils/errorHandler';
+
 export const ShareService = {
   /**
    * Encode composition and config to base64 string
@@ -28,7 +30,7 @@ export const ShareService = {
       const json = JSON.stringify(data);
       return btoa(encodeURIComponent(json));
     } catch (error) {
-      console.error('Failed to encode composition:', error);
+      logger.error('Failed to encode composition', error);
       return null;
     }
   },
@@ -45,7 +47,7 @@ export const ShareService = {
 
       // Validate version
       if (!data.v || data.v !== 1) {
-        console.warn('Unsupported share link version');
+        logger.warn('Unsupported share link version');
         return null;
       }
 
@@ -61,7 +63,7 @@ export const ShareService = {
         }
       };
     } catch (error) {
-      console.error('Failed to decode composition:', error);
+      logger.error('Failed to decode composition', error);
       return null;
     }
   },
@@ -90,7 +92,7 @@ export const ShareService = {
       await navigator.clipboard.writeText(url);
       return true;
     } catch (error) {
-      console.error('Failed to copy URL to clipboard:', error);
+      logger.error('Failed to copy URL to clipboard', error);
       return false;
     }
   },

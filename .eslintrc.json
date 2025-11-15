@@ -1,0 +1,79 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": ["react", "react-hooks"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    // Error prevention
+    "no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "no-console": [
+      "warn",
+      {
+        "allow": ["warn", "error"]
+      }
+    ],
+    "no-debugger": "error",
+    "no-duplicate-imports": "error",
+
+    // React specific
+    "react/prop-types": "warn",
+    "react/jsx-no-duplicate-props": "error",
+    "react/jsx-no-undef": "error",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-key": "error",
+    "react/no-array-index-key": "warn",
+    "react/no-deprecated": "warn",
+    "react/no-direct-mutation-state": "error",
+    "react/self-closing-comp": "warn",
+
+    // React Hooks
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+
+    // Code quality
+    "eqeqeq": ["error", "always"],
+    "curly": ["error", "all"],
+    "prefer-const": "warn",
+    "no-var": "error",
+    "arrow-body-style": ["warn", "as-needed"],
+    "object-shorthand": "warn",
+
+    // Spacing and formatting (basic rules, Prettier handles most formatting)
+    "no-trailing-spaces": "warn",
+    "no-multiple-empty-lines": [
+      "warn",
+      {
+        "max": 2,
+        "maxEOF": 1
+      }
+    ]
+  },
+  "ignorePatterns": ["dist/", "node_modules/", "*.config.js", "coverage/"]
+}
