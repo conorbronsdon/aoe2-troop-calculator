@@ -40,7 +40,7 @@ export const siegeUnits = [
     category: 'Siege',
     age: 'castle',
     cost: { food: 0, wood: 160, gold: 135, stone: 0 },
-    population: 3,
+    population: 1,
     counters: ['archer', 'infantry', 'building'],
     weakTo: ['knight', 'cavalry', 'onager']
   },
@@ -50,7 +50,7 @@ export const siegeUnits = [
     category: 'Siege',
     age: 'imperial',
     cost: { food: 0, wood: 160, gold: 135, stone: 0 },
-    population: 3,
+    population: 1,
     counters: ['archer', 'infantry', 'building', 'ram'],
     weakTo: ['knight', 'cavalry', 'bombard-cannon']
   },
@@ -60,7 +60,7 @@ export const siegeUnits = [
     category: 'Siege',
     age: 'imperial',
     cost: { food: 0, wood: 160, gold: 135, stone: 0 },
-    population: 3,
+    population: 1,
     counters: ['archer', 'infantry', 'building', 'ram', 'army'],
     weakTo: ['knight', 'cavalry', 'bombard-cannon']
   },
@@ -71,7 +71,7 @@ export const siegeUnits = [
     category: 'Siege',
     age: 'castle',
     cost: { food: 0, wood: 75, gold: 75, stone: 0 },
-    population: 2,
+    population: 1,
     counters: ['archer', 'infantry', 'ram'],
     weakTo: ['knight', 'cavalry', 'mangonel']
   },
@@ -81,7 +81,7 @@ export const siegeUnits = [
     category: 'Siege',
     age: 'imperial',
     cost: { food: 0, wood: 75, gold: 75, stone: 0 },
-    population: 2,
+    population: 1,
     counters: ['archer', 'infantry', 'ram', 'cavalry'],
     weakTo: ['knight', 'onager', 'bombard-cannon']
   },
@@ -92,7 +92,7 @@ export const siegeUnits = [
     category: 'Siege',
     age: 'imperial',
     cost: { food: 0, wood: 225, gold: 225, stone: 0 },
-    population: 5,
+    population: 1,
     counters: ['building', 'siege', 'trebuchet'],
     weakTo: ['knight', 'cavalry', 'ram']
   },
@@ -103,7 +103,7 @@ export const siegeUnits = [
     category: 'Siege',
     age: 'imperial',
     cost: { food: 0, wood: 200, gold: 200, stone: 0 },
-    population: 8,
+    population: 1,
     counters: ['building', 'castle'],
     weakTo: ['knight', 'cavalry', 'bombard-cannon']
   },

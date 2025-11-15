@@ -209,6 +209,21 @@ Pull requests will be reviewed for:
 
 ## Reporting Issues
 
+### Recognition & Credits
+
+**We value all contributions!** Bug reporters, testers, and contributors will be credited in the project:
+
+- **Bug Hunters**: Added to the "Bug Hunters & Testers" section in README.md
+- **Contributors**: Listed with their specific contribution and issue/PR link
+- **Recognition Format**: `[@username](GitHub profile) | Brief description of contribution ([#issue](link))`
+
+When fixing a reported bug, always:
+1. Credit the reporter in the README.md "Bug Hunters & Testers" section
+2. Link to the original issue in the PR
+3. Thank the reporter in the commit message or PR description
+
+This ensures our community members receive proper recognition for helping improve the project.
+
 ### Bug Reports
 
 When reporting bugs, include:

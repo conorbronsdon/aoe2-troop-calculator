@@ -385,6 +385,12 @@ Built for Age of Empires II players who want to plan army compositions efficient
 | [AoE Fandom Wiki](https://ageofempires.fandom.com) | Unit icons and tech tree verification |
 | All Contributors | Testing and feedback |
 
+### 🧪 Bug Hunters & Testers
+
+| Contributor | Contribution |
+|-------------|--------------|
+| [@Arkanosis](https://github.com/Arkanosis) | Identified Bombard Cannon population calculation bug ([#35](https://github.com/conorbronsdon/aoe2-troop-calculator/issues/35)) |
+
 ### 🔗 Alternative Tools
 
 Other community-built AoE2 army cost calculators:
