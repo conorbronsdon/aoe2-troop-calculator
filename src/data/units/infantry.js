@@ -7,7 +7,7 @@ export const infantryUnits = [
     name: 'Militia',
     category: 'Infantry',
     age: 'dark',
-    cost: { food: 60, wood: 0, gold: 20, stone: 0 },
+    cost: { food: 50, wood: 0, gold: 20, stone: 0 },
     population: 1,
     counters: ['archer', 'skirmisher'],
     weakTo: ['knight', 'archer', 'cataphract']
@@ -17,7 +17,7 @@ export const infantryUnits = [
     name: 'Man-at-Arms',
     category: 'Infantry',
     age: 'feudal',
-    cost: { food: 60, wood: 0, gold: 20, stone: 0 },
+    cost: { food: 50, wood: 0, gold: 20, stone: 0 },
     population: 1,
     counters: ['archer', 'skirmisher'],
     weakTo: ['knight', 'scout', 'cataphract']
@@ -27,7 +27,7 @@ export const infantryUnits = [
     name: 'Longswordsman',
     category: 'Infantry',
     age: 'castle',
-    cost: { food: 60, wood: 0, gold: 20, stone: 0 },
+    cost: { food: 50, wood: 0, gold: 20, stone: 0 },
     population: 1,
     counters: ['archer', 'skirmisher', 'eagle-warrior'],
     weakTo: ['knight', 'cataphract', 'jaguar-warrior']
@@ -37,7 +37,7 @@ export const infantryUnits = [
     name: 'Two-Handed Swordsman',
     category: 'Infantry',
     age: 'imperial',
-    cost: { food: 60, wood: 0, gold: 20, stone: 0 },
+    cost: { food: 50, wood: 0, gold: 20, stone: 0 },
     population: 1,
     counters: ['archer', 'skirmisher', 'eagle-warrior'],
     weakTo: ['knight', 'cataphract', 'jaguar-warrior', 'hand-cannoneer']
@@ -47,7 +47,7 @@ export const infantryUnits = [
     name: 'Champion',
     category: 'Infantry',
     age: 'imperial',
-    cost: { food: 60, wood: 0, gold: 20, stone: 0 },
+    cost: { food: 50, wood: 0, gold: 20, stone: 0 },
     population: 1,
     counters: ['archer', 'skirmisher', 'eagle-warrior', 'huskarl'],
     weakTo: ['knight', 'cataphract', 'jaguar-warrior', 'hand-cannoneer']
@@ -88,7 +88,7 @@ export const infantryUnits = [
     name: 'Eagle Scout',
     category: 'Infantry',
     age: 'feudal',
-    cost: { food: 20, wood: 0, gold: 50, stone: 0 },
+    cost: { food: 25, wood: 0, gold: 50, stone: 0 },
     population: 1,
     counters: ['monk', 'siege'],
     weakTo: ['knight', 'archer', 'militia']
@@ -98,7 +98,7 @@ export const infantryUnits = [
     name: 'Eagle Warrior',
     category: 'Infantry',
     age: 'castle',
-    cost: { food: 20, wood: 0, gold: 50, stone: 0 },
+    cost: { food: 25, wood: 0, gold: 50, stone: 0 },
     population: 1,
     counters: ['monk', 'siege', 'archer'],
     weakTo: ['knight', 'militia', 'samurai']
@@ -108,7 +108,7 @@ export const infantryUnits = [
     name: 'Elite Eagle Warrior',
     category: 'Infantry',
     age: 'imperial',
-    cost: { food: 20, wood: 0, gold: 50, stone: 0 },
+    cost: { food: 25, wood: 0, gold: 50, stone: 0 },
     population: 1,
     counters: ['monk', 'siege', 'archer', 'cavalry'],
     weakTo: ['knight', 'militia', 'samurai', 'cataphract']

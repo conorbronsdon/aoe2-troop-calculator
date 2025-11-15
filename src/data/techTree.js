@@ -395,6 +395,49 @@ export const techTreeRestrictions = {
       'hand-cannoneer',
       'camel', 'heavy-camel', 'imperial-camel'
     ]
+  },
+
+  // The Three Kingdoms Civilizations
+  jurchens: {
+    missingUnits: [
+      'longswordsman', 'two-handed-swordsman', 'champion',
+      'knight', 'cavalier', 'paladin',
+      'camel', 'heavy-camel', 'imperial-camel',
+      'arbalester',
+      'hand-cannoneer'
+    ]
+  },
+
+  khitans: {
+    missingUnits: [
+      'galleon',
+      'heavy-demolition-ship',
+      'elite-cannon-galleon',
+      'heavy-scorpion',
+      'paladin'
+    ]
+  },
+
+  shu: {
+    missingUnits: [
+      'knight', 'cavalier', 'paladin',
+      'trebuchet'
+    ]
+  },
+
+  wei: {
+    missingUnits: [
+      'knight', 'cavalier', 'paladin',
+      'trebuchet'
+    ]
+  },
+
+  wu: {
+    missingUnits: [
+      'knight', 'cavalier', 'paladin',
+      'capped-ram', 'siege-ram',
+      'trebuchet'
+    ]
   }
 };
 

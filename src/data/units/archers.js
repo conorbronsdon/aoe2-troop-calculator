@@ -8,7 +8,7 @@ export const archerUnits = [
     name: 'Archer',
     category: 'Archer',
     age: 'feudal',
-    cost: { food: 25, wood: 45, gold: 0, stone: 0 },
+    cost: { food: 0, wood: 25, gold: 45, stone: 0 },
     population: 1,
     counters: ['spearman', 'skirmisher'],
     weakTo: ['knight', 'mangonel', 'skirmisher', 'eagle-warrior']
@@ -18,7 +18,7 @@ export const archerUnits = [
     name: 'Crossbowman',
     category: 'Archer',
     age: 'castle',
-    cost: { food: 25, wood: 45, gold: 0, stone: 0 },
+    cost: { food: 0, wood: 25, gold: 45, stone: 0 },
     population: 1,
     counters: ['spearman', 'skirmisher'],
     weakTo: ['knight', 'mangonel', 'skirmisher', 'eagle-warrior']
@@ -28,7 +28,7 @@ export const archerUnits = [
     name: 'Arbalester',
     category: 'Archer',
     age: 'imperial',
-    cost: { food: 25, wood: 45, gold: 0, stone: 0 },
+    cost: { food: 0, wood: 25, gold: 45, stone: 0 },
     population: 1,
     counters: ['spearman', 'infantry'],
     weakTo: ['knight', 'huskarl', 'skirmisher', 'eagle-warrior', 'onager']
@@ -70,7 +70,7 @@ export const archerUnits = [
     name: 'Cavalry Archer',
     category: 'Archer',
     age: 'castle',
-    cost: { food: 40, wood: 70, gold: 0, stone: 0 },
+    cost: { food: 0, wood: 40, gold: 60, stone: 0 },
     population: 1,
     counters: ['spearman', 'skirmisher', 'infantry'],
     weakTo: ['skirmisher', 'camel', 'eagle-warrior']
@@ -80,7 +80,7 @@ export const archerUnits = [
     name: 'Heavy Cavalry Archer',
     category: 'Archer',
     age: 'imperial',
-    cost: { food: 40, wood: 70, gold: 0, stone: 0 },
+    cost: { food: 0, wood: 40, gold: 60, stone: 0 },
     population: 1,
     counters: ['spearman', 'infantry', 'siege'],
     weakTo: ['skirmisher', 'camel', 'eagle-warrior', 'huskarl']
