@@ -58,6 +58,10 @@ Inspired by pro players ([Hera vs. Lewis](https://youtu.be/6WyRs7SY0Tk?si=RHdJiW
 - **Comparison Mode**: Compare two different civilizations side-by-side
 
 ### 🎨 User Experience
+- **Official Unit Icons**: Real Age of Empires II unit icons from community sources
+  - Automatic loading from Age of Empires wiki
+  - Smart fallback to emoji icons if images fail to load
+  - Smooth loading transitions with emoji placeholders
 - **Dark Mode**: Toggle between light and dark themes
 - **Responsive Design**: Works on desktop, tablet, and mobile
 - **Category Organization**: Units grouped by type for easy browsing
@@ -138,7 +142,8 @@ src/
 │       ├── unique.js       # NEW: 50+ unique units
 │       └── other.js
 ├── utils/             # Helper functions
-│   └── calculations.js
+│   ├── calculations.js
+│   └── iconMappings.js    # NEW: Unit icon URL mappings
 └── App.jsx
 ```
 
@@ -168,6 +173,7 @@ All unit costs, population values, and civilization bonuses are based on Age of 
 - Official game files and patch notes
 - [aoe2techtree.net](https://aoe2techtree.net) for tech tree data
 - [aoestats.io](https://aoestats.io) for civilization statistics
+- [Age of Empires Fandom Wiki](https://ageofempires.fandom.com) for unit icons
 - Community-verified data from competitive players
 
 ## 🎯 Roadmap
@@ -181,6 +187,7 @@ All unit costs, population values, and civilization bonuses are based on Age of 
 - ✅ Conditional unique unit filtering
 - ✅ Dark mode support
 - ✅ **Technology Tree Restrictions** (filter units by civ tech tree)
+- ✅ **Official Unit Icons** (real AoE2 icons with smart fallbacks)
 
 ### Next Steps 🔜
 1. **Complete Civilization Bonuses**
