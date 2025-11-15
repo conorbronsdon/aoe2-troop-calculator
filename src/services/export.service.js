@@ -133,5 +133,100 @@ export const ExportService = {
       console.error('Failed to copy to clipboard:', error);
       return false;
     }
+  },
+
+  /**
+   * Export composition to JSON format
+   * @param {Object} composition - Army composition { unitId: quantity }
+   * @param {Object} config - Configuration (civ, age, etc.)
+   * @returns {string} JSON string
+   */
+  toJSON(composition, config) {
+    const civ = getCivilizationById(config.selectedCiv);
+    const units = [];
+
+    let totals = {
+      units: 0,
+      food: 0,
+      wood: 0,
+      gold: 0,
+      stone: 0,
+      population: 0
+    };
+
+    Object.entries(composition).forEach(([unitId, quantity]) => {
+      if (quantity > 0) {
+        const unit = getUnitById(unitId);
+        if (unit) {
+          const cost = calculateUnitCost(unit, config.selectedCiv, config.selectedAge);
+
+          units.push({
+            id: unitId,
+            name: unit.name,
+            category: unit.category,
+            quantity: quantity,
+            costPerUnit: {
+              food: cost.food,
+              wood: cost.wood,
+              gold: cost.gold,
+              stone: cost.stone
+            },
+            populationPerUnit: unit.population,
+            totalCost: {
+              food: cost.food * quantity,
+              wood: cost.wood * quantity,
+              gold: cost.gold * quantity,
+              stone: cost.stone * quantity
+            },
+            totalPopulation: unit.population * quantity
+          });
+
+          totals.units += quantity;
+          totals.food += cost.food * quantity;
+          totals.wood += cost.wood * quantity;
+          totals.gold += cost.gold * quantity;
+          totals.stone += cost.stone * quantity;
+          totals.population += unit.population * quantity;
+        }
+      }
+    });
+
+    const exportData = {
+      meta: {
+        exportedAt: new Date().toISOString(),
+        civilization: civ ? civ.name : 'Unknown',
+        civilizationId: config.selectedCiv,
+        age: config.selectedAge,
+        populationCap: config.populationCap,
+        version: '2.0.0'
+      },
+      units: units,
+      totals: totals
+    };
+
+    return JSON.stringify(exportData, null, 2);
+  },
+
+  /**
+   * Download JSON file
+   * @param {string} jsonContent - JSON string
+   * @param {string} filename - Filename (optional)
+   */
+  downloadJSON(jsonContent, filename = null) {
+    const timestamp = new Date().toISOString().split('T')[0];
+    const name = filename || `aoe2-army-composition-${timestamp}.json`;
+
+    const blob = new Blob([jsonContent], { type: 'application/json;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = name;
+    link.style.display = 'none';
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
   }
 };

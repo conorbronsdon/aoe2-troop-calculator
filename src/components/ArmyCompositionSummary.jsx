@@ -29,6 +29,13 @@ export default function ArmyCompositionSummary() {
     setTimeout(() => setExportMessage(''), 2000);
   };
 
+  const handleExportJSON = () => {
+    const json = ExportService.toJSON(composition, config);
+    ExportService.downloadJSON(json);
+    setExportMessage('✓ JSON Downloaded!');
+    setTimeout(() => setExportMessage(''), 2000);
+  };
+
   const handleShare = async () => {
     const url = ShareService.generateUrl(composition, config);
     if (url) {
@@ -66,7 +73,16 @@ export default function ArmyCompositionSummary() {
               className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded text-sm"
               title="Download as CSV"
             >
-              📥 Export CSV
+              📥 CSV
+            </button>
+          </div>
+          <div className="relative">
+            <button
+              onClick={handleExportJSON}
+              className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded text-sm"
+              title="Download as JSON"
+            >
+              📥 JSON
             </button>
           </div>
           <button

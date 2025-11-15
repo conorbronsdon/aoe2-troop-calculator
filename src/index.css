@@ -9,8 +9,176 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .resource-bar {
   transition: width 0.3s ease;
+}
+
+/* Dark mode color overrides */
+.dark {
+  color-scheme: dark;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 640px) {
+  /* Improve touch targets */
+  button, input[type="number"], select, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Better button spacing on mobile */
+  .mobile-friendly-buttons {
+    padding: 12px 16px;
+  }
+
+  /* Optimize text sizes for readability */
+  body {
+    font-size: 16px; /* Prevents iOS zoom on input focus */
+  }
+
+  /* Hide scrollbars but keep functionality */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+}
+
+/* Improve touch interactions */
+@media (hover: none) and (pointer: coarse) {
+  /* Remove hover effects on touch devices */
+  .hover\:shadow-md:hover {
+    box-shadow: none;
+  }
+
+  /* Add active states for better feedback */
+  button:active, a:active {
+    transform: scale(0.98);
+    transition: transform 0.1s;
+  }
+
+  /* Larger hit areas for interactive elements */
+  button, a, input, select {
+    padding: 0.75rem;
+  }
+}
+
+/* Prevent text size adjustment on orientation change */
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Smooth scrolling for better UX */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: env(safe-area-inset-left)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Print Styles */
+@media print {
+  /* Hide non-essential elements */
+  button:not(.print-show),
+  .no-print,
+  [aria-label="Toggle theme"],
+  [aria-label*="Share"],
+  input[type="number"],
+  select {
+    display: none !important;
+  }
+
+  /* Optimize layout for printing */
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  /* Remove backgrounds and shadows */
+  * {
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Ensure black text */
+  h1, h2, h3, h4, h5, h6, p, li, td, th {
+    color: black !important;
+  }
+
+  /* Page breaks */
+  h1, h2, h3 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  table, ul, ol {
+    page-break-inside: avoid;
+  }
+
+  /* Show URLs for links */
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+  }
+
+  /* Optimize spacing */
+  .container {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Make borders visible */
+  table, th, td {
+    border: 1px solid black !important;
+  }
+
+  /* Expand collapsed sections */
+  details {
+    display: block !important;
+  }
+
+  details > summary {
+    display: none;
+  }
+
+  details[open] > *:not(summary) {
+    display: block !important;
+  }
+
+  /* Header formatting */
+  .print-header {
+    margin-bottom: 20pt;
+    border-bottom: 2pt solid black;
+    padding-bottom: 10pt;
+  }
+
+  /* Footer with page numbers */
+  @page {
+    margin: 2cm;
+    @bottom-right {
+      content: "Page " counter(page) " of " counter(pages);
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { ArmyProvider, useArmy, ACTION_TYPES } from './context/ArmyContext';
+import { ThemeProvider } from './context/ThemeContext';
 import ConfigurationPanel from './components/ConfigurationPanel';
 import ResourceTracker from './components/ResourceTracker';
 import UnitSelection from './components/UnitSelection';
@@ -7,16 +8,26 @@ import ArmyCompositionSummary from './components/ArmyCompositionSummary';
 import SaveLoadPanel from './components/SaveLoadPanel';
 import SocialShareButtons from './components/SocialShareButtons';
 import BuyMeCoffee from './components/BuyMeCoffee';
+import CivilizationComparison from './components/CivilizationComparison';
+import ThemeToggle from './components/ThemeToggle';
 import { units } from './data/units';
 import { civilizations } from './data/civilizations';
 import { validateGameData } from './utils/validators';
 import { logger } from './utils/errorHandler';
 import { ShareService } from './services/share.service';
+import { initializeAnalytics } from './utils/analytics';
+import { analyticsConfig } from './config/analytics.config';
 
 function AppContent() {
   const { dispatch } = useArmy();
 
   useEffect(() => {
+    // Initialize analytics
+    if (analyticsConfig.enabled && analyticsConfig.measurementId) {
+      initializeAnalytics(analyticsConfig.measurementId);
+      logger.info('Analytics initialized');
+    }
+
     // Validate game data on mount
     const validation = validateGameData(units, civilizations);
     if (!validation.valid) {
@@ -40,7 +51,8 @@ function AppContent() {
 
   return (
     <div className="container mx-auto p-4 max-w-7xl">
-      <h1 className="text-4xl font-bold text-center mb-6 text-gray-800">
+      <ThemeToggle />
+      <h1 className="text-4xl font-bold text-center mb-6 text-gray-800 dark:text-gray-100">
         Age of Empires II: Army Calculator
       </h1>
 
@@ -48,6 +60,7 @@ function AppContent() {
       <SocialShareButtons />
 
       <ConfigurationPanel />
+      <CivilizationComparison />
       <ResourceTracker />
       <SaveLoadPanel />
       <UnitSelection />
@@ -69,9 +82,11 @@ function AppContent() {
 
 function App() {
   return (
-    <ArmyProvider>
-      <AppContent />
-    </ArmyProvider>
+    <ThemeProvider>
+      <ArmyProvider>
+        <AppContent />
+      </ArmyProvider>
+    </ThemeProvider>
   );
 }
 
