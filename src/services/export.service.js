@@ -2,6 +2,7 @@ import { getUnitById } from '../data/units';
 import { getCivilizationById } from '../data/civilizations';
 import { calculateUnitCost } from '../utils/calculations';
 import { logger } from '../utils/errorHandler';
+import { APP_VERSION } from '../constants';
 
 /**
  * Export Service
@@ -28,7 +29,7 @@ export const ExportService = {
       ['Unit', 'Quantity', 'Food (each)', 'Wood (each)', 'Gold (each)', 'Stone (each)', 'Population (each)', 'Total Food', 'Total Wood', 'Total Gold', 'Total Stone', 'Total Pop']
     ];
 
-    let totals = {
+    const totals = {
       units: 0,
       food: 0,
       wood: 0,
@@ -146,7 +147,7 @@ export const ExportService = {
     const civ = getCivilizationById(config.selectedCiv);
     const units = [];
 
-    let totals = {
+    const totals = {
       units: 0,
       food: 0,
       wood: 0,
@@ -165,7 +166,7 @@ export const ExportService = {
             id: unitId,
             name: unit.name,
             category: unit.category,
-            quantity: quantity,
+            quantity,
             costPerUnit: {
               food: cost.food,
               wood: cost.wood,
@@ -199,10 +200,10 @@ export const ExportService = {
         civilizationId: config.selectedCiv,
         age: config.selectedAge,
         populationCap: config.populationCap,
-        version: '2.3.0' // TODO: Import from constants.js when refactoring services
+        version: APP_VERSION
       },
-      units: units,
-      totals: totals
+      units,
+      totals
     };
 
     return JSON.stringify(exportData, null, 2);

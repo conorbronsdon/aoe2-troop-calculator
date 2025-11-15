@@ -22,8 +22,8 @@ export default function CivilizationBonuses() {
 
   // Helper function to check if a bonus is actively affecting the current army
   const isBonusActive = (bonus) => {
-    if (bonus.type !== 'cost') return false; // Only cost bonuses affect calculations
-    if (bonus.units === 'all') return Object.keys(composition).length > 0;
+    if (bonus.type !== 'cost') {return false;} // Only cost bonuses affect calculations
+    if (bonus.units === 'all') {return Object.keys(composition).length > 0;}
 
     // Check if any units in composition are affected by this bonus
     return Object.keys(composition).some(unitId =>
@@ -204,7 +204,7 @@ export default function CivilizationBonuses() {
                     <div className="flex items-start gap-2">
                       <span className={`inline-block w-2 h-2 rounded-full mt-1.5 ${
                         bonus.isActive ? 'bg-green-500 animate-pulse' : 'bg-amber-500'
-                      }`}></span>
+                      }`} />
                       <div className="flex-1">
                         {bonus.description}
                         {bonus.isActive && (
@@ -230,7 +230,7 @@ export default function CivilizationBonuses() {
               <ul className="space-y-1 ml-6">
                 {statBonuses.map((bonus, idx) => (
                   <li key={idx} className="text-sm text-amber-900 dark:text-amber-100">
-                    <span className="inline-block w-2 h-2 bg-amber-500 rounded-full mr-2"></span>
+                    <span className="inline-block w-2 h-2 bg-amber-500 rounded-full mr-2" />
                     {bonus.description}
                   </li>
                 ))}
@@ -248,7 +248,7 @@ export default function CivilizationBonuses() {
               <ul className="space-y-1 ml-6">
                 {economicBonuses.map((bonus, idx) => (
                   <li key={idx} className="text-sm text-amber-900 dark:text-amber-100">
-                    <span className="inline-block w-2 h-2 bg-amber-500 rounded-full mr-2"></span>
+                    <span className="inline-block w-2 h-2 bg-amber-500 rounded-full mr-2" />
                     {bonus.description}
                   </li>
                 ))}
@@ -264,7 +264,7 @@ export default function CivilizationBonuses() {
                 Team Bonus
               </h4>
               <p className="text-sm text-amber-900 dark:text-amber-100 ml-6">
-                <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2" />
                 {currentCiv.teamBonus.description}
               </p>
             </div>

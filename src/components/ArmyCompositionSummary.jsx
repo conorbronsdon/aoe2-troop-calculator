@@ -22,7 +22,7 @@ export default function ArmyCompositionSummary() {
     setTimeout(() => setExportMessage(''), 2000);
   };
 
-  const handleCopyCSV = async () => {
+  const _handleCopyCSV = async () => {
     const csv = ExportService.toCSV(composition, config);
     const success = await ExportService.copyToClipboard(csv);
     setExportMessage(success ? '✓ Copied to clipboard!' : '✗ Copy failed');
@@ -105,7 +105,7 @@ export default function ArmyCompositionSummary() {
       <div className="space-y-2">
         {compositionEntries.map(([unitId, quantity]) => {
           const unit = getUnitById(unitId);
-          if (!unit) return null;
+          if (!unit) {return null;}
 
           const adjustedCost = calculateUnitCost(unit, config.selectedCiv, config.selectedAge);
           const totalUnitCost = {

@@ -1639,15 +1639,11 @@ export const civilizations = [
  * @param {string} civId - Civilization identifier
  * @returns {Object|undefined} Civilization data or undefined if not found
  */
-export const getCivilizationById = (civId) => {
-  return civilizations.find(civ => civ.id === civId);
-};
+export const getCivilizationById = (civId) => civilizations.find(civ => civ.id === civId);
 
 /**
  * Get civilizations by region
  * @param {string} region - Geographic region
  * @returns {Array} Array of civilizations in that region
  */
-export const getCivilizationsByRegion = (region) => {
-  return civilizations.filter(civ => civ.region === region);
-};
+export const getCivilizationsByRegion = (region) => civilizations.filter(civ => civ.region === region);

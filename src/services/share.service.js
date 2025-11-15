@@ -76,7 +76,7 @@ export const ShareService = {
    */
   generateUrl(composition, config) {
     const encoded = this.encode(composition, config);
-    if (!encoded) return null;
+    if (!encoded) {return null;}
 
     const baseUrl = window.location.origin + window.location.pathname;
     return `${baseUrl}?army=${encoded}`;
@@ -105,7 +105,7 @@ export const ShareService = {
     const params = new URLSearchParams(window.location.search);
     const armyData = params.get('army');
 
-    if (!armyData) return null;
+    if (!armyData) {return null;}
 
     return this.decode(armyData);
   }

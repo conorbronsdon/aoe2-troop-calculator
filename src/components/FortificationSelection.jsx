@@ -37,7 +37,7 @@ export default function FortificationSelection() {
 
       <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
         <p className="text-sm text-blue-800">
-          <strong>💡 Tip:</strong> Fortifications don't consume population but require resources.
+          <strong>💡 Tip:</strong> Fortifications don&apos;t consume population but require resources.
           Stone is crucial for walls, towers, and castles. Plan your economy accordingly!
         </p>
       </div>

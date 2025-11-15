@@ -16,9 +16,7 @@ export default function ResourceTracker() {
   );
 
   // Get total resources used
-  const getTotalResourcesUsed = () => {
-    return totalCost.food + totalCost.wood + totalCost.gold + totalCost.stone;
-  };
+  const getTotalResourcesUsed = () => totalCost.food + totalCost.wood + totalCost.gold + totalCost.stone;
 
   // Get resource percentage
   const getResourcePercentage = (resource) => {
@@ -31,13 +29,9 @@ export default function ResourceTracker() {
   };
 
   // Get total resource percentage (for total mode)
-  const getTotalResourcePercentage = () => {
-    return calculatePercentage(getTotalResourcesUsed(), config.totalResourceLimit);
-  };
+  const getTotalResourcePercentage = () => calculatePercentage(getTotalResourcesUsed(), config.totalResourceLimit);
 
-  const getPopulationPercentage = () => {
-    return calculatePercentage(totalPopulation, config.populationCap);
-  };
+  const getPopulationPercentage = () => calculatePercentage(totalPopulation, config.populationCap);
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 mb-6">

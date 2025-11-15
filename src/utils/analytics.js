@@ -64,7 +64,7 @@ export const trackUnitAdded = (unitId, unitName, quantity) => {
   trackEvent('unit_added', {
     unit_id: unitId,
     unit_name: unitName,
-    quantity: quantity,
+    quantity,
     event_category: 'engagement'
   });
 };
@@ -130,7 +130,7 @@ export const trackDonationClick = () => {
  */
 export const trackAgeChange = (age) => {
   trackEvent('age_changed', {
-    age: age,
+    age,
     event_category: 'engagement'
   });
 };
@@ -141,7 +141,7 @@ export const trackAgeChange = (age) => {
  */
 export const trackResourceModeChange = (mode) => {
   trackEvent('resource_mode_changed', {
-    mode: mode,
+    mode,
     event_category: 'engagement'
   });
 };
