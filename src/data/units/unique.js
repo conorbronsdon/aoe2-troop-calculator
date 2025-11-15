@@ -645,4 +645,518 @@ export const uniqueUnits = [
     counters: ['infantry', 'cavalry', 'skirmisher'],
     weakTo: ['scorpion', 'onager']
   },
+  // Italians
+  {
+    id: 'genoese-crossbowman',
+    name: 'Genoese Crossbowman',
+    category: 'Unique',
+    civilization: 'italians',
+    age: 'castle',
+    cost: { food: 45, wood: 45, gold: 0, stone: 0 },
+    population: 1,
+    counters: ['cavalry', 'war-elephant'],
+    weakTo: ['infantry', 'archer', 'siege']
+  },
+  {
+    id: 'elite-genoese-crossbowman',
+    name: 'Elite Genoese Crossbowman',
+    category: 'Unique',
+    civilization: 'italians',
+    age: 'imperial',
+    cost: { food: 45, wood: 45, gold: 0, stone: 0 },
+    population: 1,
+    counters: ['cavalry', 'war-elephant', 'camel'],
+    weakTo: ['infantry', 'skirmisher', 'onager']
+  },
+  {
+    id: 'condottiero',
+    name: 'Condottiero',
+    category: 'Unique',
+    civilization: 'italians',
+    age: 'imperial',
+    cost: { food: 50, wood: 0, gold: 35, stone: 0 },
+    population: 1,
+    counters: ['gunpowder', 'archer'],
+    weakTo: ['cavalry', 'archer']
+  },
+  // Huns
+  {
+    id: 'tarkan',
+    name: 'Tarkan',
+    category: 'Unique',
+    civilization: 'huns',
+    age: 'castle',
+    cost: { food: 60, wood: 0, gold: 60, stone: 0 },
+    population: 1,
+    counters: ['building', 'siege'],
+    weakTo: ['monk', 'halberdier', 'camel']
+  },
+  {
+    id: 'elite-tarkan',
+    name: 'Elite Tarkan',
+    category: 'Unique',
+    civilization: 'huns',
+    age: 'imperial',
+    cost: { food: 60, wood: 0, gold: 60, stone: 0 },
+    population: 1,
+    counters: ['building', 'siege', 'archer'],
+    weakTo: ['monk', 'halberdier', 'heavy-camel']
+  },
+  // Lithuanians
+  {
+    id: 'leitis',
+    name: 'Leitis',
+    category: 'Unique',
+    civilization: 'lithuanians',
+    age: 'castle',
+    cost: { food: 70, wood: 0, gold: 80, stone: 0 },
+    population: 1,
+    counters: ['infantry', 'archer'],
+    weakTo: ['camel', 'monk', 'archer']
+  },
+  {
+    id: 'elite-leitis',
+    name: 'Elite Leitis',
+    category: 'Unique',
+    civilization: 'lithuanians',
+    age: 'imperial',
+    cost: { food: 70, wood: 0, gold: 80, stone: 0 },
+    population: 1,
+    counters: ['infantry', 'archer', 'cavalry'],
+    weakTo: ['camel', 'monk', 'archer']
+  },
+  // Bulgarians
+  {
+    id: 'konnik',
+    name: 'Konnik',
+    category: 'Unique',
+    civilization: 'bulgarians',
+    age: 'castle',
+    cost: { food: 60, wood: 0, gold: 70, stone: 0 },
+    population: 1,
+    counters: ['archer', 'infantry'],
+    weakTo: ['camel', 'monk', 'halberdier']
+  },
+  {
+    id: 'elite-konnik',
+    name: 'Elite Konnik',
+    category: 'Unique',
+    civilization: 'bulgarians',
+    age: 'imperial',
+    cost: { food: 60, wood: 0, gold: 70, stone: 0 },
+    population: 1,
+    counters: ['archer', 'infantry', 'siege'],
+    weakTo: ['camel', 'monk', 'halberdier']
+  },
+  {
+    id: 'konnik-dismounted',
+    name: 'Konnik (Dismounted)',
+    category: 'Unique',
+    civilization: 'bulgarians',
+    age: 'castle',
+    cost: { food: 0, wood: 0, gold: 0, stone: 0 },
+    population: 1,
+    counters: ['archer'],
+    weakTo: ['cavalry', 'archer']
+  },
+  // Cumans
+  {
+    id: 'kipchak',
+    name: 'Kipchak',
+    category: 'Unique',
+    civilization: 'cumans',
+    age: 'castle',
+    cost: { food: 60, wood: 35, gold: 0, stone: 0 },
+    population: 1,
+    counters: ['infantry', 'archer'],
+    weakTo: ['skirmisher', 'eagle-warrior']
+  },
+  {
+    id: 'elite-kipchak',
+    name: 'Elite Kipchak',
+    category: 'Unique',
+    civilization: 'cumans',
+    age: 'imperial',
+    cost: { food: 60, wood: 35, gold: 0, stone: 0 },
+    population: 1,
+    counters: ['infantry', 'archer', 'cavalry'],
+    weakTo: ['skirmisher', 'eagle-warrior', 'huskarl']
+  },
+  // Tatars
+  {
+    id: 'keshik',
+    name: 'Keshik',
+    category: 'Unique',
+    civilization: 'tatars',
+    age: 'castle',
+    cost: { food: 50, wood: 0, gold: 80, stone: 0 },
+    population: 1,
+    counters: ['archer', 'infantry'],
+    weakTo: ['camel', 'monk', 'halberdier']
+  },
+  {
+    id: 'elite-keshik',
+    name: 'Elite Keshik',
+    category: 'Unique',
+    civilization: 'tatars',
+    age: 'imperial',
+    cost: { food: 50, wood: 0, gold: 80, stone: 0 },
+    population: 1,
+    counters: ['archer', 'infantry', 'siege'],
+    weakTo: ['camel', 'monk', 'halberdier']
+  },
+  {
+    id: 'flaming-camel',
+    name: 'Flaming Camel',
+    category: 'Unique',
+    civilization: 'tatars',
+    age: 'castle',
+    cost: { food: 75, wood: 0, gold: 0, stone: 0 },
+    population: 1,
+    counters: ['cavalry', 'elephant'],
+    weakTo: ['archer', 'infantry']
+  },
+  // Hindustanis (formerly Indians)
+  {
+    id: 'ghulam',
+    name: 'Ghulam',
+    category: 'Unique',
+    civilization: 'hindustanis',
+    age: 'castle',
+    cost: { food: 55, wood: 0, gold: 45, stone: 0 },
+    population: 1,
+    counters: ['archer', 'gunpowder'],
+    weakTo: ['cavalry', 'scorpion']
+  },
+  {
+    id: 'elite-ghulam',
+    name: 'Elite Ghulam',
+    category: 'Unique',
+    civilization: 'hindustanis',
+    age: 'imperial',
+    cost: { food: 55, wood: 0, gold: 45, stone: 0 },
+    population: 1,
+    counters: ['archer', 'gunpowder', 'infantry'],
+    weakTo: ['cavalry', 'onager']
+  },
+  // Bengalis
+  {
+    id: 'ratha-melee',
+    name: 'Ratha (Melee)',
+    category: 'Unique',
+    civilization: 'bengalis',
+    age: 'castle',
+    cost: { food: 70, wood: 50, gold: 0, stone: 0 },
+    population: 1,
+    counters: ['infantry', 'archer'],
+    weakTo: ['camel', 'halberdier']
+  },
+  {
+    id: 'elite-ratha-melee',
+    name: 'Elite Ratha (Melee)',
+    category: 'Unique',
+    civilization: 'bengalis',
+    age: 'imperial',
+    cost: { food: 70, wood: 50, gold: 0, stone: 0 },
+    population: 1,
+    counters: ['infantry', 'archer', 'cavalry'],
+    weakTo: ['camel', 'halberdier']
+  },
+  // Dravidians
+  {
+    id: 'urumi-swordsman',
+    name: 'Urumi Swordsman',
+    category: 'Unique',
+    civilization: 'dravidians',
+    age: 'castle',
+    cost: { food: 65, wood: 0, gold: 25, stone: 0 },
+    population: 1,
+    counters: ['archer', 'infantry'],
+    weakTo: ['cavalry', 'siege']
+  },
+  {
+    id: 'elite-urumi-swordsman',
+    name: 'Elite Urumi Swordsman',
+    category: 'Unique',
+    civilization: 'dravidians',
+    age: 'imperial',
+    cost: { food: 65, wood: 0, gold: 25, stone: 0 },
+    population: 1,
+    counters: ['archer', 'infantry', 'eagle-warrior'],
+    weakTo: ['cavalry', 'onager']
+  },
+  // Gurjaras
+  {
+    id: 'shrivamsha-rider',
+    name: 'Shrivamsha Rider',
+    category: 'Unique',
+    civilization: 'gurjaras',
+    age: 'castle',
+    cost: { food: 70, wood: 0, gold: 30, stone: 0 },
+    population: 1,
+    counters: ['archer', 'siege'],
+    weakTo: ['camel', 'halberdier']
+  },
+  {
+    id: 'elite-shrivamsha-rider',
+    name: 'Elite Shrivamsha Rider',
+    category: 'Unique',
+    civilization: 'gurjaras',
+    age: 'imperial',
+    cost: { food: 70, wood: 0, gold: 30, stone: 0 },
+    population: 1,
+    counters: ['archer', 'siege', 'monk'],
+    weakTo: ['camel', 'halberdier']
+  },
+  {
+    id: 'chakram-thrower',
+    name: 'Chakram Thrower',
+    category: 'Unique',
+    civilization: 'gurjaras',
+    age: 'castle',
+    cost: { food: 40, wood: 30, gold: 0, stone: 0 },
+    population: 1,
+    counters: ['infantry', 'archer'],
+    weakTo: ['cavalry', 'skirmisher']
+  },
+  {
+    id: 'elite-chakram-thrower',
+    name: 'Elite Chakram Thrower',
+    category: 'Unique',
+    civilization: 'gurjaras',
+    age: 'imperial',
+    cost: { food: 40, wood: 30, gold: 0, stone: 0 },
+    population: 1,
+    counters: ['infantry', 'archer', 'siege'],
+    weakTo: ['cavalry', 'skirmisher']
+  },
+  // Burmese
+  {
+    id: 'arambai',
+    name: 'Arambai',
+    category: 'Unique',
+    civilization: 'burmese',
+    age: 'castle',
+    cost: { food: 75, wood: 60, gold: 0, stone: 0 },
+    population: 1,
+    counters: ['archer', 'siege', 'building'],
+    weakTo: ['skirmisher', 'eagle-warrior']
+  },
+  {
+    id: 'elite-arambai',
+    name: 'Elite Arambai',
+    category: 'Unique',
+    civilization: 'burmese',
+    age: 'imperial',
+    cost: { food: 75, wood: 60, gold: 0, stone: 0 },
+    population: 1,
+    counters: ['archer', 'siege', 'building', 'cavalry'],
+    weakTo: ['skirmisher', 'eagle-warrior']
+  },
+  // Malay
+  {
+    id: 'karambit-warrior',
+    name: 'Karambit Warrior',
+    category: 'Unique',
+    civilization: 'malay',
+    age: 'castle',
+    cost: { food: 30, wood: 0, gold: 10, stone: 0 },
+    population: 0.5,
+    counters: ['archer', 'eagle-warrior'],
+    weakTo: ['cavalry', 'siege']
+  },
+  {
+    id: 'elite-karambit-warrior',
+    name: 'Elite Karambit Warrior',
+    category: 'Unique',
+    civilization: 'malay',
+    age: 'imperial',
+    cost: { food: 30, wood: 0, gold: 10, stone: 0 },
+    population: 0.5,
+    counters: ['archer', 'eagle-warrior', 'infantry'],
+    weakTo: ['cavalry', 'cataphract']
+  },
+  // Poles
+  {
+    id: 'obuch',
+    name: 'Obuch',
+    category: 'Unique',
+    civilization: 'poles',
+    age: 'castle',
+    cost: { food: 75, wood: 0, gold: 25, stone: 0 },
+    population: 1,
+    counters: ['archer', 'cavalry'],
+    weakTo: ['archer', 'hand-cannoneer']
+  },
+  {
+    id: 'elite-obuch',
+    name: 'Elite Obuch',
+    category: 'Unique',
+    civilization: 'poles',
+    age: 'imperial',
+    cost: { food: 75, wood: 0, gold: 25, stone: 0 },
+    population: 1,
+    counters: ['archer', 'cavalry', 'infantry'],
+    weakTo: ['archer', 'hand-cannoneer']
+  },
+  // Bohemians
+  {
+    id: 'hussite-wagon',
+    name: 'Hussite Wagon',
+    category: 'Unique',
+    civilization: 'bohemians',
+    age: 'castle',
+    cost: { food: 110, wood: 70, gold: 0, stone: 0 },
+    population: 3,
+    counters: ['infantry', 'cavalry'],
+    weakTo: ['siege', 'bombard-cannon']
+  },
+  {
+    id: 'elite-hussite-wagon',
+    name: 'Elite Hussite Wagon',
+    category: 'Unique',
+    civilization: 'bohemians',
+    age: 'imperial',
+    cost: { food: 110, wood: 70, gold: 0, stone: 0 },
+    population: 3,
+    counters: ['infantry', 'cavalry', 'archer'],
+    weakTo: ['siege', 'bombard-cannon']
+  },
+  // Sicilians
+  {
+    id: 'serjeant',
+    name: 'Serjeant',
+    category: 'Unique',
+    civilization: 'sicilians',
+    age: 'castle',
+    cost: { food: 60, wood: 0, gold: 30, stone: 0 },
+    population: 1,
+    counters: ['archer', 'cavalry'],
+    weakTo: ['infantry', 'archer']
+  },
+  {
+    id: 'elite-serjeant',
+    name: 'Elite Serjeant',
+    category: 'Unique',
+    civilization: 'sicilians',
+    age: 'imperial',
+    cost: { food: 60, wood: 0, gold: 30, stone: 0 },
+    population: 1,
+    counters: ['archer', 'cavalry', 'eagle-warrior'],
+    weakTo: ['infantry', 'hand-cannoneer']
+  },
+  // Burgundians
+  {
+    id: 'coustillier',
+    name: 'Coustillier',
+    category: 'Unique',
+    civilization: 'burgundians',
+    age: 'castle',
+    cost: { food: 55, wood: 0, gold: 55, stone: 0 },
+    population: 1,
+    counters: ['archer', 'infantry', 'siege'],
+    weakTo: ['camel', 'halberdier', 'monk']
+  },
+  {
+    id: 'elite-coustillier',
+    name: 'Elite Coustillier',
+    category: 'Unique',
+    civilization: 'burgundians',
+    age: 'imperial',
+    cost: { food: 55, wood: 0, gold: 55, stone: 0 },
+    population: 1,
+    counters: ['archer', 'infantry', 'siege', 'cavalry'],
+    weakTo: ['camel', 'halberdier', 'monk']
+  },
+  // Armenians
+  {
+    id: 'composite-bowman',
+    name: 'Composite Bowman',
+    category: 'Unique',
+    civilization: 'armenians',
+    age: 'castle',
+    cost: { food: 50, wood: 40, gold: 0, stone: 0 },
+    population: 1,
+    counters: ['infantry', 'cavalry'],
+    weakTo: ['skirmisher', 'eagle-warrior']
+  },
+  {
+    id: 'elite-composite-bowman',
+    name: 'Elite Composite Bowman',
+    category: 'Unique',
+    civilization: 'armenians',
+    age: 'imperial',
+    cost: { food: 50, wood: 40, gold: 0, stone: 0 },
+    population: 1,
+    counters: ['infantry', 'cavalry', 'archer'],
+    weakTo: ['skirmisher', 'eagle-warrior']
+  },
+  // Georgians
+  {
+    id: 'monaspa',
+    name: 'Monaspa',
+    category: 'Unique',
+    civilization: 'georgians',
+    age: 'castle',
+    cost: { food: 80, wood: 0, gold: 60, stone: 0 },
+    population: 1,
+    counters: ['archer', 'infantry'],
+    weakTo: ['camel', 'halberdier', 'monk']
+  },
+  {
+    id: 'elite-monaspa',
+    name: 'Elite Monaspa',
+    category: 'Unique',
+    civilization: 'georgians',
+    age: 'imperial',
+    cost: { food: 80, wood: 0, gold: 60, stone: 0 },
+    population: 1,
+    counters: ['archer', 'infantry', 'cavalry'],
+    weakTo: ['camel', 'halberdier', 'monk']
+  },
+  // Romans
+  {
+    id: 'centurion',
+    name: 'Centurion',
+    category: 'Unique',
+    civilization: 'romans',
+    age: 'castle',
+    cost: { food: 60, wood: 0, gold: 50, stone: 0 },
+    population: 1,
+    counters: ['infantry', 'cavalry'],
+    weakTo: ['archer', 'siege']
+  },
+  {
+    id: 'elite-centurion',
+    name: 'Elite Centurion',
+    category: 'Unique',
+    civilization: 'romans',
+    age: 'imperial',
+    cost: { food: 60, wood: 0, gold: 50, stone: 0 },
+    population: 1,
+    counters: ['infantry', 'cavalry', 'eagle-warrior'],
+    weakTo: ['archer', 'onager']
+  },
+  {
+    id: 'scorpio',
+    name: 'Scorpio',
+    category: 'Unique',
+    civilization: 'romans',
+    age: 'castle',
+    cost: { food: 0, wood: 80, gold: 60, stone: 0 },
+    population: 2,
+    counters: ['archer', 'infantry'],
+    weakTo: ['cavalry', 'siege']
+  },
+  {
+    id: 'elite-scorpio',
+    name: 'Elite Scorpio',
+    category: 'Unique',
+    civilization: 'romans',
+    age: 'imperial',
+    cost: { food: 0, wood: 80, gold: 60, stone: 0 },
+    population: 2,
+    counters: ['archer', 'infantry', 'cavalry'],
+    weakTo: ['onager', 'bombard-cannon']
+  },
 ];
