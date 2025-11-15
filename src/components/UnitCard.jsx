@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { calculateUnitCost, hasDiscount } from '../utils/calculations';
 import { civilizations } from '../data/civilizations';
+import { getUnitById } from '../data/units';
 import UnitIcon from './UnitIcon';
 
 export default function UnitCard({ unit }) {
   const { state, dispatch } = useArmy();
   const { composition, config } = state;
+  const [showCounters, setShowCounters] = useState(false);
 
   const adjustedCost = calculateUnitCost(unit, config.selectedCiv, config.selectedAge);
   const baseCost = unit.cost;
@@ -36,6 +38,14 @@ export default function UnitCard({ unit }) {
   const setQuantity = (value) => {
     dispatch({ type: ACTION_TYPES.SET_UNIT_QUANTITY, unitId: unit.id, quantity: value });
   };
+
+  // Get unit names for counters and weaknesses
+  const getUnitName = (unitId) => {
+    const foundUnit = getUnitById(unitId);
+    return foundUnit ? foundUnit.name : unitId;
+  };
+
+  const hasCounterInfo = (unit.counters && unit.counters.length > 0) || (unit.weakTo && unit.weakTo.length > 0);
 
   return (
     <div className={`border rounded-lg p-3 hover:shadow-md transition-all ${
@@ -100,6 +110,57 @@ export default function UnitCard({ unit }) {
           </div>
         )}
       </div>
+
+      {/* Counter Information */}
+      {hasCounterInfo && (
+        <div className="mb-3 border-t pt-2">
+          <button
+            onClick={() => setShowCounters(!showCounters)}
+            className="text-xs text-gray-600 hover:text-gray-800 font-medium flex items-center gap-1 w-full"
+          >
+            <span>{showCounters ? '▼' : '►'}</span>
+            <span>Counters & Weaknesses</span>
+          </button>
+
+          {showCounters && (
+            <div className="mt-2 space-y-2">
+              {unit.counters && unit.counters.length > 0 && (
+                <div>
+                  <div className="text-xs font-semibold text-green-700 mb-1">✅ Strong Against:</div>
+                  <div className="flex flex-wrap gap-1">
+                    {unit.counters.map(counterId => (
+                      <span
+                        key={counterId}
+                        className="inline-block text-xs px-2 py-0.5 bg-green-100 text-green-800 rounded-full border border-green-300"
+                        title={`Effective against ${getUnitName(counterId)}`}
+                      >
+                        {getUnitName(counterId)}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {unit.weakTo && unit.weakTo.length > 0 && (
+                <div>
+                  <div className="text-xs font-semibold text-red-700 mb-1">⚠️ Weak To:</div>
+                  <div className="flex flex-wrap gap-1">
+                    {unit.weakTo.map(weakId => (
+                      <span
+                        key={weakId}
+                        className="inline-block text-xs px-2 py-0.5 bg-red-100 text-red-800 rounded-full border border-red-300"
+                        title={`Vulnerable to ${getUnitName(weakId)}`}
+                      >
+                        {getUnitName(weakId)}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
 
       <div className="flex items-center space-x-2">
         <button
