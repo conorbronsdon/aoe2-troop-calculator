@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { ArmyProvider, useArmy, ACTION_TYPES } from './context/ArmyContext';
 import { ThemeProvider } from './context/ThemeContext';
 import ConfigurationPanel from './components/ConfigurationPanel';
+import CivilizationIndicator from './components/CivilizationIndicator';
 import CivilizationBonuses from './components/CivilizationBonuses';
 import ResourceTracker from './components/ResourceTracker';
 import UnitSelection from './components/UnitSelection';
@@ -72,6 +73,7 @@ function AppContent() {
       <SocialShareButtons />
 
       <ConfigurationPanel />
+      <CivilizationIndicator />
       <CivilizationBonuses />
       <CivilizationComparison />
       <ResourceTracker />

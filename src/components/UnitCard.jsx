@@ -1,6 +1,7 @@
 import React from 'react';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { calculateUnitCost, hasDiscount } from '../utils/calculations';
+import { civilizations } from '../data/civilizations';
 import UnitIcon from './UnitIcon';
 
 export default function UnitCard({ unit }) {
@@ -12,6 +13,17 @@ export default function UnitCard({ unit }) {
   const showDiscount = hasDiscount(unit, adjustedCost);
 
   const quantity = composition[unit.id] || 0;
+
+  // Get bonuses that apply to this unit
+  const currentCiv = civilizations.find(civ => civ.id === config.selectedCiv);
+  const applicableBonuses = currentCiv && currentCiv.id !== 'generic'
+    ? currentCiv.bonuses.filter(bonus => {
+        if (bonus.type !== 'cost') return false;
+        return bonus.units === 'all' || bonus.units.includes(unit.id);
+      })
+    : [];
+
+  const hasBonuses = applicableBonuses.length > 0;
 
   const addUnit = () => {
     dispatch({ type: ACTION_TYPES.ADD_UNIT, unitId: unit.id });
@@ -26,14 +38,29 @@ export default function UnitCard({ unit }) {
   };
 
   return (
-    <div className="border rounded-lg p-3 hover:shadow-md transition-shadow">
+    <div className={`border rounded-lg p-3 hover:shadow-md transition-all ${
+      hasBonuses ? 'border-blue-300 bg-blue-50/30' : ''
+    }`}>
       <div className="flex justify-between items-start mb-2">
-        <div>
+        <div className="flex-1">
           <div className="font-semibold text-sm flex items-center gap-2">
             <UnitIcon unitId={unit.id} category={unit.category} size="lg" />
             <span>{unit.name}</span>
+            {hasBonuses && (
+              <span
+                className="text-xs px-1.5 py-0.5 bg-blue-500 text-white rounded-full font-bold cursor-help"
+                title={`${currentCiv.name} bonuses:\n${applicableBonuses.map(b => b.description).join('\n')}`}
+              >
+                🏛️
+              </span>
+            )}
           </div>
           <div className="text-xs text-gray-500 capitalize">{unit.age} Age</div>
+          {hasBonuses && showDiscount && (
+            <div className="text-xs text-blue-600 font-semibold mt-1">
+              💰 {currentCiv.name} discount applied
+            </div>
+          )}
         </div>
         <span className="text-xs bg-gray-200 px-2 py-1 rounded">Pop: {unit.population}</span>
       </div>

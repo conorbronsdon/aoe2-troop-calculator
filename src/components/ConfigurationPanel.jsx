@@ -12,6 +12,17 @@ export default function ConfigurationPanel() {
     dispatch({ type: ACTION_TYPES.UPDATE_CONFIG, config: updates });
   };
 
+  const applyCivilization = () => {
+    dispatch({
+      type: ACTION_TYPES.APPLY_CIVILIZATION,
+      civId: config.previewCiv || config.selectedCiv
+    });
+  };
+
+  const isPreviewing = config.previewCiv && config.previewCiv !== config.selectedCiv;
+  const previewCiv = civilizations.find(civ => civ.id === (config.previewCiv || config.selectedCiv));
+  const appliedCiv = civilizations.find(civ => civ.id === config.selectedCiv);
+
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
       <h2 className="text-2xl font-semibold mb-4 text-gray-700">Configuration</h2>
@@ -122,19 +133,58 @@ export default function ConfigurationPanel() {
         {/* Civilization Selection */}
         <div className="md:col-span-2 lg:col-span-3">
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Civilization
+            Select Civilization
+            {appliedCiv && appliedCiv.id !== 'generic' && (
+              <span className="ml-2 text-xs text-blue-600 font-semibold">
+                (Currently applied: {appliedCiv.name})
+              </span>
+            )}
           </label>
-          <select
-            className="w-full border rounded px-3 py-2"
-            value={config.selectedCiv}
-            onChange={(e) => updateConfig({ selectedCiv: e.target.value })}
-          >
-            {civilizations.map(civ => (
-              <option key={civ.id} value={civ.id}>
-                {civ.name}
-              </option>
-            ))}
-          </select>
+          <div className="flex gap-2">
+            <select
+              className={`flex-1 border rounded px-3 py-2 transition-all ${
+                isPreviewing
+                  ? 'border-amber-400 bg-amber-50 ring-2 ring-amber-200'
+                  : 'border-gray-300'
+              }`}
+              value={config.previewCiv || config.selectedCiv}
+              onChange={(e) => updateConfig({ previewCiv: e.target.value })}
+            >
+              {civilizations.map(civ => (
+                <option key={civ.id} value={civ.id}>
+                  {civ.name} {civ.region !== 'None' ? `(${civ.region})` : ''}
+                </option>
+              ))}
+            </select>
+            <button
+              onClick={applyCivilization}
+              disabled={!isPreviewing}
+              className={`px-6 py-2 rounded font-semibold transition-all duration-200 ${
+                isPreviewing
+                  ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105'
+                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              }`}
+              title={isPreviewing ? `Apply ${previewCiv.name} bonuses` : 'Select a different civilization to apply'}
+            >
+              {isPreviewing ? 'Apply' : 'Applied'}
+            </button>
+          </div>
+          {isPreviewing && (
+            <p className="text-sm text-amber-700 mt-2 flex items-center gap-1">
+              <span className="animate-pulse">⚠️</span>
+              <span>
+                Previewing <strong>{previewCiv.name}</strong>. Click "Apply" to activate bonuses and update calculations.
+              </span>
+            </p>
+          )}
+          {!isPreviewing && appliedCiv && appliedCiv.id !== 'generic' && (
+            <p className="text-sm text-green-700 mt-2 flex items-center gap-1">
+              <span>✓</span>
+              <span>
+                <strong>{appliedCiv.name}</strong> bonuses are active and affecting your army.
+              </span>
+            </p>
+          )}
         </div>
       </div>
     </div>
