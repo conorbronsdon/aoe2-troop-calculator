@@ -1280,13 +1280,6 @@ export const civilizations = [
         description: 'Gunpowder units fire 18% faster'
       },
       {
-        type: 'cost',
-        units: ['hand-cannoneer', 'bombard-cannon'],
-        resource: 'gold',
-        value: 'replaced with food',
-        description: 'Hand Cannoneer and Bombard Cannon gold cost replaced with food'
-      },
-      {
         type: 'economic',
         description: 'Builders work 30% faster'
       }
