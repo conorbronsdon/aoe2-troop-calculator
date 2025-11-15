@@ -92,3 +92,93 @@ html {
     padding-bottom: env(safe-area-inset-bottom);
   }
 }
+
+/* Print Styles */
+@media print {
+  /* Hide non-essential elements */
+  button:not(.print-show),
+  .no-print,
+  [aria-label="Toggle theme"],
+  [aria-label*="Share"],
+  input[type="number"],
+  select {
+    display: none !important;
+  }
+
+  /* Optimize layout for printing */
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  /* Remove backgrounds and shadows */
+  * {
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Ensure black text */
+  h1, h2, h3, h4, h5, h6, p, li, td, th {
+    color: black !important;
+  }
+
+  /* Page breaks */
+  h1, h2, h3 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  table, ul, ol {
+    page-break-inside: avoid;
+  }
+
+  /* Show URLs for links */
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+  }
+
+  /* Optimize spacing */
+  .container {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Make borders visible */
+  table, th, td {
+    border: 1px solid black !important;
+  }
+
+  /* Expand collapsed sections */
+  details {
+    display: block !important;
+  }
+
+  details > summary {
+    display: none;
+  }
+
+  details[open] > *:not(summary) {
+    display: block !important;
+  }
+
+  /* Header formatting */
+  .print-header {
+    margin-bottom: 20pt;
+    border-bottom: 2pt solid black;
+    padding-bottom: 10pt;
+  }
+
+  /* Footer with page numbers */
+  @page {
+    margin: 2cm;
+    @bottom-right {
+      content: "Page " counter(page) " of " counter(pages);
+    }
+  }
+}
