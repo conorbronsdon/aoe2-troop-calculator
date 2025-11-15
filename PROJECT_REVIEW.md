@@ -2,7 +2,7 @@
 
 ## Current Status: Production Ready ✅
 
-**Version**: 2.0.0
+**Version**: 2.2.1
 **Tests**: 62/62 passing ✅
 **Build**: Successful ✅
 **Documentation**: Complete ✅
@@ -18,13 +18,13 @@
 - **Siege**: 11 units (complete ram/mangonel/scorpion lines, bombard cannon, trebuchet)
 - **Naval**: 14 units (galleys, fire ships, demo ships, cannon galleons, economic ships)
 - **Monks**: 2 units (Monk, Missionary)
-- **Unique Units**: 101 unique units covering 45 civilizations
+- **Unique Units**: 101 unique units covering 51 civilizations
 
-### 2. Civilizations (46 Total) ✅
+### 2. Civilizations (52 Total) ✅
 - **Generic**: No bonuses (baseline)
-- **45 Real Civilizations**: All with bonuses implemented
+- **51 Real Civilizations**: All with bonuses implemented
   - European (20 civs)
-  - Asian (13 civs)
+  - Asian (19 civs)
   - African (4 civs)
   - American (3 civs)
   - Middle Eastern (5 civs)
@@ -33,7 +33,7 @@
 - **Cost Bonuses**: Fully automated calculation (21+ civilizations)
 - **Stat Bonuses**: Displayed for reference
 - **Economic Bonuses**: Documented and shown
-- **Team Bonuses**: Implemented for 8 civilizations (37 still needed)
+- **Team Bonuses**: Implemented for 8 civilizations (43 still needed)
 - **Interactive UI**: CivilizationBonuses component with expandable panel
 
 ### 4. Testing ✅
@@ -83,20 +83,15 @@
 - Modify: `src/data/units/index.js` (update getUnitsForCiv)
 - Modify: `src/components/UnitSelection.jsx` (add visual indicators)
 
-### 2. Minor Documentation Inconsistencies
-**Status**: Minor issue
-**Impact**: Low
-**Issue**: README says "42 Civilizations" but we have 46 total (including generic)
-
-**Fix needed**:
-- Update README.md line 32: Change "42 Civilizations" to "45 Civilizations"
-- Update README.md line 66: Change "Choose from 42 civilizations" to "45 civilizations"
-- Update FEATURES.md line 188: Update civilization count
+### 2. Documentation Now Updated ✅
+**Status**: Fixed
+**Impact**: None
+**All documentation updated**: All files now correctly reference 51 civilizations and version 2.2.1
 
 ### 3. Missing Bonuses for Some Civilizations
 **Status**: Partially complete
 **Impact**: Low-Medium
-**Current**: 45/45 civilizations have at least one bonus
+**Current**: 51/51 civilizations have at least one bonus
 **Issue**: Some civilizations have minimal bonuses (only 1 economic bonus)
 
 **Civilizations with limited bonuses** (20+ civs):
@@ -107,11 +102,11 @@
 ### 4. Team Bonuses Not Universal
 **Status**: Partially complete
 **Impact**: Low
-**Current**: 8/45 civilizations have team bonuses documented
+**Current**: 8/51 civilizations have team bonuses documented
 **Issue**: All civilizations in AoE2 have team bonuses
 
 **What's needed**:
-- Add teamBonus field for remaining 37 civilizations
+- Add teamBonus field for remaining 43 civilizations
 - Reference: https://ageofempires.fandom.com/wiki/Team_bonus
 
 ### 5. Unit Statistics Not Displayed
@@ -179,18 +174,18 @@
 ## Priority Recommendations
 
 ### High Priority (Should do next)
-1. **Fix Documentation Numbers** (5 minutes)
-   - Update civilization count from 42 to 45
+1. **Documentation Numbers** ✅ COMPLETE
+   - All files updated to version 2.2.1 and 51 civilizations
 
-2. **Technology Tree Restrictions** (2-4 hours)
+2. **Technology Tree Restrictions** ✅ COMPLETE
    - Most impactful improvement
    - Prevents incorrect unit selections
    - Significantly improves accuracy
 
 ### Medium Priority (Nice to have)
 3. **Complete Civilization Bonuses** (2-3 hours)
-   - Add missing bonuses for all 45 civs
-   - Add team bonuses for remaining 37 civs
+   - Add missing bonuses for all 51 civs
+   - Add team bonuses for remaining 43 civs
    - Reference official AoE2 data
 
 4. **Unit Statistics** (3-4 hours)
@@ -264,13 +259,13 @@
 
 ## Conclusion
 
-**Current State**: Production-ready v2.0.0 with comprehensive features
+**Current State**: Production-ready v2.2.1 with comprehensive features
 
-**Biggest Gap**: Technology tree restrictions (units not filtered by civ tech tree)
+**Biggest Gap**: Complete team bonuses for all civilizations
 
 **Recommended Next Steps**:
-1. Fix documentation numbers (5 min)
-2. Implement tech tree restrictions (2-4 hours)
+1. Documentation and version updates ✅ COMPLETE
+2. Technology tree restrictions ✅ COMPLETE
 3. Complete all civilization bonuses (2-3 hours)
 4. Add unit statistics (3-4 hours)
 
