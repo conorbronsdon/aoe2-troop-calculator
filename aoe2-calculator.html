@@ -116,12 +116,12 @@
         function AoE2Calculator() {
             // Configuration State
             const [resourceLimitMode, setResourceLimitMode] = useState('individual'); // 'individual' or 'total'
-            const [totalResourceLimit, setTotalResourceLimit] = useState(80000);
+            const [totalResourceLimit, setTotalResourceLimit] = useState(20000);
             const [resourceLimits, setResourceLimits] = useState({
-                food: 20000,
-                wood: 20000,
-                gold: 20000,
-                stone: 20000
+                food: 8000,
+                wood: 8000,
+                gold: 4000,
+                stone: 0
             });
             const [populationCap, setPopulationCap] = useState(200);
             const [selectedAge, setSelectedAge] = useState('imperial');
