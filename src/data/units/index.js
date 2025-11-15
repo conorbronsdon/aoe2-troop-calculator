@@ -29,18 +29,14 @@ export const units = [
  * @param {string} unitId - Unit identifier
  * @returns {Object|undefined} Unit data or undefined if not found
  */
-export const getUnitById = (unitId) => {
-  return units.find(unit => unit.id === unitId);
-};
+export const getUnitById = (unitId) => units.find(unit => unit.id === unitId);
 
 /**
  * Get units by category
  * @param {string} category - Unit category
  * @returns {Array} Array of units in the category
  */
-export const getUnitsByCategory = (category) => {
-  return units.filter(unit => unit.category === category);
-};
+export const getUnitsByCategory = (category) => units.filter(unit => unit.category === category);
 
 /**
  * Get units available in a specific age
@@ -59,7 +55,7 @@ export const getUnitsByAge = (age) => {
  * @returns {Array} Array of unique units for that civilization
  */
 export const getUniqueUnitsByCiv = (civId) => {
-  if (!civId || civId === 'generic') return [];
+  if (!civId || civId === 'generic') {return [];}
   return uniqueUnits.filter(unit => unit.civilization === civId);
 };
 

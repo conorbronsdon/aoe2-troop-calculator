@@ -11,7 +11,7 @@ const SocialShareButtons = () => {
 
   const shareUrl = window.location.href;
   const shareTitle = 'Age of Empires II: Army Calculator';
-  const shareDescription = 'Calculate army compositions and resource costs for Age of Empires II with all civilizations!';
+  const _shareDescription = 'Calculate army compositions and resource costs for Age of Empires II with all civilizations!';
 
   const handleCopyLink = async () => {
     try {

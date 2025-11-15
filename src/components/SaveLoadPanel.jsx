@@ -120,7 +120,7 @@ export default function SaveLoadPanel() {
       {/* Saved Compositions List */}
       {savedCompositions.length === 0 ? (
         <p className="text-gray-500 text-center py-4">
-          No saved compositions yet. Build an army and click "Save Current" to get started!
+          No saved compositions yet. Build an army and click &quot;Save Current&quot; to get started!
         </p>
       ) : (
         <div className="space-y-2">

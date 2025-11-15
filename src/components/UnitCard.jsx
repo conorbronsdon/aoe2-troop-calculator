@@ -20,7 +20,7 @@ export default function UnitCard({ unit }) {
   const currentCiv = civilizations.find(civ => civ.id === config.selectedCiv);
   const applicableBonuses = currentCiv && currentCiv.id !== 'generic'
     ? currentCiv.bonuses.filter(bonus => {
-        if (bonus.type !== 'cost') return false;
+        if (bonus.type !== 'cost') {return false;}
         return bonus.units === 'all' || bonus.units.includes(unit.id);
       })
     : [];

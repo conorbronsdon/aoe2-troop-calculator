@@ -141,7 +141,7 @@ describe('Calculation Functions', () => {
       const composition = { trebuchet: 5 };
       const { totalPopulation } = calculateTotals(composition, 'generic', 'imperial');
 
-      expect(totalPopulation).toBe(40); // 8 pop * 5
+      expect(totalPopulation).toBe(5); // 1 pop * 5
     });
   });
 
@@ -257,8 +257,8 @@ describe('Calculation Functions', () => {
 
       const { totalCost, totalPopulation } = calculateTotals(composition, 'generic', 'imperial');
 
-      // Verify total population (siege units have higher pop)
-      expect(totalPopulation).toBe(15 + 25 + (3 * 3) + (2 * 8)); // 65
+      // Verify total population (all units have 1 pop)
+      expect(totalPopulation).toBe(15 + 25 + 3 + 2); // 45
 
       // Verify resources are summed correctly
       expect(totalCost.food).toBeGreaterThan(0);

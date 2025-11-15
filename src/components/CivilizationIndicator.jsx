@@ -19,8 +19,8 @@ export default function CivilizationIndicator() {
   // Count how many bonuses are affecting current army composition
   const activeBonusCount = appliedCiv && appliedCiv.id !== 'generic'
     ? appliedCiv.bonuses.filter(bonus => {
-        if (bonus.type !== 'cost') return false;
-        if (bonus.units === 'all') return Object.keys(composition).length > 0;
+        if (bonus.type !== 'cost') {return false;}
+        if (bonus.units === 'all') {return Object.keys(composition).length > 0;}
 
         // Check if any units in composition are affected by this bonus
         return Object.keys(composition).some(unitId =>
@@ -31,7 +31,7 @@ export default function CivilizationIndicator() {
     : 0;
 
   // Don't render if no civilization is selected
-  if (!appliedCiv) return null;
+  if (!appliedCiv) {return null;}
 
   const isGeneric = appliedCiv.id === 'generic';
 
@@ -124,7 +124,7 @@ export default function CivilizationIndicator() {
       {/* Preview notice */}
       {isPreviewing && (
         <div className="mt-3 p-2 bg-amber-100 border border-amber-300 rounded text-sm text-amber-800">
-          <strong>Preview Mode:</strong> You are previewing {previewCiv.name}. Click "Apply Civilization" to activate bonuses.
+          <strong>Preview Mode:</strong> You are previewing {previewCiv.name}. Click &quot;Apply Civilization&quot; to activate bonuses.
         </div>
       )}
     </div>

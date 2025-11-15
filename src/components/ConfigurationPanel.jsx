@@ -229,7 +229,7 @@ export default function ConfigurationPanel() {
             <p className="text-sm text-amber-700 mt-2 flex items-center gap-1">
               <span className="animate-pulse">⚠️</span>
               <span>
-                Previewing <strong>{previewCiv.name}</strong>. Click "Apply" to activate bonuses and update calculations.
+                Previewing <strong>{previewCiv.name}</strong>. Click &quot;Apply&quot; to activate bonuses and update calculations.
               </span>
             </p>
           )}

@@ -311,9 +311,7 @@ export const unitToGameId = {
  * @param {string} unitId - Our internal unit ID
  * @returns {number|null} The game unit ID or null if not found
  */
-export const getGameUnitId = (unitId) => {
-  return unitToGameId[unitId] || null;
-};
+export const getGameUnitId = (unitId) => unitToGameId[unitId] || null;
 
 /**
  * Get the image path for a unit

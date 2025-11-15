@@ -19,9 +19,7 @@ const CivilizationComparison = () => {
     setSelectedCivs(selectedCivs.filter(id => id !== civId));
   };
 
-  const getCivData = (civId) => {
-    return civilizations.find(civ => civ.id === civId);
-  };
+  const getCivData = (civId) => civilizations.find(civ => civ.id === civId);
 
   if (!isOpen) {
     return (

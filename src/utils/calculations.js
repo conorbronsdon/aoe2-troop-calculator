@@ -10,7 +10,7 @@ import { getUnitById } from '../data/units';
  */
 export const calculateUnitCost = (unit, civId, age) => {
   const civ = getCivilizationById(civId);
-  let cost = { ...unit.cost };
+  const cost = { ...unit.cost };
 
   if (civ && civ.bonuses.length > 0) {
     civ.bonuses.forEach(bonus => {
@@ -57,7 +57,7 @@ export const calculateUnitCost = (unit, civId, age) => {
  * @returns {Object} { totalCost: { food, wood, gold, stone }, totalPopulation }
  */
 export const calculateTotals = (composition, civId, age) => {
-  let totalCost = { food: 0, wood: 0, gold: 0, stone: 0 };
+  const totalCost = { food: 0, wood: 0, gold: 0, stone: 0 };
   let totalPopulation = 0;
 
   Object.entries(composition).forEach(([unitId, quantity]) => {
@@ -85,7 +85,7 @@ export const calculateTotals = (composition, civId, age) => {
  * @returns {Object} { food, wood, gold, stone }
  */
 export const calculateFortificationCosts = (fortificationComposition, fortifications) => {
-  let totalCost = { food: 0, wood: 0, gold: 0, stone: 0 };
+  const totalCost = { food: 0, wood: 0, gold: 0, stone: 0 };
 
   Object.entries(fortificationComposition).forEach(([fortificationId, quantity]) => {
     if (quantity > 0) {
@@ -132,9 +132,7 @@ export const calculateCombinedTotals = (composition, fortificationComposition, c
  * @param {Object} adjustedCost - Adjusted cost after bonuses
  * @returns {boolean} True if unit has any discount
  */
-export const hasDiscount = (unit, adjustedCost) => {
-  return JSON.stringify(adjustedCost) !== JSON.stringify(unit.cost);
-};
+export const hasDiscount = (unit, adjustedCost) => JSON.stringify(adjustedCost) !== JSON.stringify(unit.cost);
 
 /**
  * Calculate resource percentage usage
@@ -143,7 +141,7 @@ export const hasDiscount = (unit, adjustedCost) => {
  * @returns {number} Percentage (0-100+)
  */
 export const calculatePercentage = (used, limit) => {
-  if (limit === 0) return 0;
+  if (limit === 0) {return 0;}
   return (used / limit) * 100;
 };
 
@@ -153,8 +151,8 @@ export const calculatePercentage = (used, limit) => {
  * @returns {string} Tailwind color class
  */
 export const getResourceColor = (percentage) => {
-  if (percentage > 100) return 'bg-red-500';
-  if (percentage > 80) return 'bg-yellow-500';
+  if (percentage > 100) {return 'bg-red-500';}
+  if (percentage > 80) {return 'bg-yellow-500';}
   return 'bg-green-500';
 };
 
@@ -163,12 +161,10 @@ export const getResourceColor = (percentage) => {
  * @param {Array} units - Array of units
  * @returns {Object} Units grouped by category
  */
-export const groupUnitsByCategory = (units) => {
-  return units.reduce((acc, unit) => {
+export const groupUnitsByCategory = (units) => units.reduce((acc, unit) => {
     if (!acc[unit.category]) {
       acc[unit.category] = [];
     }
     acc[unit.category].push(unit);
     return acc;
   }, {});
-};

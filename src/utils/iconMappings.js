@@ -280,6 +280,4 @@ export const categoryIcons = {
  * @param {string} category - Unit category (fallback)
  * @returns {React.Component} Icon component
  */
-export const getUnitIcon = (unitId, category) => {
-  return unitIconComponents[unitId] || categoryIcons[category] || GiSwordman;
-};
+export const getUnitIcon = (unitId, category) => unitIconComponents[unitId] || categoryIcons[category] || GiSwordman;

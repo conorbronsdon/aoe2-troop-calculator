@@ -12,6 +12,55 @@ This roadmap outlines planned enhancements and features for the AoE2 Army Compos
 
 ## 🔥 Critical Priority
 
+### Code Quality & Testing Infrastructure
+**Status:** In Progress
+**Priority:** Critical
+**Complexity:** Medium
+
+Address critical code quality issues identified in the November 2025 codebase review:
+
+**Testing Gaps (CRITICAL):**
+- Add Error Boundary component to prevent full app crashes
+- Add unit tests for all service layers (ShareService, ExportService, StorageService)
+- Add component tests for critical UI components (0% coverage currently)
+- Add validation for URL parameters in shared compositions
+
+**Input Validation (CRITICAL):**
+- Add bounds checking for resource limits (prevent negative values)
+- Add max limits for unit quantities (prevent numbers like 9,999,999)
+- Add payload size check for share URLs (prevent oversized URLs)
+- Validate composition data structure before loading
+
+**Type Safety:**
+- Add PropTypes validation to all React components
+- Consider TypeScript migration for better compile-time safety
+
+**Performance Optimizations:**
+- Add memoization for expensive calculations (useMemo/useCallback)
+- Optimize bonus matching algorithm (currently O(n²))
+- Add debouncing for search inputs
+- Fix inefficient re-renders in ResourceTracker
+
+**Accessibility:**
+- Add proper label associations for form controls
+- Fix emoji usage (add title attributes or replace with icon components)
+- Ensure screen reader compatibility
+
+**Immediate Fixes Completed (November 2025):**
+- ✅ Fixed failing tests (population calculation expectations after siege unit fix)
+- ✅ Fixed 14 ESLint errors (unescaped entities, missing curly braces)
+- ✅ Removed hard-coded version string (now imports from constants.js)
+- ✅ Cleaned up unused variables
+
+**Acceptance Criteria:**
+- Error boundary catches and displays component errors gracefully
+- All service layers have 80%+ test coverage
+- Input validation prevents invalid game states
+- No ESLint errors (warnings acceptable)
+- Core web vitals improved by 20%
+
+---
+
 ### Technology/Upgrade System
 **Status:** Not Started
 **Priority:** Critical
@@ -344,7 +393,57 @@ Integrate with Age of Empires II API for live data.
 
 ---
 
+## ⚠️ Technical Debt & Security
+
+### Dependency Updates
+**Status:** Needs Attention
+**Priority:** Medium
+**Complexity:** Low
+
+Current security vulnerabilities and outdated dependencies:
+- 4 moderate severity vulnerabilities in esbuild/vite
+- ESLint 8.x deprecated (upgrade to ESLint 9.x)
+- Several deprecated npm packages (rimraf, inflight, glob)
+
+**Required Actions:**
+- Run `npm audit fix --force` (may introduce breaking changes)
+- Test thoroughly after updates
+- Update ESLint configuration for v9 compatibility
+
+---
+
+### Architecture Improvements
+**Status:** Not Started
+**Priority:** Medium
+**Complexity:** High
+
+Address structural issues identified in code review:
+
+**State Management:**
+- Reduce prop drilling through multiple component levels
+- Consider Zustand or Jotai for simpler state management
+- Extract business logic into custom hooks (useConfig, useComposition)
+
+**Code Organization:**
+- Create useToast custom hook to eliminate code duplication
+- Separate business logic from UI in components
+- Add feature flag system for safer rollouts
+
+**Error Handling:**
+- Standardize on logger utility (currently mix of logger.error, console.error, silent fail)
+- Add proper error states and user feedback
+- Implement retry logic for network operations
+
+---
+
 ## Recently Completed ✅
+
+### Code Quality Fixes (v2.3.1 - November 2025)
+- Fixed 2 failing tests for population calculations after siege unit corrections
+- Fixed 14 ESLint errors (unescaped entities, missing curly braces)
+- Removed hard-coded version string in export service
+- Cleaned up unused variables
+- Comprehensive codebase review identifying 38+ improvement areas
 
 ### Unit Search and Filter System (v2.3.0)
 Comprehensive filtering UI with search bar, category toggles, cost type filters, and age filters. New `UnitFilter` component.

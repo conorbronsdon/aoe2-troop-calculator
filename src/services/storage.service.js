@@ -65,7 +65,7 @@ export const StorageService = {
     const all = this.getAll();
     const index = all.findIndex(c => c.id === id);
 
-    if (index === -1) return null;
+    if (index === -1) {return null;}
 
     all[index] = {
       ...all[index],
@@ -86,7 +86,7 @@ export const StorageService = {
     const all = this.getAll();
     const filtered = all.filter(c => c.id !== id);
 
-    if (filtered.length === all.length) return false;
+    if (filtered.length === all.length) {return false;}
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
     return true;
