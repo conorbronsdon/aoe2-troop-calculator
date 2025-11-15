@@ -130,28 +130,59 @@ export default function ConfigurationPanel() {
           </select>
         </div>
 
-        {/* Fortification Mode Toggle */}
+        {/* Display Mode Selection */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Mode
+            Display Mode
           </label>
-          <button
-            onClick={() => dispatch({ type: ACTION_TYPES.TOGGLE_FORTIFICATION_MODE })}
-            className={`w-full py-2 px-4 rounded font-semibold transition-all duration-200 ${
-              config.fortificationMode
-                ? 'bg-amber-600 hover:bg-amber-700 text-white'
-                : 'bg-blue-600 hover:bg-blue-700 text-white'
-            }`}
-            title={config.fortificationMode
-              ? 'Switch to unit selection mode'
-              : 'Switch to fortification mode - plan walls, towers, and castles'}
-          >
-            {config.fortificationMode ? '🏰 Fortifications' : '⚔️ Units'}
-          </button>
-          <p className="text-xs text-gray-500 mt-1">
-            {config.fortificationMode
-              ? 'Build walls, towers, and castles'
-              : 'Select military units'}
+          <div className="space-y-2">
+            <label className="flex items-center cursor-pointer p-2 rounded border border-gray-300 hover:bg-gray-50 transition-colors">
+              <input
+                type="radio"
+                name="displayMode"
+                value="units"
+                checked={config.displayMode === 'units'}
+                onChange={(e) => dispatch({ type: ACTION_TYPES.SET_DISPLAY_MODE, mode: e.target.value })}
+                className="mr-2"
+              />
+              <span className="flex items-center gap-2">
+                <span>⚔️</span>
+                <span className="font-medium">Units Only</span>
+              </span>
+            </label>
+            <label className="flex items-center cursor-pointer p-2 rounded border border-gray-300 hover:bg-gray-50 transition-colors">
+              <input
+                type="radio"
+                name="displayMode"
+                value="both"
+                checked={config.displayMode === 'both'}
+                onChange={(e) => dispatch({ type: ACTION_TYPES.SET_DISPLAY_MODE, mode: e.target.value })}
+                className="mr-2"
+              />
+              <span className="flex items-center gap-2">
+                <span>⚔️🏰</span>
+                <span className="font-medium">Units & Fortifications</span>
+              </span>
+            </label>
+            <label className="flex items-center cursor-pointer p-2 rounded border border-gray-300 hover:bg-gray-50 transition-colors">
+              <input
+                type="radio"
+                name="displayMode"
+                value="fortifications"
+                checked={config.displayMode === 'fortifications'}
+                onChange={(e) => dispatch({ type: ACTION_TYPES.SET_DISPLAY_MODE, mode: e.target.value })}
+                className="mr-2"
+              />
+              <span className="flex items-center gap-2">
+                <span>🏰</span>
+                <span className="font-medium">Fortifications Only</span>
+              </span>
+            </label>
+          </div>
+          <p className="text-xs text-gray-500 mt-2">
+            {config.displayMode === 'units' && 'Select military units for your army'}
+            {config.displayMode === 'both' && 'Plan both military units and defensive structures'}
+            {config.displayMode === 'fortifications' && 'Build walls, towers, and castles'}
           </p>
         </div>
 

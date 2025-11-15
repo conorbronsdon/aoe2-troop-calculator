@@ -62,10 +62,10 @@ function AppContent() {
       <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-purple-900 text-white rounded-xl shadow-2xl p-8 mb-8">
         <div className="text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-3">
-            Plan Your AoE2 Armies
+            AoE2: Definitive Edition Army Calculator
           </h1>
           <p className="text-lg md:text-xl mb-6 text-blue-100">
-            100+ units · 45 civilizations · Accurate bonuses · Tech tree restrictions
+            100+ units · 45 civilizations · Fortifications · Accurate bonuses · Tech tree restrictions
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-4">
             <a
@@ -103,11 +103,12 @@ function AppContent() {
       <ResourceTracker />
       <SaveLoadPanel />
 
-      {/* Conditionally show Units or Fortifications based on mode */}
-      {config.fortificationMode ? (
-        <FortificationSelection />
-      ) : (
+      {/* Conditionally show Units and/or Fortifications based on display mode */}
+      {(config.displayMode === 'units' || config.displayMode === 'both') && (
         <UnitSelection />
+      )}
+      {(config.displayMode === 'fortifications' || config.displayMode === 'both') && (
+        <FortificationSelection />
       )}
 
       <ArmyCompositionSummary />

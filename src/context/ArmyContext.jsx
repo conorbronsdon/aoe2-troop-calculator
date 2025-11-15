@@ -15,7 +15,7 @@ const initialState = {
     selectedAge: 'imperial',
     selectedCiv: 'generic', // The applied civilization (affects calculations)
     previewCiv: 'generic', // The civilization being previewed in the dropdown
-    fortificationMode: false // Toggle between units and fortifications
+    displayMode: 'units' // Display mode: 'units', 'both', or 'fortifications'
   },
   savedCompositions: [],
   comparisonMode: false,
@@ -38,6 +38,8 @@ export const ACTION_TYPES = {
   TOGGLE_COMPARISON_MODE: 'TOGGLE_COMPARISON_MODE',
   UPDATE_COMPARISON_ARMY: 'UPDATE_COMPARISON_ARMY',
   APPLY_CIVILIZATION: 'APPLY_CIVILIZATION',
+  SET_DISPLAY_MODE: 'SET_DISPLAY_MODE',
+  // Deprecated - kept for backwards compatibility
   TOGGLE_FORTIFICATION_MODE: 'TOGGLE_FORTIFICATION_MODE'
 };
 
@@ -116,12 +118,22 @@ function armyReducer(state, action) {
     case ACTION_TYPES.RESET_FORTIFICATION_COMPOSITION:
       return { ...state, fortificationComposition: {} };
 
-    case ACTION_TYPES.TOGGLE_FORTIFICATION_MODE:
+    case ACTION_TYPES.SET_DISPLAY_MODE:
       return {
         ...state,
         config: {
           ...state.config,
-          fortificationMode: !state.config.fortificationMode
+          displayMode: action.mode
+        }
+      };
+
+    case ACTION_TYPES.TOGGLE_FORTIFICATION_MODE:
+      // Backwards compatibility: toggle between units and fortifications
+      return {
+        ...state,
+        config: {
+          ...state.config,
+          displayMode: state.config.displayMode === 'fortifications' ? 'units' : 'fortifications'
         }
       };
 
