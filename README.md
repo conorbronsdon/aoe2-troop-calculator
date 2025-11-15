@@ -1,6 +1,6 @@
 # Age of Empires II: Army Composition Calculator
 
-A web-based calculator for planning army compositions in Age of Empires II: Definitive Edition, inspired by pro player's using Excel sheets for 200 unit battles.
+A web-based calculator for planning army compositions in Age of Empires II: Definitive Edition, inspired by pro player's ([Hera vs. Lewis](https://youtu.be/6WyRs7SY0Tk?si=RHdJiWtagC0ZG1rA)) using Excel sheets for 200 unit battles.
 
 ## Features ✨
 
@@ -190,7 +190,7 @@ This is an MVP (Minimum Viable Product). Feedback welcome for:
 
 ## Credits
 
-Created for Age of Empires II players who want to plan army compositions efficiently, inspired by pro players using Excel sheets for 200 vs 200 unit battles.
+Created for Age of Empires II players who want to plan army compositions efficiently, inspired by @faruksarihan's YouTube comment on [Hera's 200 Army vs 200 Army match with Lewis](https://youtu.be/6WyRs7SY0Tk?si=RHdJiWtagC0ZG1rA). 
 
 Special thanks to the AoE2 community for:
 - aoe2techtree.net for reference data
