@@ -19,25 +19,28 @@ describe('Calculation Functions', () => {
     it('should apply Mayans archer discount in feudal age', () => {
       const archer = getUnitById('archer');
       const cost = calculateUnitCost(archer, 'mayans', 'feudal');
-      // Mayans get 10% discount in feudal
-      expect(cost.food).toBe(Math.round(25 * 0.9)); // 23
-      expect(cost.wood).toBe(Math.round(45 * 0.9)); // 41
+      // Mayans get 10% discount in feudal (archers cost wood and gold, not food)
+      expect(cost.food).toBe(0); // archers don't cost food
+      expect(cost.wood).toBe(Math.round(25 * 0.9)); // 23
+      expect(cost.gold).toBe(Math.round(45 * 0.9)); // 41
     });
 
     it('should apply Mayans archer discount in castle age', () => {
       const crossbowman = getUnitById('crossbowman');
       const cost = calculateUnitCost(crossbowman, 'mayans', 'castle');
-      // Mayans get 20% discount in castle
-      expect(cost.food).toBe(Math.round(25 * 0.8)); // 20
-      expect(cost.wood).toBe(Math.round(45 * 0.8)); // 36
+      // Mayans get 20% discount in castle (archers cost wood and gold, not food)
+      expect(cost.food).toBe(0); // archers don't cost food
+      expect(cost.wood).toBe(Math.round(25 * 0.8)); // 20
+      expect(cost.gold).toBe(Math.round(45 * 0.8)); // 36
     });
 
     it('should apply Mayans archer discount in imperial age', () => {
       const arbalester = getUnitById('arbalester');
       const cost = calculateUnitCost(arbalester, 'mayans', 'imperial');
-      // Mayans get 30% discount in imperial
-      expect(cost.food).toBe(Math.round(25 * 0.7)); // 18
-      expect(cost.wood).toBe(Math.round(45 * 0.7)); // 32
+      // Mayans get 30% discount in imperial (archers cost wood and gold, not food)
+      expect(cost.food).toBe(0); // archers don't cost food
+      expect(cost.wood).toBe(Math.round(25 * 0.7)); // 18
+      expect(cost.gold).toBe(Math.round(45 * 0.7)); // 32
     });
 
     it('should apply Goths infantry discount', () => {
@@ -98,9 +101,10 @@ describe('Calculation Functions', () => {
       };
       const { totalCost, totalPopulation } = calculateTotals(composition, 'generic', 'castle');
 
-      expect(totalCost.food).toBe(1100); // (60 * 10) + (25 * 20)
-      expect(totalCost.wood).toBe(900); // 45 * 20
-      expect(totalCost.gold).toBe(750); // 75 * 10
+      // Knights cost 60 food + 75 gold, crossbowmen cost 25 wood + 45 gold
+      expect(totalCost.food).toBe(600); // 60 * 10
+      expect(totalCost.wood).toBe(500); // 25 * 20
+      expect(totalCost.gold).toBe(1650); // (75 * 10) + (45 * 20)
       expect(totalPopulation).toBe(30);
     });
 
@@ -108,9 +112,10 @@ describe('Calculation Functions', () => {
       const composition = { crossbowman: 10 };
       const { totalCost } = calculateTotals(composition, 'mayans', 'castle');
 
-      // Mayans get 20% discount in castle age
-      expect(totalCost.food).toBe(Math.round(25 * 0.8) * 10); // 200
-      expect(totalCost.wood).toBe(Math.round(45 * 0.8) * 10); // 360
+      // Mayans get 20% discount in castle age (crossbowmen cost wood and gold, not food)
+      expect(totalCost.food).toBe(0); // crossbowmen don't cost food
+      expect(totalCost.wood).toBe(Math.round(25 * 0.8) * 10); // 200
+      expect(totalCost.gold).toBe(Math.round(45 * 0.8) * 10); // 360
     });
 
     it('should handle empty composition', () => {
