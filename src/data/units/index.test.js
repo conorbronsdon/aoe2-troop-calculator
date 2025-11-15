@@ -274,7 +274,7 @@ describe('Unit Data Functions', () => {
 
       it('should prevent Aztecs from building cavalry', () => {
         expect(canCivBuildUnit('aztecs', 'knight')).toBe(false);
-        expect(canCivBuildUnit('aztecs', 'scout-cavalry')).toBe(false);
+        expect(canCivBuildUnit('aztecs', 'scout')).toBe(false);
         expect(canCivBuildUnit('aztecs', 'paladin')).toBe(false);
         expect(canCivBuildUnit('aztecs', 'cavalry-archer')).toBe(false);
       });
@@ -310,6 +310,65 @@ describe('Unit Data Functions', () => {
         expect(canCivBuildUnit('franks', 'knight')).toBe(true);
         expect(canCivBuildUnit('goths', 'champion')).toBe(true);
       });
+
+      it('should allow only Incas to build Slinger', () => {
+        expect(canCivBuildUnit('incas', 'slinger')).toBe(true);
+        expect(canCivBuildUnit('aztecs', 'slinger')).toBe(false);
+        expect(canCivBuildUnit('mayans', 'slinger')).toBe(false);
+        expect(canCivBuildUnit('britons', 'slinger')).toBe(false);
+      });
+
+      it('should allow only Berbers to build Genitour', () => {
+        expect(canCivBuildUnit('berbers', 'genitour')).toBe(true);
+        expect(canCivBuildUnit('berbers', 'elite-genitour')).toBe(true);
+        expect(canCivBuildUnit('ethiopians', 'genitour')).toBe(false);
+        expect(canCivBuildUnit('britons', 'genitour')).toBe(false);
+      });
+
+      it('should allow only Spanish to build Missionary', () => {
+        expect(canCivBuildUnit('spanish', 'missionary')).toBe(true);
+        expect(canCivBuildUnit('britons', 'missionary')).toBe(false);
+        expect(canCivBuildUnit('aztecs', 'missionary')).toBe(false);
+      });
+
+      it('should allow only Vietnamese to build Imperial Skirmisher', () => {
+        expect(canCivBuildUnit('vietnamese', 'imperial-skirmisher')).toBe(true);
+        expect(canCivBuildUnit('britons', 'imperial-skirmisher')).toBe(false);
+        expect(canCivBuildUnit('aztecs', 'imperial-skirmisher')).toBe(false);
+        expect(canCivBuildUnit('turks', 'imperial-skirmisher')).toBe(false);
+      });
+
+      it('should allow only Southeast Asian civs to build Battle Elephants', () => {
+        expect(canCivBuildUnit('vietnamese', 'battle-elephant')).toBe(true);
+        expect(canCivBuildUnit('khmer', 'battle-elephant')).toBe(true);
+        expect(canCivBuildUnit('burmese', 'battle-elephant')).toBe(true);
+        expect(canCivBuildUnit('malay', 'battle-elephant')).toBe(true);
+        expect(canCivBuildUnit('britons', 'battle-elephant')).toBe(false);
+        expect(canCivBuildUnit('persians', 'battle-elephant')).toBe(false);
+      });
+
+      it('should allow only Central Asian civs to build Steppe Lancers', () => {
+        expect(canCivBuildUnit('cumans', 'steppe-lancer')).toBe(true);
+        expect(canCivBuildUnit('mongols', 'steppe-lancer')).toBe(true);
+        expect(canCivBuildUnit('tatars', 'steppe-lancer')).toBe(true);
+        expect(canCivBuildUnit('britons', 'steppe-lancer')).toBe(false);
+        expect(canCivBuildUnit('huns', 'steppe-lancer')).toBe(false);
+      });
+
+      it('should allow only Hindustanis to build Imperial Camel', () => {
+        expect(canCivBuildUnit('hindustanis', 'imperial-camel')).toBe(true);
+        expect(canCivBuildUnit('berbers', 'imperial-camel')).toBe(false);
+        expect(canCivBuildUnit('saracens', 'imperial-camel')).toBe(false);
+        expect(canCivBuildUnit('persians', 'imperial-camel')).toBe(false);
+      });
+
+      it('should restrict Pikeman to only Gurjaras and Turks', () => {
+        expect(canCivBuildUnit('gurjaras', 'pikeman')).toBe(false);
+        expect(canCivBuildUnit('turks', 'pikeman')).toBe(false);
+        expect(canCivBuildUnit('franks', 'pikeman')).toBe(true);
+        expect(canCivBuildUnit('huns', 'pikeman')).toBe(true);
+        expect(canCivBuildUnit('britons', 'pikeman')).toBe(true);
+      });
     });
 
     describe('getMissingUnitsForCiv', () => {
@@ -321,7 +380,7 @@ describe('Unit Data Functions', () => {
       it('should return cavalry units for Aztecs', () => {
         const missing = getMissingUnitsForCiv('aztecs');
         expect(missing).toContain('knight');
-        expect(missing).toContain('scout-cavalry');
+        expect(missing).toContain('scout');
         expect(missing).toContain('cavalry-archer');
       });
 

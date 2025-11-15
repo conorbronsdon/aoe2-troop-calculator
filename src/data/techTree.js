@@ -2,6 +2,16 @@
  * Technology Tree Restrictions by Civilization
  * Defines which units each civilization CANNOT build
  * Based on Age of Empires II: Definitive Edition
+ *
+ * Regional units:
+ * - Eagle Warriors: Aztecs, Mayans, Incas only
+ * - Battle Elephants: Bengalis, Burmese, Dravidians, Khmer, Malay, Vietnamese only
+ * - Steppe Lancers: Cumans, Mongols, Tatars only
+ * - Imperial Camel: Hindustanis only
+ * - Slinger: Incas only
+ * - Genitour: Berbers only
+ * - Missionary: Spanish only
+ * - Imperial Skirmisher: Vietnamese only (team bonus unit)
  */
 
 export const techTreeRestrictions = {
@@ -13,56 +23,76 @@ export const techTreeRestrictions = {
   // American Civilizations - No cavalry (except Eagle Warriors)
   aztecs: {
     missingUnits: [
-      'scout-cavalry', 'light-cavalry', 'hussar',
+      'scout', 'light-cavalry', 'hussar',
       'knight', 'cavalier', 'paladin',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
       'steppe-lancer', 'elite-steppe-lancer',
       'cavalry-archer', 'heavy-cavalry-archer',
       'hand-cannoneer',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
   mayans: {
     missingUnits: [
-      'scout-cavalry', 'light-cavalry', 'hussar',
+      'scout', 'light-cavalry', 'hussar',
       'knight', 'cavalier', 'paladin',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
       'steppe-lancer', 'elite-steppe-lancer',
       'cavalry-archer', 'heavy-cavalry-archer',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
   incas: {
     missingUnits: [
-      'scout-cavalry', 'light-cavalry', 'hussar',
+      'scout', 'light-cavalry', 'hussar',
       'knight', 'cavalier', 'paladin',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
       'steppe-lancer', 'elite-steppe-lancer',
       'cavalry-archer', 'heavy-cavalry-archer',
       'hand-cannoneer',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
   // European Civilizations
   britons: {
     missingUnits: [
-      'paladin', 'battle-elephant', 'elite-battle-elephant',
+      'paladin',
+      'camel', 'heavy-camel', 'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
   byzantines: {
     missingUnits: [
-      'paladin', 'battle-elephant', 'elite-battle-elephant',
+      'paladin',
+      'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -72,17 +102,28 @@ export const techTreeRestrictions = {
       'cavalry-archer', 'heavy-cavalry-archer',
       'paladin',
       'camel', 'heavy-camel', 'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
   franks: {
     missingUnits: [
-      'pikeman', 'halberdier',
+      'halberdier',
       'arbalester',
+      'camel', 'heavy-camel', 'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -92,8 +133,13 @@ export const techTreeRestrictions = {
       'cavalry-archer', 'heavy-cavalry-archer',
       'camel', 'heavy-camel', 'imperial-camel',
       'paladin',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -102,8 +148,14 @@ export const techTreeRestrictions = {
       'cavalry-archer', 'heavy-cavalry-archer',
       'hussar',
       'arbalester',
+      'camel', 'heavy-camel', 'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -116,26 +168,39 @@ export const techTreeRestrictions = {
       'hand-cannoneer',
       'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
   spanish: {
     missingUnits: [
       'heavy-cavalry-archer',
+      'camel', 'heavy-camel', 'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour'
     ]
   },
 
   huns: {
     missingUnits: [
-      'pikeman', 'halberdier',
+      'halberdier',
       'hand-cannoneer',
       'camel', 'heavy-camel', 'imperial-camel',
       'paladin',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -144,8 +209,14 @@ export const techTreeRestrictions = {
       'halberdier',
       'heavy-cavalry-archer',
       'paladin',
+      'camel', 'heavy-camel', 'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -155,8 +226,13 @@ export const techTreeRestrictions = {
       'hand-cannoneer',
       'camel', 'heavy-camel', 'imperial-camel',
       'paladin',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -167,8 +243,13 @@ export const techTreeRestrictions = {
       'cavalry-archer', 'heavy-cavalry-archer',
       'camel', 'heavy-camel', 'imperial-camel',
       'paladin',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -177,8 +258,14 @@ export const techTreeRestrictions = {
       'halberdier',
       'heavy-cavalry-archer',
       'paladin',
+      'camel', 'heavy-camel', 'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -188,8 +275,13 @@ export const techTreeRestrictions = {
       'hand-cannoneer',
       'camel', 'heavy-camel', 'imperial-camel',
       'paladin',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -198,8 +290,13 @@ export const techTreeRestrictions = {
       'arbalester',
       'hand-cannoneer',
       'camel', 'heavy-camel', 'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -209,8 +306,13 @@ export const techTreeRestrictions = {
       'hand-cannoneer',
       'champion',
       'paladin',
+      'camel', 'heavy-camel', 'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -219,8 +321,13 @@ export const techTreeRestrictions = {
       'cavalry-archer', 'heavy-cavalry-archer',
       'camel', 'heavy-camel', 'imperial-camel',
       'paladin',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -229,8 +336,13 @@ export const techTreeRestrictions = {
       'halberdier',
       'arbalester',
       'camel', 'heavy-camel', 'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -241,8 +353,12 @@ export const techTreeRestrictions = {
       'cavalry-archer', 'heavy-cavalry-archer',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -252,8 +368,13 @@ export const techTreeRestrictions = {
       'cavalry-archer', 'heavy-cavalry-archer',
       'camel', 'heavy-camel', 'imperial-camel',
       'hussar',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -263,8 +384,12 @@ export const techTreeRestrictions = {
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
       'paladin',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -272,8 +397,13 @@ export const techTreeRestrictions = {
   chinese: {
     missingUnits: [
       'paladin', 'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -283,8 +413,13 @@ export const techTreeRestrictions = {
       'hand-cannoneer',
       'camel', 'heavy-camel', 'imperial-camel',
       'paladin',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -293,8 +428,13 @@ export const techTreeRestrictions = {
       'paladin',
       'cavalry-archer', 'heavy-cavalry-archer',
       'camel', 'heavy-camel', 'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -305,8 +445,12 @@ export const techTreeRestrictions = {
       'hand-cannoneer',
       'camel', 'heavy-camel', 'imperial-camel',
       'paladin',
+      'battle-elephant', 'elite-battle-elephant',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -316,7 +460,11 @@ export const techTreeRestrictions = {
       'paladin',
       'hand-cannoneer',
       'camel', 'heavy-camel', 'imperial-camel',
-      'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior'
+      'steppe-lancer', 'elite-steppe-lancer',
+      'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -324,8 +472,13 @@ export const techTreeRestrictions = {
     missingUnits: [
       'paladin',
       'hand-cannoneer',
+      'camel', 'heavy-camel', 'imperial-camel',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -334,8 +487,13 @@ export const techTreeRestrictions = {
       'arbalester',
       'hand-cannoneer',
       'paladin',
+      'camel', 'heavy-camel', 'imperial-camel',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -344,8 +502,13 @@ export const techTreeRestrictions = {
       'cavalry-archer', 'heavy-cavalry-archer',
       'knight', 'cavalier', 'paladin',
       'hussar',
+      'camel', 'heavy-camel', 'imperial-camel',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -353,8 +516,15 @@ export const techTreeRestrictions = {
     missingUnits: [
       'arbalester',
       'hand-cannoneer',
+      'pikeman', 'halberdier',
+      'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -362,8 +532,13 @@ export const techTreeRestrictions = {
     missingUnits: [
       'arbalester',
       'paladin',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -372,8 +547,12 @@ export const techTreeRestrictions = {
       'arbalester',
       'hand-cannoneer',
       'camel', 'heavy-camel', 'imperial-camel',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -384,8 +563,12 @@ export const techTreeRestrictions = {
       'hand-cannoneer',
       'paladin',
       'camel', 'heavy-camel', 'imperial-camel',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -395,8 +578,13 @@ export const techTreeRestrictions = {
       'hand-cannoneer',
       'halberdier',
       'paladin',
+      'camel', 'heavy-camel', 'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -407,8 +595,13 @@ export const techTreeRestrictions = {
       'arbalester',
       'hand-cannoneer',
       'paladin',
+      'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'missionary'
     ]
   },
 
@@ -417,8 +610,14 @@ export const techTreeRestrictions = {
       'hand-cannoneer',
       'hussar',
       'paladin',
+      'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -428,8 +627,14 @@ export const techTreeRestrictions = {
       'hand-cannoneer',
       'cavalry-archer', 'heavy-cavalry-archer',
       'paladin',
+      'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -438,8 +643,14 @@ export const techTreeRestrictions = {
     missingUnits: [
       'arbalester',
       'halberdier',
+      'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -448,8 +659,14 @@ export const techTreeRestrictions = {
       'halberdier',
       'arbalester',
       'paladin',
+      'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -460,7 +677,12 @@ export const techTreeRestrictions = {
       'arbalester',
       'paladin',
       'camel', 'heavy-camel', 'imperial-camel',
-      'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior'
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
+      'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -470,8 +692,13 @@ export const techTreeRestrictions = {
       'hand-cannoneer',
       'paladin',
       'camel', 'heavy-camel', 'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -480,8 +707,13 @@ export const techTreeRestrictions = {
       'arbalester',
       'hand-cannoneer',
       'camel', 'heavy-camel', 'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -493,8 +725,13 @@ export const techTreeRestrictions = {
       'camel', 'heavy-camel', 'imperial-camel',
       'arbalester',
       'hand-cannoneer',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -505,17 +742,30 @@ export const techTreeRestrictions = {
       'elite-cannon-galleon',
       'heavy-scorpion',
       'paladin',
+      'camel', 'heavy-camel', 'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
   shu: {
     missingUnits: [
       'knight', 'cavalier', 'paladin',
+      'scorpion', 'heavy-scorpion',
       'trebuchet',
+      'camel', 'heavy-camel', 'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -523,8 +773,14 @@ export const techTreeRestrictions = {
     missingUnits: [
       'knight', 'cavalier', 'paladin',
       'trebuchet',
+      'camel', 'heavy-camel', 'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   },
 
@@ -533,8 +789,14 @@ export const techTreeRestrictions = {
       'knight', 'cavalier', 'paladin',
       'capped-ram', 'siege-ram',
       'trebuchet',
+      'camel', 'heavy-camel', 'imperial-camel',
+      'battle-elephant', 'elite-battle-elephant',
+      'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
-      'imperial-skirmisher'
+      'imperial-skirmisher',
+      'slinger',
+      'genitour', 'elite-genitour',
+      'missionary'
     ]
   }
 };
