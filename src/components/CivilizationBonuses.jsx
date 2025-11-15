@@ -6,6 +6,11 @@ export default function CivilizationBonuses() {
   const { state } = useArmy();
   const { config, composition } = state;
   const [isExpanded, setIsExpanded] = useState(true); // Start expanded by default
+  const [searchTerm, setSearchTerm] = useState('');
+  const [showMilitary, setShowMilitary] = useState(true);
+  const [showEconomic, setShowEconomic] = useState(true);
+  const [showCost, setShowCost] = useState(true);
+  const [activeOnly, setActiveOnly] = useState(false);
 
   // Get current civilization (use selectedCiv which is the applied one)
   const currentCiv = civilizations.find(civ => civ.id === config.selectedCiv);
@@ -28,13 +33,34 @@ export default function CivilizationBonuses() {
   };
 
   // Categorize bonuses by type and mark which are active
-  const costBonuses = currentCiv.bonuses
+  const allCostBonuses = currentCiv.bonuses
     .filter(b => b.type === 'cost')
     .map(b => ({ ...b, isActive: isBonusActive(b) }));
-  const statBonuses = currentCiv.bonuses.filter(b => b.type === 'stat');
-  const economicBonuses = currentCiv.bonuses.filter(b => b.type === 'economic');
+  const allStatBonuses = currentCiv.bonuses.filter(b => b.type === 'stat');
+  const allEconomicBonuses = currentCiv.bonuses.filter(b => b.type === 'economic');
 
-  const activeBonusCount = costBonuses.filter(b => b.isActive).length;
+  // Apply filters
+  const filterBonus = (bonus) => {
+    // Search filter
+    if (searchTerm && !bonus.description.toLowerCase().includes(searchTerm.toLowerCase())) {
+      return false;
+    }
+
+    // Active only filter
+    if (activeOnly && !bonus.isActive) {
+      return false;
+    }
+
+    return true;
+  };
+
+  const costBonuses = showCost ? allCostBonuses.filter(filterBonus) : [];
+  const statBonuses = showMilitary ? allStatBonuses.filter(filterBonus) : [];
+  const economicBonuses = showEconomic ? allEconomicBonuses.filter(filterBonus) : [];
+
+  const activeBonusCount = allCostBonuses.filter(b => b.isActive).length;
+  const totalVisibleBonuses = costBonuses.length + statBonuses.length + economicBonuses.length;
+  const hasActiveFilters = searchTerm || !showMilitary || !showEconomic || !showCost || activeOnly;
 
   return (
     <div className="bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 rounded-lg shadow-md p-4 mb-6 border border-amber-200 dark:border-amber-700">
@@ -65,6 +91,96 @@ export default function CivilizationBonuses() {
 
       {isExpanded && (
         <div className="mt-4 space-y-3">
+          {/* Filter Controls */}
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-amber-200 dark:border-amber-700">
+            <div className="space-y-3">
+              {/* Search Bar */}
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search bonuses..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 dark:bg-gray-700 dark:text-white"
+                />
+                <span className="absolute right-3 top-2.5 text-gray-400">🔍</span>
+              </div>
+
+              {/* Filter Toggles */}
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => setShowMilitary(!showMilitary)}
+                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                    showMilitary
+                      ? 'bg-red-500 text-white'
+                      : 'bg-gray-200 text-gray-700 dark:bg-gray-600 dark:text-gray-300'
+                  }`}
+                >
+                  ⚔️ Military
+                </button>
+                <button
+                  onClick={() => setShowEconomic(!showEconomic)}
+                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                    showEconomic
+                      ? 'bg-green-500 text-white'
+                      : 'bg-gray-200 text-gray-700 dark:bg-gray-600 dark:text-gray-300'
+                  }`}
+                >
+                  🌾 Economic
+                </button>
+                <button
+                  onClick={() => setShowCost(!showCost)}
+                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                    showCost
+                      ? 'bg-yellow-500 text-white'
+                      : 'bg-gray-200 text-gray-700 dark:bg-gray-600 dark:text-gray-300'
+                  }`}
+                >
+                  💰 Cost
+                </button>
+                <button
+                  onClick={() => setActiveOnly(!activeOnly)}
+                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                    activeOnly
+                      ? 'bg-blue-500 text-white'
+                      : 'bg-gray-200 text-gray-700 dark:bg-gray-600 dark:text-gray-300'
+                  }`}
+                >
+                  ✓ Active Only
+                </button>
+              </div>
+
+              {/* Filter Status */}
+              {hasActiveFilters && (
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-amber-700 dark:text-amber-300">
+                    {totalVisibleBonuses} bonus{totalVisibleBonuses !== 1 ? 'es' : ''} shown
+                  </span>
+                  <button
+                    onClick={() => {
+                      setSearchTerm('');
+                      setShowMilitary(true);
+                      setShowEconomic(true);
+                      setShowCost(true);
+                      setActiveOnly(false);
+                    }}
+                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                  >
+                    Clear filters
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* No Results Message */}
+          {totalVisibleBonuses === 0 && hasActiveFilters && (
+            <div className="text-center py-6 text-amber-700 dark:text-amber-300">
+              <p className="text-lg mb-2">No bonuses match your filters</p>
+              <p className="text-sm">Try adjusting your search or filter criteria</p>
+            </div>
+          )}
+
           {/* Cost Bonuses */}
           {costBonuses.length > 0 && (
             <div>

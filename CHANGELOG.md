@@ -5,6 +5,44 @@ All notable changes to the Age of Empires II Army Composition Calculator will be
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] - 2025-11-15
+
+### Added
+- **Unit Search and Filter System**: Comprehensive filtering UI for 100+ units
+  - Real-time search bar to find units by name
+  - Category toggle buttons (Infantry, Cavalry, Archer, Siege, Naval, Unique, Other)
+  - Cost type filters (Trash units, Gold units, Low cost <100 total)
+  - Age-specific filtering (Dark, Feudal, Castle, Imperial)
+  - Results counter showing number of matches
+  - "Clear All Filters" button for quick reset
+  - Mobile-friendly responsive design
+  - New `UnitFilter` component (`src/components/UnitFilter.jsx`)
+
+- **Unit Counter Visualization**: Visual display of counter relationships
+  - Collapsible "Counters & Weaknesses" section on each unit card
+  - Green "Strong Against" badges with unit names
+  - Red "Weak To" badges with unit names
+  - Tooltips explaining relationships
+  - Smart unit name resolution from IDs
+  - Uses existing `counters` and `weakTo` data from unit definitions
+  - Enhanced `UnitCard` component with counter display
+
+- **Advanced Civilization Bonus Filtering**: Enhanced bonus panel with filtering
+  - Search bar to filter bonuses by keyword
+  - Type toggle buttons: Military (red), Economic (green), Cost (yellow)
+  - "Active Only" filter to show bonuses affecting current army
+  - Real-time filtering with visible bonus count
+  - "No results" message when filters match nothing
+  - Clear filters button
+  - Dark mode support for all filter controls
+  - Enhanced `CivilizationBonuses` component
+
+### Changed
+- Updated `UnitSelection` component to integrate with new filter system
+- Improved unit browsing experience with filter state management
+- Enhanced `UnitCard` to show strategic counter information
+- Better organization of civilization bonuses with filtering capabilities
+
 ## [2.2.1] - 2025-11-15
 
 ### Fixed
@@ -130,6 +168,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Version History Summary
 
+- **2.3.x**: Unit search/filter system, counter visualization, bonus filtering
 - **2.2.x**: Documentation improvements and Definitive Edition alignment
 - **2.1.x**: Technology tree restrictions and enhanced bonuses
 - **2.0.x**: Complete overhaul with 100+ units, unique units, and advanced features
