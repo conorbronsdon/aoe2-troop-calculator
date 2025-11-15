@@ -20,8 +20,23 @@ export const civilizations = [
         resource: 'all',
         ages: { feudal: 0.10, castle: 0.20, imperial: 0.30 },
         description: 'Archer line costs 10%/20%/30% less (Feudal/Castle/Imperial)'
+      },
+      {
+        type: 'economic',
+        description: 'Start with +1 villager, -50 food'
+      },
+      {
+        type: 'stat',
+        units: 'all',
+        stat: 'resource-duration',
+        value: 0.20,
+        description: 'Resources last 20% longer'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Walls cost 50% less stone'
+    }
   },
   {
     id: 'britons',
@@ -34,23 +49,51 @@ export const civilizations = [
         resource: 'all',
         ages: { castle: 0.20, imperial: 0.20 },
         description: 'Archer line costs 20% less in Castle and Imperial Age'
+      },
+      {
+        type: 'stat',
+        units: ['archer', 'crossbowman', 'arbalester', 'longbowman', 'elite-longbowman'],
+        stat: 'range',
+        value: '+1 in Castle Age, +2 in Imperial Age',
+        description: 'Archers have +1 range in Castle Age and +2 in Imperial Age'
+      },
+      {
+        type: 'economic',
+        description: 'Town Centers cost 50% less wood in Castle Age'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['archery-range'],
+      description: 'Archery Ranges work 20% faster'
+    }
   },
   {
     id: 'franks',
     name: 'Franks',
     region: 'European',
     bonuses: [
-      // Knights get +20% HP but no cost reduction
       {
         type: 'stat',
-        units: ['knight', 'cavalier'],
+        units: ['knight', 'cavalier', 'paladin'],
         stat: 'hp',
         value: 0.20,
-        description: 'Knights have +20% HP'
+        description: 'Cavalry have +20% HP'
+      },
+      {
+        type: 'economic',
+        description: 'Castles cost 25% less stone'
+      },
+      {
+        type: 'economic',
+        description: 'Farm upgrades free'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['knight', 'cavalier', 'paladin'],
+      description: 'Knights have +2 Line of Sight'
+    }
   },
   {
     id: 'goths',
@@ -59,12 +102,28 @@ export const civilizations = [
     bonuses: [
       {
         type: 'cost',
-        units: ['militiaman', 'longswordsman', 'champion'],
+        units: ['militiaman', 'man-at-arms', 'longswordsman', 'two-handed-swordsman', 'champion'],
         resource: 'all',
         ages: { dark: 0.15, feudal: 0.20, castle: 0.25, imperial: 0.30 },
         description: 'Infantry costs 15%/20%/25%/30% less (Dark/Feudal/Castle/Imperial)'
+      },
+      {
+        type: 'stat',
+        units: ['huskarl', 'elite-huskarl'],
+        stat: 'armor',
+        value: '+10 pierce armor',
+        description: 'Huskarls have +10 pierce armor'
+      },
+      {
+        type: 'economic',
+        description: '+10 to population cap in Imperial Age'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['barracks'],
+      description: 'Barracks work 20% faster'
+    }
   },
   {
     id: 'byzantines',
@@ -73,12 +132,28 @@ export const civilizations = [
     bonuses: [
       {
         type: 'cost',
-        units: ['spearman', 'pikeman', 'halberdier', 'skirmisher', 'elite-skirmisher', 'camel'],
+        units: ['spearman', 'pikeman', 'halberdier', 'skirmisher', 'elite-skirmisher', 'camel', 'heavy-camel'],
         resource: 'all',
         value: 0.25,
         description: 'Counter units cost 25% less'
+      },
+      {
+        type: 'stat',
+        units: ['cataphract', 'elite-cataphract'],
+        stat: 'trample',
+        value: 'Trample damage',
+        description: 'Cataphracts deal trample damage'
+      },
+      {
+        type: 'economic',
+        description: 'Imperial Age costs 33% less'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['monk'],
+      description: 'Monks heal 50% faster'
+    }
   },
   {
     id: 'portuguese',
@@ -91,20 +166,50 @@ export const civilizations = [
         resource: 'gold',
         value: 0.20,
         description: 'All units cost 20% less gold'
+      },
+      {
+        type: 'stat',
+        units: 'all',
+        stat: 'line-of-sight',
+        value: '+1',
+        description: 'All units have +1 Line of Sight'
+      },
+      {
+        type: 'economic',
+        description: 'Can build Feitorias in Imperial Age'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Free Cartography technology'
+    }
   },
   {
     id: 'persians',
     name: 'Persians',
     region: 'Middle Eastern',
     bonuses: [
-      // Town center bonus, not unit cost
       {
         type: 'economic',
         description: 'Town Centers work 5% faster in Feudal/10% in Castle/15% in Imperial'
+      },
+      {
+        type: 'stat',
+        units: ['knight', 'cavalier', 'paladin'],
+        stat: 'attack',
+        value: '+2',
+        description: 'Knight line has +2 attack vs Archers'
+      },
+      {
+        type: 'economic',
+        description: 'Start with +50 food and wood'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['knight', 'cavalier', 'paladin'],
+      description: 'Knights have +2 attack vs Archers'
+    }
   },
   // African Civilizations
   {
@@ -114,12 +219,24 @@ export const civilizations = [
     bonuses: [
       {
         type: 'cost',
-        units: ['knight', 'cavalier', 'light-cavalry', 'hussar'],
+        units: ['knight', 'cavalier', 'paladin', 'light-cavalry', 'hussar'],
         resource: 'all',
         ages: { castle: 0.15, imperial: 0.20 },
         description: 'Cavalry units cost 15%/20% less (Castle/Imperial)'
+      },
+      {
+        type: 'stat',
+        units: 'all',
+        stat: 'speed',
+        value: '+5%',
+        description: 'Villagers move 10% faster'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['genitour', 'elite-genitour'],
+      description: 'Genitour available in Archery Range'
+    }
   },
   {
     id: 'ethiopians',
