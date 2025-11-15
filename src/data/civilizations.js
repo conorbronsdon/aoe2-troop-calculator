@@ -244,10 +244,29 @@ export const civilizations = [
     region: 'African',
     bonuses: [
       {
-        type: 'economic',
+        type: 'stat',
+        units: ['archer', 'crossbowman', 'arbalester'],
+        stat: 'attack-speed',
+        value: 0.18,
         description: 'Archers fire 18% faster'
+      },
+      {
+        type: 'economic',
+        description: 'Receive +100 food and +100 gold per age starting in Feudal Age'
+      },
+      {
+        type: 'stat',
+        units: ['scorpion', 'heavy-scorpion'],
+        stat: 'attack-speed',
+        value: 0.18,
+        description: 'Siege weapons fire 18% faster'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['watch-tower', 'guard-tower', 'keep'],
+      description: 'Towers +3 line of sight'
+    }
   },
   {
     id: 'malians',
@@ -256,12 +275,42 @@ export const civilizations = [
     bonuses: [
       {
         type: 'cost',
-        units: ['militiaman', 'longswordsman', 'champion', 'spearman', 'pikeman', 'halberdier'],
+        units: ['militiaman', 'man-at-arms', 'longswordsman', 'two-handed-swordsman', 'champion', 'spearman', 'pikeman', 'halberdier'],
         resource: 'all',
         ages: { feudal: 0.15, castle: 0.20, imperial: 0.25 },
         description: 'Barracks units cost 15%/20%/25% less (Feudal/Castle/Imperial)'
+      },
+      {
+        type: 'stat',
+        units: ['militiaman', 'man-at-arms', 'longswordsman', 'two-handed-swordsman', 'champion', 'spearman', 'pikeman', 'halberdier'],
+        stat: 'armor',
+        value: '+1 pierce armor per age (starting Feudal)',
+        description: 'Infantry units +1 pierce armor per age'
+      },
+      {
+        type: 'stat',
+        units: ['militiaman', 'man-at-arms', 'longswordsman', 'two-handed-swordsman', 'champion', 'spearman', 'pikeman', 'halberdier'],
+        stat: 'hp',
+        value: '+5 HP per age',
+        description: 'Barracks units +5 HP per age'
+      },
+      {
+        type: 'economic',
+        description: 'Buildings cost 15% less wood'
+      },
+      {
+        type: 'economic',
+        description: 'Gold Mining upgrades free'
+      },
+      {
+        type: 'economic',
+        description: 'Universities cost 80% less'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Universities work 80% faster'
+    }
   },
   // American Civilizations
   {
@@ -272,8 +321,31 @@ export const civilizations = [
       {
         type: 'economic',
         description: 'Military units created 11% faster'
+      },
+      {
+        type: 'stat',
+        units: ['monk'],
+        stat: 'hp',
+        value: '+5 HP per relic',
+        description: 'Monks gain +5 HP per collected relic'
+      },
+      {
+        type: 'economic',
+        description: 'Start with +50 gold'
+      },
+      {
+        type: 'economic',
+        description: 'Villagers carry +5 resources'
+      },
+      {
+        type: 'economic',
+        description: 'Loom free'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Relics generate +33% gold'
+    }
   },
   {
     id: 'incas',
@@ -283,8 +355,34 @@ export const civilizations = [
       {
         type: 'economic',
         description: 'Start with llama instead of scout cavalry'
+      },
+      {
+        type: 'stat',
+        units: ['skirmisher', 'elite-skirmisher'],
+        stat: 'range',
+        value: 'Minimum range reduced to 0',
+        description: 'Slingers and Skirmishers minimum range reduced to 0'
+      },
+      {
+        type: 'stat',
+        units: ['villager'],
+        stat: 'armor',
+        value: 'Benefit from Blacksmith upgrades',
+        description: 'Villagers benefit from Blacksmith upgrades'
+      },
+      {
+        type: 'economic',
+        description: 'Houses support 10 population'
+      },
+      {
+        type: 'economic',
+        description: 'Buildings cost 15% less stone'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Farms built 50% faster'
+    }
   },
   // Asian Civilizations
   {
@@ -298,8 +396,27 @@ export const civilizations = [
         resource: 'food',
         value: 0.25,
         description: 'Elephant units cost 25% less food'
+      },
+      {
+        type: 'stat',
+        units: ['battle-elephant'],
+        stat: 'conversion-resistance',
+        value: 'Resist conversion',
+        description: 'Elephant units resist conversion'
+      },
+      {
+        type: 'economic',
+        description: 'Town Centers spawn 2 villagers when destroyed by enemy (Dark to Castle Age)'
+      },
+      {
+        type: 'economic',
+        description: 'Monk technologies cost 50% less'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Trade units yield +10% food'
+    }
   },
   {
     id: 'burmese',
@@ -308,9 +425,35 @@ export const civilizations = [
     bonuses: [
       {
         type: 'economic',
-        description: 'Free infantry upgrades'
+        description: 'Infantry upgrades (Man-at-Arms, Two-Handed Swordsman, Champion) free'
+      },
+      {
+        type: 'stat',
+        units: ['militiaman', 'man-at-arms', 'longswordsman', 'two-handed-swordsman', 'champion'],
+        stat: 'attack',
+        value: '+1 per relic (max +4)',
+        description: 'Infantry +1 attack per relic owned (max +4)'
+      },
+      {
+        type: 'stat',
+        units: ['battle-elephant'],
+        stat: 'armor',
+        value: '+1/+1',
+        description: 'Battle elephants +1/+1 armor'
+      },
+      {
+        type: 'economic',
+        description: 'Lumber Camp technologies free'
+      },
+      {
+        type: 'economic',
+        description: 'Monastery technologies cost 50% less'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Relic visibility on map'
+    }
   },
   {
     id: 'chinese',
@@ -320,8 +463,27 @@ export const civilizations = [
       {
         type: 'economic',
         description: 'Start with 3 villagers, but -200 food, -50 wood'
+      },
+      {
+        type: 'economic',
+        description: 'Town Centers support +5 population (10 total)'
+      },
+      {
+        type: 'stat',
+        units: ['demolition-ship'],
+        stat: 'hp',
+        value: 0.50,
+        description: 'Demolition Ships +50% HP'
+      },
+      {
+        type: 'economic',
+        description: 'Technologies cost -10% Feudal, -15% Castle, -20% Imperial'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Farms +45 food'
+    }
   },
   {
     id: 'dravidians',
@@ -330,9 +492,24 @@ export const civilizations = [
     bonuses: [
       {
         type: 'economic',
-        description: 'Receive 50 wood when advancing ages'
+        description: 'Receive +200 wood when advancing to next age'
+      },
+      {
+        type: 'stat',
+        units: ['skirmisher', 'elite-skirmisher'],
+        stat: 'attack-speed',
+        value: 0.25,
+        description: 'Skirmishers and Elephant Archers attack 25% faster'
+      },
+      {
+        type: 'economic',
+        description: 'Fishermen and Fishing Ships work 25% faster and carry +15'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Docks provide +5 population space'
+    }
   },
   {
     id: 'gurjaras',
@@ -341,12 +518,47 @@ export const civilizations = [
     bonuses: [
       {
         type: 'cost',
-        units: ['knight', 'cavalier', 'light-cavalry', 'hussar'],
+        units: ['knight', 'cavalier', 'paladin', 'light-cavalry', 'hussar'],
         resource: 'food',
         value: 0.25,
-        description: 'Mounted units (except camels) cost 25% less food'
+        description: 'Cavalry units (except camels) cost 25% less food starting in Castle Age'
+      },
+      {
+        type: 'stat',
+        units: ['camel', 'heavy-camel'],
+        stat: 'attack',
+        value: '+1 vs camels',
+        description: 'Camel units +1 attack vs other camel units'
+      },
+      {
+        type: 'stat',
+        units: ['light-cavalry', 'hussar'],
+        stat: 'attack',
+        value: 'Bonus damage vs archers',
+        description: 'Light Cavalry and Hussar deal bonus damage to archers'
+      },
+      {
+        type: 'economic',
+        description: 'Start with 2 Forage Bushes'
+      },
+      {
+        type: 'economic',
+        description: 'Mills gather food from Forage Bushes 15% faster'
+      },
+      {
+        type: 'economic',
+        description: 'Can garrison mills with sheep and goats'
+      },
+      {
+        type: 'economic',
+        description: 'Docks work 15% faster'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['camel', 'heavy-camel', 'light-cavalry', 'hussar'],
+      description: 'Camel units and light cavalry +4 attack vs buildings'
+    }
   },
   {
     id: 'hindustanis',
@@ -355,12 +567,38 @@ export const civilizations = [
     bonuses: [
       {
         type: 'cost',
-        units: ['camel'],
+        units: ['camel', 'heavy-camel'],
         resource: 'all',
         ages: { feudal: 0.10, castle: 0.20, imperial: 0.30 },
         description: 'Camel units cost 10%/20%/30% less (Feudal/Castle/Imperial)'
+      },
+      {
+        type: 'stat',
+        units: ['hand-cannoneer', 'bombard-cannon'],
+        stat: 'armor',
+        value: '+1/+1',
+        description: 'Gunpowder units +1/+1 armor'
+      },
+      {
+        type: 'cost',
+        units: ['villager'],
+        resource: 'all',
+        ages: { castle: 0.10, imperial: 0.20 },
+        description: 'Villagers cost 10% less in Castle Age, 20% less in Imperial Age'
+      },
+      {
+        type: 'stat',
+        units: ['camel', 'heavy-camel'],
+        stat: 'regeneration',
+        value: '30 HP/min',
+        description: 'Camel units regenerate 30 HP per minute'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['camel', 'heavy-camel'],
+      description: 'Camel units +5 attack vs buildings'
+    }
   },
   {
     id: 'japanese',
@@ -368,10 +606,37 @@ export const civilizations = [
     region: 'Asian',
     bonuses: [
       {
-        type: 'economic',
+        type: 'stat',
+        units: ['militiaman', 'man-at-arms', 'longswordsman', 'two-handed-swordsman', 'champion', 'spearman', 'pikeman', 'halberdier'],
+        stat: 'attack-speed',
+        value: 0.33,
         description: 'Infantry attack 33% faster'
+      },
+      {
+        type: 'stat',
+        units: ['fishing-ship'],
+        stat: 'armor',
+        value: '+2 pierce armor',
+        description: 'Fishing Ships +2 pierce armor'
+      },
+      {
+        type: 'economic',
+        description: 'Fishing Ships work rate +5% Dark, +10% Feudal, +15% Castle, +20% Imperial'
+      },
+      {
+        type: 'economic',
+        description: 'Mill, Lumber Camp, Mining Camp cost 50% less'
+      },
+      {
+        type: 'economic',
+        description: 'Farms cost 50% less after researching Feudal Age'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['galley', 'war-galley', 'galleon'],
+      description: 'Galleys +50% line of sight'
+    }
   },
   {
     id: 'khmer',
@@ -379,10 +644,33 @@ export const civilizations = [
     region: 'Asian',
     bonuses: [
       {
+        type: 'stat',
+        units: ['battle-elephant'],
+        stat: 'speed',
+        value: 0.15,
+        description: 'Battle Elephants +15% faster'
+      },
+      {
+        type: 'stat',
+        units: ['scorpion', 'heavy-scorpion'],
+        stat: 'range',
+        value: '+1',
+        description: 'Scorpions +1 range'
+      },
+      {
         type: 'economic',
-        description: 'Battle elephants 11% faster'
+        description: 'No building requirements to advance age or unlock other buildings'
+      },
+      {
+        type: 'economic',
+        description: 'Farmers work faster after researching lumberjack upgrades'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['scorpion', 'heavy-scorpion'],
+      description: 'Scorpions +1 range'
+    }
   },
   {
     id: 'koreans',
@@ -393,10 +681,37 @@ export const civilizations = [
         type: 'stat',
         units: ['spearman', 'pikeman', 'halberdier'],
         stat: 'range',
-        value: 2,
-        description: 'Spearman line has +2 range'
+        value: '+1',
+        description: 'Spearman line has +1 range'
+      },
+      {
+        type: 'economic',
+        description: 'Tower upgrades free (Murder Holes, Arrowslits)'
+      },
+      {
+        type: 'cost',
+        units: 'all',
+        resource: 'wood',
+        value: 0.20,
+        description: 'Military units (except siege) cost 20% less wood'
+      },
+      {
+        type: 'stat',
+        units: ['villager'],
+        stat: 'line-of-sight',
+        value: '+3',
+        description: 'Villagers +3 line of sight'
+      },
+      {
+        type: 'economic',
+        description: 'Stone miners work 20% faster'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['mangonel', 'onager', 'siege-onager'],
+      description: 'Mangonel line minimum range reduced'
+    }
   },
   {
     id: 'malay',
@@ -405,9 +720,29 @@ export const civilizations = [
     bonuses: [
       {
         type: 'economic',
-        description: 'Unlimited fish trap limit'
+        description: 'Fish Traps provide unlimited food'
+      },
+      {
+        type: 'economic',
+        description: 'Advance to next age 66% faster'
+      },
+      {
+        type: 'cost',
+        units: ['battle-elephant'],
+        resource: 'all',
+        value: 0.25,
+        description: 'Battle Elephants 25% cheaper'
+      },
+      {
+        type: 'economic',
+        description: 'Forced Levy available (makes militia line gold cost dropped)'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['dock'],
+      description: 'Docks +100% line of sight'
+    }
   },
   {
     id: 'mongols',
@@ -415,10 +750,43 @@ export const civilizations = [
     region: 'Asian',
     bonuses: [
       {
+        type: 'stat',
+        units: ['cavalry-archer', 'heavy-cavalry-archer'],
+        stat: 'attack-speed',
+        value: 0.25,
+        description: 'Cavalry Archers fire 25% faster'
+      },
+      {
+        type: 'stat',
+        units: ['light-cavalry', 'hussar'],
+        stat: 'hp',
+        value: 0.30,
+        description: 'Light Cavalry and Hussars +30% HP'
+      },
+      {
+        type: 'stat',
+        units: ['mangonel', 'onager', 'siege-onager', 'scorpion', 'heavy-scorpion', 'bombard-cannon'],
+        stat: 'speed',
+        value: 0.50,
+        description: 'Siege units move 50% faster'
+      },
+      {
         type: 'economic',
-        description: 'Cavalry archers fire 20% faster'
+        description: 'Hunters work 50% faster'
+      },
+      {
+        type: 'cost',
+        units: ['mangonel', 'onager', 'siege-onager', 'scorpion', 'heavy-scorpion', 'bombard-cannon'],
+        resource: 'wood',
+        value: 0.35,
+        description: 'Siege weapons cost 35% less wood (except rams)'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['scout-cavalry', 'light-cavalry', 'hussar'],
+      description: 'Scout Cavalry line +2 line of sight'
+    }
   },
   {
     id: 'tatars',
@@ -427,12 +795,32 @@ export const civilizations = [
     bonuses: [
       {
         type: 'cost',
-        units: ['cavalry-archer'],
+        units: ['cavalry-archer', 'heavy-cavalry-archer'],
         resource: 'food',
         value: 0.25,
-        description: 'Cavalry archers cost 25% less food'
+        description: 'Cavalry Archers cost 25% food starting in Castle Age'
+      },
+      {
+        type: 'stat',
+        units: 'all',
+        stat: 'attack',
+        value: '+50% from higher elevation',
+        description: 'Units deal +50% damage when fighting from higher elevation'
+      },
+      {
+        type: 'economic',
+        description: 'Herdables contain +50% food'
+      },
+      {
+        type: 'economic',
+        description: 'Thumb Ring free'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['cavalry-archer', 'heavy-cavalry-archer'],
+      description: 'Cavalry Archers +2 line of sight'
+    }
   },
   {
     id: 'vietnamese',
@@ -441,9 +829,28 @@ export const civilizations = [
     bonuses: [
       {
         type: 'economic',
-        description: 'Economic upgrades free'
+        description: 'Reveal enemy positions at start'
+      },
+      {
+        type: 'stat',
+        units: ['archer', 'crossbowman', 'arbalester'],
+        stat: 'hp',
+        value: 0.20,
+        description: 'Archery Range units +20% HP'
+      },
+      {
+        type: 'economic',
+        description: 'Economic upgrades cost no wood'
+      },
+      {
+        type: 'economic',
+        description: 'Imperial Skirmisher upgrade available'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Imperial Skirmisher upgrade available'
+    }
   },
   // European Civilizations (additional)
   {
@@ -453,9 +860,28 @@ export const civilizations = [
     bonuses: [
       {
         type: 'economic',
-        description: 'Blacksmith and University techs cost -100 food'
+        description: 'Blacksmith and University technologies cost -100 food'
+      },
+      {
+        type: 'economic',
+        description: 'Chemistry available in Castle Age'
+      },
+      {
+        type: 'stat',
+        units: ['spearman'],
+        stat: 'attack',
+        value: 'Bonus damage vs cavalry in Feudal Age',
+        description: 'Spearmen deal bonus damage vs cavalry in Feudal Age'
+      },
+      {
+        type: 'economic',
+        description: 'Mining Camp technologies cost 50% less'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Markets work 80% faster'
+    }
   },
   {
     id: 'bulgarians',
@@ -465,8 +891,30 @@ export const civilizations = [
       {
         type: 'economic',
         description: 'Militia line upgrades free'
+      },
+      {
+        type: 'cost',
+        units: ['town-center'],
+        resource: 'stone',
+        value: 0.50,
+        description: 'Town Centers cost 50% less stone'
+      },
+      {
+        type: 'stat',
+        units: ['knight', 'cavalier', 'paladin'],
+        stat: 'food-from-attacking',
+        value: '+50%',
+        description: 'Cavalry units +50% food from attacking'
+      },
+      {
+        type: 'economic',
+        description: 'Blacksmith and Siege Workshop technologies cost 50% less'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Blacksmith and Siege Workshop technologies cost 50% less'
+    }
   },
   {
     id: 'burgundians',
@@ -476,8 +924,27 @@ export const civilizations = [
       {
         type: 'economic',
         description: 'Economic upgrades available one age earlier'
+      },
+      {
+        type: 'stat',
+        units: ['knight', 'cavalier', 'paladin'],
+        stat: 'attack',
+        value: '+2 in Imperial Age',
+        description: 'Cavalry receive +2 attack in Imperial Age'
+      },
+      {
+        type: 'economic',
+        description: 'Stable technologies cost 50% less'
+      },
+      {
+        type: 'economic',
+        description: 'Relics generate food in addition to gold'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Relics generate food in addition to gold'
+    }
   },
   {
     id: 'celts',
@@ -485,10 +952,28 @@ export const civilizations = [
     region: 'European',
     bonuses: [
       {
-        type: 'economic',
+        type: 'stat',
+        units: ['militiaman', 'man-at-arms', 'longswordsman', 'two-handed-swordsman', 'champion', 'spearman', 'pikeman', 'halberdier'],
+        stat: 'speed',
+        value: 0.15,
         description: 'Infantry move 15% faster'
+      },
+      {
+        type: 'stat',
+        units: ['mangonel', 'onager', 'siege-onager', 'scorpion', 'heavy-scorpion'],
+        stat: 'attack-speed',
+        value: 0.25,
+        description: 'Siege weapons fire 25% faster'
+      },
+      {
+        type: 'economic',
+        description: 'Lumberjacks work 15% faster'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Siege Workshops work 20% faster'
+    }
   },
   {
     id: 'cumans',
@@ -496,13 +981,33 @@ export const civilizations = [
     region: 'European',
     bonuses: [
       {
-        type: 'cost',
-        units: ['cavalry-archer', 'knight', 'cavalier', 'light-cavalry', 'hussar'],
-        resource: 'all',
-        ages: { feudal: 0.05, castle: 0.10, imperial: 0.15 },
-        description: 'Cavalry archers and mounted units cost 5%/10%/15% less (Feudal/Castle/Imperial)'
+        type: 'stat',
+        units: ['cavalry-archer', 'heavy-cavalry-archer', 'knight', 'cavalier', 'paladin', 'light-cavalry', 'hussar'],
+        stat: 'speed',
+        value: '+5% (Imperial: +10%)',
+        description: 'Cavalry and Cavalry Archers move 5% faster (Imperial Age: 10%)'
+      },
+      {
+        type: 'stat',
+        units: ['battering-ram', 'capped-ram'],
+        stat: 'speed',
+        value: 0.15,
+        description: 'Feudal Age Battering Rams and Capped Rams move 15% faster'
+      },
+      {
+        type: 'economic',
+        description: 'Can build second Town Center in Feudal Age'
+      },
+      {
+        type: 'economic',
+        description: 'Steppe Husbandry - Steppe Lancers and Cavalry Archers created 80% faster'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['palisade-wall'],
+      description: 'Palisade Walls +33% HP'
+    }
   },
   {
     id: 'huns',
@@ -511,12 +1016,27 @@ export const civilizations = [
     bonuses: [
       {
         type: 'cost',
-        units: ['cavalry-archer'],
+        units: ['cavalry-archer', 'heavy-cavalry-archer'],
         resource: 'wood',
         value: 0.25,
-        description: 'Cavalry archers cost 25% less wood'
+        description: 'Cavalry Archers cost 25% less wood'
+      },
+      {
+        type: 'economic',
+        description: 'Do not need Houses, but start with -100 wood'
+      },
+      {
+        type: 'stat',
+        units: ['trebuchet'],
+        stat: 'accuracy',
+        value: 0.35,
+        description: 'Trebuchets +35% accuracy'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Stables work 20% faster'
+    }
   },
   {
     id: 'italians',
@@ -525,9 +1045,28 @@ export const civilizations = [
     bonuses: [
       {
         type: 'economic',
-        description: 'Condottiero available, cheaper age advancements'
+        description: 'Age advances cost 15% less'
+      },
+      {
+        type: 'economic',
+        description: 'Dock and University technologies cost 33% less'
+      },
+      {
+        type: 'cost',
+        units: ['fishing-ship', 'trade-cog', 'trade-cart'],
+        resource: 'all',
+        value: 0.15,
+        description: 'Fishing Ships and Trade units cost 15% less'
+      },
+      {
+        type: 'economic',
+        description: 'Condottiero available - anti-gunpowder infantry'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Condottiero available'
+    }
   },
   {
     id: 'lithuanians',
@@ -535,10 +1074,32 @@ export const civilizations = [
     region: 'European',
     bonuses: [
       {
+        type: 'stat',
+        units: ['knight', 'cavalier', 'paladin'],
+        stat: 'attack',
+        value: '+1 per relic (max +4)',
+        description: 'Each relic garrisoned gives Knights, Leitis +1 attack (max +4)'
+      },
+      {
+        type: 'stat',
+        units: ['spearman', 'pikeman', 'halberdier', 'skirmisher', 'elite-skirmisher'],
+        stat: 'speed',
+        value: 0.10,
+        description: 'Spearmen and Skirmishers move 10% faster'
+      },
+      {
         type: 'economic',
-        description: 'Each Relic gives +1 attack to Knights and Leitis'
+        description: 'Start with +150 food'
+      },
+      {
+        type: 'economic',
+        description: 'Town Centers work 25% faster (in Feudal and Castle Ages)'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Monasteries work 20% faster'
+    }
   },
   {
     id: 'magyars',
@@ -550,9 +1111,36 @@ export const civilizations = [
         units: ['scout-cavalry', 'light-cavalry', 'hussar'],
         resource: 'all',
         value: 0.15,
-        description: 'Scout cavalry line costs 15% less'
+        description: 'Scout Cavalry line costs 15% less'
+      },
+      {
+        type: 'stat',
+        units: ['archer', 'crossbowman', 'arbalester'],
+        stat: 'range',
+        value: '+1 per Age (starting Feudal)',
+        description: 'Foot archers +1 range per Age (starting Feudal Age)'
+      },
+      {
+        type: 'stat',
+        units: ['scout-cavalry', 'light-cavalry', 'hussar'],
+        stat: 'attack',
+        value: '+3 vs siege',
+        description: 'Scout Cavalry line +3 attack vs siege weapons'
+      },
+      {
+        type: 'economic',
+        description: 'Villagers kill wolves in one strike'
+      },
+      {
+        type: 'economic',
+        description: 'Forging, Iron Casting, Blast Furnace free'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['archer', 'crossbowman', 'arbalester'],
+      description: 'Foot archers +2 line of sight'
+    }
   },
   {
     id: 'poles',
@@ -560,10 +1148,26 @@ export const civilizations = [
     region: 'European',
     bonuses: [
       {
+        type: 'stat',
+        units: ['knight', 'cavalier', 'paladin'],
+        stat: 'attack',
+        value: '+1 vs archers',
+        description: 'Knight line +1 attack vs archers'
+      },
+      {
         type: 'economic',
-        description: 'Folwarks replace mills'
+        description: 'Stone Miners generate gold in addition to stone'
+      },
+      {
+        type: 'economic',
+        description: 'Folwark (replaces Mill) - generate gold from nearby farms'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['scout-cavalry', 'light-cavalry', 'hussar'],
+      description: 'Scout Cavalry line +1 attack vs archers'
+    }
   },
   {
     id: 'romans',
@@ -572,12 +1176,28 @@ export const civilizations = [
     bonuses: [
       {
         type: 'cost',
-        units: ['militiaman', 'longswordsman', 'champion'],
+        units: ['militiaman', 'man-at-arms', 'longswordsman', 'two-handed-swordsman', 'champion'],
         resource: 'food',
         ages: { feudal: 0.10, castle: 0.15, imperial: 0.20 },
         description: 'Infantry costs 10%/15%/20% less food (Feudal/Castle/Imperial)'
+      },
+      {
+        type: 'stat',
+        units: ['scorpion', 'heavy-scorpion'],
+        stat: 'speed',
+        value: 0.25,
+        description: 'Scorpions +25% faster'
+      },
+      {
+        type: 'economic',
+        description: 'Buildings cost -5% wood Feudal, -10% Castle, -15% Imperial'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['scorpion', 'heavy-scorpion'],
+      description: 'Scorpions +2 line of sight'
+    }
   },
   {
     id: 'sicilians',
@@ -585,10 +1205,33 @@ export const civilizations = [
     region: 'European',
     bonuses: [
       {
-        type: 'economic',
+        type: 'stat',
+        units: 'all',
+        stat: 'damage-reduction',
+        value: '50% of bonus damage',
+        description: 'Land military units absorb 50% of incoming bonus damage'
+      },
+      {
+        type: 'cost',
+        units: ['castle'],
+        resource: 'stone',
+        value: 0.50,
         description: 'Castles cost 50% less stone'
+      },
+      {
+        type: 'economic',
+        description: 'Farm upgrades provide +100% additional food (not +50%)'
+      },
+      {
+        type: 'economic',
+        description: 'Can build Town Centers starting in Feudal Age with Serjeant'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['transport-ship'],
+      description: 'Transport Ships +5 carry capacity and +50% HP'
+    }
   },
   {
     id: 'slavs',
@@ -597,9 +1240,28 @@ export const civilizations = [
     bonuses: [
       {
         type: 'economic',
-        description: 'Supplies 15% cheaper'
+        description: 'Military buildings provide +5 population (instead of 0)'
+      },
+      {
+        type: 'cost',
+        units: ['mangonel', 'onager', 'siege-onager', 'scorpion', 'heavy-scorpion', 'battering-ram', 'capped-ram', 'siege-ram'],
+        resource: 'all',
+        value: 0.15,
+        description: 'Siege units 15% cheaper'
+      },
+      {
+        type: 'economic',
+        description: 'Farmers work 10% faster'
+      },
+      {
+        type: 'economic',
+        description: 'Supplies (Man-at-Arms upgrade) free'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Military buildings provide +5 population'
+    }
   },
   {
     id: 'spanish',
@@ -609,8 +1271,30 @@ export const civilizations = [
       {
         type: 'economic',
         description: 'Blacksmith upgrades cost no gold'
+      },
+      {
+        type: 'stat',
+        units: ['hand-cannoneer', 'bombard-cannon'],
+        stat: 'attack-speed',
+        value: 0.18,
+        description: 'Gunpowder units fire 18% faster'
+      },
+      {
+        type: 'cost',
+        units: ['hand-cannoneer', 'bombard-cannon'],
+        resource: 'gold',
+        value: 'replaced with food',
+        description: 'Hand Cannoneer and Bombard Cannon gold cost replaced with food'
+      },
+      {
+        type: 'economic',
+        description: 'Builders work 30% faster'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Trade units generate +25% gold (33% with Guilds)'
+    }
   },
   {
     id: 'teutons',
@@ -618,10 +1302,37 @@ export const civilizations = [
     region: 'European',
     bonuses: [
       {
+        type: 'stat',
+        units: ['monk'],
+        stat: 'healing-range',
+        value: '2x',
+        description: 'Monks have 2x healing range'
+      },
+      {
+        type: 'stat',
+        units: ['town-center'],
+        stat: 'garrison',
+        value: '+10 units, +5 attack',
+        description: 'Town Centers garrison +10 units and +5 attack'
+      },
+      {
+        type: 'economic',
+        description: 'Murder Holes free'
+      },
+      {
         type: 'economic',
         description: 'Farms cost 40% less'
+      },
+      {
+        type: 'economic',
+        description: 'Herbal Medicine free'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: 'all',
+      description: 'Units resist conversion better'
+    }
   },
   {
     id: 'vikings',
@@ -630,12 +1341,27 @@ export const civilizations = [
     bonuses: [
       {
         type: 'cost',
-        units: ['militiaman', 'longswordsman', 'champion'],
+        units: ['militiaman', 'man-at-arms', 'longswordsman', 'two-handed-swordsman', 'champion', 'spearman', 'pikeman', 'halberdier'],
         resource: 'all',
         ages: { feudal: 0.15, castle: 0.20, imperial: 0.25 },
         description: 'Infantry costs 15%/20%/25% less (Feudal/Castle/Imperial)'
+      },
+      {
+        type: 'cost',
+        units: ['galley', 'war-galley', 'galleon'],
+        resource: 'all',
+        ages: { feudal: 0.15, castle: 0.15, imperial: 0.20 },
+        description: 'Warships cost 15% less Feudal/Castle, 20% less Imperial'
+      },
+      {
+        type: 'economic',
+        description: 'Wheelbarrow and Hand Cart free'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Docks cost 25% less'
+    }
   },
   // Middle Eastern Civilizations (additional)
   {
@@ -649,8 +1375,28 @@ export const civilizations = [
         resource: 'food',
         value: 0.25,
         description: 'Spearman line costs 25% less food'
+      },
+      {
+        type: 'stat',
+        units: ['knight', 'cavalier', 'paladin'],
+        stat: 'hp',
+        value: '+25% vs archers',
+        description: 'Cavalry +25% HP against archers'
+      },
+      {
+        type: 'economic',
+        description: 'Mule Carts replace villagers for resource gathering (except food)'
+      },
+      {
+        type: 'economic',
+        description: 'Fortress upgrades cost 50% less'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['monastery'],
+      description: 'Fortified Churches (Monasteries have +3 range to convert)'
+    }
   },
   {
     id: 'georgians',
@@ -659,12 +1405,32 @@ export const civilizations = [
     bonuses: [
       {
         type: 'cost',
-        units: ['knight', 'cavalier'],
+        units: ['knight', 'cavalier', 'paladin'],
         resource: 'food',
         ages: { feudal: 0.10, castle: 0.15, imperial: 0.20 },
-        description: 'Cavalry costs 10%/15%/20% less food (Feudal/Castle/Imperial)'
+        description: 'Cavalry cost 10%/15%/20% less food (Feudal/Castle/Imperial)'
+      },
+      {
+        type: 'stat',
+        units: ['knight', 'cavalier', 'paladin'],
+        stat: 'attack',
+        value: '+25% vs buildings',
+        description: 'Cavalry deal +25% damage to buildings'
+      },
+      {
+        type: 'economic',
+        description: 'Start with +150 stone'
+      },
+      {
+        type: 'economic',
+        description: 'Fortifications cost 50% less stone starting in Castle Age'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['wall', 'tower'],
+      description: 'Walls and towers have +35% HP'
+    }
   },
   {
     id: 'saracens',
@@ -672,10 +1438,50 @@ export const civilizations = [
     region: 'Middle Eastern',
     bonuses: [
       {
+        type: 'stat',
+        units: ['archer', 'crossbowman', 'arbalester'],
+        stat: 'attack',
+        value: '+4 vs buildings (+7 after Siege Engineers)',
+        description: 'Foot archers +4 attack vs buildings (+7 after Siege Engineers)'
+      },
+      {
+        type: 'stat',
+        units: ['cavalry-archer', 'heavy-cavalry-archer'],
+        stat: 'attack',
+        value: '+4 vs buildings',
+        description: 'Cavalry Archers +4 attack vs buildings'
+      },
+      {
+        type: 'stat',
+        units: ['transport-ship'],
+        stat: 'capacity',
+        value: '+5',
+        description: 'Transport Ships +5 carry capacity'
+      },
+      {
+        type: 'stat',
+        units: ['transport-ship'],
+        stat: 'hp',
+        value: '2x',
+        description: 'Transport Ships 2x HP'
+      },
+      {
+        type: 'stat',
+        units: ['galley', 'war-galley', 'galleon'],
+        stat: 'attack-speed',
+        value: 0.20,
+        description: 'Galleys attack 20% faster'
+      },
+      {
         type: 'economic',
-        description: 'Foot archers +3 attack vs buildings'
+        description: 'Market trade cost only 5%'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'stat',
+      units: ['archer', 'crossbowman', 'arbalester'],
+      description: 'Foot archers +2 attack vs buildings'
+    }
   },
   {
     id: 'turks',
@@ -683,10 +1489,33 @@ export const civilizations = [
     region: 'Middle Eastern',
     bonuses: [
       {
+        type: 'stat',
+        units: ['hand-cannoneer', 'bombard-cannon'],
+        stat: 'hp',
+        value: 0.25,
+        description: 'Gunpowder units +25% HP'
+      },
+      {
         type: 'economic',
-        description: 'Gunpowder units created 20% faster'
+        description: 'Gunpowder technologies free'
+      },
+      {
+        type: 'economic',
+        description: 'Gold Miners work 20% faster'
+      },
+      {
+        type: 'economic',
+        description: 'Light Cavalry and Hussar free upgrades'
+      },
+      {
+        type: 'economic',
+        description: 'Chemistry available in Castle Age'
       }
-    ]
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Gunpowder units created 25% faster'
+    }
   },
   // Asian Civilizations (The Three Kingdoms expansion)
   {
