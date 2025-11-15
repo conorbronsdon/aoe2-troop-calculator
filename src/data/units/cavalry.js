@@ -101,7 +101,7 @@ export const cavalryUnits = [
     name: 'Battle Elephant',
     category: 'Cavalry',
     age: 'castle',
-    cost: { food: 120, wood: 0, gold: 70, stone: 0 },
+    cost: { food: 100, wood: 0, gold: 70, stone: 0 },
     population: 1,
     counters: ['infantry', 'cavalry', 'buildings'],
     weakTo: ['monk', 'halberdier', 'camel', 'mameluke']
@@ -111,7 +111,7 @@ export const cavalryUnits = [
     name: 'Elite Battle Elephant',
     category: 'Cavalry',
     age: 'imperial',
-    cost: { food: 120, wood: 0, gold: 70, stone: 0 },
+    cost: { food: 100, wood: 0, gold: 70, stone: 0 },
     population: 1,
     counters: ['infantry', 'cavalry', 'buildings', 'siege'],
     weakTo: ['monk', 'halberdier', 'heavy-camel', 'mameluke']

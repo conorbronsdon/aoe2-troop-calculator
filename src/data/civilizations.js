@@ -687,6 +687,121 @@ export const civilizations = [
         description: 'Gunpowder units created 20% faster'
       }
     ]
+  },
+  // Asian Civilizations (The Three Kingdoms expansion)
+  {
+    id: 'jurchens',
+    name: 'Jurchens',
+    region: 'Asian',
+    bonuses: [
+      {
+        type: 'economic',
+        description: 'Animals killed by Jurchen units or buildings do not decay'
+      },
+      {
+        type: 'stat',
+        units: ['scout-cavalry', 'light-cavalry', 'hussar', 'cavalry-archer', 'heavy-cavalry-archer'],
+        stat: 'attack-speed',
+        value: 0.20,
+        description: 'Mounted units and Fire Lancers attack 20% faster'
+      }
+    ],
+    teamBonus: {
+      type: 'stat',
+      description: 'Gunpowder units +2 Line of Sight'
+    }
+  },
+  {
+    id: 'khitans',
+    name: 'Khitans',
+    region: 'Asian',
+    bonuses: [
+      {
+        type: 'stat',
+        description: 'Forging and Iron Casting effects doubled'
+      },
+      {
+        type: 'economic',
+        description: 'Skirmishers, Genitours, Spearman and Scout Cavalry lines trained 25% faster'
+      },
+      {
+        type: 'economic',
+        description: 'Heavy Cavalry Archer upgrade available in Castle Age, costs -50%'
+      }
+    ],
+    teamBonus: {
+      type: 'stat',
+      description: 'Infantry units +2 attack vs ranged soldiers'
+    }
+  },
+  {
+    id: 'shu',
+    name: 'Shu',
+    region: 'Asian',
+    bonuses: [
+      {
+        type: 'economic',
+        description: 'Lumberjacks generate 0.9 food for every 10 wood'
+      },
+      {
+        type: 'cost',
+        description: 'Archery unit technologies at Archery Range and Blacksmith cost -25%'
+      },
+      {
+        type: 'stat',
+        description: 'Siege weapons, War Chariots, Lou Chuans move +10/15% faster in Castle/Imperial Age'
+      }
+    ],
+    teamBonus: {
+      type: 'stat',
+      description: 'Foot archer units (except Skirmishers) +2 Line of Sight'
+    }
+  },
+  {
+    id: 'wei',
+    name: 'Wei',
+    region: 'Asian',
+    bonuses: [
+      {
+        type: 'economic',
+        description: 'Tuntian: Soldiers passively produce food'
+      },
+      {
+        type: 'stat',
+        description: 'Ming Guang Armor: Mounted units +4 melee armor'
+      },
+      {
+        type: 'economic',
+        description: 'Receive one free Villager for each economic technology researched'
+      },
+      {
+        type: 'stat',
+        description: 'Hei Guang Cavalry and Xianbei Raider +20/30% HP in Castle/Imperial Age'
+      }
+    ],
+    teamBonus: {
+      type: 'stat',
+      description: 'Cavalry units +2 attack vs siege weapons'
+    }
+  },
+  {
+    id: 'wu',
+    name: 'Wu',
+    region: 'Asian',
+    bonuses: [
+      {
+        type: 'economic',
+        description: 'Barracks, Archery Ranges, Stables, Siege Workshops, Castles, Docks provide +55 food when constructed'
+      },
+      {
+        type: 'stat',
+        description: 'Infantry regenerate 10/20/30 HP per minute in Feudal/Castle/Imperial Age'
+      }
+    ],
+    teamBonus: {
+      type: 'economic',
+      description: 'Houses built extremely fast'
+    }
   }
 ];
 
