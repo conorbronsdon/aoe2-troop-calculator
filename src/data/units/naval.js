@@ -123,7 +123,7 @@ export const navalUnits = [
     category: 'Naval',
     age: 'feudal',
     cost: { food: 0, wood: 125, gold: 0, stone: 0 },
-    population: 0,
+    population: 1,
     counters: [],
     weakTo: ['galley', 'fire-galley', 'demolition-ship']
   },
@@ -134,7 +134,7 @@ export const navalUnits = [
     category: 'Naval',
     age: 'feudal',
     cost: { food: 0, wood: 100, gold: 50, stone: 0 },
-    population: 0,
+    population: 1,
     counters: [],
     weakTo: ['galley', 'fire-galley']
   },
@@ -145,7 +145,7 @@ export const navalUnits = [
     category: 'Naval',
     age: 'dark',
     cost: { food: 0, wood: 75, gold: 0, stone: 0 },
-    population: 0,
+    population: 1,
     counters: [],
     weakTo: ['galley', 'fire-galley']
   },
