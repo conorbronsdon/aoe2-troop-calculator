@@ -12,7 +12,8 @@ export default function UnitSelection() {
     searchTerm: '',
     categories: [],
     costType: 'all',
-    ageFilter: 'all'
+    ageFilter: 'all',
+    hideNaval: false
   });
 
   // Filter units by age and civilization (includes unique units)
@@ -21,6 +22,11 @@ export default function UnitSelection() {
   // Apply filters
   const filteredUnits = useMemo(() => {
     let filtered = [...availableUnits];
+
+    // Hide Naval filter (quick toggle)
+    if (filters.hideNaval) {
+      filtered = filtered.filter(unit => unit.category !== 'Naval');
+    }
 
     // Search filter
     if (filters.searchTerm) {
@@ -74,7 +80,7 @@ export default function UnitSelection() {
       <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
         <h2 className="text-2xl font-semibold mb-4 text-gray-700">
           Select Units
-          {filters.searchTerm || filters.categories.length > 0 || filters.costType !== 'all' || filters.ageFilter !== 'all' ? (
+          {filters.searchTerm || filters.categories.length > 0 || filters.costType !== 'all' || filters.ageFilter !== 'all' || filters.hideNaval ? (
             <span className="text-sm font-normal text-gray-500 ml-2">
               ({filteredUnits.length} {filteredUnits.length === 1 ? 'unit' : 'units'} found)
             </span>
