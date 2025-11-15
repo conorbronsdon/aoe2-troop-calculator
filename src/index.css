@@ -9,10 +9,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .resource-bar {
   transition: width 0.3s ease;
+}
+
+/* Dark mode color overrides */
+.dark {
+  color-scheme: dark;
 }
 
 /* Mobile Optimizations */
