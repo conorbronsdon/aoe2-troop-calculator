@@ -130,6 +130,31 @@ export default function ConfigurationPanel() {
           </select>
         </div>
 
+        {/* Fortification Mode Toggle */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Mode
+          </label>
+          <button
+            onClick={() => dispatch({ type: ACTION_TYPES.TOGGLE_FORTIFICATION_MODE })}
+            className={`w-full py-2 px-4 rounded font-semibold transition-all duration-200 ${
+              config.fortificationMode
+                ? 'bg-amber-600 hover:bg-amber-700 text-white'
+                : 'bg-blue-600 hover:bg-blue-700 text-white'
+            }`}
+            title={config.fortificationMode
+              ? 'Switch to unit selection mode'
+              : 'Switch to fortification mode - plan walls, towers, and castles'}
+          >
+            {config.fortificationMode ? '🏰 Fortifications' : '⚔️ Units'}
+          </button>
+          <p className="text-xs text-gray-500 mt-1">
+            {config.fortificationMode
+              ? 'Build walls, towers, and castles'
+              : 'Select military units'}
+          </p>
+        </div>
+
         {/* Civilization Selection */}
         <div className="md:col-span-2 lg:col-span-3">
           <label className="block text-sm font-medium text-gray-700 mb-2">

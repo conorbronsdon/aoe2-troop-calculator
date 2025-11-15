@@ -79,6 +79,54 @@ export const calculateTotals = (composition, civId, age) => {
 };
 
 /**
+ * Calculate total resources for fortifications
+ * @param {Object} fortificationComposition - Fortification composition { fortificationId: quantity }
+ * @param {Array} fortifications - Array of all fortifications (imported from data)
+ * @returns {Object} { food, wood, gold, stone }
+ */
+export const calculateFortificationCosts = (fortificationComposition, fortifications) => {
+  let totalCost = { food: 0, wood: 0, gold: 0, stone: 0 };
+
+  Object.entries(fortificationComposition).forEach(([fortificationId, quantity]) => {
+    if (quantity > 0) {
+      const fortification = fortifications.find(f => f.id === fortificationId);
+      if (fortification) {
+        totalCost.food += fortification.cost.food * quantity;
+        totalCost.wood += fortification.cost.wood * quantity;
+        totalCost.gold += fortification.cost.gold * quantity;
+        totalCost.stone += fortification.cost.stone * quantity;
+      }
+    }
+  });
+
+  return totalCost;
+};
+
+/**
+ * Calculate combined totals for units and fortifications
+ * @param {Object} composition - Army composition { unitId: quantity }
+ * @param {Object} fortificationComposition - Fortification composition { fortificationId: quantity }
+ * @param {string} civId - Civilization ID
+ * @param {string} age - Current age
+ * @param {Array} fortifications - Array of all fortifications
+ * @returns {Object} { totalCost: { food, wood, gold, stone }, totalPopulation }
+ */
+export const calculateCombinedTotals = (composition, fortificationComposition, civId, age, fortifications) => {
+  const unitTotals = calculateTotals(composition, civId, age);
+  const fortificationCosts = calculateFortificationCosts(fortificationComposition, fortifications);
+
+  return {
+    totalCost: {
+      food: unitTotals.totalCost.food + fortificationCosts.food,
+      wood: unitTotals.totalCost.wood + fortificationCosts.wood,
+      gold: unitTotals.totalCost.gold + fortificationCosts.gold,
+      stone: unitTotals.totalCost.stone + fortificationCosts.stone
+    },
+    totalPopulation: unitTotals.totalPopulation
+  };
+};
+
+/**
  * Check if unit has a discount applied
  * @param {Object} unit - Unit object
  * @param {Object} adjustedCost - Adjusted cost after bonuses
