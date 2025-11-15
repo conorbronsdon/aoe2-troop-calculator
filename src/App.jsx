@@ -72,11 +72,63 @@ function AppContent() {
       <BuyMeCoffee />
 
       {/* Footer */}
-      <div className="mt-8 text-center text-sm text-gray-500">
-        <p>Age of Empires II © Microsoft Corporation</p>
-        <p className="mt-2">
-          Built for AoE2 players | Inspired by pro player strategies
-        </p>
+      <div className="mt-8 border-t border-gray-200 dark:border-gray-700 pt-6">
+        <div className="text-center mb-4">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+            Created by{' '}
+            <a
+              href="https://conorbronsdon.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
+            >
+              Conor Bronsdon
+            </a>
+          </p>
+          <div className="flex justify-center items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
+            <a
+              href="https://github.com/conorbronsdon/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              GitHub
+            </a>
+            <span className="text-gray-300 dark:text-gray-600">•</span>
+            <a
+              href="https://x.com/ConorBronsdon"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              Twitter
+            </a>
+            <span className="text-gray-300 dark:text-gray-600">•</span>
+            <a
+              href="https://www.linkedin.com/in/conorbronsdon/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              LinkedIn
+            </a>
+            <span className="text-gray-300 dark:text-gray-600">•</span>
+            <a
+              href="https://conorbronsdon.substack.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              Substack
+            </a>
+          </div>
+        </div>
+        <div className="text-center text-sm text-gray-500 dark:text-gray-400">
+          <p>Age of Empires II © Microsoft Corporation</p>
+          <p className="mt-2">
+            Built for AoE2 players | Inspired by pro player strategies
+          </p>
+        </div>
       </div>
     </div>
   );

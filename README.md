@@ -235,14 +235,25 @@ This calculator is created under Microsoft's Game Content Usage Rules and is not
 
 ## 🙏 Credits
 
-Created for Age of Empires II players who want to plan army compositions efficiently.
+**Created by [Conor Bronsdon](https://conorbronsdon.com/)**
 
-Inspired by:
+Connect with me:
+- 🐙 GitHub: [@conorbronsdon](https://github.com/conorbronsdon/)
+- 🐦 Twitter: [@ConorBronsdon](https://x.com/ConorBronsdon)
+- 💼 LinkedIn: [conorbronsdon](https://www.linkedin.com/in/conorbronsdon/)
+- 📝 Substack: [conorbronsdon.substack.com](https://conorbronsdon.substack.com/)
+- 🌐 Website: [conorbronsdon.com](https://conorbronsdon.com/)
+
+---
+
+Built for Age of Empires II players who want to plan army compositions efficiently.
+
+**Inspired by:**
 - @faruksarihan's YouTube comment on [Hera's 200 Army vs 200 Army match](https://youtu.be/6WyRs7SY0Tk?si=RHdJiWtagC0ZG1rA)
 - Pro players who meticulously plan compositions
 - The amazing AoE2 community
 
-Special thanks to:
+**Special thanks to:**
 - [aoe2techtree.net](https://aoe2techtree.net) for reference data
 - [aoestats.io](https://aoestats.io) for civilization statistics
 - All contributors and testers
