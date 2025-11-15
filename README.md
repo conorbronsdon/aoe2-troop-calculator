@@ -338,7 +338,7 @@ This calculator is created under Microsoft's Game Content Usage Rules and is not
 
 <div align="center">
 
-### Created by [Conor Bronsdon](https://conorbronsdon.com/)
+### Created by [Conor Bronsdon](https://conorbronsdon.com/) (with Claude Code)
 
 [![GitHub](https://img.shields.io/badge/GitHub-conorbronsdon-181717?style=flat&logo=github)](https://github.com/conorbronsdon/)
 [![Twitter](https://img.shields.io/badge/Twitter-@ConorBronsdon-1DA1F2?style=flat&logo=twitter)](https://x.com/ConorBronsdon)
@@ -356,6 +356,7 @@ Built for Age of Empires II players who want to plan army compositions efficient
 
 | Source | Description |
 |--------|-------------|
+| 💡 [Hera's 200k Subscriber Special](https://youtu.be/6WyRs7SY0Tk?si=RHdJiWtagC0ZG1rA) | Hera vs. Lewis |
 | 💡 [@faruksarihan](https://youtu.be/6WyRs7SY0Tk?si=RHdJiWtagC0ZG1rA) | YouTube comment on Hera's 200 vs 200 Army match |
 | 🎮 Pro Players | Meticulous composition planning strategies |
 | 🏰 AoE2 Community | The amazing Age of Empires II community |
