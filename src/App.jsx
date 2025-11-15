@@ -65,7 +65,7 @@ function AppContent() {
             AoE2: Definitive Edition Army Calculator
           </h1>
           <p className="text-lg md:text-xl mb-6 text-blue-100">
-            100+ units · 45 civilizations · Fortifications · Accurate bonuses · Tech tree restrictions
+            100+ units · 51 civilizations · Fortifications · Accurate bonuses · Tech tree restrictions
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-4">
             <a

@@ -29,7 +29,7 @@ Inspired by pro players ([Hera vs. Lewis](https://youtu.be/6WyRs7SY0Tk?si=RHdJiW
 - **Unique Units** (50+ civilization-specific units)
 
 ### 🏛️ Civilization Features
-- **45 Civilizations** from all regions (European, Asian, African, American, Middle Eastern)
+- **51 Civilizations** from all regions (European, Asian, African, American, Middle Eastern)
 - **Technology Tree Restrictions**: Units filtered by civilization-specific tech tree
   - Aztecs/Mayans/Incas cannot build cavalry (historically accurate)
   - Vikings restricted from cavalry units
@@ -77,7 +77,7 @@ Inspired by pro players ([Hera vs. Lewis](https://youtu.be/6WyRs7SY0Tk?si=RHdJiW
 ## 📖 How to Use
 
 ### Basic Usage
-1. **Select Civilization**: Choose from 45 civilizations
+1. **Select Civilization**: Choose from 51 civilizations
 2. **Choose Age**: Select Dark, Feudal, Castle, or Imperial Age
 3. **Select Display Mode**: Choose between Units Only, Units & Fortifications, or Fortifications Only
 4. **View Available Options**: Only units/fortifications available for your civ/age are shown
@@ -152,7 +152,7 @@ src/
 │   ├── ArmyContext.jsx       # Updated: Fortification support
 │   └── ThemeContext.jsx
 ├── data/              # Game data
-│   ├── civilizations.js         # 45 civs with bonuses
+│   ├── civilizations.js         # 51 civs with bonuses
 │   ├── fortifications.js        # NEW: Walls, towers, castles
 │   └── units/
 │       ├── infantry.js
@@ -201,7 +201,7 @@ All unit costs, population values, and civilization bonuses are based on Age of 
 
 ### Recently Completed ✅
 - ✅ Complete unit roster (100+ units)
-- ✅ All unique units (101 units for 45 civilizations)
+- ✅ All unique units (101 units for 51 civilizations)
 - ✅ **Flexible Display Modes** (Units Only, Units & Fortifications, Fortifications Only)
 - ✅ **Fortification System** (walls, towers, castles with resource tracking)
 - ✅ Naval unit category
@@ -216,7 +216,7 @@ All unit costs, population values, and civilization bonuses are based on Age of 
 ### Next Steps 🔜
 1. **Complete Civilization Bonuses**
    - Add team bonuses for remaining civilizations
-   - Document all military and economic bonuses for all 45 civs
+   - Document all military and economic bonuses for all 51 civs
 
 2. **Unit Statistics**
    - Add HP, attack, armor stats
@@ -297,4 +297,4 @@ Found a bug or have a suggestion?
 
 **Version**: 2.2.0
 **Last Updated**: November 2025
-**Status**: Production Ready - 100+ Units, Fortifications, 101 Unique Units, 45 Civilizations, Tech Tree Restrictions
+**Status**: Production Ready - 100+ Units, Fortifications, 101 Unique Units, 51 Civilizations, Tech Tree Restrictions
