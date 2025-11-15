@@ -47,6 +47,10 @@ Inspired by pro players ([Hera vs. Lewis](https://youtu.be/6WyRs7SY0Tk?si=RHdJiW
 - **Custom Resource Limits**: Set available food, wood, gold, and stone
 - **Population Cap Control**: Adjust from 200 to custom values
 - **Age Selection**: Dark, Feudal, Castle, and Imperial Age filtering
+- **Fortification Mode**: Toggle between units and fortifications planning
+  - Plan defensive structures: walls, gates, towers, and castles
+  - Track stone requirements for fortifications
+  - Separate resource tracking for military and defensive spending
 - **Real-Time Tracking**: Live resource and population counters with visual progress bars
 - **Visual Feedback**: Green/yellow/red progress bars based on resource usage
 - **Discount Display**: Shows both discounted and original prices when bonuses apply
@@ -73,10 +77,18 @@ Inspired by pro players ([Hera vs. Lewis](https://youtu.be/6WyRs7SY0Tk?si=RHdJiW
 ### Basic Usage
 1. **Select Civilization**: Choose from 45 civilizations
 2. **Choose Age**: Select Dark, Feudal, Castle, or Imperial Age
-3. **View Available Units**: Only units available for your civ/age are shown (respects tech tree)
-4. **Build Army**: Click +/- or type quantities directly
-5. **Monitor Resources**: Watch real-time resource tracking
-6. **Review Bonuses**: View active bonuses (panel expanded by default)
+3. **Select Mode**: Toggle between ⚔️ Units or 🏰 Fortifications
+4. **View Available Options**: Only units/fortifications available for your civ/age are shown
+5. **Build Army or Fortifications**: Click +/- or type quantities directly
+6. **Monitor Resources**: Watch real-time resource tracking (includes both units and fortifications)
+7. **Review Bonuses**: View active bonuses (panel expanded by default)
+
+### Fortification Mode
+- **Switch Modes**: Use the Mode toggle in the Configuration panel
+- **Plan Defenses**: Select walls, gates, towers, and castles
+- **Resource Management**: Fortifications primarily use wood and stone
+- **Combined Tracking**: Resources show total cost of both units and fortifications
+- **Strategic Planning**: Balance military spending with defensive structures
 
 ### Advanced Features
 - **Save Compositions**: Click "Save Current Composition" to store your army
@@ -124,26 +136,29 @@ npm run build
 src/
 ├── components/          # React components
 │   ├── ConfigurationPanel.jsx
-│   ├── CivilizationBonuses.jsx  # NEW: Bonus display
+│   ├── CivilizationBonuses.jsx  # Bonus display
 │   ├── UnitSelection.jsx
 │   ├── UnitCard.jsx
+│   ├── FortificationSelection.jsx  # NEW: Fortification mode
+│   ├── FortificationCard.jsx      # NEW: Fortification cards
 │   └── ...
 ├── context/            # State management
-│   ├── ArmyContext.jsx
+│   ├── ArmyContext.jsx       # Updated: Fortification support
 │   └── ThemeContext.jsx
 ├── data/              # Game data
-│   ├── civilizations.js    # 42 civs with bonuses
+│   ├── civilizations.js         # 45 civs with bonuses
+│   ├── fortifications.js        # NEW: Walls, towers, castles
 │   └── units/
 │       ├── infantry.js
 │       ├── cavalry.js
 │       ├── archers.js
 │       ├── siege.js
-│       ├── naval.js        # NEW
-│       ├── unique.js       # NEW: 50+ unique units
+│       ├── naval.js
+│       ├── unique.js            # 50+ unique units
 │       └── other.js
 ├── utils/             # Helper functions
-│   ├── calculations.js
-│   └── iconMappings.js    # NEW: Unit icon URL mappings
+│   ├── calculations.js          # Updated: Fortification calculations
+│   └── iconMappings.js          # Unit icon URL mappings
 └── App.jsx
 ```
 
@@ -181,6 +196,7 @@ All unit costs, population values, and civilization bonuses are based on Age of 
 ### Recently Completed ✅
 - ✅ Complete unit roster (100+ units)
 - ✅ All unique units (101 units for 45 civilizations)
+- ✅ **Fortification Mode** (walls, towers, castles with resource tracking)
 - ✅ Naval unit category
 - ✅ Civilization bonuses panel
 - ✅ Team bonuses display
@@ -271,6 +287,6 @@ Found a bug or have a suggestion?
 
 ---
 
-**Version**: 2.1.0
+**Version**: 2.2.0
 **Last Updated**: November 2025
-**Status**: Production Ready - 100+ Units, 101 Unique Units, 45 Civilizations, Tech Tree Restrictions
+**Status**: Production Ready - 100+ Units, Fortifications, 101 Unique Units, 45 Civilizations, Tech Tree Restrictions

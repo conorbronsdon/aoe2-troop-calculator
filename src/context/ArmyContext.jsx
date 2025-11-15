@@ -6,6 +6,7 @@ const ArmyContext = createContext();
 // Initial state
 const initialState = {
   composition: {},
+  fortificationComposition: {}, // Separate composition for fortifications
   config: {
     resourceLimitMode: 'total',
     resourceLimits: { food: 8000, wood: 8000, gold: 4000, stone: 0 },
@@ -13,7 +14,8 @@ const initialState = {
     populationCap: 200,
     selectedAge: 'imperial',
     selectedCiv: 'generic', // The applied civilization (affects calculations)
-    previewCiv: 'generic' // The civilization being previewed in the dropdown
+    previewCiv: 'generic', // The civilization being previewed in the dropdown
+    fortificationMode: false // Toggle between units and fortifications
   },
   savedCompositions: [],
   comparisonMode: false,
@@ -26,12 +28,17 @@ export const ACTION_TYPES = {
   REMOVE_UNIT: 'REMOVE_UNIT',
   SET_UNIT_QUANTITY: 'SET_UNIT_QUANTITY',
   RESET_COMPOSITION: 'RESET_COMPOSITION',
+  ADD_FORTIFICATION: 'ADD_FORTIFICATION',
+  REMOVE_FORTIFICATION: 'REMOVE_FORTIFICATION',
+  SET_FORTIFICATION_QUANTITY: 'SET_FORTIFICATION_QUANTITY',
+  RESET_FORTIFICATION_COMPOSITION: 'RESET_FORTIFICATION_COMPOSITION',
   UPDATE_CONFIG: 'UPDATE_CONFIG',
   LOAD_COMPOSITION: 'LOAD_COMPOSITION',
   SET_SAVED_COMPOSITIONS: 'SET_SAVED_COMPOSITIONS',
   TOGGLE_COMPARISON_MODE: 'TOGGLE_COMPARISON_MODE',
   UPDATE_COMPARISON_ARMY: 'UPDATE_COMPARISON_ARMY',
-  APPLY_CIVILIZATION: 'APPLY_CIVILIZATION'
+  APPLY_CIVILIZATION: 'APPLY_CIVILIZATION',
+  TOGGLE_FORTIFICATION_MODE: 'TOGGLE_FORTIFICATION_MODE'
 };
 
 // Reducer function
@@ -72,6 +79,51 @@ function armyReducer(state, action) {
 
     case ACTION_TYPES.RESET_COMPOSITION:
       return { ...state, composition: {} };
+
+    case ACTION_TYPES.ADD_FORTIFICATION:
+      return {
+        ...state,
+        fortificationComposition: {
+          ...state.fortificationComposition,
+          [action.fortificationId]: (state.fortificationComposition[action.fortificationId] || 0) + 1
+        }
+      };
+
+    case ACTION_TYPES.REMOVE_FORTIFICATION: {
+      const newQuantity = Math.max(0, (state.fortificationComposition[action.fortificationId] || 0) - 1);
+      if (newQuantity === 0) {
+        const { [action.fortificationId]: _, ...rest } = state.fortificationComposition;
+        return { ...state, fortificationComposition: rest };
+      }
+      return {
+        ...state,
+        fortificationComposition: { ...state.fortificationComposition, [action.fortificationId]: newQuantity }
+      };
+    }
+
+    case ACTION_TYPES.SET_FORTIFICATION_QUANTITY: {
+      const num = parseInt(action.quantity) || 0;
+      if (num === 0) {
+        const { [action.fortificationId]: _, ...rest } = state.fortificationComposition;
+        return { ...state, fortificationComposition: rest };
+      }
+      return {
+        ...state,
+        fortificationComposition: { ...state.fortificationComposition, [action.fortificationId]: num }
+      };
+    }
+
+    case ACTION_TYPES.RESET_FORTIFICATION_COMPOSITION:
+      return { ...state, fortificationComposition: {} };
+
+    case ACTION_TYPES.TOGGLE_FORTIFICATION_MODE:
+      return {
+        ...state,
+        config: {
+          ...state.config,
+          fortificationMode: !state.config.fortificationMode
+        }
+      };
 
     case ACTION_TYPES.UPDATE_CONFIG:
       return {

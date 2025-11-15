@@ -6,6 +6,7 @@ import CivilizationIndicator from './components/CivilizationIndicator';
 import CivilizationBonuses from './components/CivilizationBonuses';
 import ResourceTracker from './components/ResourceTracker';
 import UnitSelection from './components/UnitSelection';
+import FortificationSelection from './components/FortificationSelection';
 import ArmyCompositionSummary from './components/ArmyCompositionSummary';
 import SaveLoadPanel from './components/SaveLoadPanel';
 import SocialShareButtons from './components/SocialShareButtons';
@@ -22,7 +23,8 @@ import { analyticsConfig } from './config/analytics.config';
 import { FaGithub, FaStar } from 'react-icons/fa';
 
 function AppContent() {
-  const { dispatch } = useArmy();
+  const { state, dispatch } = useArmy();
+  const { config } = state;
 
   useEffect(() => {
     // Initialize analytics
@@ -100,7 +102,14 @@ function AppContent() {
       <CivilizationComparison />
       <ResourceTracker />
       <SaveLoadPanel />
-      <UnitSelection />
+
+      {/* Conditionally show Units or Fortifications based on mode */}
+      {config.fortificationMode ? (
+        <FortificationSelection />
+      ) : (
+        <UnitSelection />
+      )}
+
       <ArmyCompositionSummary />
 
       {/* Buy Me a Coffee CTA */}

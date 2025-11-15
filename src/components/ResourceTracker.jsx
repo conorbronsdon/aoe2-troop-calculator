@@ -1,15 +1,18 @@
 import React from 'react';
 import { useArmy } from '../context/ArmyContext';
-import { calculateTotals, calculatePercentage, getResourceColor } from '../utils/calculations';
+import { calculateCombinedTotals, calculatePercentage, getResourceColor } from '../utils/calculations';
+import { fortifications } from '../data/fortifications';
 
 export default function ResourceTracker() {
   const { state } = useArmy();
-  const { composition, config } = state;
+  const { composition, fortificationComposition, config } = state;
 
-  const { totalCost, totalPopulation } = calculateTotals(
+  const { totalCost, totalPopulation } = calculateCombinedTotals(
     composition,
+    fortificationComposition,
     config.selectedCiv,
-    config.selectedAge
+    config.selectedAge,
+    fortifications
   );
 
   // Get total resources used
