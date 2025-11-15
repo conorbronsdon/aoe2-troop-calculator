@@ -19,6 +19,7 @@ import { logger } from './utils/errorHandler';
 import { ShareService } from './services/share.service';
 import { initializeAnalytics } from './utils/analytics';
 import { analyticsConfig } from './config/analytics.config';
+import { FaGithub, FaStar } from 'react-icons/fa';
 
 function AppContent() {
   const { dispatch } = useArmy();
@@ -54,25 +55,46 @@ function AppContent() {
   return (
     <div className="container mx-auto p-4 max-w-7xl">
       <ThemeToggle />
-      <h1 className="text-4xl font-bold text-center mb-2 text-gray-800 dark:text-gray-100">
-        Age of Empires II: Army Calculator
-      </h1>
-      <p className="text-center text-sm text-gray-600 dark:text-gray-400 mb-6">
-        Created by{' '}
-        <a
-          href="https://www.linkedin.com/in/conorbronsdon/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-600 dark:text-blue-400 hover:underline"
-        >
-          Conor Bronsdon
-        </a>
-      </p>
+
+      {/* Hero Section */}
+      <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-purple-900 text-white rounded-xl shadow-2xl p-8 mb-8">
+        <div className="text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-3">
+            Plan Your AoE2 Armies
+          </h1>
+          <p className="text-lg md:text-xl mb-6 text-blue-100">
+            100+ units · 45 civilizations · Accurate bonuses · Tech tree restrictions
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-4">
+            <a
+              href="#calculator"
+              className="bg-white text-blue-900 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg"
+            >
+              Start Planning
+            </a>
+            <a
+              href="https://github.com/conorbronsdon/aoe2-troop-calculator"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-2 border-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-all flex items-center gap-2"
+            >
+              <FaGithub className="w-5 h-5" />
+              View on GitHub
+            </a>
+          </div>
+          <div className="flex justify-center items-center gap-2 text-sm text-blue-200">
+            <FaStar className="w-4 h-4 text-yellow-300" />
+            <span>Star us on GitHub if you find this useful!</span>
+          </div>
+        </div>
+      </div>
 
       {/* Social Share Buttons */}
       <SocialShareButtons />
 
-      <ConfigurationPanel />
+      <div id="calculator">
+        <ConfigurationPanel />
+      </div>
       <CivilizationIndicator />
       <CivilizationBonuses />
       <CivilizationComparison />
