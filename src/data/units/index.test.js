@@ -289,14 +289,15 @@ describe('Unit Data Functions', () => {
         expect(canCivBuildUnit('mayans', 'hussar')).toBe(false);
       });
 
-      it('should prevent Vikings from building cavalry', () => {
-        expect(canCivBuildUnit('vikings', 'knight')).toBe(false);
-        expect(canCivBuildUnit('vikings', 'paladin')).toBe(false);
-        expect(canCivBuildUnit('vikings', 'cavalry-archer')).toBe(false);
+      it('should prevent Vikings from building certain cavalry units', () => {
+        expect(canCivBuildUnit('vikings', 'knight')).toBe(true); // Vikings DO get Knights
+        expect(canCivBuildUnit('vikings', 'paladin')).toBe(false); // But not Paladin
+        expect(canCivBuildUnit('vikings', 'cavalry-archer')).toBe(false); // And not Cavalry Archers
+        expect(canCivBuildUnit('vikings', 'hussar')).toBe(false); // And not Hussar
       });
 
-      it('should prevent Goths from building Hand Cannoneers', () => {
-        expect(canCivBuildUnit('goths', 'hand-cannoneer')).toBe(false);
+      it('should allow Goths to build Hand Cannoneers', () => {
+        expect(canCivBuildUnit('goths', 'hand-cannoneer')).toBe(true); // Goths DO get Hand Cannoneers
       });
 
       it('should prevent Turks from building Pikemen', () => {
@@ -351,6 +352,8 @@ describe('Unit Data Functions', () => {
         expect(canCivBuildUnit('cumans', 'steppe-lancer')).toBe(true);
         expect(canCivBuildUnit('mongols', 'steppe-lancer')).toBe(true);
         expect(canCivBuildUnit('tatars', 'steppe-lancer')).toBe(true);
+        expect(canCivBuildUnit('jurchens', 'steppe-lancer')).toBe(true); // Three Kingdoms civ
+        expect(canCivBuildUnit('khitans', 'steppe-lancer')).toBe(true); // Three Kingdoms civ
         expect(canCivBuildUnit('britons', 'steppe-lancer')).toBe(false);
         expect(canCivBuildUnit('huns', 'steppe-lancer')).toBe(false);
       });
@@ -386,9 +389,11 @@ describe('Unit Data Functions', () => {
 
       it('should return missing units for Vikings', () => {
         const missing = getMissingUnitsForCiv('vikings');
-        expect(missing).toContain('knight');
-        expect(missing).toContain('paladin');
-        expect(missing).toContain('hand-cannoneer');
+        expect(missing).not.toContain('knight'); // Vikings DO get Knights
+        expect(missing).toContain('paladin'); // But not Paladin
+        expect(missing).toContain('hussar'); // And not Hussar
+        expect(missing).toContain('cavalry-archer'); // And not Cavalry Archers
+        expect(missing).toContain('hand-cannoneer'); // And not Hand Cannoneers
       });
     });
 
@@ -423,10 +428,12 @@ describe('Unit Data Functions', () => {
       it('should not include restricted units for Vikings', () => {
         const units = getUnitsForCiv('vikings', 'imperial');
         const knight = units.find(u => u.id === 'knight');
+        const paladin = units.find(u => u.id === 'paladin');
         const cavArcher = units.find(u => u.id === 'cavalry-archer');
 
-        expect(knight).toBeUndefined();
-        expect(cavArcher).toBeUndefined();
+        expect(knight).toBeDefined(); // Vikings DO get Knights
+        expect(paladin).toBeUndefined(); // But not Paladin
+        expect(cavArcher).toBeUndefined(); // And not Cavalry Archers
       });
 
       it('should still include allowed units for Vikings', () => {
