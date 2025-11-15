@@ -183,9 +183,11 @@ Units are intelligently filtered based on:
 
 ## Civilization System
 
-### 42 Civilizations
+### 45 Civilizations
 
 All civilizations from AoE2: Definitive Edition are included:
+
+**Note**: With technology tree restrictions now implemented, each civilization only shows units they can actually build according to their historical tech tree.
 
 **European** (13 civs): Britons, Byzantines, Celts, Franks, Goths, Italians, Portuguese, Spanish, Teutons, Vikings, Bulgarians, Lithuanians, Sicilians
 
@@ -460,22 +462,19 @@ Future shortcuts planned:
 
 ### Current Limitations
 
-1. **Technology Tree Restrictions**:
-   - Units are not yet filtered by civ tech tree
-   - E.g., Aztecs can select cavalry (shouldn't be possible)
-   - Coming in next update
+1. **Stat Bonuses**:
+   - HP, attack, armor not calculated or displayed
+   - Shown for reference only in bonus panel
+   - Coming in future update
 
-2. **Stat Bonuses**:
-   - Not calculated (HP, attack, armor)
-   - Shown for reference only
-
-3. **Upgrades**:
+2. **Upgrades**:
    - No technology/upgrade system yet
    - All units shown at base stats
+   - Blacksmith upgrades not implemented
 
-4. **Unique Unit Availability**:
-   - Some civilizations missing unique units
-   - Being added incrementally
+3. **Team Bonuses**:
+   - Not all civilizations have team bonuses documented
+   - Being completed incrementally
 
 ### Reporting Issues
 
@@ -488,4 +487,4 @@ Found a bug? Please report:
 ---
 
 **Last Updated**: November 2025
-**Version**: 2.0.0
+**Version**: 2.1.0

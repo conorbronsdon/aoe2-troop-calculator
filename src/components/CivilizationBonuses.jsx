@@ -5,7 +5,7 @@ import { civilizations } from '../data/civilizations';
 export default function CivilizationBonuses() {
   const { state } = useArmy();
   const { config } = state;
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true); // Start expanded by default
 
   // Get current civilization
   const currentCiv = civilizations.find(civ => civ.id === config.selectedCivilization);

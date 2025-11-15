@@ -5,7 +5,9 @@ import {
   getUnitsByCategory,
   getUnitsByAge,
   getUniqueUnitsByCiv,
-  getUnitsForCiv
+  getUnitsForCiv,
+  canCivBuildUnit,
+  getMissingUnitsForCiv
 } from './index';
 
 describe('Unit Data Functions', () => {
@@ -258,6 +260,145 @@ describe('Unit Data Functions', () => {
         expect(unit).toHaveProperty('civilization');
         expect(typeof unit.civilization).toBe('string');
         expect(unit.civilization.length).toBeGreaterThan(0);
+      });
+    });
+  });
+
+  describe('Technology Tree Restrictions', () => {
+    describe('canCivBuildUnit', () => {
+      it('should allow generic civ to build all units', () => {
+        expect(canCivBuildUnit('generic', 'knight')).toBe(true);
+        expect(canCivBuildUnit('generic', 'paladin')).toBe(true);
+        expect(canCivBuildUnit('generic', 'hand-cannoneer')).toBe(true);
+      });
+
+      it('should prevent Aztecs from building cavalry', () => {
+        expect(canCivBuildUnit('aztecs', 'knight')).toBe(false);
+        expect(canCivBuildUnit('aztecs', 'scout-cavalry')).toBe(false);
+        expect(canCivBuildUnit('aztecs', 'paladin')).toBe(false);
+        expect(canCivBuildUnit('aztecs', 'cavalry-archer')).toBe(false);
+      });
+
+      it('should allow Aztecs to build Eagle Warriors', () => {
+        expect(canCivBuildUnit('aztecs', 'eagle-scout')).toBe(true);
+        expect(canCivBuildUnit('aztecs', 'eagle-warrior')).toBe(true);
+      });
+
+      it('should prevent Mayans from building cavalry', () => {
+        expect(canCivBuildUnit('mayans', 'knight')).toBe(false);
+        expect(canCivBuildUnit('mayans', 'hussar')).toBe(false);
+      });
+
+      it('should prevent Vikings from building cavalry', () => {
+        expect(canCivBuildUnit('vikings', 'knight')).toBe(false);
+        expect(canCivBuildUnit('vikings', 'paladin')).toBe(false);
+        expect(canCivBuildUnit('vikings', 'cavalry-archer')).toBe(false);
+      });
+
+      it('should prevent Goths from building Hand Cannoneers', () => {
+        expect(canCivBuildUnit('goths', 'hand-cannoneer')).toBe(false);
+      });
+
+      it('should prevent Turks from building Pikemen', () => {
+        expect(canCivBuildUnit('turks', 'pikeman')).toBe(false);
+        expect(canCivBuildUnit('turks', 'halberdier')).toBe(false);
+        expect(canCivBuildUnit('turks', 'elite-skirmisher')).toBe(false);
+      });
+
+      it('should allow civilizations to build units not in their restriction list', () => {
+        expect(canCivBuildUnit('britons', 'knight')).toBe(true);
+        expect(canCivBuildUnit('franks', 'knight')).toBe(true);
+        expect(canCivBuildUnit('goths', 'champion')).toBe(true);
+      });
+    });
+
+    describe('getMissingUnitsForCiv', () => {
+      it('should return empty array for generic civ', () => {
+        const missing = getMissingUnitsForCiv('generic');
+        expect(missing).toEqual([]);
+      });
+
+      it('should return cavalry units for Aztecs', () => {
+        const missing = getMissingUnitsForCiv('aztecs');
+        expect(missing).toContain('knight');
+        expect(missing).toContain('scout-cavalry');
+        expect(missing).toContain('cavalry-archer');
+      });
+
+      it('should return missing units for Vikings', () => {
+        const missing = getMissingUnitsForCiv('vikings');
+        expect(missing).toContain('knight');
+        expect(missing).toContain('paladin');
+        expect(missing).toContain('hand-cannoneer');
+      });
+    });
+
+    describe('getUnitsForCiv with tech tree restrictions', () => {
+      it('should not include cavalry for Aztecs', () => {
+        const units = getUnitsForCiv('aztecs', 'imperial');
+        const knight = units.find(u => u.id === 'knight');
+        const paladin = units.find(u => u.id === 'paladin');
+        const cavArcher = units.find(u => u.id === 'cavalry-archer');
+
+        expect(knight).toBeUndefined();
+        expect(paladin).toBeUndefined();
+        expect(cavArcher).toBeUndefined();
+      });
+
+      it('should include Eagle Warriors for Aztecs', () => {
+        const units = getUnitsForCiv('aztecs', 'imperial');
+        const eagleScout = units.find(u => u.id === 'eagle-scout');
+        const eagleWarrior = units.find(u => u.id === 'eagle-warrior');
+
+        expect(eagleScout).toBeDefined();
+        expect(eagleWarrior).toBeDefined();
+      });
+
+      it('should include Aztec unique units', () => {
+        const units = getUnitsForCiv('aztecs', 'imperial');
+        const jaguarWarrior = units.find(u => u.id === 'jaguar-warrior');
+
+        expect(jaguarWarrior).toBeDefined();
+      });
+
+      it('should not include restricted units for Vikings', () => {
+        const units = getUnitsForCiv('vikings', 'imperial');
+        const knight = units.find(u => u.id === 'knight');
+        const cavArcher = units.find(u => u.id === 'cavalry-archer');
+
+        expect(knight).toBeUndefined();
+        expect(cavArcher).toBeUndefined();
+      });
+
+      it('should still include allowed units for Vikings', () => {
+        const units = getUnitsForCiv('vikings', 'imperial');
+        const champion = units.find(u => u.id === 'champion');
+        const arbalester = units.find(u => u.id === 'arbalester');
+
+        expect(champion).toBeDefined();
+        expect(arbalester).toBeDefined();
+      });
+
+      it('should not include Paladin for civilizations missing it', () => {
+        const britonsUnits = getUnitsForCiv('britons', 'imperial');
+        const gothsUnits = getUnitsForCiv('goths', 'imperial');
+
+        const britonsPaladin = britonsUnits.find(u => u.id === 'paladin');
+        const gothsPaladin = gothsUnits.find(u => u.id === 'paladin');
+
+        expect(britonsPaladin).toBeUndefined();
+        expect(gothsPaladin).toBeUndefined();
+      });
+
+      it('should allow generic civ to have all units', () => {
+        const units = getUnitsForCiv('generic', 'imperial');
+        const knight = units.find(u => u.id === 'knight');
+        const paladin = units.find(u => u.id === 'paladin');
+        const cavArcher = units.find(u => u.id === 'cavalry-archer');
+
+        expect(knight).toBeDefined();
+        expect(paladin).toBeDefined();
+        expect(cavArcher).toBeDefined();
       });
     });
   });

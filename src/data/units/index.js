@@ -5,6 +5,10 @@ import { siegeUnits } from './siege';
 import { navalUnits } from './naval';
 import { uniqueUnits } from './unique';
 import { otherUnits } from './other';
+import { canCivBuildUnit, getMissingUnitsForCiv } from '../techTree';
+
+// Re-export tech tree functions
+export { canCivBuildUnit, getMissingUnitsForCiv };
 
 /**
  * Complete unit roster
@@ -62,6 +66,7 @@ export const getUniqueUnitsByCiv = (civId) => {
 /**
  * Get units available for a specific civilization and age
  * Includes generic units and civ-specific unique units
+ * Filters out units that the civilization cannot build (tech tree restrictions)
  * @param {string} civId - Civilization identifier
  * @param {string} age - Age identifier
  * @returns {Array} Array of units available for that civ in that age
@@ -70,9 +75,14 @@ export const getUnitsForCiv = (civId, age) => {
   const ageOrder = { dark: 0, feudal: 1, castle: 2, imperial: 3 };
   const targetAgeValue = ageOrder[age];
 
-  // Get all non-unique units
+  // Get all non-unique units filtered by age
   const genericUnits = units.filter(unit =>
     unit.category !== 'Unique' && ageOrder[unit.age] <= targetAgeValue
+  );
+
+  // Filter out units that the civilization cannot build (tech tree restrictions)
+  const availableGenericUnits = genericUnits.filter(unit =>
+    canCivBuildUnit(civId, unit.id)
   );
 
   // Get unique units for this civ
@@ -80,5 +90,5 @@ export const getUnitsForCiv = (civId, age) => {
     ageOrder[unit.age] <= targetAgeValue
   );
 
-  return [...genericUnits, ...civUniqueUnits];
+  return [...availableGenericUnits, ...civUniqueUnits];
 };
