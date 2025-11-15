@@ -47,10 +47,12 @@ Inspired by pro players ([Hera vs. Lewis](https://youtu.be/6WyRs7SY0Tk?si=RHdJiW
 - **Custom Resource Limits**: Set available food, wood, gold, and stone
 - **Population Cap Control**: Adjust from 200 to custom values
 - **Age Selection**: Dark, Feudal, Castle, and Imperial Age filtering
-- **Fortification Mode**: Toggle between units and fortifications planning
-  - Plan defensive structures: walls, gates, towers, and castles
+- **Flexible Display Modes**: Choose what to display for optimal planning
+  - ⚔️ **Units Only**: Focus on military unit composition
+  - ⚔️🏰 **Units & Fortifications**: Plan comprehensive offense and defense strategies
+  - 🏰 **Fortifications Only**: Focus on defensive structures (walls, gates, towers, castles)
   - Track stone requirements for fortifications
-  - Separate resource tracking for military and defensive spending
+  - Unified resource tracking across all selections
 - **Real-Time Tracking**: Live resource and population counters with visual progress bars
 - **Visual Feedback**: Green/yellow/red progress bars based on resource usage
 - **Discount Display**: Shows both discounted and original prices when bonuses apply
@@ -77,18 +79,22 @@ Inspired by pro players ([Hera vs. Lewis](https://youtu.be/6WyRs7SY0Tk?si=RHdJiW
 ### Basic Usage
 1. **Select Civilization**: Choose from 45 civilizations
 2. **Choose Age**: Select Dark, Feudal, Castle, or Imperial Age
-3. **Select Mode**: Toggle between ⚔️ Units or 🏰 Fortifications
+3. **Select Display Mode**: Choose between Units Only, Units & Fortifications, or Fortifications Only
 4. **View Available Options**: Only units/fortifications available for your civ/age are shown
-5. **Build Army or Fortifications**: Click +/- or type quantities directly
+5. **Build Your Strategy**: Click +/- or type quantities directly
 6. **Monitor Resources**: Watch real-time resource tracking (includes both units and fortifications)
 7. **Review Bonuses**: View active bonuses (panel expanded by default)
 
-### Fortification Mode
-- **Switch Modes**: Use the Mode toggle in the Configuration panel
-- **Plan Defenses**: Select walls, gates, towers, and castles
-- **Resource Management**: Fortifications primarily use wood and stone
-- **Combined Tracking**: Resources show total cost of both units and fortifications
-- **Strategic Planning**: Balance military spending with defensive structures
+### Display Modes
+- **Units Only (⚔️)**: Focus on military composition - infantry, cavalry, archers, siege, naval, and monks
+- **Units & Fortifications (⚔️🏰)**: Plan comprehensive strategies with both offense and defense visible
+  - Ideal for balanced gameplay and defensive push strategies
+  - See total resource allocation across military and structures
+  - Plan castle drops, tower rushes, and wall positioning alongside army composition
+- **Fortifications Only (🏰)**: Dedicated defensive planning mode
+  - Select walls, gates, towers, and castles
+  - Track stone and wood requirements for defensive structures
+  - Perfect for planning wall layouts and tower placements
 
 ### Advanced Features
 - **Save Compositions**: Click "Save Current Composition" to store your army
@@ -196,7 +202,8 @@ All unit costs, population values, and civilization bonuses are based on Age of 
 ### Recently Completed ✅
 - ✅ Complete unit roster (100+ units)
 - ✅ All unique units (101 units for 45 civilizations)
-- ✅ **Fortification Mode** (walls, towers, castles with resource tracking)
+- ✅ **Flexible Display Modes** (Units Only, Units & Fortifications, Fortifications Only)
+- ✅ **Fortification System** (walls, towers, castles with resource tracking)
 - ✅ Naval unit category
 - ✅ Civilization bonuses panel
 - ✅ Team bonuses display
@@ -204,6 +211,7 @@ All unit costs, population values, and civilization bonuses are based on Age of 
 - ✅ Dark mode support
 - ✅ **Technology Tree Restrictions** (filter units by civ tech tree)
 - ✅ **Official Unit Icons** (real AoE2 icons with smart fallbacks)
+- ✅ **Definitive Edition Alignment** (2025 content update)
 
 ### Next Steps 🔜
 1. **Complete Civilization Bonuses**
