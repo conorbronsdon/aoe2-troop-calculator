@@ -5,6 +5,8 @@ import ResourceTracker from './components/ResourceTracker';
 import UnitSelection from './components/UnitSelection';
 import ArmyCompositionSummary from './components/ArmyCompositionSummary';
 import SaveLoadPanel from './components/SaveLoadPanel';
+import SocialShareButtons from './components/SocialShareButtons';
+import BuyMeCoffee from './components/BuyMeCoffee';
 import { units } from './data/units';
 import { civilizations } from './data/civilizations';
 import { validateGameData } from './utils/validators';
@@ -42,11 +44,17 @@ function AppContent() {
         Age of Empires II: Army Calculator
       </h1>
 
+      {/* Social Share Buttons */}
+      <SocialShareButtons />
+
       <ConfigurationPanel />
       <ResourceTracker />
       <SaveLoadPanel />
       <UnitSelection />
       <ArmyCompositionSummary />
+
+      {/* Buy Me a Coffee CTA */}
+      <BuyMeCoffee />
 
       {/* Footer */}
       <div className="mt-8 text-center text-sm text-gray-500">
