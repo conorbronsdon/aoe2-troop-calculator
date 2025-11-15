@@ -5,6 +5,7 @@ export default function UnitFilter({ onFilterChange }) {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedCostType, setSelectedCostType] = useState('all');
   const [selectedAgeFilter, setSelectedAgeFilter] = useState('all');
+  const [hideNaval, setHideNaval] = useState(false);
 
   const categories = ['Infantry', 'Cavalry', 'Archer', 'Siege', 'Naval', 'Unique', 'Other'];
   const costTypes = [
@@ -45,12 +46,19 @@ export default function UnitFilter({ onFilterChange }) {
     updateFilters({ ageFilter });
   };
 
+  const handleHideNavalChange = (e) => {
+    const value = e.target.checked;
+    setHideNaval(value);
+    updateFilters({ hideNaval: value });
+  };
+
   const updateFilters = (changes) => {
     const filters = {
       searchTerm: changes.searchTerm !== undefined ? changes.searchTerm : searchTerm,
       categories: changes.categories !== undefined ? changes.categories : selectedCategories,
       costType: changes.costType !== undefined ? changes.costType : selectedCostType,
-      ageFilter: changes.ageFilter !== undefined ? changes.ageFilter : selectedAgeFilter
+      ageFilter: changes.ageFilter !== undefined ? changes.ageFilter : selectedAgeFilter,
+      hideNaval: changes.hideNaval !== undefined ? changes.hideNaval : hideNaval
     };
     onFilterChange(filters);
   };
@@ -60,10 +68,11 @@ export default function UnitFilter({ onFilterChange }) {
     setSelectedCategories([]);
     setSelectedCostType('all');
     setSelectedAgeFilter('all');
-    onFilterChange({ searchTerm: '', categories: [], costType: 'all', ageFilter: 'all' });
+    setHideNaval(false);
+    onFilterChange({ searchTerm: '', categories: [], costType: 'all', ageFilter: 'all', hideNaval: false });
   };
 
-  const hasActiveFilters = searchTerm || selectedCategories.length > 0 || selectedCostType !== 'all' || selectedAgeFilter !== 'all';
+  const hasActiveFilters = searchTerm || selectedCategories.length > 0 || selectedCostType !== 'all' || selectedAgeFilter !== 'all' || hideNaval;
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-4 mb-4">
@@ -91,6 +100,19 @@ export default function UnitFilter({ onFilterChange }) {
           />
           <span className="absolute right-3 top-2.5 text-gray-400">🔍</span>
         </div>
+      </div>
+
+      {/* Quick Toggles */}
+      <div className="mb-4">
+        <label className="inline-flex items-center cursor-pointer">
+          <input
+            type="checkbox"
+            checked={hideNaval}
+            onChange={handleHideNavalChange}
+            className="form-checkbox h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
+          />
+          <span className="ml-2 text-sm font-medium text-gray-700">Hide Naval Units</span>
+        </label>
       </div>
 
       {/* Category Filters */}
