@@ -1,17 +1,21 @@
 /**
  * Technology Tree Restrictions by Civilization
  * Defines which units each civilization CANNOT build
- * Based on Age of Empires II: Definitive Edition
+ * Based on Age of Empires II: Definitive Edition (Updated November 2025)
  *
  * Regional units:
  * - Eagle Warriors: Aztecs, Mayans, Incas only
  * - Battle Elephants: Bengalis, Burmese, Dravidians, Khmer, Malay, Vietnamese only
- * - Steppe Lancers: Cumans, Mongols, Tatars only
+ * - Steppe Lancers: Cumans, Mongols, Tatars, Jurchens, Khitans only
  * - Imperial Camel: Hindustanis only
  * - Slinger: Incas only
  * - Genitour: Berbers only
  * - Missionary: Spanish only
  * - Imperial Skirmisher: Vietnamese only (team bonus unit)
+ * - Traction Trebuchet: Shu, Wei, Wu only (replaces Trebuchet)
+ * - Hei Guang Cavalry: Shu, Wei, Wu only (replaces Knight line)
+ * - Legionary: Romans only (replaces Two-Handed Swordsman/Champion)
+ * - Savar: Persians only (replaces Paladin)
  */
 
 export const techTreeRestrictions = {
@@ -71,6 +75,7 @@ export const techTreeRestrictions = {
   britons: {
     missingUnits: [
       'paladin',
+      'hussar',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
       'steppe-lancer', 'elite-steppe-lancer',
@@ -99,7 +104,7 @@ export const techTreeRestrictions = {
   celts: {
     missingUnits: [
       'hand-cannoneer',
-      'cavalry-archer', 'heavy-cavalry-archer',
+      'arbalester',
       'paladin',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
@@ -114,7 +119,6 @@ export const techTreeRestrictions = {
 
   franks: {
     missingUnits: [
-      'halberdier',
       'arbalester',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
@@ -129,8 +133,6 @@ export const techTreeRestrictions = {
 
   goths: {
     missingUnits: [
-      'hand-cannoneer',
-      'cavalry-archer', 'heavy-cavalry-archer',
       'camel', 'heavy-camel', 'imperial-camel',
       'paladin',
       'battle-elephant', 'elite-battle-elephant',
@@ -146,7 +148,7 @@ export const techTreeRestrictions = {
   teutons: {
     missingUnits: [
       'cavalry-archer', 'heavy-cavalry-archer',
-      'hussar',
+      'light-cavalry', 'hussar',
       'arbalester',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
@@ -161,7 +163,8 @@ export const techTreeRestrictions = {
 
   vikings: {
     missingUnits: [
-      'knight', 'cavalier', 'paladin',
+      'paladin',
+      'hussar',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
       'cavalry-archer', 'heavy-cavalry-archer',
@@ -177,7 +180,6 @@ export const techTreeRestrictions = {
 
   spanish: {
     missingUnits: [
-      'heavy-cavalry-archer',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
       'steppe-lancer', 'elite-steppe-lancer',
@@ -192,8 +194,8 @@ export const techTreeRestrictions = {
     missingUnits: [
       'halberdier',
       'hand-cannoneer',
+      'arbalester',
       'camel', 'heavy-camel', 'imperial-camel',
-      'paladin',
       'battle-elephant', 'elite-battle-elephant',
       'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
@@ -222,10 +224,8 @@ export const techTreeRestrictions = {
 
   magyars: {
     missingUnits: [
-      'arbalester',
       'hand-cannoneer',
       'camel', 'heavy-camel', 'imperial-camel',
-      'paladin',
       'battle-elephant', 'elite-battle-elephant',
       'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
@@ -240,7 +240,6 @@ export const techTreeRestrictions = {
     missingUnits: [
       'arbalester',
       'hand-cannoneer',
-      'cavalry-archer', 'heavy-cavalry-archer',
       'camel', 'heavy-camel', 'imperial-camel',
       'paladin',
       'battle-elephant', 'elite-battle-elephant',
@@ -255,8 +254,6 @@ export const techTreeRestrictions = {
 
   portuguese: {
     missingUnits: [
-      'halberdier',
-      'heavy-cavalry-archer',
       'paladin',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
@@ -273,6 +270,7 @@ export const techTreeRestrictions = {
     missingUnits: [
       'arbalester',
       'hand-cannoneer',
+      'champion',
       'camel', 'heavy-camel', 'imperial-camel',
       'paladin',
       'battle-elephant', 'elite-battle-elephant',
@@ -288,7 +286,6 @@ export const techTreeRestrictions = {
   lithuanians: {
     missingUnits: [
       'arbalester',
-      'hand-cannoneer',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
       'steppe-lancer', 'elite-steppe-lancer',
@@ -304,8 +301,6 @@ export const techTreeRestrictions = {
     missingUnits: [
       'arbalester',
       'hand-cannoneer',
-      'champion',
-      'paladin',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
@@ -319,6 +314,7 @@ export const techTreeRestrictions = {
   bohemians: {
     missingUnits: [
       'cavalry-archer', 'heavy-cavalry-archer',
+      'hussar',
       'camel', 'heavy-camel', 'imperial-camel',
       'paladin',
       'battle-elephant', 'elite-battle-elephant',
@@ -333,8 +329,8 @@ export const techTreeRestrictions = {
 
   burgundians: {
     missingUnits: [
-      'halberdier',
       'arbalester',
+      'heavy-cavalry-archer',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
       'steppe-lancer', 'elite-steppe-lancer',
@@ -348,9 +344,8 @@ export const techTreeRestrictions = {
 
   poles: {
     missingUnits: [
-      'arbalester',
       'hand-cannoneer',
-      'cavalry-archer', 'heavy-cavalry-archer',
+      'paladin',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
       'steppe-lancer', 'elite-steppe-lancer',
@@ -364,10 +359,11 @@ export const techTreeRestrictions = {
 
   sicilians: {
     missingUnits: [
-      'arbalester',
-      'cavalry-archer', 'heavy-cavalry-archer',
+      'heavy-cavalry-archer',
+      'hand-cannoneer',
       'camel', 'heavy-camel', 'imperial-camel',
       'hussar',
+      'paladin',
       'battle-elephant', 'elite-battle-elephant',
       'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
@@ -381,6 +377,10 @@ export const techTreeRestrictions = {
   romans: {
     missingUnits: [
       'cavalry-archer', 'heavy-cavalry-archer',
+      'hand-cannoneer',
+      'arbalester',
+      'two-handed-swordsman', 'champion',
+      'hussar',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
       'paladin',
@@ -409,10 +409,9 @@ export const techTreeRestrictions = {
 
   japanese: {
     missingUnits: [
-      'cavalry-archer', 'heavy-cavalry-archer',
-      'hand-cannoneer',
       'camel', 'heavy-camel', 'imperial-camel',
       'paladin',
+      'hussar',
       'battle-elephant', 'elite-battle-elephant',
       'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
@@ -426,7 +425,6 @@ export const techTreeRestrictions = {
   koreans: {
     missingUnits: [
       'paladin',
-      'cavalry-archer', 'heavy-cavalry-archer',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
       'steppe-lancer', 'elite-steppe-lancer',
@@ -440,7 +438,6 @@ export const techTreeRestrictions = {
 
   mongols: {
     missingUnits: [
-      'champion',
       'halberdier',
       'hand-cannoneer',
       'camel', 'heavy-camel', 'imperial-camel',
@@ -456,8 +453,8 @@ export const techTreeRestrictions = {
 
   vietnamese: {
     missingUnits: [
-      'halberdier',
       'paladin',
+      'hussar',
       'hand-cannoneer',
       'camel', 'heavy-camel', 'imperial-camel',
       'steppe-lancer', 'elite-steppe-lancer',
@@ -515,8 +512,8 @@ export const techTreeRestrictions = {
   gurjaras: {
     missingUnits: [
       'arbalester',
-      'hand-cannoneer',
       'pikeman', 'halberdier',
+      'knight', 'cavalier', 'paladin',
       'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
       'steppe-lancer', 'elite-steppe-lancer',
@@ -531,7 +528,7 @@ export const techTreeRestrictions = {
   hindustanis: {
     missingUnits: [
       'arbalester',
-      'paladin',
+      'knight', 'cavalier', 'paladin',
       'battle-elephant', 'elite-battle-elephant',
       'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
@@ -544,8 +541,8 @@ export const techTreeRestrictions = {
 
   khmer: {
     missingUnits: [
-      'arbalester',
-      'hand-cannoneer',
+      'champion',
+      'paladin',
       'camel', 'heavy-camel', 'imperial-camel',
       'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
@@ -558,10 +555,9 @@ export const techTreeRestrictions = {
 
   malay: {
     missingUnits: [
-      'halberdier',
-      'arbalester',
-      'hand-cannoneer',
+      'champion',
       'paladin',
+      'hussar',
       'camel', 'heavy-camel', 'imperial-camel',
       'steppe-lancer', 'elite-steppe-lancer',
       'eagle-scout', 'eagle-warrior', 'elite-eagle-warrior',
@@ -575,8 +571,7 @@ export const techTreeRestrictions = {
   tatars: {
     missingUnits: [
       'arbalester',
-      'hand-cannoneer',
-      'halberdier',
+      'champion',
       'paladin',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
@@ -593,7 +588,6 @@ export const techTreeRestrictions = {
     missingUnits: [
       'halberdier',
       'arbalester',
-      'hand-cannoneer',
       'paladin',
       'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
@@ -608,7 +602,7 @@ export const techTreeRestrictions = {
   ethiopians: {
     missingUnits: [
       'hand-cannoneer',
-      'hussar',
+      'champion',
       'paladin',
       'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
@@ -623,9 +617,7 @@ export const techTreeRestrictions = {
 
   malians: {
     missingUnits: [
-      'arbalester',
-      'hand-cannoneer',
-      'cavalry-archer', 'heavy-cavalry-archer',
+      'halberdier',
       'paladin',
       'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
@@ -642,7 +634,8 @@ export const techTreeRestrictions = {
   persians: {
     missingUnits: [
       'arbalester',
-      'halberdier',
+      'champion',
+      'paladin',
       'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
       'steppe-lancer', 'elite-steppe-lancer',
@@ -657,8 +650,7 @@ export const techTreeRestrictions = {
   saracens: {
     missingUnits: [
       'halberdier',
-      'arbalester',
-      'paladin',
+      'cavalier', 'paladin',
       'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
       'steppe-lancer', 'elite-steppe-lancer',
@@ -705,7 +697,7 @@ export const techTreeRestrictions = {
   georgians: {
     missingUnits: [
       'arbalester',
-      'hand-cannoneer',
+      'paladin',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
       'steppe-lancer', 'elite-steppe-lancer',
@@ -741,6 +733,7 @@ export const techTreeRestrictions = {
       'heavy-demolition-ship',
       'elite-cannon-galleon',
       'heavy-scorpion',
+      'halberdier',
       'paladin',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',
@@ -772,6 +765,8 @@ export const techTreeRestrictions = {
   wei: {
     missingUnits: [
       'knight', 'cavalier', 'paladin',
+      'champion',
+      'arbalester',
       'trebuchet',
       'camel', 'heavy-camel', 'imperial-camel',
       'battle-elephant', 'elite-battle-elephant',

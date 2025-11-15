@@ -257,9 +257,9 @@ npm run test:coverage
 
 All unit costs, population values, and civilization bonuses are based on Age of Empires II: Definitive Edition official data. Sources:
 - Official game files and patch notes
-- [aoe2techtree.net](https://aoe2techtree.net) for tech tree data
+- [aoe2techtree.net](https://aoe2techtree.net) ([GitHub](https://github.com/SiegeEngineers/aoe2techtree)) for tech tree data
 - [aoestats.io](https://aoestats.io) for civilization statistics
-- [Age of Empires Fandom Wiki](https://ageofempires.fandom.com) for unit icons
+- [Age of Empires Fandom Wiki](https://ageofempires.fandom.com) for unit icons and tech tree verification
 - Community-verified data from competitive players
 
 ## 🎯 Roadmap
@@ -375,9 +375,9 @@ Built for Age of Empires II players who want to plan army compositions efficient
 
 | Resource | Purpose |
 |----------|---------|
-| [aoe2techtree.net](https://aoe2techtree.net) | Tech tree reference data |
+| [aoe2techtree.net](https://aoe2techtree.net) ([GitHub](https://github.com/SiegeEngineers/aoe2techtree)) | Tech tree reference data |
 | [aoestats.io](https://aoestats.io) | Civilization statistics |
-| [AoE Fandom Wiki](https://ageofempires.fandom.com) | Unit icons |
+| [AoE Fandom Wiki](https://ageofempires.fandom.com) | Unit icons and tech tree verification |
 | All Contributors | Testing and feedback |
 
 ## 🐛 Support & Feedback
