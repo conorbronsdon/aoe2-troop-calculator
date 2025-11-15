@@ -1,16 +1,22 @@
 import React from 'react';
+import { trackDonationClick } from '../utils/analytics';
 
 /**
  * Buy Me a Coffee CTA Component
  * Displays a call-to-action button linking to Buy Me a Coffee page
  */
 const BuyMeCoffee = () => {
+  const handleClick = () => {
+    trackDonationClick();
+  };
+
   return (
     <div className="mt-6 mb-4 text-center">
       <a
         href="https://buymeacoffee.com/conorbronsdon"
         target="_blank"
         rel="noopener noreferrer"
+        onClick={handleClick}
         className="inline-flex items-center gap-2 bg-[#FFDD00] hover:bg-[#ffed4e] text-gray-800 font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl"
       >
         <svg

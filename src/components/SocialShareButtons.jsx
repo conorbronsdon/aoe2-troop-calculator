@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { trackSocialShare } from '../utils/analytics';
 
 /**
  * Social Share Buttons Component
@@ -15,10 +16,15 @@ const SocialShareButtons = () => {
     try {
       await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
+      trackSocialShare('copy_link');
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       console.error('Failed to copy link:', err);
     }
+  };
+
+  const handleSocialClick = (platform) => {
+    trackSocialShare(platform);
   };
 
   const shareLinks = {
@@ -33,6 +39,7 @@ const SocialShareButtons = () => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => handleSocialClick(label.toLowerCase())}
       className={`${bgColor} ${hoverColor} text-white p-2 rounded-lg transition-all duration-200 hover:scale-110 flex items-center justify-center w-10 h-10`}
       aria-label={`Share on ${label}`}
       title={`Share on ${label}`}

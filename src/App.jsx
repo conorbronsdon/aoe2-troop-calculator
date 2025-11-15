@@ -12,11 +12,19 @@ import { civilizations } from './data/civilizations';
 import { validateGameData } from './utils/validators';
 import { logger } from './utils/errorHandler';
 import { ShareService } from './services/share.service';
+import { initializeAnalytics } from './utils/analytics';
+import { analyticsConfig } from './config/analytics.config';
 
 function AppContent() {
   const { dispatch } = useArmy();
 
   useEffect(() => {
+    // Initialize analytics
+    if (analyticsConfig.enabled && analyticsConfig.measurementId) {
+      initializeAnalytics(analyticsConfig.measurementId);
+      logger.info('Analytics initialized');
+    }
+
     // Validate game data on mount
     const validation = validateGameData(units, civilizations);
     if (!validation.valid) {
