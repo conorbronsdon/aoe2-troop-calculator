@@ -1,159 +1,214 @@
 # Age of Empires II: Army Composition Calculator
 
-A web-based calculator for planning army compositions in Age of Empires II: Definitive Edition, inspired by pro player's ([Hera vs. Lewis](https://youtu.be/6WyRs7SY0Tk?si=RHdJiWtagC0ZG1rA)) using Excel sheets for 200 unit battles.
+A comprehensive web-based calculator for planning army compositions in Age of Empires II: Definitive Edition. Plan your armies, compare civilizations, and optimize resource allocation with accurate costs and bonuses.
 
-## Features ✨
+Inspired by pro players ([Hera vs. Lewis](https://youtu.be/6WyRs7SY0Tk?si=RHdJiWtagC0ZG1rA)) using Excel sheets for 200 unit battles.
 
-### ✅ Implemented in MVP
-- **Custom Resource Limits**: Set your available food, wood, gold, and stone
-- **Population Cap Control**: Adjust from 200 to any custom value
-- **Age Selection**: Choose between Feudal, Castle, and Imperial Age
-- **8 Civilizations**: Generic, Mayans, Britons, Franks, Goths, Byzantines, Portuguese, Persians
-- **18 Essential Units**: Most common units across all categories
+## ✨ Features
+
+### 🎮 Complete Unit Roster (100+ Units)
+- **Infantry** (12 units): Militia → Man-at-Arms → Longswordsman → Two-Handed Swordsman → Champion
+  - Spearman → Pikeman → Halberdier
+  - Eagle Scout → Eagle Warrior → Elite Eagle Warrior
+- **Cavalry** (15 units): Scout → Light Cavalry → Hussar
+  - Knight → Cavalier → Paladin
+  - Camel Rider → Heavy Camel → Imperial Camel
+  - Battle Elephant line, Steppe Lancer line
+- **Archers** (13 units): Archer → Crossbowman → Arbalester
+  - Skirmisher → Elite Skirmisher → Imperial Skirmisher
+  - Cavalry Archer → Heavy Cavalry Archer
+  - Hand Cannoneer, Slinger, Genitour line
+- **Siege** (11 units): Ram → Capped Ram → Siege Ram
+  - Mangonel → Onager → Siege Onager
+  - Scorpion → Heavy Scorpion
+  - Bombard Cannon, Trebuchet, Petard
+- **Naval** (14 units): Galley → War Galley → Galleon
+  - Fire Ship line, Demolition Ship line, Cannon Galleon line
+  - Transport Ships, Trade Cogs, Fishing Ships
+- **Monks** (2 units): Monk, Missionary
+- **Unique Units** (50+ civilization-specific units)
+
+### 🏛️ Civilization Features
+- **42 Civilizations** from all regions (European, Asian, African, American, Middle Eastern)
+- **Unique Units System**: Each civ's unique units automatically available when selected
+  - Britons: Longbowman, Spanish: Conquistador, Goths: Huskarl, and 40+ more
+- **Comprehensive Bonuses**:
+  - 💰 **Cost Reduction Bonuses**: Automatic price adjustments (Mayans archers, Goths infantry, etc.)
+  - ⚔️ **Military Bonuses**: HP, attack, armor, range improvements (Franks cavalry HP, Britons archer range)
+  - 🌾 **Economic Bonuses**: Resource gathering, building costs, age advancement bonuses
+  - 🤝 **Team Bonuses**: Allied team benefits displayed
+- **Interactive Bonus Panel**: Expandable UI showing all active bonuses by category
+
+### 🎯 Army Planning Tools
+- **Custom Resource Limits**: Set available food, wood, gold, and stone
+- **Population Cap Control**: Adjust from 200 to custom values
+- **Age Selection**: Dark, Feudal, Castle, and Imperial Age filtering
 - **Real-Time Tracking**: Live resource and population counters with visual progress bars
-- **Civilization Bonuses**: Automatic cost adjustments based on civ bonuses
-  - Mayans: Archer line discount (10-30% based on age)
-  - Britons: Archer line discount (20% in Castle/Imperial)
-  - Goths: Infantry discount (15-30% based on age)
-  - Byzantines: Counter units discount (25%)
-  - Portuguese: Universal gold discount (20%)
 - **Visual Feedback**: Green/yellow/red progress bars based on resource usage
 - **Discount Display**: Shows both discounted and original prices when bonuses apply
 
-## How to Use 📖
+### 💾 Composition Management
+- **Save/Load System**: Store multiple army compositions locally
+- **Export to JSON**: Download your compositions for sharing
+- **URL Sharing**: Share compositions via link
+- **Comparison Mode**: Compare two different civilizations side-by-side
 
-1. **Open the file**: Double-click `aoe2-calculator.html` in any modern web browser
-2. **Configure Settings**:
-   - Adjust resource limits (default: 20,000 each)
-   - Set population cap (default: 200)
-   - Select your Age (Feudal, Castle, or Imperial)
-   - Choose your civilization
-3. **Build Your Army**:
-   - Click + to add units one at a time
-   - Click - to remove units
-   - Type directly in the quantity box for bulk adding
-4. **Monitor Resources**:
-   - Watch real-time resource consumption
-   - Progress bars turn yellow at 80% capacity
-   - Progress bars turn red when exceeding limits
-5. **Review Composition**:
-   - See your complete army summary at the bottom
-   - View total costs per unit type
-   - Check total population used
+### 🎨 User Experience
+- **Dark Mode**: Toggle between light and dark themes
+- **Responsive Design**: Works on desktop, tablet, and mobile
+- **Category Organization**: Units grouped by type for easy browsing
+- **Unit Counters**: Each unit shows what it counters and what counters it
+- **Social Sharing**: Share on Twitter, Reddit, Discord
 
-## Deployment Options 🚀
+## 📖 How to Use
 
-### Option 1: Local File (Easiest)
-Just open the HTML file in your browser. No server needed!
+### Basic Usage
+1. **Select Civilization**: Choose from 42 civilizations
+2. **Choose Age**: Select Dark, Feudal, Castle, or Imperial Age
+3. **View Available Units**: Only units available for your civ/age are shown
+4. **Build Army**: Click +/- or type quantities directly
+5. **Monitor Resources**: Watch real-time resource tracking
+6. **Review Bonuses**: Expand the bonus panel to see active benefits
 
-### Option 2: Netlify (Free Hosting)
-1. Sign up at [netlify.com](https://netlify.com)
-2. Drag and drop `aoe2-calculator.html` into Netlify's deploy zone
-3. Get a free public URL instantly
+### Advanced Features
+- **Save Compositions**: Click "Save Current Composition" to store your army
+- **Load Compositions**: Select from saved compositions to quickly restore
+- **Compare Civilizations**: Enable comparison mode to analyze two armies
+- **Export Data**: Download your composition as JSON for external tools
+- **Share Links**: Generate shareable URLs for your compositions
 
-### Option 3: Vercel (Free Hosting)
-1. Sign up at [vercel.com](https://vercel.com)
-2. Create a new project
-3. Upload `aoe2-calculator.html`
-4. Deploy automatically
+### Understanding Bonuses
+- **Cost Bonuses** (💰): Automatically calculated and applied to unit prices
+- **Stat Bonuses** (⚔️): Displayed for reference (HP, attack, armor improvements)
+- **Economic Bonuses** (🌾): Game-start and economic advantages
+- **Team Bonuses** (🤝): Benefits your allies receive when you're on their team
 
-### Option 4: GitHub Pages (Free + Custom Domain)
-1. Create a new GitHub repository
-2. Upload `aoe2-calculator.html` and rename to `index.html`
-3. Enable GitHub Pages in repository settings
-4. Access at `https://yourusername.github.io/repository-name`
+## 🚀 Development
 
-## Technical Details 🔧
+### Prerequisites
+- Node.js 18+ and npm
 
-### Technology Stack
-- **React 18**: UI framework (via CDN)
-- **Tailwind CSS**: Styling (via CDN)
-- **Vanilla JavaScript**: Logic and calculations
-- **Single HTML File**: Zero build process, works offline
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/conorbronsdon/aoe2-troop-calculator.git
+cd aoe2-troop-calculator
 
-### Data Structure
-```javascript
-// Units include:
-{
-  id: 'knight',
-  name: 'Knight',
-  category: 'Cavalry',
-  age: 'castle',
-  cost: { food: 60, wood: 0, gold: 75, stone: 0 },
-  population: 1
-}
+# Install dependencies
+npm install
 
-// Bonuses include:
-{
-  type: 'cost',
-  units: ['archer', 'crossbowman'],
-  resource: 'all', // or specific resource
-  value: 0.20 // 20% discount
-}
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
 ```
 
-### Calculation Logic
-1. Base unit costs are fetched from the UNITS array
-2. Selected civilization bonuses are applied
-3. Age-specific bonuses are calculated if applicable
-4. Final costs are rounded to nearest integer
-5. Totals are summed across all units in composition
+### Tech Stack
+- **React 18**: UI framework with hooks and context
+- **Vite**: Lightning-fast build tool
+- **Tailwind CSS**: Utility-first styling
+- **React Context API**: State management
+- **Local Storage**: Composition persistence
 
-## Units Included 📋
+### Project Structure
+```
+src/
+├── components/          # React components
+│   ├── ConfigurationPanel.jsx
+│   ├── CivilizationBonuses.jsx  # NEW: Bonus display
+│   ├── UnitSelection.jsx
+│   ├── UnitCard.jsx
+│   └── ...
+├── context/            # State management
+│   ├── ArmyContext.jsx
+│   └── ThemeContext.jsx
+├── data/              # Game data
+│   ├── civilizations.js    # 42 civs with bonuses
+│   └── units/
+│       ├── infantry.js
+│       ├── cavalry.js
+│       ├── archers.js
+│       ├── siege.js
+│       ├── naval.js        # NEW
+│       ├── unique.js       # NEW: 50+ unique units
+│       └── other.js
+├── utils/             # Helper functions
+│   └── calculations.js
+└── App.jsx
+```
 
-### Archers (3)
-- Archer (Feudal)
-- Crossbowman (Castle)
-- Arbalester (Imperial)
+## 🧪 Testing
 
-### Infantry (6)
-- Militia (Dark)
-- Longswordsman (Castle)
-- Champion (Imperial)
-- Spearman (Feudal)
-- Pikeman (Castle)
-- Halberdier (Imperial)
+### Running Tests
+```bash
+# Run all tests
+npm test
 
-### Cavalry (4)
-- Scout Cavalry (Feudal)
-- Knight (Castle)
-- Cavalier (Imperial)
-- Camel Rider (Castle)
+# Run tests in watch mode
+npm run test:watch
 
-### Archers - Counter (2)
-- Skirmisher (Feudal)
-- Elite Skirmisher (Castle)
+# Generate coverage report
+npm run test:coverage
+```
 
-### Siege (3)
-- Battering Ram (Castle)
-- Mangonel (Castle)
-- Trebuchet (Imperial)
+### Test Coverage
+- Unit filtering by civilization and age
+- Cost calculation with bonuses
+- Data validation for units and civilizations
+- Component rendering tests
 
-### Other (1)
-- Monk (Castle)
+## 📊 Data Accuracy
 
-## Future Enhancements 🎯
+All unit costs, population values, and civilization bonuses are based on Age of Empires II: Definitive Edition official data. Sources:
+- Official game files and patch notes
+- [aoe2techtree.net](https://aoe2techtree.net) for tech tree data
+- [aoestats.io](https://aoestats.io) for civilization statistics
+- Community-verified data from competitive players
 
-**Phase 2 Features** (Not yet implemented):
-- Save/Load compositions to browser storage
-- Export to CSV or shareable link
-- All 42+ civilizations
-- Complete unit roster (100+ units)
-- Unique units for each civilization
-- More civilization bonuses (team bonuses, tech bonuses)
-- Unit counter suggestions
-- Army composition optimization recommendations
-- Side-by-side comparison mode
+## 🎯 Roadmap
 
-**Phase 3 Features**:
-- Backend database for saving compositions
-- User accounts and cloud sync
+### Recently Completed ✅
+- ✅ Complete unit roster (100+ units)
+- ✅ All unique units (50+)
+- ✅ Naval unit category
+- ✅ Civilization bonuses panel
+- ✅ Team bonuses display
+- ✅ Conditional unique unit filtering
+- ✅ Dark mode support
+
+### Next Steps 🔜
+1. **Technology Tree Restrictions**
+   - Filter units based on civ tech tree limitations
+   - Show which units/techs are missing per civilization
+
+2. **Additional Unique Units**
+   - Complete missing unique units for all 42 civilizations
+   - Add regional unique units (Genitour for Berber allies, etc.)
+
+3. **Complete Civilization Bonuses**
+   - Add team bonuses for all 42 civilizations
+   - Document all military and economic bonuses
+
+4. **Unit Statistics**
+   - Add HP, attack, armor stats
+   - Show range, rate of fire, movement speed
+   - Include training time and upgrade costs
+
+5. **Technology System**
+   - Add Blacksmith upgrades
+   - Include unique technologies
+   - Calculate upgraded unit stats
+
+### Future Enhancements 💡
+- Backend database for cloud saving
+- User accounts and syncing
 - Community shared compositions
 - Tournament presets
-- Integration with real game data API
 - Mobile app version
+- Real-time multiplayer planning
 
-## Browser Compatibility ✅
+## 🌐 Browser Compatibility
 
 Works in all modern browsers:
 - Chrome/Edge 90+
@@ -163,42 +218,44 @@ Works in all modern browsers:
 
 **Not compatible with Internet Explorer**
 
-## File Size
-- Single file: ~20KB
-- No external dependencies required (CDNs load from cache)
-- Works offline after first load
+## 📝 Contributing
 
-## License & Attribution
+Contributions welcome! Please feel free to submit a Pull Request. Areas where help is needed:
+- Additional unique units for newer civilizations
+- Verification of civilization bonuses
+- UI/UX improvements
+- Test coverage expansion
+- Documentation improvements
+
+## 📄 License & Attribution
 
 **Age of Empires II © Microsoft Corporation**
 
-This calculator was created under Microsoft's Game Content Usage Rules and is not endorsed by or affiliated with Microsoft.
+This calculator is created under Microsoft's Game Content Usage Rules and is not endorsed by or affiliated with Microsoft.
 
-Built with data inspired by community resources:
-- Unit costs and population values
-- Civilization bonuses from game data
-- Popular meta units from competitive play
+## 🙏 Credits
 
-## Support & Feedback
+Created for Age of Empires II players who want to plan army compositions efficiently.
 
-This is an MVP (Minimum Viable Product). Feedback welcome for:
-- Additional civilizations to prioritize
-- Missing units that should be included
-- Bonus calculation errors
-- UI/UX improvements
-- Feature requests
+Inspired by:
+- @faruksarihan's YouTube comment on [Hera's 200 Army vs 200 Army match](https://youtu.be/6WyRs7SY0Tk?si=RHdJiWtagC0ZG1rA)
+- Pro players who meticulously plan compositions
+- The amazing AoE2 community
 
-## Credits
+Special thanks to:
+- [aoe2techtree.net](https://aoe2techtree.net) for reference data
+- [aoestats.io](https://aoestats.io) for civilization statistics
+- All contributors and testers
 
-Created for Age of Empires II players who want to plan army compositions efficiently, inspired by @faruksarihan's YouTube comment on [Hera's 200 Army vs 200 Army match with Lewis](https://youtu.be/6WyRs7SY0Tk?si=RHdJiWtagC0ZG1rA). 
+## 🐛 Support & Feedback
 
-Special thanks to the AoE2 community for:
-- aoe2techtree.net for reference data
-- aoestats.io for civilization win rates
-- Pro players who inspired this tool
+Found a bug or have a suggestion?
+- Open an issue on GitHub
+- Contribute via Pull Request
+- Share feedback on Discord/Reddit
 
 ---
 
-**Version**: 1.0.0 (MVP)  
-**Last Updated**: November 2025  
-**Status**: Fully functional, ready for deployment
+**Version**: 2.0.0
+**Last Updated**: November 2025
+**Status**: Production Ready - 100+ Units, 50+ Unique Units, 42 Civilizations
