@@ -7,7 +7,7 @@ const ArmyContext = createContext();
 const initialState = {
   composition: {},
   config: {
-    resourceLimitMode: 'individual',
+    resourceLimitMode: 'total',
     resourceLimits: { food: 8000, wood: 8000, gold: 4000, stone: 0 },
     totalResourceLimit: 20000,
     populationCap: 200,
