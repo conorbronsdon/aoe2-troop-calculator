@@ -29,7 +29,11 @@ Inspired by pro players ([Hera vs. Lewis](https://youtu.be/6WyRs7SY0Tk?si=RHdJiW
 - **Unique Units** (50+ civilization-specific units)
 
 ### 🏛️ Civilization Features
-- **42 Civilizations** from all regions (European, Asian, African, American, Middle Eastern)
+- **45 Civilizations** from all regions (European, Asian, African, American, Middle Eastern)
+- **Technology Tree Restrictions**: Units filtered by civilization-specific tech tree
+  - Aztecs/Mayans/Incas cannot build cavalry (historically accurate)
+  - Vikings restricted from cavalry units
+  - Each civ shows only units they can actually build
 - **Unique Units System**: Each civ's unique units automatically available when selected
   - Britons: Longbowman, Spanish: Conquistador, Goths: Huskarl, and 40+ more
 - **Comprehensive Bonuses**:
@@ -37,7 +41,7 @@ Inspired by pro players ([Hera vs. Lewis](https://youtu.be/6WyRs7SY0Tk?si=RHdJiW
   - ⚔️ **Military Bonuses**: HP, attack, armor, range improvements (Franks cavalry HP, Britons archer range)
   - 🌾 **Economic Bonuses**: Resource gathering, building costs, age advancement bonuses
   - 🤝 **Team Bonuses**: Allied team benefits displayed
-- **Interactive Bonus Panel**: Expandable UI showing all active bonuses by category
+- **Interactive Bonus Panel**: Expanded by default showing all active bonuses by category
 
 ### 🎯 Army Planning Tools
 - **Custom Resource Limits**: Set available food, wood, gold, and stone
@@ -63,12 +67,12 @@ Inspired by pro players ([Hera vs. Lewis](https://youtu.be/6WyRs7SY0Tk?si=RHdJiW
 ## 📖 How to Use
 
 ### Basic Usage
-1. **Select Civilization**: Choose from 42 civilizations
+1. **Select Civilization**: Choose from 45 civilizations
 2. **Choose Age**: Select Dark, Feudal, Castle, or Imperial Age
-3. **View Available Units**: Only units available for your civ/age are shown
+3. **View Available Units**: Only units available for your civ/age are shown (respects tech tree)
 4. **Build Army**: Click +/- or type quantities directly
 5. **Monitor Resources**: Watch real-time resource tracking
-6. **Review Bonuses**: Expand the bonus panel to see active benefits
+6. **Review Bonuses**: View active bonuses (panel expanded by default)
 
 ### Advanced Features
 - **Save Compositions**: Click "Save Current Composition" to store your army
@@ -170,32 +174,25 @@ All unit costs, population values, and civilization bonuses are based on Age of 
 
 ### Recently Completed ✅
 - ✅ Complete unit roster (100+ units)
-- ✅ All unique units (50+)
+- ✅ All unique units (101 units for 45 civilizations)
 - ✅ Naval unit category
 - ✅ Civilization bonuses panel
 - ✅ Team bonuses display
 - ✅ Conditional unique unit filtering
 - ✅ Dark mode support
+- ✅ **Technology Tree Restrictions** (filter units by civ tech tree)
 
 ### Next Steps 🔜
-1. **Technology Tree Restrictions**
-   - Filter units based on civ tech tree limitations
-   - Show which units/techs are missing per civilization
+1. **Complete Civilization Bonuses**
+   - Add team bonuses for remaining civilizations
+   - Document all military and economic bonuses for all 45 civs
 
-2. **Additional Unique Units**
-   - Complete missing unique units for all 42 civilizations
-   - Add regional unique units (Genitour for Berber allies, etc.)
-
-3. **Complete Civilization Bonuses**
-   - Add team bonuses for all 42 civilizations
-   - Document all military and economic bonuses
-
-4. **Unit Statistics**
+2. **Unit Statistics**
    - Add HP, attack, armor stats
    - Show range, rate of fire, movement speed
    - Include training time and upgrade costs
 
-5. **Technology System**
+3. **Technology System**
    - Add Blacksmith upgrades
    - Include unique technologies
    - Calculate upgraded unit stats
@@ -267,6 +264,6 @@ Found a bug or have a suggestion?
 
 ---
 
-**Version**: 2.0.0
+**Version**: 2.1.0
 **Last Updated**: November 2025
-**Status**: Production Ready - 100+ Units, 50+ Unique Units, 42 Civilizations
+**Status**: Production Ready - 100+ Units, 101 Unique Units, 45 Civilizations, Tech Tree Restrictions
