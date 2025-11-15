@@ -1,6 +1,6 @@
 <div align="center">
 
-# Age of Empires II: Army Composition Calculator
+# Age of Empires II: Army Composition & Cost Calculator
 
 ### 🏰 Plan Your Armies Like a Pro • No Excel Needed 🏰
 
@@ -8,9 +8,9 @@
 [![GitHub Stars](https://img.shields.io/github/stars/conorbronsdon/aoe2-troop-calculator?style=for-the-badge&logo=github)](https://github.com/conorbronsdon/aoe2-troop-calculator)
 [![License](https://img.shields.io/badge/License-Game_Content_Usage-blue?style=for-the-badge)](https://www.xbox.com/en-US/developers/rules)
 
-**A comprehensive web-based calculator for planning army compositions in Age of Empires II: Definitive Edition**
+**A comprehensive web-based cost calculator for planning army compositions in Age of Empires II: Definitive Edition**
 
-Plan your armies • Compare civilizations • Optimize resources • Calculate bonuses
+Plan your armies • Calculate costs • Compare civilizations • Optimize resources • Track bonuses
 
 ![AoE2 Army Calculator](public/images/og-image.png)
 
@@ -288,17 +288,22 @@ All unit costs, population values, and civilization bonuses are based on Age of 
 <details>
 <summary><b>🔜 Next Steps</b></summary>
 
-### 1. Unit Statistics Display
+### 1. Quick Filter Toggles
+- [ ] Hide Naval Units toggle for land-focused planning
+- [ ] Hide Monks toggle option
+- [ ] Quick presets for common filter combinations
+
+### 2. Unit Statistics Display
 - [ ] Calculate and display actual unit stats (HP, attack, armor)
 - [ ] Show stat comparisons between civilizations
 - [ ] Highlight which bonuses are active for current army
 
-### 2. Technology System
+### 3. Technology System
 - [ ] Add Blacksmith upgrades
 - [ ] Include unique technologies
 - [ ] Calculate upgraded unit stats
 
-### 3. Team Bonus System
+### 4. Team Bonus System
 - [ ] Select allied civilizations for team games
 - [ ] Apply team bonus effects to calculations
 - [ ] Show which ally provides which bonus
@@ -379,6 +384,16 @@ Built for Age of Empires II players who want to plan army compositions efficient
 | [aoestats.io](https://aoestats.io) | Civilization statistics |
 | [AoE Fandom Wiki](https://ageofempires.fandom.com) | Unit icons and tech tree verification |
 | All Contributors | Testing and feedback |
+
+### 🔗 Alternative Tools
+
+Other community-built AoE2 army cost calculators:
+
+| Tool | Features |
+|------|----------|
+| [AoE2 Army Calculator](https://aoe2armycalculator.vercel.app/) by [Dyleo12](https://github.com/Dyleo12/aoe2-army-calculator) | Lightweight calculator with hide naval toggle, local unit images, budget tracking |
+
+*Different tools serve different needs - check out the alternatives!*
 
 ## 🐛 Support & Feedback
 
