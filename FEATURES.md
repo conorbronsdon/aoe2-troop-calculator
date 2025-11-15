@@ -179,6 +179,87 @@ Units are intelligently filtered based on:
 2. **Civilization**: Unique units only show for their specific civilization
 3. **Category**: Organized by Infantry, Cavalry, Archer, Siege, Naval, Monk, Unique
 
+### Unit Search and Filter System
+
+With 100+ units available, finding specific units can be challenging. The comprehensive filter system provides:
+
+**Search Bar:**
+- Type to find units by name instantly
+- Real-time filtering as you type
+- Case-insensitive matching
+
+**Category Filters:**
+- Toggle buttons for: Infantry, Cavalry, Archer, Siege, Naval, Unique, Other
+- Multiple categories can be selected simultaneously
+- Active categories highlighted in blue
+
+**Cost Type Filters:**
+- **All Costs**: Show all units
+- **Trash Units (No Gold)**: Units that don't require gold (Spearmen, Skirmishers, etc.)
+- **Gold Units**: Units that require gold
+- **Low Cost (<100 total)**: Units with total cost under 100 resources
+
+**Age Filters:**
+- Filter by specific age: Dark, Feudal, Castle, or Imperial
+- Or show all ages
+
+**Filter UI:**
+```
+┌─────────────────────────────────────────┐
+│ Search: [Knight___________] 🔍          │
+│ Categories: [Infantry] [Cavalry✓] [Archer] │
+│ Cost Type: [Gold Units▼] Age: [All▼]   │
+│                                         │
+│ 3 units found        [Clear All Filters]│
+└─────────────────────────────────────────┘
+```
+
+**Key Features:**
+- Real-time results counter
+- Clear all filters button
+- Mobile-responsive design
+- Filters persist during session
+
+### Unit Counter Visualization
+
+Each unit card displays strategic counter information:
+
+**Collapsible Section:**
+- Click "► Counters & Weaknesses" to expand
+- Shows what the unit is strong and weak against
+
+**Strong Against (Green Badges):**
+- Lists units this unit counters effectively
+- Example: Spearman shows "✅ Strong Against: Knight, Cavalier, Paladin"
+
+**Weak To (Red Badges):**
+- Lists units that counter this unit
+- Example: Knight shows "⚠️ Weak To: Spearman, Pikeman, Halberdier"
+
+**UI Example:**
+```
+┌─ Knight ────────────────────┐
+│ Castle Age • Pop: 1         │
+│ 🌾 60  🪙 75                │
+│                             │
+│ ► Counters & Weaknesses     │
+│ ┌─────────────────────────┐ │
+│ │ ✅ Strong Against:      │ │
+│ │ [Archer] [Crossbowman]  │ │
+│ │                         │ │
+│ │ ⚠️ Weak To:             │ │
+│ │ [Spearman] [Pikeman]    │ │
+│ └─────────────────────────┘ │
+│ [-] [__0__] [+]            │
+└─────────────────────────────┘
+```
+
+**Benefits:**
+- Helps plan balanced army compositions
+- Shows counter relationships at a glance
+- Color-coded for quick identification
+- Tooltips provide additional context
+
 ---
 
 ## Civilization System
@@ -268,6 +349,45 @@ The **Civilization Bonuses** panel appears below the configuration section:
 - Each bonus clearly described
 - Color-coded bullets (amber for civ bonuses, green for team)
 - Info box explaining which bonuses are calculated
+
+### Advanced Bonus Filtering
+
+The bonus panel includes comprehensive filtering capabilities:
+
+**Search Bonuses:**
+- Type keywords to filter bonuses (e.g., "archer", "gold", "cavalry")
+- Case-insensitive real-time search
+- Filters across all bonus types
+
+**Type Toggles:**
+- **⚔️ Military** (Red button): Show/hide military stat bonuses
+- **🌾 Economic** (Green button): Show/hide economic bonuses
+- **💰 Cost** (Yellow button): Show/hide cost reduction bonuses
+- Multiple types can be enabled simultaneously
+
+**Active Only Filter:**
+- Blue toggle button: "✓ Active Only"
+- When enabled, shows only bonuses affecting your current army composition
+- Great for seeing which bonuses are actually in use
+
+**Filter UI Example:**
+```
+┌─────────────────────────────────────────┐
+│ Search bonuses: [archer_______] 🔍     │
+│                                         │
+│ [⚔️ Military] [🌾 Economic] [💰 Cost]  │
+│ [✓ Active Only]                         │
+│                                         │
+│ 2 bonuses shown        [Clear filters] │
+└─────────────────────────────────────────┘
+```
+
+**Key Features:**
+- Real-time filtering with count display
+- Clear filters button for quick reset
+- "No bonuses match your filters" message when needed
+- Dark mode support for all controls
+- Persistent filter state during session
 
 ---
 
@@ -487,4 +607,4 @@ Found a bug? Please report:
 ---
 
 **Last Updated**: November 2025
-**Version**: 2.2.1
+**Version**: 2.3.0

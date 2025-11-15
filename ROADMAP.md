@@ -66,7 +66,7 @@ Currently, military bonuses (HP, attack, armor, range) are shown for reference o
 ---
 
 ### Unit Search and Filter System
-**Status:** Not Started
+**Status:** ✅ Complete
 **Priority:** High
 **Complexity:** Low
 
@@ -89,11 +89,20 @@ With 100+ units, browsing is cumbersome. Add search and filter functionality.
 ```
 
 **Acceptance Criteria:**
-- Real-time search as user types
-- Multiple filters can be combined
-- Filter state persists during session
-- Clear filters button
-- Mobile-friendly filter UI
+- ✅ Real-time search as user types
+- ✅ Multiple filters can be combined
+- ✅ Filter state persists during session
+- ✅ Clear filters button
+- ✅ Mobile-friendly filter UI
+
+**Implementation Notes (v2.3.0):**
+- New `UnitFilter` component with comprehensive filtering
+- Search by unit name with instant results
+- Category toggle buttons (Infantry, Cavalry, Archer, etc.)
+- Cost type filters: Trash (no gold), Gold units, Low cost (<100 total)
+- Age-specific filtering
+- Results counter showing matches
+- Clear all filters button
 
 ---
 
@@ -156,7 +165,7 @@ Allies: Huns (cavalry +20% HP), Celts (siege speed +20%), Britons (archery range
 ---
 
 ### Unit Counter Visualization
-**Status:** Not Started
+**Status:** ✅ Complete
 **Priority:** Medium
 **Complexity:** Low
 
@@ -174,15 +183,23 @@ Your unit data already includes `counters` and `weakTo` fields. Visualize this i
 - ⚠️ **Weak to:** [Knight Icon] [Cataphract Icon]
 
 **Acceptance Criteria:**
-- All unit cards show counter information
-- Composition-level analysis warns of vulnerabilities
-- Clickable counter icons to add suggested units
-- Color-coded badges (green for counters, red for weaknesses)
+- ✅ All unit cards show counter information
+- ✅ Color-coded badges (green for counters, red for weaknesses)
+- Composition-level analysis warns of vulnerabilities (future enhancement)
+- Clickable counter icons to add suggested units (future enhancement)
+
+**Implementation Notes (v2.3.0):**
+- Collapsible "Counters & Weaknesses" section on each unit card
+- Green badges for "Strong Against" with unit names
+- Red badges for "Weak To" with unit names
+- Tooltips explaining relationships
+- Uses existing `counters` and `weakTo` data from unit definitions
+- Smart unit name resolution from IDs
 
 ---
 
 ### Advanced Filtering for Civilization Bonuses
-**Status:** Not Started
+**Status:** ✅ Complete
 **Priority:** Medium
 **Complexity:** Low
 
@@ -200,6 +217,15 @@ Enhance the existing `CivilizationBonuses.jsx` component with filtering.
 Civilization Bonuses (Mayans) 🔍 [Search bonuses...]
 ☑️ Military  ☑️ Economic  ☑️ Cost  ☐ Active Only
 ```
+
+**Implementation Notes (v2.3.0):**
+- ✅ Search bar to filter bonuses by keyword
+- ✅ Color-coded toggle buttons for Military (red), Economic (green), Cost (yellow)
+- ✅ "Active Only" filter to show bonuses affecting current army composition
+- ✅ Real-time filtering with result count
+- ✅ Clear filters button
+- ✅ "No results" message when filters match nothing
+- ✅ Dark mode support for all filter controls
 
 ---
 
@@ -320,6 +346,15 @@ Integrate with Age of Empires II API for live data.
 
 ## Recently Completed ✅
 
+### Unit Search and Filter System (v2.3.0)
+Comprehensive filtering UI with search bar, category toggles, cost type filters, and age filters. New `UnitFilter` component.
+
+### Unit Counter Visualization (v2.3.0)
+Visual display of counter relationships on unit cards with green "Strong Against" and red "Weak To" badges.
+
+### Advanced Civilization Bonus Filtering (v2.3.0)
+Search and filter civilization bonuses by type (Military/Economic/Cost) and by keyword with "Active Only" toggle.
+
 ### Tech Tree Restrictions (v2.2.1)
 All 51 civilizations have tech tree restrictions implemented in `src/data/techTree.js`.
 
@@ -347,4 +382,4 @@ For questions or suggestions about the roadmap, open a discussion on GitHub.
 ---
 
 **Last Updated:** November 2025
-**Current Version:** 2.2.1
+**Current Version:** 2.3.0

@@ -94,6 +94,22 @@ Plan your armies • Compare civilizations • Optimize resources • Calculate 
 - **URL Sharing**: Share compositions via link
 - **Comparison Mode**: Compare two different civilizations side-by-side
 
+### 🔍 Unit Search & Filter System
+- **Search Bar**: Find units instantly by typing their name
+- **Category Filters**: Toggle Infantry, Cavalry, Archers, Siege, Naval, Unique, Other
+- **Cost Filters**: Filter by Trash units (no gold), Gold units, or Low cost (<100 total)
+- **Age Filters**: Show only units from specific ages
+- **Real-Time Results**: See matching unit count as you filter
+- **Clear Filters**: One-click reset for all filters
+- **Mobile Friendly**: Responsive filter UI on all devices
+
+### 🎯 Unit Counter Visualization
+- **Counter Badges**: Each unit card shows "Strong Against" and "Weak To" relationships
+- **Color-Coded**: Green badges for counters, red for weaknesses
+- **Collapsible Info**: Expand/collapse to save space
+- **Tooltips**: Additional context on hover
+- **Strategic Planning**: Build balanced compositions by understanding counter relationships
+
 ### 🎨 User Experience
 - **Official Unit Icons**: Real Age of Empires II unit icons from community sources
   - Automatic loading from Age of Empires wiki
@@ -104,6 +120,10 @@ Plan your armies • Compare civilizations • Optimize resources • Calculate 
 - **Category Organization**: Units grouped by type for easy browsing
 - **Unit Counters**: Each unit shows what it counters and what counters it
 - **Social Sharing**: Share on Twitter, Reddit, Discord
+- **Advanced Bonus Filtering**: Search and filter civilization bonuses
+  - Filter by type: Military, Economic, Cost
+  - Search bonuses by keyword
+  - Show only active bonuses affecting current army
 
 ## 📖 How to Use
 
@@ -251,25 +271,29 @@ All unit costs, population values, and civilization bonuses are based on Age of 
 - ✅ **Technology Tree Restrictions** (filter units by civ tech tree)
 - ✅ **Official Unit Icons** (real AoE2 icons with smart fallbacks)
 - ✅ **Definitive Edition Alignment** (2025 content update)
+- ✅ **Unit Search & Filter System** (search, category filters, cost filters, age filters)
+- ✅ **Unit Counter Visualization** (Strong Against/Weak To badges on unit cards)
+- ✅ **Advanced Bonus Filtering** (search, type filters, active-only toggle)
 
 </details>
 
 <details>
 <summary><b>🔜 Next Steps</b></summary>
 
-### 1. Complete Civilization Bonuses
-- [ ] Add team bonuses for remaining civilizations
-- [ ] Document all military and economic bonuses for all 51 civs
+### 1. Unit Statistics Display
+- [ ] Calculate and display actual unit stats (HP, attack, armor)
+- [ ] Show stat comparisons between civilizations
+- [ ] Highlight which bonuses are active for current army
 
-### 2. Unit Statistics
-- [ ] Add HP, attack, armor stats
-- [ ] Show range, rate of fire, movement speed
-- [ ] Include training time and upgrade costs
-
-### 3. Technology System
+### 2. Technology System
 - [ ] Add Blacksmith upgrades
 - [ ] Include unique technologies
 - [ ] Calculate upgraded unit stats
+
+### 3. Team Bonus System
+- [ ] Select allied civilizations for team games
+- [ ] Apply team bonus effects to calculations
+- [ ] Show which ally provides which bonus
 
 </details>
 
@@ -361,11 +385,11 @@ Found a bug or have a suggestion?
 
 ### 📊 Project Stats
 
-![Version](https://img.shields.io/badge/Version-2.2.1-brightgreen?style=flat)
+![Version](https://img.shields.io/badge/Version-2.3.0-brightgreen?style=flat)
 ![Last Updated](https://img.shields.io/badge/Last_Updated-November_2025-blue?style=flat)
 ![Status](https://img.shields.io/badge/Status-Production_Ready-success?style=flat)
 
-**100+ Units • 101 Unique Units • 51 Civilizations • Tech Tree Restrictions • Fortifications**
+**100+ Units • 101 Unique Units • 51 Civilizations • Unit Search & Filters • Counter Visualization**
 
 ---
 
