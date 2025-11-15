@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { trackSocialShare } from '../utils/analytics';
+import { logger } from '../utils/errorHandler';
 
 /**
  * Social Share Buttons Component
@@ -19,7 +20,7 @@ const SocialShareButtons = () => {
       trackSocialShare('copy_link');
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error('Failed to copy link:', err);
+      logger.error('Failed to copy link', err);
     }
   };
 

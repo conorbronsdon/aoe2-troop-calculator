@@ -3,6 +3,8 @@
  * Ensures game data integrity
  */
 
+import { logger } from './errorHandler';
+
 /**
  * Validates a unit object
  * @param {Object} unit - Unit to validate
@@ -83,10 +85,10 @@ export const validateGameData = (units, civilizations) => {
   }
 
   if (errors.length > 0) {
-    console.error('❌ Game data validation failed:', errors);
+    logger.error('Game data validation failed', errors);
     return { valid: false, errors };
   }
 
-  console.log('✅ All game data validated successfully');
+  logger.info('All game data validated successfully');
   return { valid: true, errors: [] };
 };

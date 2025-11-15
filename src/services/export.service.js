@@ -1,6 +1,7 @@
 import { getUnitById } from '../data/units';
 import { getCivilizationById } from '../data/civilizations';
 import { calculateUnitCost } from '../utils/calculations';
+import { logger } from '../utils/errorHandler';
 
 /**
  * Export Service
@@ -130,7 +131,7 @@ export const ExportService = {
       await navigator.clipboard.writeText(csvContent);
       return true;
     } catch (error) {
-      console.error('Failed to copy to clipboard:', error);
+      logger.error('Failed to copy to clipboard', error);
       return false;
     }
   },
@@ -198,7 +199,7 @@ export const ExportService = {
         civilizationId: config.selectedCiv,
         age: config.selectedAge,
         populationCap: config.populationCap,
-        version: '2.2.1'
+        version: '2.3.0' // TODO: Import from constants.js when refactoring services
       },
       units: units,
       totals: totals
