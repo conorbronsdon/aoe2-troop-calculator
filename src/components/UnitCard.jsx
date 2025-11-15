@@ -1,6 +1,7 @@
 import React from 'react';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { calculateUnitCost, hasDiscount } from '../utils/calculations';
+import UnitIcon from './UnitIcon';
 
 export default function UnitCard({ unit }) {
   const { state, dispatch } = useArmy();
@@ -28,7 +29,10 @@ export default function UnitCard({ unit }) {
     <div className="border rounded-lg p-3 hover:shadow-md transition-shadow">
       <div className="flex justify-between items-start mb-2">
         <div>
-          <div className="font-semibold text-sm">{unit.name}</div>
+          <div className="font-semibold text-sm flex items-center gap-2">
+            <UnitIcon unitId={unit.id} category={unit.category} size="lg" />
+            <span>{unit.name}</span>
+          </div>
           <div className="text-xs text-gray-500 capitalize">{unit.age} Age</div>
         </div>
         <span className="text-xs bg-gray-200 px-2 py-1 rounded">Pop: {unit.population}</span>
