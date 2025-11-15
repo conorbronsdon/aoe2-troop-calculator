@@ -142,7 +142,7 @@ npm run build
 See the [Phase 2 Implementation Plan](./PHASE2_PLAN.md) for details on upcoming features:
 
 ### Data Expansion
-- All 42+ civilizations
+- All 51 civilizations
 - Complete unit roster (100+ units)
 - Unique units for each civilization
 - Enhanced civilization bonuses (team bonuses, tech tree)
@@ -190,6 +190,6 @@ Built with data inspired by community resources:
 
 ---
 
-**Version**: 2.0.0
+**Version**: 2.2.1
 **Status**: Production Ready
 **Build Size**: ~165KB (gzipped: ~54KB)

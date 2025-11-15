@@ -183,7 +183,7 @@ Units are intelligently filtered based on:
 
 ## Civilization System
 
-### 45 Civilizations
+### 51 Civilizations
 
 All civilizations from AoE2: Definitive Edition are included:
 
@@ -487,4 +487,4 @@ Found a bug? Please report:
 ---
 
 **Last Updated**: November 2025
-**Version**: 2.1.0
+**Version**: 2.2.1

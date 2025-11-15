@@ -198,7 +198,7 @@ export const ExportService = {
         civilizationId: config.selectedCiv,
         age: config.selectedAge,
         populationCap: config.populationCap,
-        version: '2.0.0'
+        version: '2.2.1'
       },
       units: units,
       totals: totals

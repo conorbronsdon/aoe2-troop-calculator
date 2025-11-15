@@ -1,5 +1,22 @@
 # Quick Start Guide: AoE2 Army Calculator
 
+> **⚠️ DEPRECATED DOCUMENTATION**
+>
+> This guide is for the deprecated standalone version (aoe2-calculator.html) with only 18 units and 8 civilizations.
+>
+> **For current usage, please refer to [README.md](./README.md)** which documents the full version with:
+> - 100+ units across all categories
+> - 51 civilizations with accurate bonuses
+> - Fortifications system
+> - Tech tree restrictions
+> - Save/Load compositions (already implemented)
+> - Export to JSON/CSV
+> - Comparison mode
+>
+> This file is kept for historical reference only.
+
+---
+
 ## Example Scenario: Planning a 200 Pop Knight & Crossbow Push
 
 Let's recreate a common pro strategy - the Castle Age power spike with Knights and Crossbowmen.

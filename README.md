@@ -295,6 +295,6 @@ Found a bug or have a suggestion?
 
 ---
 
-**Version**: 2.2.0
+**Version**: 2.2.1
 **Last Updated**: November 2025
 **Status**: Production Ready - 100+ Units, Fortifications, 101 Unique Units, 51 Civilizations, Tech Tree Restrictions
