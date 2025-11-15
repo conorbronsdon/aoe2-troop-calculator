@@ -7,6 +7,7 @@ import ArmyCompositionSummary from './components/ArmyCompositionSummary';
 import SaveLoadPanel from './components/SaveLoadPanel';
 import SocialShareButtons from './components/SocialShareButtons';
 import BuyMeCoffee from './components/BuyMeCoffee';
+import CivilizationComparison from './components/CivilizationComparison';
 import { units } from './data/units';
 import { civilizations } from './data/civilizations';
 import { validateGameData } from './utils/validators';
@@ -56,6 +57,7 @@ function AppContent() {
       <SocialShareButtons />
 
       <ConfigurationPanel />
+      <CivilizationComparison />
       <ResourceTracker />
       <SaveLoadPanel />
       <UnitSelection />
