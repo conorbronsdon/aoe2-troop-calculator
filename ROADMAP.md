@@ -1,0 +1,350 @@
+# AoE2 Army Composition Calculator - Roadmap
+
+This roadmap outlines planned enhancements and features for the AoE2 Army Composition Calculator.
+
+## Legend
+- 🔥 **Critical** - Core functionality gap
+- ⭐ **High Priority** - Significant value, moderate complexity
+- 🎯 **Medium Priority** - Good value, various complexity
+- 💡 **Future Consideration** - Nice to have, may be complex
+
+---
+
+## 🔥 Critical Priority
+
+### Technology/Upgrade System
+**Status:** Not Started
+**Priority:** Critical
+**Complexity:** High
+
+Add support for Age of Empires II technologies and upgrades:
+- Blacksmith upgrades (Fletching, Bodkin Arrow, Bracer, Forging, Iron Casting, Blast Furnace, etc.)
+- University technologies (Ballistics, Chemistry, Siege Engineers, etc.)
+- Monastery upgrades (Redemption, Atonement, Sanctity, etc.)
+- Economy upgrades (Wheelbarrow, Hand Cart, etc.)
+- Age-specific techs that unlock or enhance units
+- Unique technologies for each civilization
+
+**Impact:** Transforms the calculator from basic cost tracking to realistic army planning with actual combat-ready stats.
+
+**Technical Requirements:**
+- Create technology data structure with costs, requirements, effects
+- Build tech tree UI for selecting/deselecting upgrades
+- Implement stat calculation engine that applies tech bonuses
+- Handle civ-specific tech restrictions
+- Update unit stat displays to show modified values
+
+**Acceptance Criteria:**
+- Users can select technologies available to their civilization
+- Unit stats (HP, attack, armor, range) update based on selected techs
+- Costs account for technology investments
+- Tech tree shows which techs are available per age
+- Unique technologies properly integrated
+
+---
+
+## ⭐ High Priority
+
+### Calculate and Display Unit Statistics
+**Status:** Not Started
+**Priority:** High
+**Complexity:** Medium
+
+Currently, military bonuses (HP, attack, armor, range) are shown for reference only. Calculate and display actual unit stats.
+
+**What to Implement:**
+- Calculate base stats + civilization bonuses
+- Display modified stats on unit cards
+- Show stat comparisons between civilizations
+- Highlight which bonuses are active for current army composition
+- Add tooltips explaining stat calculations
+
+**Impact:** Users can see actual combat effectiveness, not just costs.
+
+**Dependencies:** Should ideally be done alongside or after Technology System.
+
+---
+
+### Unit Search and Filter System
+**Status:** Not Started
+**Priority:** High
+**Complexity:** Low
+
+With 100+ units, browsing is cumbersome. Add search and filter functionality.
+
+**Features:**
+- **Search Bar:** Type to find units by name
+- **Category Filters:** Infantry, Cavalry, Archers, Siege, Naval, Unique
+- **Cost Filters:** Filter by resource requirements (gold units, trash units, etc.)
+- **Age Filters:** Show only units available in selected age
+- **Counter Filters:** Filter units that counter specific unit types
+- **Tag Filters:** Anti-cavalry, anti-archer, tanky, etc.
+
+**UI Mockup:**
+```
+┌─────────────────────────────────────────┐
+│ Search: [___________] 🔍                │
+│ Filters: [Infantry▼] [All Ages▼] [All Costs▼] │
+└─────────────────────────────────────────┘
+```
+
+**Acceptance Criteria:**
+- Real-time search as user types
+- Multiple filters can be combined
+- Filter state persists during session
+- Clear filters button
+- Mobile-friendly filter UI
+
+---
+
+## 🎯 Medium Priority
+
+### Enhanced Unique Unit Documentation
+**Status:** Partially Complete
+**Priority:** Medium
+**Complexity:** Low
+
+Create comprehensive documentation showcasing unique units.
+
+**What to Add:**
+- `UNIQUE_UNITS.md` file documenting all 50+ unique units
+- Unique unit stats, costs, and special abilities
+- Which civilizations get which unique units
+- Historical/cultural context for unique units
+- Visual guide with unit icons
+- Link from main README
+
+**Structure:**
+```markdown
+## European Civilizations
+
+### Britons - Longbowman
+- **Age:** Castle Age
+- **Cost:** 35W, 40G
+- **Special Ability:** +1 range, fires faster than Arbalester
+- **Best Use:** Massed behind meat shield, siege support
+```
+
+---
+
+### Team Bonus System
+**Status:** Not Started
+**Priority:** Medium
+**Complexity:** Medium
+
+Allow planning for team games by selecting allied civilizations.
+
+**Features:**
+- UI to select up to 3 allied civilizations (for 4v4)
+- Display active team bonuses from allies
+- Apply team bonus effects to calculations
+- Show which ally provides which bonus
+- Toggle team bonuses on/off
+
+**Example:**
+```
+Your Civ: Mayans
+Allies: Huns (cavalry +20% HP), Celts (siege speed +20%), Britons (archery ranges work 20% faster)
+```
+
+**Technical Notes:**
+- Team bonuses already documented in civilization data
+- Need UI for ally selection
+- Some team bonuses affect production, not unit stats (display only)
+- Some affect costs (implement calculation)
+
+---
+
+### Unit Counter Visualization
+**Status:** Not Started
+**Priority:** Medium
+**Complexity:** Low
+
+Your unit data already includes `counters` and `weakTo` fields. Visualize this information.
+
+**Features:**
+- Show counter relationships on unit cards
+- "Strong Against" badges with icons
+- "Weak Against" warnings
+- Army composition analysis: "Your army is weak to Knights"
+- Counter suggestion: "Add Spearmen to counter enemy cavalry"
+
+**UI Examples:**
+- ✅ **Strong vs:** [Archer Icon] [Skirmisher Icon]
+- ⚠️ **Weak to:** [Knight Icon] [Cataphract Icon]
+
+**Acceptance Criteria:**
+- All unit cards show counter information
+- Composition-level analysis warns of vulnerabilities
+- Clickable counter icons to add suggested units
+- Color-coded badges (green for counters, red for weaknesses)
+
+---
+
+### Advanced Filtering for Civilization Bonuses
+**Status:** Not Started
+**Priority:** Medium
+**Complexity:** Low
+
+Enhance the existing `CivilizationBonuses.jsx` component with filtering.
+
+**Features:**
+- Filter bonuses by type: Military (⚔️), Economic (🌾), Cost (💰)
+- Search bonuses by keyword (e.g., "archer", "gold", "cavalry")
+- Toggle showing only active bonuses (affecting current army)
+- Compare bonuses across multiple civilizations
+- Show bonus values by age
+
+**Example UI:**
+```
+Civilization Bonuses (Mayans) 🔍 [Search bonuses...]
+☑️ Military  ☑️ Economic  ☑️ Cost  ☐ Active Only
+```
+
+---
+
+## 💡 Future Considerations
+
+### Battle Simulator
+**Status:** Not Started
+**Priority:** Low
+**Complexity:** Very High
+
+Calculate expected outcomes of army vs army matchups.
+
+**What It Would Do:**
+- Input: Two army compositions
+- Output: Predicted winner, casualties, cost-effectiveness
+- Factors: Unit counters, stats, micro potential, formation
+- Visualization: Animated battle timeline
+
+**Why Low Priority:**
+- Extremely complex to implement accurately
+- AoE2 combat involves micro, positioning, terrain
+- Risk of oversimplification or inaccuracy
+- Many existing tools for this (aoe2calc, etc.)
+
+**If Implemented:**
+- Partner with existing battle calculators
+- Use official game data from DE
+- Disclaimer about simulation limitations
+
+---
+
+### Formation and Positioning System
+**Status:** Not Started
+**Priority:** Low
+**Complexity:** High
+
+Visual army formation planner.
+
+**Features:**
+- Drag-and-drop unit positioning
+- Formation templates (box, line, staggered)
+- Range visualization
+- Melee/ranged layering
+- Export formation images
+
+**Why Low Priority:**
+- Niche use case (mostly for specific battles)
+- Complex UI/UX
+- Position matters less than composition in most games
+
+---
+
+### Economic Planning Module
+**Status:** Not Started
+**Priority:** Medium
+**Complexity:** Medium
+
+Help players plan villager distribution to afford their army.
+
+**Features:**
+- Input desired army composition
+- Output: Required villagers per resource
+- Timeline: When can you afford X units
+- Villager efficiency calculations
+- Build order suggestions
+
+**Example:**
+```
+To afford this army continuously:
+- 20 farmers (food)
+- 15 lumberjacks (wood)
+- 25 gold miners (gold)
+- 5 stone miners (stone)
+```
+
+---
+
+### Mobile App Version
+**Status:** Not Started
+**Priority:** Low
+**Complexity:** High
+
+Native mobile apps for iOS and Android.
+
+**Options:**
+- React Native port
+- Progressive Web App (PWA) - easier path
+- Capacitor.js wrapper
+
+**Why Low Priority:**
+- Current responsive web design works on mobile
+- PWA can provide offline support without app stores
+- Development and maintenance overhead
+
+---
+
+### Integration with AoE2.net API
+**Status:** Not Started
+**Priority:** Low
+**Complexity:** Medium
+
+Integrate with Age of Empires II API for live data.
+
+**Features:**
+- Pull official unit stats from API
+- Get latest patch balance changes
+- Stay automatically updated with game patches
+- Link to player profiles and match history
+
+**API:** https://age-of-empires-2-api.herokuapp.com/docs/
+
+**Challenges:**
+- API reliability and maintenance
+- Handling API downtime gracefully
+- May not include all DE content
+
+---
+
+## Recently Completed ✅
+
+### Tech Tree Restrictions (v2.2.1)
+All 51 civilizations have tech tree restrictions implemented in `src/data/techTree.js`.
+
+### Civilization Bonus Documentation (v2.2.1)
+Complete documentation of all military and economic bonuses in `CIV_BONUSES.md`.
+
+### Visual Comparison Tool (v2.1.0)
+Side-by-side civilization comparison implemented in `CivilizationComparison.jsx`.
+
+### Fortification System (v2.2.0)
+Full support for walls, gates, towers, and castles with flexible display modes.
+
+---
+
+## How to Contribute
+
+1. Pick an item from this roadmap
+2. Create a GitHub issue (see `GITHUB_ISSUES.md` for templates)
+3. Discuss approach in the issue
+4. Fork the repo and create a feature branch
+5. Submit a PR referencing the issue
+
+For questions or suggestions about the roadmap, open a discussion on GitHub.
+
+---
+
+**Last Updated:** November 2025
+**Current Version:** 2.2.1
