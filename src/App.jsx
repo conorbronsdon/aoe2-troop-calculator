@@ -53,9 +53,20 @@ function AppContent() {
   return (
     <div className="container mx-auto p-4 max-w-7xl">
       <ThemeToggle />
-      <h1 className="text-4xl font-bold text-center mb-6 text-gray-800 dark:text-gray-100">
+      <h1 className="text-4xl font-bold text-center mb-2 text-gray-800 dark:text-gray-100">
         Age of Empires II: Army Calculator
       </h1>
+      <p className="text-center text-sm text-gray-600 dark:text-gray-400 mb-6">
+        Created by{' '}
+        <a
+          href="https://www.linkedin.com/in/conorbronsdon/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 dark:text-blue-400 hover:underline"
+        >
+          Conor Bronsdon
+        </a>
+      </p>
 
       {/* Social Share Buttons */}
       <SocialShareButtons />
