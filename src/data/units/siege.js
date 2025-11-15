@@ -2,6 +2,7 @@
  * Siege units
  */
 export const siegeUnits = [
+  // Ram line
   {
     id: 'ram',
     name: 'Battering Ram',
@@ -13,6 +14,27 @@ export const siegeUnits = [
     weakTo: ['infantry', 'cavalry']
   },
   {
+    id: 'capped-ram',
+    name: 'Capped Ram',
+    category: 'Siege',
+    age: 'imperial',
+    cost: { food: 0, wood: 160, gold: 75, stone: 0 },
+    population: 1,
+    counters: ['building'],
+    weakTo: ['infantry', 'cavalry', 'monk']
+  },
+  {
+    id: 'siege-ram',
+    name: 'Siege Ram',
+    category: 'Siege',
+    age: 'imperial',
+    cost: { food: 0, wood: 160, gold: 75, stone: 0 },
+    population: 1,
+    counters: ['building', 'archer'],
+    weakTo: ['cavalry', 'monk']
+  },
+  // Mangonel line
+  {
     id: 'mangonel',
     name: 'Mangonel',
     category: 'Siege',
@@ -22,6 +44,59 @@ export const siegeUnits = [
     counters: ['archer', 'infantry', 'building'],
     weakTo: ['knight', 'cavalry', 'onager']
   },
+  {
+    id: 'onager',
+    name: 'Onager',
+    category: 'Siege',
+    age: 'imperial',
+    cost: { food: 0, wood: 160, gold: 135, stone: 0 },
+    population: 3,
+    counters: ['archer', 'infantry', 'building', 'ram'],
+    weakTo: ['knight', 'cavalry', 'bombard-cannon']
+  },
+  {
+    id: 'siege-onager',
+    name: 'Siege Onager',
+    category: 'Siege',
+    age: 'imperial',
+    cost: { food: 0, wood: 160, gold: 135, stone: 0 },
+    population: 3,
+    counters: ['archer', 'infantry', 'building', 'ram', 'army'],
+    weakTo: ['knight', 'cavalry', 'bombard-cannon']
+  },
+  // Scorpion line
+  {
+    id: 'scorpion',
+    name: 'Scorpion',
+    category: 'Siege',
+    age: 'castle',
+    cost: { food: 0, wood: 75, gold: 75, stone: 0 },
+    population: 2,
+    counters: ['archer', 'infantry', 'ram'],
+    weakTo: ['knight', 'cavalry', 'mangonel']
+  },
+  {
+    id: 'heavy-scorpion',
+    name: 'Heavy Scorpion',
+    category: 'Siege',
+    age: 'imperial',
+    cost: { food: 0, wood: 75, gold: 75, stone: 0 },
+    population: 2,
+    counters: ['archer', 'infantry', 'ram', 'cavalry'],
+    weakTo: ['knight', 'onager', 'bombard-cannon']
+  },
+  // Bombard Cannon
+  {
+    id: 'bombard-cannon',
+    name: 'Bombard Cannon',
+    category: 'Siege',
+    age: 'imperial',
+    cost: { food: 0, wood: 225, gold: 225, stone: 0 },
+    population: 5,
+    counters: ['building', 'siege', 'trebuchet'],
+    weakTo: ['knight', 'cavalry', 'ram']
+  },
+  // Trebuchet
   {
     id: 'trebuchet',
     name: 'Trebuchet',

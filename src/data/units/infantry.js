@@ -13,6 +13,16 @@ export const infantryUnits = [
     weakTo: ['knight', 'archer', 'cataphract']
   },
   {
+    id: 'man-at-arms',
+    name: 'Man-at-Arms',
+    category: 'Infantry',
+    age: 'feudal',
+    cost: { food: 60, wood: 0, gold: 20, stone: 0 },
+    population: 1,
+    counters: ['archer', 'skirmisher'],
+    weakTo: ['knight', 'scout', 'cataphract']
+  },
+  {
     id: 'longswordsman',
     name: 'Longswordsman',
     category: 'Infantry',
@@ -21,6 +31,16 @@ export const infantryUnits = [
     population: 1,
     counters: ['archer', 'skirmisher', 'eagle-warrior'],
     weakTo: ['knight', 'cataphract', 'jaguar-warrior']
+  },
+  {
+    id: 'two-handed-swordsman',
+    name: 'Two-Handed Swordsman',
+    category: 'Infantry',
+    age: 'imperial',
+    cost: { food: 60, wood: 0, gold: 20, stone: 0 },
+    population: 1,
+    counters: ['archer', 'skirmisher', 'eagle-warrior'],
+    weakTo: ['knight', 'cataphract', 'jaguar-warrior', 'hand-cannoneer']
   },
   {
     id: 'champion',
@@ -61,5 +81,36 @@ export const infantryUnits = [
     population: 1,
     counters: ['knight', 'cavalier', 'paladin', 'war-elephant'],
     weakTo: ['archer', 'hand-cannoneer', 'jaguar-warrior']
+  },
+  // Eagle Warrior line (Mesoamerican civilizations only)
+  {
+    id: 'eagle-scout',
+    name: 'Eagle Scout',
+    category: 'Infantry',
+    age: 'feudal',
+    cost: { food: 20, wood: 0, gold: 50, stone: 0 },
+    population: 1,
+    counters: ['monk', 'siege'],
+    weakTo: ['knight', 'archer', 'militia']
+  },
+  {
+    id: 'eagle-warrior',
+    name: 'Eagle Warrior',
+    category: 'Infantry',
+    age: 'castle',
+    cost: { food: 20, wood: 0, gold: 50, stone: 0 },
+    population: 1,
+    counters: ['monk', 'siege', 'archer'],
+    weakTo: ['knight', 'militia', 'samurai']
+  },
+  {
+    id: 'elite-eagle-warrior',
+    name: 'Elite Eagle Warrior',
+    category: 'Infantry',
+    age: 'imperial',
+    cost: { food: 20, wood: 0, gold: 50, stone: 0 },
+    population: 1,
+    counters: ['monk', 'siege', 'archer', 'cavalry'],
+    weakTo: ['knight', 'militia', 'samurai', 'cataphract']
   },
 ];

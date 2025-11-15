@@ -1,6 +1,6 @@
 import React from 'react';
 import { useArmy } from '../context/ArmyContext';
-import { getUnitsByAge } from '../data/units';
+import { getUnitsForCiv } from '../data/units';
 import { groupUnitsByCategory } from '../utils/calculations';
 import UnitCard from './UnitCard';
 
@@ -8,8 +8,8 @@ export default function UnitSelection() {
   const { state } = useArmy();
   const { config } = state;
 
-  // Filter units by age
-  const availableUnits = getUnitsByAge(config.selectedAge);
+  // Filter units by age and civilization (includes unique units)
+  const availableUnits = getUnitsForCiv(config.selectedCivilization, config.selectedAge);
 
   // Group units by category
   const unitsByCategory = groupUnitsByCategory(availableUnits);

@@ -2,6 +2,8 @@ import { archerUnits } from './archers';
 import { infantryUnits } from './infantry';
 import { cavalryUnits } from './cavalry';
 import { siegeUnits } from './siege';
+import { navalUnits } from './naval';
+import { uniqueUnits } from './unique';
 import { otherUnits } from './other';
 
 /**
@@ -13,6 +15,8 @@ export const units = [
   ...infantryUnits,
   ...cavalryUnits,
   ...siegeUnits,
+  ...navalUnits,
+  ...uniqueUnits,
   ...otherUnits
 ];
 
@@ -43,4 +47,38 @@ export const getUnitsByAge = (age) => {
   const ageOrder = { dark: 0, feudal: 1, castle: 2, imperial: 3 };
   const targetAgeValue = ageOrder[age];
   return units.filter(unit => ageOrder[unit.age] <= targetAgeValue);
+};
+
+/**
+ * Get unique units for a specific civilization
+ * @param {string} civId - Civilization identifier
+ * @returns {Array} Array of unique units for that civilization
+ */
+export const getUniqueUnitsByCiv = (civId) => {
+  if (!civId || civId === 'generic') return [];
+  return uniqueUnits.filter(unit => unit.civilization === civId);
+};
+
+/**
+ * Get units available for a specific civilization and age
+ * Includes generic units and civ-specific unique units
+ * @param {string} civId - Civilization identifier
+ * @param {string} age - Age identifier
+ * @returns {Array} Array of units available for that civ in that age
+ */
+export const getUnitsForCiv = (civId, age) => {
+  const ageOrder = { dark: 0, feudal: 1, castle: 2, imperial: 3 };
+  const targetAgeValue = ageOrder[age];
+
+  // Get all non-unique units
+  const genericUnits = units.filter(unit =>
+    unit.category !== 'Unique' && ageOrder[unit.age] <= targetAgeValue
+  );
+
+  // Get unique units for this civ
+  const civUniqueUnits = getUniqueUnitsByCiv(civId).filter(unit =>
+    ageOrder[unit.age] <= targetAgeValue
+  );
+
+  return [...genericUnits, ...civUniqueUnits];
 };

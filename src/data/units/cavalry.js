@@ -2,6 +2,7 @@
  * Cavalry line units
  */
 export const cavalryUnits = [
+  // Scout line
   {
     id: 'scout',
     name: 'Scout Cavalry',
@@ -12,6 +13,27 @@ export const cavalryUnits = [
     counters: ['archer', 'skirmisher', 'monk'],
     weakTo: ['spearman', 'pikeman', 'camel']
   },
+  {
+    id: 'light-cavalry',
+    name: 'Light Cavalry',
+    category: 'Cavalry',
+    age: 'castle',
+    cost: { food: 80, wood: 0, gold: 0, stone: 0 },
+    population: 1,
+    counters: ['archer', 'skirmisher', 'monk', 'siege'],
+    weakTo: ['spearman', 'pikeman', 'camel', 'halberdier']
+  },
+  {
+    id: 'hussar',
+    name: 'Hussar',
+    category: 'Cavalry',
+    age: 'imperial',
+    cost: { food: 80, wood: 0, gold: 0, stone: 0 },
+    population: 1,
+    counters: ['archer', 'skirmisher', 'monk', 'siege'],
+    weakTo: ['pikeman', 'halberdier', 'camel', 'eagle-warrior']
+  },
+  // Knight line
   {
     id: 'knight',
     name: 'Knight',
@@ -33,6 +55,17 @@ export const cavalryUnits = [
     weakTo: ['halberdier', 'camel', 'monk', 'kamayuk']
   },
   {
+    id: 'paladin',
+    name: 'Paladin',
+    category: 'Cavalry',
+    age: 'imperial',
+    cost: { food: 60, wood: 0, gold: 75, stone: 0 },
+    population: 1,
+    counters: ['archer', 'infantry', 'siege', 'eagle-warrior'],
+    weakTo: ['halberdier', 'heavy-camel', 'monk', 'kamayuk']
+  },
+  // Camel line
+  {
     id: 'camel',
     name: 'Camel Rider',
     category: 'Cavalry',
@@ -41,5 +74,67 @@ export const cavalryUnits = [
     population: 1,
     counters: ['knight', 'cavalier', 'cavalry'],
     weakTo: ['archer', 'infantry', 'monk']
+  },
+  {
+    id: 'heavy-camel',
+    name: 'Heavy Camel Rider',
+    category: 'Cavalry',
+    age: 'imperial',
+    cost: { food: 55, wood: 0, gold: 60, stone: 0 },
+    population: 1,
+    counters: ['knight', 'cavalier', 'paladin', 'cavalry'],
+    weakTo: ['archer', 'infantry', 'monk', 'mameluke']
+  },
+  {
+    id: 'imperial-camel',
+    name: 'Imperial Camel Rider',
+    category: 'Cavalry',
+    age: 'imperial',
+    cost: { food: 55, wood: 0, gold: 60, stone: 0 },
+    population: 1,
+    counters: ['knight', 'cavalier', 'paladin', 'cavalry', 'war-elephant'],
+    weakTo: ['archer', 'infantry', 'monk']
+  },
+  // Battle Elephant line
+  {
+    id: 'battle-elephant',
+    name: 'Battle Elephant',
+    category: 'Cavalry',
+    age: 'castle',
+    cost: { food: 120, wood: 0, gold: 70, stone: 0 },
+    population: 1,
+    counters: ['infantry', 'cavalry', 'buildings'],
+    weakTo: ['monk', 'halberdier', 'camel', 'mameluke']
+  },
+  {
+    id: 'elite-battle-elephant',
+    name: 'Elite Battle Elephant',
+    category: 'Cavalry',
+    age: 'imperial',
+    cost: { food: 120, wood: 0, gold: 70, stone: 0 },
+    population: 1,
+    counters: ['infantry', 'cavalry', 'buildings', 'siege'],
+    weakTo: ['monk', 'halberdier', 'heavy-camel', 'mameluke']
+  },
+  // Steppe Lancer line
+  {
+    id: 'steppe-lancer',
+    name: 'Steppe Lancer',
+    category: 'Cavalry',
+    age: 'castle',
+    cost: { food: 70, wood: 0, gold: 45, stone: 0 },
+    population: 1,
+    counters: ['archer', 'infantry'],
+    weakTo: ['pikeman', 'halberdier', 'camel', 'eagle-warrior']
+  },
+  {
+    id: 'elite-steppe-lancer',
+    name: 'Elite Steppe Lancer',
+    category: 'Cavalry',
+    age: 'imperial',
+    cost: { food: 70, wood: 0, gold: 45, stone: 0 },
+    population: 1,
+    counters: ['archer', 'infantry', 'cavalry'],
+    weakTo: ['halberdier', 'camel', 'eagle-warrior', 'kamayuk']
   },
 ];
