@@ -115,6 +115,8 @@
         // Main App Component
         function AoE2Calculator() {
             // Configuration State
+            const [resourceLimitMode, setResourceLimitMode] = useState('individual'); // 'individual' or 'total'
+            const [totalResourceLimit, setTotalResourceLimit] = useState(80000);
             const [resourceLimits, setResourceLimits] = useState({
                 food: 20000,
                 wood: 20000,
@@ -223,14 +225,34 @@
                 setArmyComposition({});
             };
 
+            // Get total resources used
+            const getTotalResourcesUsed = () => {
+                return totalCost.food + totalCost.wood + totalCost.gold + totalCost.stone;
+            };
+
             // Get resource percentage
             const getResourcePercentage = (resource) => {
-                return (totalCost[resource] / resourceLimits[resource]) * 100;
+                if (resourceLimitMode === 'total') {
+                    // In total mode, calculate this resource as a percentage of total limit
+                    const totalUsed = getTotalResourcesUsed();
+                    const resourceContribution = totalCost[resource];
+                    return totalUsed > 0 ? (resourceContribution / totalResourceLimit) * 100 : 0;
+                } else {
+                    // In individual mode, calculate against individual resource limit
+                    return (totalCost[resource] / resourceLimits[resource]) * 100;
+                }
+            };
+
+            // Get total resource percentage (for total mode)
+            const getTotalResourcePercentage = () => {
+                return (getTotalResourcesUsed() / totalResourceLimit) * 100;
             };
 
             // Get color based on usage
             const getResourceColor = (resource) => {
-                const percentage = getResourcePercentage(resource);
+                const percentage = resourceLimitMode === 'total'
+                    ? getTotalResourcePercentage()
+                    : getResourcePercentage(resource);
                 if (percentage > 100) return 'bg-red-500';
                 if (percentage > 80) return 'bg-yellow-500';
                 return 'bg-green-500';
@@ -258,26 +280,72 @@
                     {/* Configuration Panel */}
                     <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
                         <h2 className="text-2xl font-semibold mb-4 text-gray-700">Configuration</h2>
-                        
+
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {/* Resource Limits */}
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Resource Limits</label>
-                                {['food', 'wood', 'gold', 'stone'].map(resource => (
-                                    <div key={resource} className="mb-2">
-                                        <label className="text-xs text-gray-600 capitalize">{resource}</label>
+                            {/* Resource Limit Mode Toggle */}
+                            <div className="md:col-span-2 lg:col-span-3">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">Resource Limit Mode</label>
+                                <div className="flex gap-4">
+                                    <label className="flex items-center cursor-pointer">
                                         <input
-                                            type="number"
-                                            className="w-full border rounded px-3 py-1 text-sm"
-                                            value={resourceLimits[resource]}
-                                            onChange={(e) => setResourceLimits(prev => ({
-                                                ...prev,
-                                                [resource]: parseInt(e.target.value) || 0
-                                            }))}
+                                            type="radio"
+                                            name="resourceMode"
+                                            value="total"
+                                            checked={resourceLimitMode === 'total'}
+                                            onChange={(e) => setResourceLimitMode(e.target.value)}
+                                            className="mr-2"
                                         />
-                                    </div>
-                                ))}
+                                        <span>Total Resources</span>
+                                    </label>
+                                    <label className="flex items-center cursor-pointer">
+                                        <input
+                                            type="radio"
+                                            name="resourceMode"
+                                            value="individual"
+                                            checked={resourceLimitMode === 'individual'}
+                                            onChange={(e) => setResourceLimitMode(e.target.value)}
+                                            className="mr-2"
+                                        />
+                                        <span>Individual Resources</span>
+                                    </label>
+                                </div>
                             </div>
+
+                            {/* Total Resource Limit (shown when mode is 'total') */}
+                            {resourceLimitMode === 'total' && (
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">Total Resource Limit</label>
+                                    <input
+                                        type="number"
+                                        className="w-full border rounded px-3 py-2"
+                                        value={totalResourceLimit}
+                                        onChange={(e) => setTotalResourceLimit(parseInt(e.target.value) || 0)}
+                                        placeholder="e.g., 20000"
+                                    />
+                                    <p className="text-xs text-gray-500 mt-1">Combined limit for all resources</p>
+                                </div>
+                            )}
+
+                            {/* Individual Resource Limits (shown when mode is 'individual') */}
+                            {resourceLimitMode === 'individual' && (
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">Individual Resource Limits</label>
+                                    {['food', 'wood', 'gold', 'stone'].map(resource => (
+                                        <div key={resource} className="mb-2">
+                                            <label className="text-xs text-gray-600 capitalize">{resource}</label>
+                                            <input
+                                                type="number"
+                                                className="w-full border rounded px-3 py-1 text-sm"
+                                                value={resourceLimits[resource]}
+                                                onChange={(e) => setResourceLimits(prev => ({
+                                                    ...prev,
+                                                    [resource]: parseInt(e.target.value) || 0
+                                                }))}
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
 
                             {/* Population Cap */}
                             <div>
@@ -327,39 +395,70 @@
                     {/* Real-Time Tracking Dashboard */}
                     <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
                         <h2 className="text-2xl font-semibold mb-4 text-gray-700">Resource Tracker</h2>
-                        
-                        {/* Resources */}
-                        <div className="space-y-3 mb-4">
-                            {['food', 'wood', 'gold', 'stone'].map(resource => (
-                                <div key={resource}>
-                                    <div className="flex justify-between text-sm mb-1">
-                                        <span className="capitalize font-medium">{resource}</span>
-                                        <span className={totalCost[resource] > resourceLimits[resource] ? 'text-red-600 font-bold' : ''}>
-                                            {totalCost[resource].toLocaleString()} / {resourceLimits[resource].toLocaleString()} 
-                                            ({getResourcePercentage(resource).toFixed(1)}%)
-                                        </span>
-                                    </div>
-                                    <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
-                                        <div 
-                                            className={`h-full resource-bar ${getResourceColor(resource)}`}
-                                            style={{ width: `${Math.min(100, getResourcePercentage(resource))}%` }}
-                                        />
-                                    </div>
+
+                        {/* Total Resource Mode Display */}
+                        {resourceLimitMode === 'total' && (
+                            <div className="mb-4">
+                                <div className="flex justify-between text-sm mb-1">
+                                    <span className="font-medium">Total Resources</span>
+                                    <span className={getTotalResourcesUsed() > totalResourceLimit ? 'text-red-600 font-bold' : ''}>
+                                        {getTotalResourcesUsed().toLocaleString()} / {totalResourceLimit.toLocaleString()}
+                                        ({getTotalResourcePercentage().toFixed(1)}%)
+                                    </span>
                                 </div>
-                            ))}
-                        </div>
+                                <div className="w-full bg-gray-200 rounded-full h-6 overflow-hidden">
+                                    <div
+                                        className={`h-full resource-bar ${getTotalResourcePercentage() > 100 ? 'bg-red-500' : getTotalResourcePercentage() > 80 ? 'bg-yellow-500' : 'bg-green-500'}`}
+                                        style={{ width: `${Math.min(100, getTotalResourcePercentage())}%` }}
+                                    />
+                                </div>
+
+                                {/* Breakdown of individual resources */}
+                                <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
+                                    {['food', 'wood', 'gold', 'stone'].map(resource => (
+                                        <div key={resource} className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                            <span className="capitalize font-medium">{resource}</span>
+                                            <span>{totalCost[resource].toLocaleString()}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Individual Resource Mode Display */}
+                        {resourceLimitMode === 'individual' && (
+                            <div className="space-y-3 mb-4">
+                                {['food', 'wood', 'gold', 'stone'].map(resource => (
+                                    <div key={resource}>
+                                        <div className="flex justify-between text-sm mb-1">
+                                            <span className="capitalize font-medium">{resource}</span>
+                                            <span className={totalCost[resource] > resourceLimits[resource] ? 'text-red-600 font-bold' : ''}>
+                                                {totalCost[resource].toLocaleString()} / {resourceLimits[resource].toLocaleString()}
+                                                ({getResourcePercentage(resource).toFixed(1)}%)
+                                            </span>
+                                        </div>
+                                        <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
+                                            <div
+                                                className={`h-full resource-bar ${getResourceColor(resource)}`}
+                                                style={{ width: `${Math.min(100, getResourcePercentage(resource))}%` }}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
 
                         {/* Population */}
                         <div>
                             <div className="flex justify-between text-sm mb-1">
                                 <span className="font-medium">Population</span>
                                 <span className={totalPopulation > populationCap ? 'text-red-600 font-bold' : ''}>
-                                    {totalPopulation} / {populationCap} 
+                                    {totalPopulation} / {populationCap}
                                     ({((totalPopulation / populationCap) * 100).toFixed(1)}%)
                                 </span>
                             </div>
                             <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
-                                <div 
+                                <div
                                     className={`h-full resource-bar ${totalPopulation > populationCap ? 'bg-red-500' : totalPopulation > populationCap * 0.8 ? 'bg-yellow-500' : 'bg-blue-500'}`}
                                     style={{ width: `${Math.min(100, (totalPopulation / populationCap) * 100)}%` }}
                                 />
