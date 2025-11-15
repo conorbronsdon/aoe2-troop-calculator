@@ -92,7 +92,7 @@ export const siegeUnits = [
     category: 'Siege',
     age: 'imperial',
     cost: { food: 0, wood: 225, gold: 225, stone: 0 },
-    population: 5,
+    population: 1,
     counters: ['building', 'siege', 'trebuchet'],
     weakTo: ['knight', 'cavalry', 'ram']
   },
