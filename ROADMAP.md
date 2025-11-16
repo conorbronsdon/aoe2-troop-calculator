@@ -76,7 +76,7 @@ Add support for Age of Empires II technologies and upgrades:
 - ✅ Monastery upgrades (Redemption, Atonement, Sanctity)
 - ✅ Economy upgrades (Wheelbarrow, Hand Cart)
 - ✅ Age-specific techs that unlock or enhance units
-- ⏳ Unique technologies for each civilization (future enhancement)
+- ✅ Unique technologies for each civilization (100+ unique techs for all 50 civs)
 
 **Impact:** Transforms the calculator from basic cost tracking to realistic army planning with actual combat-ready stats.
 
@@ -88,12 +88,20 @@ Add support for Age of Empires II technologies and upgrades:
 - ✅ Unit stats (HP, attack, armor) update based on selected techs
 - ✅ Integrated with ArmyContext state management (researchedTechs)
 
+**Implementation (v2.7.0):**
+- ✅ Added UNIQUE tech category to technology system
+- ✅ Implemented 100+ unique technologies for all 50 civilizations (Castle Age + Imperial Age each)
+- ✅ TechnologyPanel filters unique techs by selected civilization
+- ✅ Unique techs have distinct yellow styling with ⭐ icon
+- ✅ Unique tech effects apply through existing stat calculator engine
+- ✅ Tech cost tracking includes unique technologies
+
 **Acceptance Criteria:**
 - ✅ Users can select technologies available to their civilization
 - ✅ Unit stats (HP, attack, armor) update based on selected techs
 - ✅ Tech tree shows which techs are available per age
-- ⏳ Costs account for technology investments (tech cost tracking - future)
-- ⏳ Unique technologies properly integrated (future enhancement)
+- ✅ Costs account for technology investments (tech cost tracking)
+- ✅ Unique technologies properly integrated (Castle + Imperial Age for all civs)
 
 ---
 
@@ -1138,6 +1146,16 @@ Track application performance metrics.
 
 ## Recently Completed ✅
 
+### Unique Technologies Integration (v2.7.0 - November 2025)
+Complete civilization-specific unique technologies:
+- ✅ **100+ Unique Techs:** Castle Age and Imperial Age unique techs for all 50 civilizations
+- ✅ **Civ-Specific Display:** Unique techs only appear when their civilization is selected
+- ✅ **Visual Distinction:** Yellow styling with ⭐ icons for unique techs
+- ✅ **Stat Effects:** Unique tech bonuses properly apply to unit stats (HP, attack, armor, range, speed)
+- ✅ **Cost Tracking:** Unique tech costs included in total resource calculations
+- ✅ **Tech Prerequisites:** Imperial Age unique techs require Castle Age techs
+- ✅ **Full Coverage:** Aztecs, Britons, Franks, Goths, Mongols, Japanese, Vietnamese, and 43 more civilizations
+
 ### Import Compositions Feature (v2.6.0 - November 2025)
 Complete import functionality for army compositions:
 - ✅ **Import Service:** Full JSON validation, version compatibility, data sanitization
@@ -1227,6 +1245,6 @@ For questions or suggestions about the roadmap, open a discussion on GitHub.
 ---
 
 **Last Updated:** November 16, 2025
-**Current Version:** 2.6.0
+**Current Version:** 2.7.0
 **Total Roadmap Items:** 35+ features across 4 priority levels
 **Next Major Focus:** PWA Support, Preset Compositions, Unit Statistics Display
