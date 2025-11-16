@@ -29,6 +29,7 @@ Plan your armies • Calculate costs • Compare civilizations • Optimize reso
 - [🚀 Development](#-development)
 - [🧪 Testing](#-testing)
 - [📊 Data Accuracy](#-data-accuracy)
+- [🎨 Asset Resources](#-asset-resources)
 - [🎯 Roadmap](#-roadmap)
 - [🙏 Credits](#-credits)
 - [🐛 Support & Feedback](#-support--feedback)
@@ -304,6 +305,40 @@ All unit costs, population values, and civilization bonuses are based on Age of 
 - [Age of Empires Fandom Wiki](https://ageofempires.fandom.com) for unit icons and tech tree verification
 - Community-verified data from competitive players
 
+## 🎨 Asset Resources
+
+This section documents the sources of visual assets used in the calculator for easy reference when updates are needed.
+
+### Resource Icons (Food, Wood, Gold, Stone)
+- **Source**: [SiegeEngineers/aoe2techtree](https://github.com/SiegeEngineers/aoe2techtree)
+- **Direct URLs**:
+  - Food: `https://raw.githubusercontent.com/SiegeEngineers/aoe2techtree/master/img/food.png`
+  - Wood: `https://raw.githubusercontent.com/SiegeEngineers/aoe2techtree/master/img/wood.png`
+  - Gold: `https://raw.githubusercontent.com/SiegeEngineers/aoe2techtree/master/img/gold.png`
+  - Stone: `https://raw.githubusercontent.com/SiegeEngineers/aoe2techtree/master/img/stone.png`
+- **Local Path**: `public/resource-icons/`
+- **Component**: `src/components/ResourceIcon.jsx`
+
+### Unit Icons
+- **Source**: [Age of Empires Fandom Wiki](https://ageofempires.fandom.com/wiki/Category:Icons_(Age_of_Empires_II))
+- **Pattern**: `https://static.wikia.nocookie.net/ageofempires/images/{hash}/{unit_name}.png`
+- **Local Path**: `public/unit-icons/` (cached unit icons by ID)
+- **Mapping**: `src/utils/iconMappings.js`
+- **Component**: `src/components/UnitIcon.jsx`
+
+### Civilization Icons/Emblems
+- **Source**: [Age of Empires Fandom Wiki](https://ageofempires.fandom.com/wiki/Category:Civilization_icons_(Age_of_Empires_II))
+- **Pattern**: `https://static.wikia.nocookie.net/ageofempires/images/{hash}/CivIcon-{CivName}.png`
+- **Usage**: Civilization selection and bonuses panel
+
+### Technology Icons
+- **Source**: [SiegeEngineers/aoe2techtree](https://github.com/SiegeEngineers/aoe2techtree)
+- **Backup**: [Age of Empires Fandom Wiki](https://ageofempires.fandom.com/wiki/Category:Technology_icons_(Age_of_Empires_II))
+
+### Additional Icon Resources
+- **qwyt/aoe2-icon-resources**: [GitHub Repository](https://github.com/qwyt/aoe2-icon-resources) - Scraped AoE2 DE icons from Fandom wiki
+- **Icons Category**: [Full list of AoE2 icons](https://ageofempires.fandom.com/wiki/Category:Icons_(Age_of_Empires_II))
+
 ## 🎯 Roadmap
 
 <details open>
@@ -436,9 +471,10 @@ Built for Age of Empires II players who want to plan army compositions efficient
 
 | Resource | Purpose |
 |----------|---------|
-| [aoe2techtree.net](https://aoe2techtree.net) ([GitHub](https://github.com/SiegeEngineers/aoe2techtree)) | Tech tree reference data |
+| [aoe2techtree.net](https://aoe2techtree.net) ([GitHub](https://github.com/SiegeEngineers/aoe2techtree)) | Tech tree reference data and official resource icons (food, wood, gold, stone) |
 | [aoestats.io](https://aoestats.io) | Civilization statistics |
 | [AoE Fandom Wiki](https://ageofempires.fandom.com) | Unit icons and tech tree verification |
+| [qwyt/aoe2-icon-resources](https://github.com/qwyt/aoe2-icon-resources) | Compiled AoE2 DE icon reference |
 | All Contributors | Testing and feedback |
 
 ### 🧪 Bug Hunters & Testers
