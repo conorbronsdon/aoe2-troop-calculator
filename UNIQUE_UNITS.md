@@ -9,11 +9,261 @@ This comprehensive guide documents all unique units available in Age of Empires 
 - [African Civilizations](#african-civilizations)
   - [Berbers](#berbers) - [Ethiopians](#ethiopians) - [Malians](#malians)
 - [Asian Civilizations](#asian-civilizations)
-  - [Bengalis](#bengalis) - [Burmese](#burmese) - [Chinese](#chinese) - [Dravidians](#dravidians) - [Gurjaras](#gurjaras) - [Hindustanis](#hindustanis) - [Japanese](#japanese) - [Jurchens](#jurchens) - [Khitans](#khitans) - [Khmer](#khmer) - [Koreans](#koreans) - [Malay](#malay) - [Mongols](#mongols) - [Shu](#shu) - [Tatars](#tatars) - [Vietnamese](#vietnamese) - [Wei](#wei) - [Wu](#wu)
+  - [Bengalis](#bengalis) - [Burmese](#burmese) - [Chinese](#chinese) - [Dravidians](#dravidians) - [Gurjaras](#gurjaras) - [Hindustanis](#hindustanis) - [Japanese](#japanese) - [Khmer](#khmer) - [Koreans](#koreans) - [Malay](#malay) - [Mongols](#mongols) - [Tatars](#tatars) - [Vietnamese](#vietnamese)
 - [European Civilizations](#european-civilizations)
-  - [Armenians](#armenians) - [Bohemians](#bohemians) - [Britons](#britons) - [Bulgarians](#bulgarians) - [Burgundians](#burgundians) - [Byzantines](#byzantines) - [Celts](#celts) - [Cumans](#cumans) - [Franks](#franks) - [Georgians](#georgians) - [Goths](#goths) - [Huns](#huns) - [Italians](#italians) - [Lithuanians](#lithuanians) - [Magyars](#magyars) - [Poles](#poles) - [Romans](#romans) - [Sicilians](#sicilians) - [Slavs](#slavs) - [Spanish](#spanish) - [Teutons](#teutons) - [Vikings](#vikings)
+  - [Armenians](#armenians) - [Bohemians](#bohemians) - [Britons](#britons) - [Bulgarians](#bulgarians) - [Burgundians](#burgundians) - [Byzantines](#byzantines) - [Celts](#celts) - [Cumans](#cumans) - [Franks](#franks) - [Georgians](#georgians) - [Goths](#goths) - [Huns](#huns) - [Italians](#italians) - [Lithuanians](#lithuanians) - [Magyars](#magyars) - [Poles](#poles) - [Portuguese](#portuguese) - [Romans](#romans) - [Sicilians](#sicilians) - [Slavs](#slavs) - [Spanish](#spanish) - [Teutons](#teutons) - [Vikings](#vikings)
 - [Middle Eastern Civilizations](#middle-eastern-civilizations)
   - [Persians](#persians) - [Saracens](#saracens) - [Turks](#turks)
+- [Quick Reference](#quick-reference)
+  - [Stats Comparison Table](#stats-comparison-table)
+  - [Training Times](#training-times)
+  - [Upgrade Costs](#upgrade-costs)
+
+---
+
+## Quick Reference
+
+### Stats Comparison Table
+
+This section provides detailed combat statistics for quick comparison of all unique units.
+
+#### Infantry Unique Units
+
+| Unit | HP | Attack | Melee Armor | Pierce Armor | Speed | Range |
+|------|----|----|----|----|----|----|
+| Jaguar Warrior | 50 | 10 | 1 | 1 | 1.0 | 0 |
+| Elite Jaguar Warrior | 75 | 12 | 2 | 1 | 1.0 | 0 |
+| Kamayuk | 60 | 7 | 0 | 0 | 1.0 | 1 |
+| Elite Kamayuk | 80 | 8 | 1 | 0 | 1.0 | 1 |
+| Shotel Warrior | 40 | 16 | 0 | 0 | 1.2 | 0 |
+| Elite Shotel Warrior | 50 | 18 | 0 | 0 | 1.2 | 0 |
+| Gbeto | 30 | 10 | 0 | 0 | 1.25 | 5 |
+| Elite Gbeto | 45 | 13 | 0 | 0 | 1.25 | 6 |
+| Urumi Swordsman | 65 | 8 | 0 | 1 | 1.05 | 0 |
+| Elite Urumi Swordsman | 75 | 10 | 1 | 1 | 1.05 | 0 |
+| Ghulam | 55 | 8 | 0 | 4 | 1.0 | 0 |
+| Elite Ghulam | 70 | 10 | 1 | 6 | 1.0 | 0 |
+| Samurai | 60 | 8 | 1 | 1 | 1.0 | 0 |
+| Elite Samurai | 80 | 12 | 1 | 1 | 1.0 | 0 |
+| Karambit Warrior | 30 | 6 | 0 | 1 | 1.2 | 0 |
+| Elite Karambit Warrior | 40 | 7 | 1 | 1 | 1.2 | 0 |
+| Woad Raider | 65 | 8 | 0 | 1 | 1.2 | 0 |
+| Elite Woad Raider | 80 | 13 | 0 | 1 | 1.2 | 0 |
+| Throwing Axeman | 50 | 7 | 0 | 0 | 1.0 | 3 |
+| Elite Throwing Axeman | 60 | 8 | 1 | 0 | 1.0 | 4 |
+| Huskarl | 60 | 10 | 0 | 10 | 1.05 | 0 |
+| Elite Huskarl | 70 | 12 | 0 | 12 | 1.05 | 0 |
+| Obuch | 60 | 8 | 2 | 2 | 0.95 | 0 |
+| Elite Obuch | 80 | 10 | 3 | 3 | 0.95 | 0 |
+| Centurion | 110 | 13 | 1 | 2 | 0.9 | 0 |
+| Elite Centurion | 135 | 15 | 2 | 2 | 0.9 | 0 |
+| Serjeant | 75 | 8 | 2 | 2 | 0.9 | 0 |
+| Elite Serjeant | 85 | 11 | 4 | 4 | 0.9 | 0 |
+| Teutonic Knight | 70 | 12 | 5 | 2 | 0.7 | 0 |
+| Elite Teutonic Knight | 100 | 17 | 10 | 2 | 0.7 | 0 |
+| Berserk | 54 | 9 | 0 | 1 | 1.05 | 0 |
+| Elite Berserk | 62 | 14 | 2 | 1 | 1.05 | 0 |
+
+#### Archer Unique Units
+
+| Unit | HP | Attack | Melee Armor | Pierce Armor | Speed | Range |
+|------|----|----|----|----|----|----|
+| Plumed Archer | 50 | 5 | 0 | 1 | 1.2 | 4 |
+| Elite Plumed Archer | 65 | 5 | 0 | 2 | 1.2 | 5 |
+| Camel Archer | 55 | 4 | 0 | 1 | 1.4 | 4 |
+| Elite Camel Archer | 60 | 5 | 1 | 1 | 1.4 | 4 |
+| Chu Ko Nu | 45 | 8* | 0 | 0 | 0.96 | 4 |
+| Elite Chu Ko Nu | 50 | 8* | 0 | 0 | 0.96 | 4 |
+| Longbowman | 35 | 6 | 0 | 0 | 0.96 | 6 |
+| Elite Longbowman | 40 | 7 | 0 | 1 | 0.96 | 7 |
+| Composite Bowman | 35 | 6 | 0 | 0 | 0.96 | 4 |
+| Elite Composite Bowman | 40 | 7 | 0 | 1 | 0.96 | 4 |
+| Kipchak | 40 | 4* | 0 | 0 | 1.4 | 4 |
+| Elite Kipchak | 45 | 4* | 0 | 0 | 1.4 | 4 |
+| Genoese Crossbowman | 45 | 6 | 1 | 0 | 0.96 | 4 |
+| Elite Genoese Crossbowman | 50 | 6 | 1 | 0 | 0.96 | 4 |
+| Rattan Archer | 40 | 6 | 0 | 4 | 1.1 | 4 |
+| Elite Rattan Archer | 45 | 7 | 0 | 6 | 1.1 | 4 |
+| Chakram Thrower | 40 | 3 | 0 | 0 | 1.1 | 5 |
+| Elite Chakram Thrower | 50 | 4 | 0 | 0 | 1.1 | 5 |
+
+*Multi-projectile units - fires multiple arrows per attack
+
+#### Cavalry Unique Units
+
+| Unit | HP | Attack | Melee Armor | Pierce Armor | Speed | Range |
+|------|----|----|----|----|----|----|
+| Ratha (Melee) | 105 | 10 | 0 | 3 | 1.35 | 0 |
+| Elite Ratha (Melee) | 125 | 11 | 1 | 3 | 1.35 | 0 |
+| Arambai | 60 | 12 | 0 | 0 | 1.3 | 5 |
+| Elite Arambai | 65 | 17 | 0 | 1 | 1.3 | 5 |
+| Shrivamsha Rider | 55 | 8 | 0 | 1 | 1.6 | 0 |
+| Elite Shrivamsha Rider | 70 | 11 | 0 | 1 | 1.6 | 0 |
+| Mangudai | 60 | 6 | 0 | 0 | 1.4 | 4 |
+| Elite Mangudai | 60 | 8 | 1 | 0 | 1.4 | 4 |
+| Keshik | 110 | 9 | 1 | 2 | 1.4 | 0 |
+| Elite Keshik | 140 | 11 | 1 | 2 | 1.4 | 0 |
+| Konnik (Mounted) | 110 | 12 | 2 | 1 | 1.35 | 0 |
+| Elite Konnik (Mounted) | 120 | 14 | 2 | 2 | 1.35 | 0 |
+| Coustillier | 115 | 8 | 2 | 2 | 1.35 | 0 |
+| Elite Coustillier | 145 | 11 | 2 | 2 | 1.35 | 0 |
+| Cataphract | 110 | 9 | 2 | 1 | 1.35 | 0 |
+| Elite Cataphract | 150 | 12 | 2 | 1 | 1.35 | 0 |
+| Monaspa | 120 | 12 | 2 | 1 | 1.35 | 0 |
+| Elite Monaspa | 155 | 14 | 2 | 1 | 1.35 | 0 |
+| Tarkan | 100 | 8 | 1 | 3 | 1.35 | 0 |
+| Elite Tarkan | 150 | 11 | 1 | 4 | 1.35 | 0 |
+| Leitis | 100 | 12 | 1 | 1 | 1.4 | 0 |
+| Elite Leitis | 130 | 14 | 2 | 1 | 1.4 | 0 |
+| Magyar Huszar | 70 | 9 | 0 | 2 | 1.5 | 0 |
+| Elite Magyar Huszar | 85 | 10 | 0 | 2 | 1.5 | 0 |
+| Boyar | 100 | 12 | 4 | 1 | 1.35 | 0 |
+| Elite Boyar | 150 | 14 | 6 | 2 | 1.35 | 0 |
+| Conquistador | 55 | 16 | 2 | 2 | 1.3 | 6 |
+| Elite Conquistador | 70 | 18 | 2 | 2 | 1.3 | 6 |
+| War Elephant | 450 | 15 | 1 | 2 | 0.6 | 0 |
+| Elite War Elephant | 600 | 20 | 1 | 3 | 0.6 | 0 |
+| Mameluke | 65 | 7 | 0 | 0 | 1.4 | 3 |
+| Elite Mameluke | 80 | 9 | 1 | 0 | 1.4 | 3 |
+
+#### Siege & Special Unique Units
+
+| Unit | HP | Attack | Melee Armor | Pierce Armor | Speed | Range |
+|------|----|----|----|----|----|----|
+| Ballista Elephant | 250 | 8 | 0 | 3 | 0.8 | 5 |
+| Elite Ballista Elephant | 290 | 9 | 0 | 3 | 0.8 | 5 |
+| War Wagon | 150 | 9 | 0 | 3 | 1.2 | 4 |
+| Elite War Wagon | 200 | 9 | 0 | 4 | 1.2 | 5 |
+| Hussite Wagon | 200 | 10 | 0 | 8 | 0.85 | 6 |
+| Elite Hussite Wagon | 250 | 15 | 0 | 10 | 0.85 | 6 |
+| Organ Gun | 60 | 16* | 2 | 4 | 0.85 | 7 |
+| Elite Organ Gun | 70 | 20* | 2 | 6 | 0.85 | 7 |
+| Scorpio | 40 | 8 | 0 | 7 | 0.96 | 8 |
+| Elite Scorpio | 50 | 10 | 0 | 8 | 0.96 | 8 |
+| Janissary | 35 | 17 | 1 | 0 | 0.96 | 8 |
+| Elite Janissary | 40 | 22 | 2 | 0 | 0.96 | 8 |
+| Condottiero | 80 | 10 | 1 | 0 | 1.2 | 0 |
+
+*Multi-projectile units
+
+#### Naval Unique Units
+
+| Unit | HP | Attack | Melee Armor | Pierce Armor | Speed | Range |
+|------|----|----|----|----|----|----|
+| Turtle Ship | 200 | 50 | 6 | 5 | 0.9 | 6 |
+| Elite Turtle Ship | 300 | 50 | 8 | 6 | 0.9 | 6 |
+| Longboat | 130 | 7* | 0 | 6 | 1.54 | 6 |
+| Elite Longboat | 160 | 8* | 0 | 8 | 1.54 | 7 |
+
+*Multi-projectile ships
+
+### Training Times
+
+| Unit | Training Time (seconds) | Building |
+|------|-------------------------|----------|
+| Jaguar Warrior | 17 | Castle |
+| Kamayuk | 10 | Castle |
+| Plumed Archer | 16 | Castle |
+| Camel Archer | 20 | Castle |
+| Shotel Warrior | 8 | Castle |
+| Gbeto | 17 | Castle |
+| Ratha | 18 | Castle |
+| Arambai | 21 | Castle |
+| Chu Ko Nu | 13 | Castle |
+| Urumi Swordsman | 12 | Castle |
+| Shrivamsha Rider | 20 | Castle |
+| Chakram Thrower | 15 | Castle |
+| Ghulam | 12 | Castle |
+| Samurai | 9 | Castle |
+| Ballista Elephant | 25 | Castle |
+| War Wagon | 21 | Castle |
+| Karambit Warrior | 6 | Castle |
+| Mangudai | 26 | Castle |
+| Keshik | 23 | Castle |
+| Rattan Archer | 16 | Castle |
+| Composite Bowman | 18 | Castle |
+| Hussite Wagon | 21 | Castle |
+| Longbowman | 19 | Castle |
+| Konnik | 19 | Castle |
+| Coustillier | 15 | Castle |
+| Cataphract | 20 | Castle |
+| Woad Raider | 10 | Castle |
+| Kipchak | 20 | Castle |
+| Throwing Axeman | 17 | Castle |
+| Monaspa | 16 | Castle |
+| Huskarl | 16 | Castle |
+| Tarkan | 14 | Castle |
+| Genoese Crossbowman | 18 | Castle |
+| Leitis | 20 | Castle |
+| Magyar Huszar | 16 | Castle |
+| Obuch | 9 | Castle |
+| Organ Gun | 21 | Castle |
+| Centurion | 11 | Castle |
+| Serjeant | 12 | Castle |
+| Boyar | 15 | Castle |
+| Conquistador | 24 | Castle |
+| Teutonic Knight | 19 | Castle |
+| Berserk | 14 | Castle |
+| War Elephant | 31 | Castle |
+| Mameluke | 23 | Castle |
+| Janissary | 17 | Castle |
+| Turtle Ship | 50 | Castle |
+| Longboat | 25 | Castle |
+
+### Upgrade Costs
+
+Elite upgrade costs at the Castle:
+
+| Unit | Food | Gold | Research Time (s) |
+|------|------|------|-------------------|
+| Elite Jaguar Warrior | 1000 | 500 | 45 |
+| Elite Kamayuk | 900 | 500 | 40 |
+| Elite Plumed Archer | 700 | 1000 | 50 |
+| Elite Camel Archer | 800 | 500 | 50 |
+| Elite Shotel Warrior | 1200 | 550 | 40 |
+| Elite Gbeto | 900 | 600 | 40 |
+| Elite Ratha | 1000 | 600 | 45 |
+| Elite Arambai | 1100 | 675 | 45 |
+| Elite Chu Ko Nu | 760 | 760 | 50 |
+| Elite Urumi Swordsman | 900 | 500 | 40 |
+| Elite Shrivamsha Rider | 900 | 650 | 45 |
+| Elite Chakram Thrower | 850 | 500 | 40 |
+| Elite Ghulam | 800 | 500 | 40 |
+| Elite Samurai | 950 | 875 | 60 |
+| Elite Ballista Elephant | 1100 | 800 | 50 |
+| Elite War Wagon | 1000 | 600 | 75 |
+| Elite Karambit Warrior | 1100 | 400 | 40 |
+| Elite Mangudai | 1100 | 675 | 50 |
+| Elite Keshik | 900 | 750 | 45 |
+| Elite Rattan Archer | 1000 | 750 | 45 |
+| Elite Composite Bowman | 900 | 600 | 45 |
+| Elite Hussite Wagon | 1200 | 500 | 50 |
+| Elite Longbowman | 850 | 850 | 60 |
+| Elite Konnik | 1000 | 700 | 40 |
+| Elite Coustillier | 1100 | 500 | 40 |
+| Elite Cataphract | 1600 | 800 | 50 |
+| Elite Woad Raider | 1000 | 800 | 50 |
+| Elite Kipchak | 1100 | 500 | 45 |
+| Elite Throwing Axeman | 1000 | 850 | 40 |
+| Elite Monaspa | 1000 | 700 | 45 |
+| Elite Huskarl | 1200 | 550 | 40 |
+| Elite Tarkan | 1000 | 500 | 40 |
+| Elite Genoese Crossbowman | 900 | 750 | 45 |
+| Elite Leitis | 750 | 750 | 40 |
+| Elite Magyar Huszar | 800 | 600 | 40 |
+| Elite Obuch | 700 | 600 | 40 |
+| Elite Organ Gun | 1200 | 500 | 50 |
+| Elite Centurion | 1100 | 600 | 45 |
+| Elite Serjeant | 650 | 400 | 40 |
+| Elite Boyar | 1000 | 600 | 50 |
+| Elite Conquistador | 1200 | 600 | 60 |
+| Elite Teutonic Knight | 1200 | 600 | 40 |
+| Elite Berserk | 1300 | 550 | 40 |
+| Elite War Elephant | 1600 | 1200 | 75 |
+| Elite Mameluke | 600 | 500 | 50 |
+| Elite Janissary | 850 | 750 | 55 |
+| Elite Turtle Ship | 1000 | 500 | 65 |
+| Elite Longboat | 750 | 475 | 60 |
 
 ---
 
@@ -819,6 +1069,27 @@ This comprehensive guide documents all unique units available in Age of Empires 
 
 ---
 
+### Portuguese
+
+#### Organ Gun
+- **Age:** Castle Age
+- **Cost:** 80 Wood, 70 Gold
+- **Population:** 3
+- **Strong vs:** Infantry, Archers
+- **Weak to:** Cavalry, Siege Weapons
+- **Best Use:** Multi-barreled siege weapon that fires multiple projectiles simultaneously
+- **Special Ability:** Fires spread of bullets that can hit multiple targets, excellent vs grouped units
+
+#### Elite Organ Gun
+- **Age:** Imperial Age
+- **Cost:** 80 Wood, 70 Gold
+- **Population:** 3
+- **Strong vs:** Infantry, Archers, Rams
+- **Weak to:** Cavalry, Onagers
+- **Upgrade Benefits:** Increased damage and accuracy, devastating volley fire vs massed units
+
+---
+
 ### Romans
 
 #### Centurion
@@ -1080,6 +1351,10 @@ Each unique unit listing includes:
 ---
 
 **Last Updated:** November 2025
-**Total Unique Units:** 100+ (including elite upgrades and all civilizations)
+**Version:** 2.8.0
+**Total Unique Units:** 90+ base units, 180+ including elite upgrades
+**Civilizations Covered:** 45
 
 For more information about civilization bonuses and how they affect unique units, see [CIV_BONUSES.md](CIV_BONUSES.md).
+
+For unique technologies available to each civilization, see [README.md](README.md#unique-technologies).
