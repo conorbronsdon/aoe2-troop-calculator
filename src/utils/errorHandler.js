@@ -33,5 +33,5 @@ export const logger = {
     if (import.meta.env.DEV) {
       console.debug(`[AoE2 Calculator Debug] ${message}`, data || '');
     }
-  }
+  },
 };

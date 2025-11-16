@@ -23,7 +23,7 @@ export const StorageService = {
       composition,
       config,
       createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
+      updatedAt: new Date().toISOString(),
     };
 
     saved.push(newComposition);
@@ -52,7 +52,7 @@ export const StorageService = {
    */
   getById(id) {
     const all = this.getAll();
-    return all.find(c => c.id === id) || null;
+    return all.find((c) => c.id === id) || null;
   },
 
   /**
@@ -63,14 +63,16 @@ export const StorageService = {
    */
   update(id, updates) {
     const all = this.getAll();
-    const index = all.findIndex(c => c.id === id);
+    const index = all.findIndex((c) => c.id === id);
 
-    if (index === -1) {return null;}
+    if (index === -1) {
+      return null;
+    }
 
     all[index] = {
       ...all[index],
       ...updates,
-      updatedAt: new Date().toISOString()
+      updatedAt: new Date().toISOString(),
     };
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(all));
@@ -84,9 +86,11 @@ export const StorageService = {
    */
   delete(id) {
     const all = this.getAll();
-    const filtered = all.filter(c => c.id !== id);
+    const filtered = all.filter((c) => c.id !== id);
 
-    if (filtered.length === all.length) {return false;}
+    if (filtered.length === all.length) {
+      return false;
+    }
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
     return true;
@@ -119,5 +123,5 @@ export const StorageService = {
     } catch (error) {
       return false;
     }
-  }
+  },
 };

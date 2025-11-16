@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { getUnitIcon } from '../utils/iconMappings';
 import { getUnitImagePath } from '../utils/unitImageIds';
 
@@ -16,7 +17,7 @@ const UnitIcon = ({ unitId, category, className = '', size = 'md' }) => {
     md: 'w-6 h-6',
     lg: 'w-8 h-8',
     xl: 'w-10 h-10',
-    '2xl': 'w-12 h-12'
+    '2xl': 'w-12 h-12',
   };
 
   // Size in pixels for img element
@@ -25,7 +26,7 @@ const UnitIcon = ({ unitId, category, className = '', size = 'md' }) => {
     md: 24,
     lg: 32,
     xl: 40,
-    '2xl': 48
+    '2xl': 48,
   };
 
   // Try to get the local image path
@@ -55,6 +56,13 @@ const UnitIcon = ({ unitId, category, className = '', size = 'md' }) => {
       aria-label={`${unitId} icon`}
     />
   );
+};
+
+UnitIcon.propTypes = {
+  unitId: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  size: PropTypes.oneOf(['sm', 'md', 'lg', 'xl', '2xl']),
 };
 
 export default UnitIcon;

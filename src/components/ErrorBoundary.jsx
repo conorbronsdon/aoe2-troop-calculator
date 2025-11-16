@@ -13,7 +13,7 @@ export default class ErrorBoundary extends React.Component {
     this.state = {
       hasError: false,
       error: null,
-      errorInfo: null
+      errorInfo: null,
     };
   }
 
@@ -26,7 +26,7 @@ export default class ErrorBoundary extends React.Component {
     // Log the error to our error handling service
     logger.error('Component error caught by boundary', {
       error: error.toString(),
-      componentStack: errorInfo.componentStack
+      componentStack: errorInfo.componentStack,
     });
 
     this.setState({ errorInfo });
@@ -49,9 +49,7 @@ export default class ErrorBoundary extends React.Component {
               <div className="text-5xl mb-4" role="img" aria-label="Error">
                 ⚠️
               </div>
-              <h2 className="text-xl font-bold text-red-900 mb-2">
-                Something went wrong
-              </h2>
+              <h2 className="text-xl font-bold text-red-900 mb-2">Something went wrong</h2>
               <p className="text-gray-600 mb-4">
                 An unexpected error occurred in the application. Your army composition data is safe.
               </p>
@@ -104,5 +102,5 @@ export default class ErrorBoundary extends React.Component {
 }
 
 ErrorBoundary.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };

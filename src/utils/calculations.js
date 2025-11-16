@@ -13,7 +13,7 @@ export const calculateUnitCost = (unit, civId, age) => {
   const cost = { ...unit.cost };
 
   if (civ && civ.bonuses.length > 0) {
-    civ.bonuses.forEach(bonus => {
+    civ.bonuses.forEach((bonus) => {
       if (bonus.type === 'cost') {
         // Check if this bonus applies to this unit
         const appliesToUnit = bonus.units === 'all' || bonus.units.includes(unit.id);
@@ -89,7 +89,7 @@ export const calculateFortificationCosts = (fortificationComposition, fortificat
 
   Object.entries(fortificationComposition).forEach(([fortificationId, quantity]) => {
     if (quantity > 0) {
-      const fortification = fortifications.find(f => f.id === fortificationId);
+      const fortification = fortifications.find((f) => f.id === fortificationId);
       if (fortification) {
         totalCost.food += fortification.cost.food * quantity;
         totalCost.wood += fortification.cost.wood * quantity;
@@ -111,7 +111,13 @@ export const calculateFortificationCosts = (fortificationComposition, fortificat
  * @param {Array} fortifications - Array of all fortifications
  * @returns {Object} { totalCost: { food, wood, gold, stone }, totalPopulation }
  */
-export const calculateCombinedTotals = (composition, fortificationComposition, civId, age, fortifications) => {
+export const calculateCombinedTotals = (
+  composition,
+  fortificationComposition,
+  civId,
+  age,
+  fortifications
+) => {
   const unitTotals = calculateTotals(composition, civId, age);
   const fortificationCosts = calculateFortificationCosts(fortificationComposition, fortifications);
 
@@ -120,9 +126,9 @@ export const calculateCombinedTotals = (composition, fortificationComposition, c
       food: unitTotals.totalCost.food + fortificationCosts.food,
       wood: unitTotals.totalCost.wood + fortificationCosts.wood,
       gold: unitTotals.totalCost.gold + fortificationCosts.gold,
-      stone: unitTotals.totalCost.stone + fortificationCosts.stone
+      stone: unitTotals.totalCost.stone + fortificationCosts.stone,
     },
-    totalPopulation: unitTotals.totalPopulation
+    totalPopulation: unitTotals.totalPopulation,
   };
 };
 
@@ -132,7 +138,8 @@ export const calculateCombinedTotals = (composition, fortificationComposition, c
  * @param {Object} adjustedCost - Adjusted cost after bonuses
  * @returns {boolean} True if unit has any discount
  */
-export const hasDiscount = (unit, adjustedCost) => JSON.stringify(adjustedCost) !== JSON.stringify(unit.cost);
+export const hasDiscount = (unit, adjustedCost) =>
+  JSON.stringify(adjustedCost) !== JSON.stringify(unit.cost);
 
 /**
  * Calculate resource percentage usage
@@ -141,7 +148,9 @@ export const hasDiscount = (unit, adjustedCost) => JSON.stringify(adjustedCost) 
  * @returns {number} Percentage (0-100+)
  */
 export const calculatePercentage = (used, limit) => {
-  if (limit === 0) {return 0;}
+  if (limit === 0) {
+    return 0;
+  }
   return (used / limit) * 100;
 };
 
@@ -151,8 +160,12 @@ export const calculatePercentage = (used, limit) => {
  * @returns {string} Tailwind color class
  */
 export const getResourceColor = (percentage) => {
-  if (percentage > 100) {return 'bg-red-500';}
-  if (percentage > 80) {return 'bg-yellow-500';}
+  if (percentage > 100) {
+    return 'bg-red-500';
+  }
+  if (percentage > 80) {
+    return 'bg-yellow-500';
+  }
   return 'bg-green-500';
 };
 
@@ -161,7 +174,8 @@ export const getResourceColor = (percentage) => {
  * @param {Array} units - Array of units
  * @returns {Object} Units grouped by category
  */
-export const groupUnitsByCategory = (units) => units.reduce((acc, unit) => {
+export const groupUnitsByCategory = (units) =>
+  units.reduce((acc, unit) => {
     if (!acc[unit.category]) {
       acc[unit.category] = [];
     }

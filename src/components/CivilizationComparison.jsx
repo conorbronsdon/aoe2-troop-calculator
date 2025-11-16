@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { civilizations } from '../data/civilizations';
 
 /**
@@ -16,10 +16,10 @@ const CivilizationComparison = () => {
   };
 
   const handleRemoveCiv = (civId) => {
-    setSelectedCivs(selectedCivs.filter(id => id !== civId));
+    setSelectedCivs(selectedCivs.filter((id) => id !== civId));
   };
 
-  const getCivData = (civId) => civilizations.find(civ => civ.id === civId);
+  const getCivData = (civId) => civilizations.find((civ) => civ.id === civId);
 
   if (!isOpen) {
     return (
@@ -64,8 +64,8 @@ const CivilizationComparison = () => {
         >
           <option value="">Select a civilization...</option>
           {civilizations
-            .filter(civ => !selectedCivs.includes(civ.id))
-            .map(civ => (
+            .filter((civ) => !selectedCivs.includes(civ.id))
+            .map((civ) => (
               <option key={civ.id} value={civ.id}>
                 {civ.name} ({civ.region})
               </option>
@@ -77,7 +77,7 @@ const CivilizationComparison = () => {
       {selectedCivs.length > 0 ? (
         <div className="overflow-x-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 min-w-full">
-            {selectedCivs.map(civId => {
+            {selectedCivs.map((civId) => {
               const civ = getCivData(civId);
               return (
                 <div key={civId} className="border rounded-lg p-4 bg-gray-50">
@@ -103,8 +103,8 @@ const CivilizationComparison = () => {
                     </h4>
                     {civ.bonuses.length > 0 ? (
                       <ul className="text-sm space-y-1">
-                        {civ.bonuses.map((bonus, idx) => (
-                          <li key={idx} className="flex items-start gap-2">
+                        {civ.bonuses.map((bonus) => (
+                          <li key={bonus.description} className="flex items-start gap-2">
                             <span className="text-green-600 mt-0.5">✓</span>
                             <span className="text-gray-700">{bonus.description}</span>
                           </li>

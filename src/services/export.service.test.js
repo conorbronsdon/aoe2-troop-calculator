@@ -11,40 +11,40 @@ vi.mock('../data/units', () => ({
       militia: {
         name: 'Militia',
         category: 'Infantry',
-        population: 1
+        population: 1,
       },
       archer: {
         name: 'Archer',
         category: 'Archer',
-        population: 1
+        population: 1,
       },
       knight: {
         name: 'Knight',
         category: 'Cavalry',
-        population: 1
-      }
+        population: 1,
+      },
     };
     return units[id] || null;
-  })
+  }),
 }));
 
 vi.mock('../data/civilizations', () => ({
   getCivilizationById: vi.fn((id) => {
     const civs = {
       britons: { name: 'Britons' },
-      generic: { name: 'Generic' }
+      generic: { name: 'Generic' },
     };
     return civs[id] || null;
-  })
+  }),
 }));
 
 vi.mock('../utils/calculations', () => ({
-  calculateUnitCost: vi.fn((unit) => ({
+  calculateUnitCost: vi.fn((_unit) => ({
     food: 60,
     wood: 20,
     gold: 0,
-    stone: 0
-  }))
+    stone: 0,
+  })),
 }));
 
 describe('ExportService', () => {
@@ -52,7 +52,7 @@ describe('ExportService', () => {
   const mockConfig = {
     selectedCiv: 'britons',
     selectedAge: 'imperial',
-    populationCap: 200
+    populationCap: 200,
   };
 
   beforeEach(() => {
@@ -114,7 +114,7 @@ describe('ExportService', () => {
       const csv = ExportService.toCSV(composition, mockConfig);
 
       const lines = csv.split('\n');
-      const militiaLine = lines.find(line => line.startsWith('Militia,'));
+      const militiaLine = lines.find((line) => line.startsWith('Militia,'));
       expect(militiaLine).toBeUndefined();
     });
 
@@ -154,7 +154,7 @@ describe('ExportService', () => {
 
       expect(parsed.units).toHaveLength(2);
 
-      const militia = parsed.units.find(u => u.id === 'militia');
+      const militia = parsed.units.find((u) => u.id === 'militia');
       expect(militia).toBeDefined();
       expect(militia.name).toBe('Militia');
       expect(militia.quantity).toBe(10);
@@ -194,7 +194,7 @@ describe('ExportService', () => {
         href: '',
         download: '',
         style: { display: '' },
-        click: vi.fn()
+        click: vi.fn(),
       };
 
       const mockCreateElement = vi.spyOn(document, 'createElement').mockReturnValue(mockLink);
@@ -226,7 +226,7 @@ describe('ExportService', () => {
         href: '',
         download: '',
         style: { display: '' },
-        click: vi.fn()
+        click: vi.fn(),
       };
 
       vi.spyOn(document, 'createElement').mockReturnValue(mockLink);
@@ -254,7 +254,7 @@ describe('ExportService', () => {
         href: '',
         download: '',
         style: { display: '' },
-        click: vi.fn()
+        click: vi.fn(),
       };
 
       vi.spyOn(document, 'createElement').mockReturnValue(mockLink);
@@ -280,11 +280,11 @@ describe('ExportService', () => {
   describe('copyToClipboard', () => {
     it('should copy content to clipboard', async () => {
       const mockClipboard = {
-        writeText: vi.fn().mockResolvedValue(undefined)
+        writeText: vi.fn().mockResolvedValue(undefined),
       };
       Object.defineProperty(navigator, 'clipboard', {
         value: mockClipboard,
-        writable: true
+        writable: true,
       });
 
       const result = await ExportService.copyToClipboard('test content');
@@ -295,11 +295,11 @@ describe('ExportService', () => {
 
     it('should return false on clipboard error', async () => {
       const mockClipboard = {
-        writeText: vi.fn().mockRejectedValue(new Error('Clipboard error'))
+        writeText: vi.fn().mockRejectedValue(new Error('Clipboard error')),
       };
       Object.defineProperty(navigator, 'clipboard', {
         value: mockClipboard,
-        writable: true
+        writable: true,
       });
 
       const result = await ExportService.copyToClipboard('test content');

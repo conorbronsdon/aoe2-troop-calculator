@@ -12,7 +12,7 @@ describe('ShareService', () => {
     totalResourceLimit: 20000,
     populationCap: 200,
     selectedAge: 'imperial',
-    selectedCiv: 'britons'
+    selectedCiv: 'britons',
   };
 
   beforeEach(() => {
@@ -22,7 +22,7 @@ describe('ShareService', () => {
     window.location = {
       origin: 'https://example.com',
       pathname: '/calculator',
-      search: ''
+      search: '',
     };
   });
 
@@ -56,7 +56,7 @@ describe('ShareService', () => {
     it('should handle special characters in data', () => {
       const specialConfig = {
         ...mockConfig,
-        selectedCiv: 'teutöns' // Special character
+        selectedCiv: 'teutöns', // Special character
       };
 
       const encoded = ShareService.encode(mockComposition, specialConfig);
@@ -90,7 +90,7 @@ describe('ShareService', () => {
       const data = {
         v: 999, // Unsupported version
         c: mockComposition,
-        cfg: {}
+        cfg: {},
       };
       const encoded = btoa(encodeURIComponent(JSON.stringify(data)));
 
@@ -140,11 +140,11 @@ describe('ShareService', () => {
   describe('copyToClipboard', () => {
     it('should copy URL to clipboard', async () => {
       const mockClipboard = {
-        writeText: vi.fn().mockResolvedValue(undefined)
+        writeText: vi.fn().mockResolvedValue(undefined),
       };
       Object.defineProperty(navigator, 'clipboard', {
         value: mockClipboard,
-        writable: true
+        writable: true,
       });
 
       const result = await ShareService.copyToClipboard('https://example.com');
@@ -155,11 +155,11 @@ describe('ShareService', () => {
 
     it('should return false on clipboard error', async () => {
       const mockClipboard = {
-        writeText: vi.fn().mockRejectedValue(new Error('Clipboard error'))
+        writeText: vi.fn().mockRejectedValue(new Error('Clipboard error')),
       };
       Object.defineProperty(navigator, 'clipboard', {
         value: mockClipboard,
-        writable: true
+        writable: true,
       });
 
       const result = await ShareService.copyToClipboard('https://example.com');

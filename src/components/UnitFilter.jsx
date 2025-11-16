@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { SEARCH_DEBOUNCE_MS } from '../constants';
 
 export default function UnitFilter({ onFilterChange }) {
@@ -16,24 +17,25 @@ export default function UnitFilter({ onFilterChange }) {
     { id: 'all', label: 'All Costs' },
     { id: 'trash', label: 'Trash Units (No Gold)' },
     { id: 'gold', label: 'Gold Units' },
-    { id: 'low-cost', label: 'Low Cost (<100 total)' }
+    { id: 'low-cost', label: 'Low Cost (<100 total)' },
   ];
   const ageFilters = [
     { id: 'all', label: 'All Ages' },
     { id: 'dark', label: 'Dark Age' },
     { id: 'feudal', label: 'Feudal Age' },
     { id: 'castle', label: 'Castle Age' },
-    { id: 'imperial', label: 'Imperial Age' }
+    { id: 'imperial', label: 'Imperial Age' },
   ];
 
   // Cleanup debounce timer on unmount
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       if (searchDebounceRef.current) {
         clearTimeout(searchDebounceRef.current);
       }
-    };
-  }, []);
+    },
+    []
+  );
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
@@ -52,7 +54,7 @@ export default function UnitFilter({ onFilterChange }) {
 
   const toggleCategory = (category) => {
     const newCategories = selectedCategories.includes(category)
-      ? selectedCategories.filter(c => c !== category)
+      ? selectedCategories.filter((c) => c !== category)
       : [...selectedCategories, category];
     setSelectedCategories(newCategories);
     updateFilters({ categories: newCategories });
@@ -80,7 +82,7 @@ export default function UnitFilter({ onFilterChange }) {
       categories: changes.categories !== undefined ? changes.categories : selectedCategories,
       costType: changes.costType !== undefined ? changes.costType : selectedCostType,
       ageFilter: changes.ageFilter !== undefined ? changes.ageFilter : selectedAgeFilter,
-      hideNaval: changes.hideNaval !== undefined ? changes.hideNaval : hideNaval
+      hideNaval: changes.hideNaval !== undefined ? changes.hideNaval : hideNaval,
     };
     onFilterChange(filters);
   };
@@ -95,10 +97,21 @@ export default function UnitFilter({ onFilterChange }) {
     setSelectedCostType('all');
     setSelectedAgeFilter('all');
     setHideNaval(false);
-    onFilterChange({ searchTerm: '', categories: [], costType: 'all', ageFilter: 'all', hideNaval: false });
+    onFilterChange({
+      searchTerm: '',
+      categories: [],
+      costType: 'all',
+      ageFilter: 'all',
+      hideNaval: false,
+    });
   };
 
-  const hasActiveFilters = searchTerm || selectedCategories.length > 0 || selectedCostType !== 'all' || selectedAgeFilter !== 'all' || hideNaval;
+  const hasActiveFilters =
+    searchTerm ||
+    selectedCategories.length > 0 ||
+    selectedCostType !== 'all' ||
+    selectedAgeFilter !== 'all' ||
+    hideNaval;
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-4 mb-4">
@@ -145,7 +158,7 @@ export default function UnitFilter({ onFilterChange }) {
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-700 mb-2">Categories</label>
         <div className="flex flex-wrap gap-2">
-          {categories.map(category => (
+          {categories.map((category) => (
             <button
               key={category}
               onClick={() => toggleCategory(category)}
@@ -171,8 +184,10 @@ export default function UnitFilter({ onFilterChange }) {
             onChange={(e) => handleCostTypeChange(e.target.value)}
             className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            {costTypes.map(type => (
-              <option key={type.id} value={type.id}>{type.label}</option>
+            {costTypes.map((type) => (
+              <option key={type.id} value={type.id}>
+                {type.label}
+              </option>
             ))}
           </select>
         </div>
@@ -185,8 +200,10 @@ export default function UnitFilter({ onFilterChange }) {
             onChange={(e) => handleAgeFilterChange(e.target.value)}
             className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            {ageFilters.map(age => (
-              <option key={age.id} value={age.id}>{age.label}</option>
+            {ageFilters.map((age) => (
+              <option key={age.id} value={age.id}>
+                {age.label}
+              </option>
             ))}
           </select>
         </div>
@@ -194,3 +211,7 @@ export default function UnitFilter({ onFilterChange }) {
     </div>
   );
 }
+
+UnitFilter.propTypes = {
+  onFilterChange: PropTypes.func.isRequired,
+};

@@ -1,4 +1,5 @@
-import React, { createContext, useReducer, useContext, useEffect } from 'react';
+import { createContext, useReducer, useContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { logger } from '../utils/errorHandler';
 
 const ArmyContext = createContext();
@@ -17,11 +18,11 @@ const initialState = {
     selectedCiv: 'generic', // The applied civilization (affects calculations)
     previewCiv: 'generic', // The civilization being previewed in the dropdown
     displayMode: 'units', // Display mode: 'units', 'both', or 'fortifications'
-    showTechPanel: false // Whether to show the technology panel (default hidden)
+    showTechPanel: false, // Whether to show the technology panel (default hidden)
   },
   savedCompositions: [],
   comparisonMode: false,
-  comparisonArmies: { a: {}, b: {} }
+  comparisonArmies: { a: {}, b: {} },
 };
 
 // Action types
@@ -47,7 +48,7 @@ export const ACTION_TYPES = {
   SET_RESEARCHED_TECHS: 'SET_RESEARCHED_TECHS',
   RESET_TECHS: 'RESET_TECHS',
   // Deprecated - kept for backwards compatibility
-  TOGGLE_FORTIFICATION_MODE: 'TOGGLE_FORTIFICATION_MODE'
+  TOGGLE_FORTIFICATION_MODE: 'TOGGLE_FORTIFICATION_MODE',
 };
 
 // Reducer function
@@ -58,8 +59,8 @@ function armyReducer(state, action) {
         ...state,
         composition: {
           ...state.composition,
-          [action.unitId]: (state.composition[action.unitId] || 0) + 1
-        }
+          [action.unitId]: (state.composition[action.unitId] || 0) + 1,
+        },
       };
 
     case ACTION_TYPES.REMOVE_UNIT: {
@@ -70,7 +71,7 @@ function armyReducer(state, action) {
       }
       return {
         ...state,
-        composition: { ...state.composition, [action.unitId]: newQuantity }
+        composition: { ...state.composition, [action.unitId]: newQuantity },
       };
     }
 
@@ -82,7 +83,7 @@ function armyReducer(state, action) {
       }
       return {
         ...state,
-        composition: { ...state.composition, [action.unitId]: num }
+        composition: { ...state.composition, [action.unitId]: num },
       };
     }
 
@@ -94,19 +95,26 @@ function armyReducer(state, action) {
         ...state,
         fortificationComposition: {
           ...state.fortificationComposition,
-          [action.fortificationId]: (state.fortificationComposition[action.fortificationId] || 0) + 1
-        }
+          [action.fortificationId]:
+            (state.fortificationComposition[action.fortificationId] || 0) + 1,
+        },
       };
 
     case ACTION_TYPES.REMOVE_FORTIFICATION: {
-      const newQuantity = Math.max(0, (state.fortificationComposition[action.fortificationId] || 0) - 1);
+      const newQuantity = Math.max(
+        0,
+        (state.fortificationComposition[action.fortificationId] || 0) - 1
+      );
       if (newQuantity === 0) {
         const { [action.fortificationId]: _, ...rest } = state.fortificationComposition;
         return { ...state, fortificationComposition: rest };
       }
       return {
         ...state,
-        fortificationComposition: { ...state.fortificationComposition, [action.fortificationId]: newQuantity }
+        fortificationComposition: {
+          ...state.fortificationComposition,
+          [action.fortificationId]: newQuantity,
+        },
       };
     }
 
@@ -118,7 +126,10 @@ function armyReducer(state, action) {
       }
       return {
         ...state,
-        fortificationComposition: { ...state.fortificationComposition, [action.fortificationId]: num }
+        fortificationComposition: {
+          ...state.fortificationComposition,
+          [action.fortificationId]: num,
+        },
       };
     }
 
@@ -130,8 +141,8 @@ function armyReducer(state, action) {
         ...state,
         config: {
           ...state.config,
-          displayMode: action.mode
-        }
+          displayMode: action.mode,
+        },
       };
 
     case ACTION_TYPES.TOGGLE_FORTIFICATION_MODE:
@@ -140,33 +151,33 @@ function armyReducer(state, action) {
         ...state,
         config: {
           ...state.config,
-          displayMode: state.config.displayMode === 'fortifications' ? 'units' : 'fortifications'
-        }
+          displayMode: state.config.displayMode === 'fortifications' ? 'units' : 'fortifications',
+        },
       };
 
     case ACTION_TYPES.UPDATE_CONFIG:
       return {
         ...state,
-        config: { ...state.config, ...action.config }
+        config: { ...state.config, ...action.config },
       };
 
     case ACTION_TYPES.LOAD_COMPOSITION:
       return {
         ...state,
         composition: action.composition,
-        config: action.config || state.config
+        config: action.config || state.config,
       };
 
     case ACTION_TYPES.SET_SAVED_COMPOSITIONS:
       return {
         ...state,
-        savedCompositions: action.compositions
+        savedCompositions: action.compositions,
       };
 
     case ACTION_TYPES.TOGGLE_COMPARISON_MODE:
       return {
         ...state,
-        comparisonMode: !state.comparisonMode
+        comparisonMode: !state.comparisonMode,
       };
 
     case ACTION_TYPES.UPDATE_COMPARISON_ARMY:
@@ -174,8 +185,8 @@ function armyReducer(state, action) {
         ...state,
         comparisonArmies: {
           ...state.comparisonArmies,
-          [action.side]: action.composition
-        }
+          [action.side]: action.composition,
+        },
       };
 
     case ACTION_TYPES.APPLY_CIVILIZATION:
@@ -184,8 +195,8 @@ function armyReducer(state, action) {
         config: {
           ...state.config,
           selectedCiv: action.civId,
-          previewCiv: action.civId
-        }
+          previewCiv: action.civId,
+        },
       };
 
     case ACTION_TYPES.RESEARCH_TECH:
@@ -194,25 +205,25 @@ function armyReducer(state, action) {
       }
       return {
         ...state,
-        researchedTechs: [...state.researchedTechs, action.techId]
+        researchedTechs: [...state.researchedTechs, action.techId],
       };
 
     case ACTION_TYPES.UNRESEARCH_TECH:
       return {
         ...state,
-        researchedTechs: state.researchedTechs.filter(id => id !== action.techId)
+        researchedTechs: state.researchedTechs.filter((id) => id !== action.techId),
       };
 
     case ACTION_TYPES.SET_RESEARCHED_TECHS:
       return {
         ...state,
-        researchedTechs: action.techIds || []
+        researchedTechs: action.techIds || [],
       };
 
     case ACTION_TYPES.RESET_TECHS:
       return {
         ...state,
-        researchedTechs: []
+        researchedTechs: [],
       };
 
     default:
@@ -232,12 +243,12 @@ export function ArmyProvider({ children }) {
     logger.debug('Army state updated', state);
   }, [state]);
 
-  return (
-    <ArmyContext.Provider value={{ state, dispatch }}>
-      {children}
-    </ArmyContext.Provider>
-  );
+  return <ArmyContext.Provider value={{ state, dispatch }}>{children}</ArmyContext.Provider>;
 }
+
+ArmyProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 /**
  * Custom hook to use Army context

@@ -22,8 +22,8 @@ export const ShareService = {
         total: config.totalResourceLimit,
         pop: config.populationCap,
         age: config.selectedAge,
-        civ: config.selectedCiv
-      }
+        civ: config.selectedCiv,
+      },
     };
 
     try {
@@ -59,8 +59,8 @@ export const ShareService = {
           totalResourceLimit: data.cfg.total,
           populationCap: data.cfg.pop,
           selectedAge: data.cfg.age,
-          selectedCiv: data.cfg.civ
-        }
+          selectedCiv: data.cfg.civ,
+        },
       };
     } catch (error) {
       logger.error('Failed to decode composition', error);
@@ -76,7 +76,9 @@ export const ShareService = {
    */
   generateUrl(composition, config) {
     const encoded = this.encode(composition, config);
-    if (!encoded) {return null;}
+    if (!encoded) {
+      return null;
+    }
 
     const baseUrl = window.location.origin + window.location.pathname;
     return `${baseUrl}?army=${encoded}`;
@@ -105,8 +107,10 @@ export const ShareService = {
     const params = new URLSearchParams(window.location.search);
     const armyData = params.get('army');
 
-    if (!armyData) {return null;}
+    if (!armyData) {
+      return null;
+    }
 
     return this.decode(armyData);
-  }
+  },
 };

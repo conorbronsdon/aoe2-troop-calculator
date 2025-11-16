@@ -26,7 +26,20 @@ export const ExportService = {
       ['Population Cap', config.populationCap],
       ['Export Date', new Date().toLocaleDateString()],
       [''],
-      ['Unit', 'Quantity', 'Food (each)', 'Wood (each)', 'Gold (each)', 'Stone (each)', 'Population (each)', 'Total Food', 'Total Wood', 'Total Gold', 'Total Stone', 'Total Pop']
+      [
+        'Unit',
+        'Quantity',
+        'Food (each)',
+        'Wood (each)',
+        'Gold (each)',
+        'Stone (each)',
+        'Population (each)',
+        'Total Food',
+        'Total Wood',
+        'Total Gold',
+        'Total Stone',
+        'Total Pop',
+      ],
     ];
 
     const totals = {
@@ -35,7 +48,7 @@ export const ExportService = {
       wood: 0,
       gold: 0,
       stone: 0,
-      population: 0
+      population: 0,
     };
 
     Object.entries(composition).forEach(([unitId, quantity]) => {
@@ -56,7 +69,7 @@ export const ExportService = {
             cost.wood * quantity,
             cost.gold * quantity,
             cost.stone * quantity,
-            unit.population * quantity
+            unit.population * quantity,
           ]);
 
           totals.units += quantity;
@@ -83,20 +96,24 @@ export const ExportService = {
       totals.wood,
       totals.gold,
       totals.stone,
-      totals.population
+      totals.population,
     ]);
 
     // Convert to CSV string
-    return rows.map(row =>
-      row.map(cell => {
-        // Escape cells containing commas or quotes
-        const cellStr = String(cell);
-        if (cellStr.includes(',') || cellStr.includes('"') || cellStr.includes('\n')) {
-          return `"${cellStr.replace(/"/g, '""')}"`;
-        }
-        return cellStr;
-      }).join(',')
-    ).join('\n');
+    return rows
+      .map((row) =>
+        row
+          .map((cell) => {
+            // Escape cells containing commas or quotes
+            const cellStr = String(cell);
+            if (cellStr.includes(',') || cellStr.includes('"') || cellStr.includes('\n')) {
+              return `"${cellStr.replace(/"/g, '""')}"`;
+            }
+            return cellStr;
+          })
+          .join(',')
+      )
+      .join('\n');
   },
 
   /**
@@ -153,7 +170,7 @@ export const ExportService = {
       wood: 0,
       gold: 0,
       stone: 0,
-      population: 0
+      population: 0,
     };
 
     Object.entries(composition).forEach(([unitId, quantity]) => {
@@ -171,16 +188,16 @@ export const ExportService = {
               food: cost.food,
               wood: cost.wood,
               gold: cost.gold,
-              stone: cost.stone
+              stone: cost.stone,
             },
             populationPerUnit: unit.population,
             totalCost: {
               food: cost.food * quantity,
               wood: cost.wood * quantity,
               gold: cost.gold * quantity,
-              stone: cost.stone * quantity
+              stone: cost.stone * quantity,
             },
-            totalPopulation: unit.population * quantity
+            totalPopulation: unit.population * quantity,
           });
 
           totals.units += quantity;
@@ -200,10 +217,10 @@ export const ExportService = {
         civilizationId: config.selectedCiv,
         age: config.selectedAge,
         populationCap: config.populationCap,
-        version: APP_VERSION
+        version: APP_VERSION,
       },
       units,
-      totals
+      totals,
     };
 
     return JSON.stringify(exportData, null, 2);
@@ -230,5 +247,5 @@ export const ExportService = {
     document.body.removeChild(link);
 
     URL.revokeObjectURL(url);
-  }
+  },
 };

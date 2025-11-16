@@ -20,13 +20,13 @@ export const initializeAnalytics = (measurementId) => {
 
   // Initialize dataLayer
   window.dataLayer = window.dataLayer || [];
-  window.gtag = function() {
+  window.gtag = function () {
     window.dataLayer.push(arguments);
   };
   window.gtag('js', new Date());
   window.gtag('config', measurementId, {
     send_page_view: true,
-    cookie_flags: 'SameSite=None;Secure'
+    cookie_flags: 'SameSite=None;Secure',
   });
 };
 
@@ -50,7 +50,7 @@ export const trackCivilizationSelect = (civilizationId, civilizationName) => {
   trackEvent('civilization_selected', {
     civilization_id: civilizationId,
     civilization_name: civilizationName,
-    event_category: 'engagement'
+    event_category: 'engagement',
   });
 };
 
@@ -65,7 +65,7 @@ export const trackUnitAdded = (unitId, unitName, quantity) => {
     unit_id: unitId,
     unit_name: unitName,
     quantity,
-    event_category: 'engagement'
+    event_category: 'engagement',
   });
 };
 
@@ -76,7 +76,7 @@ export const trackUnitAdded = (unitId, unitName, quantity) => {
 export const trackArmySave = (method) => {
   trackEvent('army_saved', {
     save_method: method,
-    event_category: 'conversion'
+    event_category: 'conversion',
   });
 };
 
@@ -87,7 +87,7 @@ export const trackArmySave = (method) => {
 export const trackArmyLoad = (method) => {
   trackEvent('army_loaded', {
     load_method: method,
-    event_category: 'engagement'
+    event_category: 'engagement',
   });
 };
 
@@ -99,7 +99,7 @@ export const trackSocialShare = (platform) => {
   trackEvent('share', {
     method: platform,
     content_type: 'army_calculator',
-    event_category: 'engagement'
+    event_category: 'engagement',
   });
 };
 
@@ -110,7 +110,7 @@ export const trackSocialShare = (platform) => {
 export const trackExport = (format) => {
   trackEvent('export', {
     export_format: format,
-    event_category: 'conversion'
+    event_category: 'conversion',
   });
 };
 
@@ -120,7 +120,7 @@ export const trackExport = (format) => {
 export const trackDonationClick = () => {
   trackEvent('donation_click', {
     event_category: 'conversion',
-    event_label: 'buy_me_coffee'
+    event_label: 'buy_me_coffee',
   });
 };
 
@@ -131,7 +131,7 @@ export const trackDonationClick = () => {
 export const trackAgeChange = (age) => {
   trackEvent('age_changed', {
     age,
-    event_category: 'engagement'
+    event_category: 'engagement',
   });
 };
 
@@ -142,6 +142,6 @@ export const trackAgeChange = (age) => {
 export const trackResourceModeChange = (mode) => {
   trackEvent('resource_mode_changed', {
     mode,
-    event_category: 'engagement'
+    event_category: 'engagement',
   });
 };

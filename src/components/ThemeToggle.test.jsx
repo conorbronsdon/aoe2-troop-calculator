@@ -3,7 +3,6 @@
  */
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import React from 'react';
 import ThemeToggle from './ThemeToggle';
 import { ThemeProvider } from '../context/ThemeContext';
 
@@ -126,10 +125,11 @@ describe('ThemeToggle', () => {
 
       // Initially shows moon icon (to switch to dark)
       let svg = button.querySelector('svg');
-      let paths = svg.querySelectorAll('path');
+      const paths = svg.querySelectorAll('path');
       expect(paths).toHaveLength(1);
       // Moon icon doesn't have fillRule
-      const initialHasFillRule = paths[0].hasAttribute('fillRule') || paths[0].hasAttribute('fill-rule');
+      const initialHasFillRule =
+        paths[0].hasAttribute('fillRule') || paths[0].hasAttribute('fill-rule');
       expect(initialHasFillRule).toBe(false);
 
       // Click to toggle

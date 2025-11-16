@@ -247,11 +247,14 @@ npm run test:watch
 npm run test:coverage
 ```
 
-### Test Coverage
+### Test Coverage (256 Tests)
+- **Unit Data** (59 tests): Validation for all 100+ units
+- **Component Tests** (134 tests): UnitCard, UnitFilter, ResourceCost, ThemeToggle, ErrorBoundary
+- **Service Tests** (54 tests): Export, Storage, Share services
+- **Utility Tests** (29 tests): Cost calculations with civilization bonuses
 - Unit filtering by civilization and age
-- Cost calculation with bonuses
-- Data validation for units and civilizations
-- Component rendering tests
+- Component rendering and user interaction tests
+- Error handling and edge cases
 
 ## 📊 Data Accuracy
 
@@ -282,6 +285,7 @@ All unit costs, population values, and civilization bonuses are based on Age of 
 - ✅ **Unit Search & Filter System** (search, category filters, cost filters, age filters)
 - ✅ **Unit Counter Visualization** (Strong Against/Weak To badges on unit cards)
 - ✅ **Advanced Bonus Filtering** (search, type filters, active-only toggle)
+- ✅ **Technology/Upgrade System** (Blacksmith upgrades with stat calculations)
 
 </details>
 
@@ -298,10 +302,10 @@ All unit costs, population values, and civilization bonuses are based on Age of 
 - [ ] Show stat comparisons between civilizations
 - [ ] Highlight which bonuses are active for current army
 
-### 3. Technology System
-- [ ] Add Blacksmith upgrades
-- [ ] Include unique technologies
-- [ ] Calculate upgraded unit stats
+### 3. Advanced Technology System
+- [ ] Include unique technologies (civ-specific techs)
+- [ ] Add more comprehensive technology effects
+- [ ] Expand stat display beyond base stats
 
 ### 4. Team Bonus System
 - [ ] Select allied civilizations for team games
@@ -421,7 +425,7 @@ Found a bug or have a suggestion?
 ![Last Updated](https://img.shields.io/badge/Last_Updated-November_2025-blue?style=flat)
 ![Status](https://img.shields.io/badge/Status-Production_Ready-success?style=flat)
 
-**100+ Units • 101 Unique Units • 51 Civilizations • Unit Search & Filters • Counter Visualization • 142 Tests**
+**100+ Units • 101 Unique Units • 51 Civilizations • Unit Search & Filters • Counter Visualization • 256 Tests**
 
 ---
 

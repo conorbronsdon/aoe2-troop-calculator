@@ -3,7 +3,6 @@
  */
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import React from 'react';
 import ResourceCost from './ResourceCost';
 
 describe('ResourceCost', () => {
@@ -11,14 +10,14 @@ describe('ResourceCost', () => {
     food: 60,
     wood: 20,
     gold: 0,
-    stone: 0
+    stone: 0,
   };
 
   const fullCost = {
     food: 100,
     wood: 50,
     gold: 75,
-    stone: 25
+    stone: 25,
   };
 
   describe('Basic rendering', () => {
@@ -123,13 +122,7 @@ describe('ResourceCost', () => {
   describe('Discount display', () => {
     it('should show discounted price without strikethrough when showDiscount is false', () => {
       const discountedCost = { food: 50, wood: 20, gold: 0, stone: 0 };
-      render(
-        <ResourceCost
-          cost={discountedCost}
-          baseCost={baseCost}
-          showDiscount={false}
-        />
-      );
+      render(<ResourceCost cost={discountedCost} baseCost={baseCost} showDiscount={false} />);
 
       expect(screen.getByText('50')).toBeInTheDocument();
       expect(screen.queryByText('60')).not.toBeInTheDocument();
@@ -137,13 +130,7 @@ describe('ResourceCost', () => {
 
     it('should show original price with strikethrough when discount is applied', () => {
       const discountedCost = { food: 50, wood: 20, gold: 0, stone: 0 };
-      render(
-        <ResourceCost
-          cost={discountedCost}
-          baseCost={baseCost}
-          showDiscount={true}
-        />
-      );
+      render(<ResourceCost cost={discountedCost} baseCost={baseCost} showDiscount={true} />);
 
       expect(screen.getByText('50')).toBeInTheDocument();
       expect(screen.getByText('60')).toBeInTheDocument();
@@ -152,11 +139,7 @@ describe('ResourceCost', () => {
     it('should apply green color class to discounted prices', () => {
       const discountedCost = { food: 50, wood: 20, gold: 0, stone: 0 };
       const { container } = render(
-        <ResourceCost
-          cost={discountedCost}
-          baseCost={baseCost}
-          showDiscount={true}
-        />
+        <ResourceCost cost={discountedCost} baseCost={baseCost} showDiscount={true} />
       );
 
       const greenText = container.querySelector('.text-green-600');
@@ -166,11 +149,7 @@ describe('ResourceCost', () => {
     it('should apply strikethrough class to original price', () => {
       const discountedCost = { food: 50, wood: 20, gold: 0, stone: 0 };
       const { container } = render(
-        <ResourceCost
-          cost={discountedCost}
-          baseCost={baseCost}
-          showDiscount={true}
-        />
+        <ResourceCost cost={discountedCost} baseCost={baseCost} showDiscount={true} />
       );
 
       const strikethrough = container.querySelector('.line-through');
@@ -181,11 +160,7 @@ describe('ResourceCost', () => {
     it('should not show discount for resources with same price', () => {
       const sameWoodCost = { food: 50, wood: 20, gold: 0, stone: 0 };
       const { container } = render(
-        <ResourceCost
-          cost={sameWoodCost}
-          baseCost={baseCost}
-          showDiscount={true}
-        />
+        <ResourceCost cost={sameWoodCost} baseCost={baseCost} showDiscount={true} />
       );
 
       // Wood cost is same (20), so should not have strikethrough
@@ -198,11 +173,7 @@ describe('ResourceCost', () => {
       const originalCost = { food: 100, wood: 50, gold: 75, stone: 25 };
 
       const { container } = render(
-        <ResourceCost
-          cost={multiDiscount}
-          baseCost={originalCost}
-          showDiscount={true}
-        />
+        <ResourceCost cost={multiDiscount} baseCost={originalCost} showDiscount={true} />
       );
 
       const strikethroughs = container.querySelectorAll('.line-through');
@@ -217,13 +188,7 @@ describe('ResourceCost', () => {
 
     it('should include aria-label for original cost', () => {
       const discountedCost = { food: 50, wood: 20, gold: 0, stone: 0 };
-      render(
-        <ResourceCost
-          cost={discountedCost}
-          baseCost={baseCost}
-          showDiscount={true}
-        />
-      );
+      render(<ResourceCost cost={discountedCost} baseCost={baseCost} showDiscount={true} />);
 
       const originalCostLabel = screen.getByLabelText('Original cost 60');
       expect(originalCostLabel).toBeInTheDocument();

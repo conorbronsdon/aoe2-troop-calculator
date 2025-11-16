@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { getUnitById } from '../data/units';
 import { calculateUnitCost } from '../utils/calculations';
@@ -105,14 +105,16 @@ export default function ArmyCompositionSummary() {
       <div className="space-y-2">
         {compositionEntries.map(([unitId, quantity]) => {
           const unit = getUnitById(unitId);
-          if (!unit) {return null;}
+          if (!unit) {
+            return null;
+          }
 
           const adjustedCost = calculateUnitCost(unit, config.selectedCiv, config.selectedAge);
           const totalUnitCost = {
             food: adjustedCost.food * quantity,
             wood: adjustedCost.wood * quantity,
             gold: adjustedCost.gold * quantity,
-            stone: adjustedCost.stone * quantity
+            stone: adjustedCost.stone * quantity,
           };
 
           return (

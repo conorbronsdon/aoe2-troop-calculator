@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { StorageService } from '../services/storage.service';
 
@@ -41,7 +41,7 @@ export default function SaveLoadPanel() {
     dispatch({
       type: ACTION_TYPES.LOAD_COMPOSITION,
       composition: saved.composition,
-      config: saved.config
+      config: saved.config,
     });
     setMessage(`✓ Loaded: ${saved.name}`);
     setTimeout(() => setMessage(''), 2000);
@@ -76,18 +76,12 @@ export default function SaveLoadPanel() {
         )}
       </div>
 
-      {message && (
-        <div className="mb-4 text-sm text-center text-green-600">
-          {message}
-        </div>
-      )}
+      {message && <div className="mb-4 text-sm text-center text-green-600">{message}</div>}
 
       {/* Save Dialog */}
       {showSaveDialog && (
         <div className="mb-4 p-4 border rounded bg-gray-50">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Composition Name
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Composition Name</label>
           <div className="flex gap-2">
             <input
               type="text"
@@ -120,7 +114,8 @@ export default function SaveLoadPanel() {
       {/* Saved Compositions List */}
       {savedCompositions.length === 0 ? (
         <p className="text-gray-500 text-center py-4">
-          No saved compositions yet. Build an army and click &quot;Save Current&quot; to get started!
+          No saved compositions yet. Build an army and click &quot;Save Current&quot; to get
+          started!
         </p>
       ) : (
         <div className="space-y-2">
