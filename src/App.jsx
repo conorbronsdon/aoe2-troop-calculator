@@ -16,7 +16,6 @@ import SocialShareButtons from './components/SocialShareButtons';
 import BuyMeCoffee from './components/BuyMeCoffee';
 import CivilizationComparison from './components/CivilizationComparison';
 import ThemeToggle from './components/ThemeToggle';
-import CompactResourceBar from './components/CompactResourceBar';
 import { units } from './data/units';
 import { civilizations } from './data/civilizations';
 import { validateGameData } from './utils/validators';
@@ -59,132 +58,133 @@ function AppContent() {
   }, [dispatch]);
 
   return (
-    <div className="container mx-auto p-4 max-w-7xl pb-24">
-      <ThemeToggle />
-
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-purple-900 dark:from-gray-900 dark:via-gray-800 dark:to-purple-950 text-white rounded-xl shadow-2xl p-8 mb-8 transition-colors duration-300">
-        <div className="text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-3">
-            AoE2: Definitive Edition Army Calculator
-          </h1>
-          <p className="text-lg md:text-xl mb-6 text-blue-100 dark:text-gray-300">
-            100+ units · 51 civilizations · Fortifications · Accurate bonuses · Tech tree
-            restrictions
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-4">
-            <a
-              href="#calculator"
-              className="bg-white text-blue-900 dark:bg-gray-100 dark:text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 dark:hover:bg-white transition-all transform hover:scale-105 shadow-lg"
-            >
-              Start Planning
-            </a>
-            <a
-              href="https://github.com/conorbronsdon/aoe2-troop-calculator"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border-2 border-white dark:border-gray-400 px-8 py-3 rounded-lg font-semibold hover:bg-white/10 dark:hover:bg-gray-700/50 transition-all flex items-center gap-2"
-            >
-              <FaGithub className="w-5 h-5" />
-              View on GitHub
-            </a>
-          </div>
-          <div className="flex justify-center items-center gap-2 text-sm text-blue-200 dark:text-gray-400">
-            <FaStar className="w-4 h-4 text-yellow-300 dark:text-yellow-400" />
-            <span>Star us on GitHub if you find this useful!</span>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+      {/* Compact Header */}
+      <header className="bg-gradient-to-r from-blue-900 via-blue-800 to-purple-900 dark:from-gray-900 dark:via-gray-800 dark:to-purple-950 text-white shadow-lg">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+            <div>
+              <h1 className="text-2xl lg:text-3xl font-bold">
+                AoE2 Army Calculator
+              </h1>
+              <p className="text-sm text-blue-100 dark:text-gray-300">
+                100+ units · 51 civilizations · Accurate bonuses
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
+              <a
+                href="https://github.com/conorbronsdon/aoe2-troop-calculator"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors"
+              >
+                <FaGithub className="w-4 h-4" />
+                <span className="hidden sm:inline">GitHub</span>
+                <FaStar className="w-3 h-3 text-yellow-300" />
+              </a>
+              <SocialShareButtons />
+            </div>
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* Social Share Buttons */}
-      <SocialShareButtons />
+      {/* Main Two-Column Layout */}
+      <div className="container mx-auto px-4 py-6">
+        <div className="flex flex-col lg:flex-row gap-6" id="calculator">
+          {/* Left Sidebar - Configuration & Status */}
+          <aside className="lg:w-96 xl:w-[420px] flex-shrink-0">
+            <div className="lg:sticky lg:top-4 space-y-4 max-h-[calc(100vh-2rem)] lg:overflow-y-auto lg:pr-2">
+              <ConfigurationPanel />
+              <CivilizationIndicator />
+              <ResourceTracker />
+              <CivilizationBonuses />
+              {config.showTechPanel && <TechnologyPanel />}
+              <CivilizationComparison />
+              <PresetSelector />
+            </div>
+          </aside>
 
-      <div id="calculator">
-        <ConfigurationPanel />
-      </div>
-      <CivilizationIndicator />
-      <CivilizationBonuses />
-      {config.showTechPanel && <TechnologyPanel />}
-      <CivilizationComparison />
-      <ResourceTracker />
-      <PresetSelector />
+          {/* Main Content Area - Unit Selection & Army */}
+          <main className="flex-1 min-w-0">
+            {/* Conditionally show Units and/or Fortifications based on display mode */}
+            {(config.displayMode === 'units' || config.displayMode === 'both') && <UnitSelection />}
+            {(config.displayMode === 'fortifications' || config.displayMode === 'both') && (
+              <FortificationSelection />
+            )}
 
-      {/* Conditionally show Units and/or Fortifications based on display mode */}
-      {(config.displayMode === 'units' || config.displayMode === 'both') && <UnitSelection />}
-      {(config.displayMode === 'fortifications' || config.displayMode === 'both') && (
-        <FortificationSelection />
-      )}
+            <ArmyCompositionSummary />
 
-      <ArmyCompositionSummary />
+            {/* Buy Me a Coffee CTA */}
+            <BuyMeCoffee />
 
-      {/* Compact Resource Tracker at Bottom */}
-      <CompactResourceBar />
-
-      {/* Buy Me a Coffee CTA */}
-      <BuyMeCoffee />
-
-      {/* Saved Compositions - moved to bottom for better UX */}
-      <div id="saved-compositions" className="mt-8">
-        <SaveLoadPanel />
+            {/* Saved Compositions */}
+            <div id="saved-compositions" className="mt-6">
+              <SaveLoadPanel />
+            </div>
+          </main>
+        </div>
       </div>
 
       {/* Footer */}
-      <div className="mt-8 border-t border-gray-200 dark:border-gray-700 pt-6">
-        <div className="text-center mb-4">
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-            Created by{' '}
-            <a
-              href="https://conorbronsdon.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
-            >
-              Conor Bronsdon
-            </a>
-          </p>
-          <div className="flex justify-center items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
-            <a
-              href="https://github.com/conorbronsdon/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            >
-              GitHub
-            </a>
-            <span className="text-gray-300 dark:text-gray-600">•</span>
-            <a
-              href="https://x.com/ConorBronsdon"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            >
-              Twitter
-            </a>
-            <span className="text-gray-300 dark:text-gray-600">•</span>
-            <a
-              href="https://www.linkedin.com/in/conorbronsdon/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            >
-              LinkedIn
-            </a>
-            <span className="text-gray-300 dark:text-gray-600">•</span>
-            <a
-              href="https://conorbronsdon.substack.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            >
-              Substack
-            </a>
+      <footer className="mt-12 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+        <div className="container mx-auto px-4 py-6">
+          <div className="text-center mb-4">
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+              Created by{' '}
+              <a
+                href="https://conorbronsdon.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
+              >
+                Conor Bronsdon
+              </a>
+            </p>
+            <div className="flex justify-center items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
+              <a
+                href="https://github.com/conorbronsdon/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                GitHub
+              </a>
+              <span className="text-gray-300 dark:text-gray-600">•</span>
+              <a
+                href="https://x.com/ConorBronsdon"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                Twitter
+              </a>
+              <span className="text-gray-300 dark:text-gray-600">•</span>
+              <a
+                href="https://www.linkedin.com/in/conorbronsdon/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                LinkedIn
+              </a>
+              <span className="text-gray-300 dark:text-gray-600">•</span>
+              <a
+                href="https://conorbronsdon.substack.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                Substack
+              </a>
+            </div>
+          </div>
+          <div className="text-center text-sm text-gray-500 dark:text-gray-400">
+            <p>Age of Empires II © Microsoft Corporation</p>
+            <p className="mt-1">Built for AoE2 players | Inspired by pro player strategies</p>
           </div>
         </div>
-        <div className="text-center text-sm text-gray-500 dark:text-gray-400">
-          <p>Age of Empires II © Microsoft Corporation</p>
-          <p className="mt-2">Built for AoE2 players | Inspired by pro player strategies</p>
-        </div>
-      </div>
+      </footer>
     </div>
   );
 }

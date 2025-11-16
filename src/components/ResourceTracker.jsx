@@ -124,51 +124,47 @@ export default function ResourceTracker() {
 
   return (
     <div
-      className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-6 mb-6 border border-gray-200 dark:border-gray-700"
+      className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 transition-colors duration-300"
       role="region"
       aria-label="Resource Tracker"
     >
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 flex items-center gap-2">
-          <span className="text-3xl" role="img" aria-label="Resources">💎</span>
-          Resource Tracker
+      <div className="flex items-center justify-between mb-3">
+        <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100 flex items-center gap-1.5">
+          <span role="img" aria-label="Resources">💎</span>
+          Resources
         </h2>
-        <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-          <span className={totalResourceStatus.color}>{totalResourceStatus.icon}</span>
-          <span className="font-medium">{totalResourceStatus.text}</span>
-        </div>
+        <span className={`text-xs ${totalResourceStatus.color}`}>{totalResourceStatus.icon} {totalResourceStatus.text}</span>
       </div>
 
       {/* Total Resource Mode Display */}
       {config.resourceLimitMode === 'total' && (
-        <div className="mb-6">
-          <div className="flex justify-between items-center text-sm mb-2">
-            <span className="font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2" id="total-resources-label">
-              <span className="text-lg" role="img" aria-label="Total">💰</span>
-              Total Resources
+        <div className="mb-3">
+          <div className="flex justify-between items-center text-xs mb-1">
+            <span className="font-medium text-gray-700 dark:text-gray-300" id="total-resources-label">
+              Total
             </span>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
               <span
-                className={`font-bold text-lg ${
+                className={`font-bold ${
                   totalResourcesUsed > config.totalResourceLimit
-                    ? 'text-red-600 dark:text-red-400 animate-pulse'
+                    ? 'text-red-600 dark:text-red-400'
                     : 'text-gray-900 dark:text-white'
                 }`}
                 aria-live="polite"
               >
                 {totalResourcesUsed.toLocaleString()}
               </span>
-              <span className="text-gray-500 dark:text-gray-400">/</span>
+              <span className="text-gray-400">/</span>
               <span className="text-gray-600 dark:text-gray-300">
                 {config.totalResourceLimit.toLocaleString()}
               </span>
-              <span className="text-sm font-medium bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
-                {resourcePercentages.total.toFixed(1)}%
+              <span className="text-xs font-medium bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded ml-1">
+                {resourcePercentages.total.toFixed(0)}%
               </span>
             </div>
           </div>
           <div
-            className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-8 overflow-hidden shadow-inner"
+            className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-3 overflow-hidden"
             role="progressbar"
             aria-labelledby="total-resources-label"
             aria-valuenow={Math.min(100, resourcePercentages.total)}
@@ -176,57 +172,46 @@ export default function ResourceTracker() {
             aria-valuemax="100"
           >
             <div
-              className={`h-full resource-bar bg-gradient-to-r ${
+              className={`h-full bg-gradient-to-r ${
                 totalResourcesUsed > config.totalResourceLimit
-                  ? 'from-red-500 to-red-600 animate-pulse'
+                  ? 'from-red-500 to-red-600'
                   : resourcePercentages.total >= 80
                     ? 'from-yellow-400 to-orange-500'
                     : 'from-green-400 to-emerald-500'
-              } transition-all duration-500 ease-out rounded-full shadow-lg`}
+              } transition-all duration-300 rounded-full`}
               style={{ width: `${Math.min(100, resourcePercentages.total)}%` }}
             />
           </div>
 
-          {/* Tech cost breakdown (if any techs researched) */}
+          {/* Tech cost breakdown (compact) */}
           {hasTechCosts && (
-            <div className="mt-4 p-3 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-700 rounded-lg">
-              <div className="text-sm font-semibold text-indigo-700 dark:text-indigo-300 mb-2">
-                <span role="img" aria-label="technology">
-                  ⚙️
-                </span>{' '}
-                Technology Costs (included above):
+            <div className="mt-2 p-2 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-700 rounded text-xs">
+              <div className="font-medium text-indigo-700 dark:text-indigo-300 mb-1">
+                ⚙️ Tech Costs:
               </div>
-              <div className="grid grid-cols-2 gap-2 text-xs">
+              <div className="grid grid-cols-2 gap-1">
                 {techCost.food > 0 && (
                   <div className="flex justify-between">
                     <span>Food:</span>
-                    <span className="text-orange-600 dark:text-orange-400">
-                      {techCost.food.toLocaleString()}
-                    </span>
+                    <span className="text-orange-600 dark:text-orange-400">{techCost.food.toLocaleString()}</span>
                   </div>
                 )}
                 {techCost.wood > 0 && (
                   <div className="flex justify-between">
                     <span>Wood:</span>
-                    <span className="text-amber-700 dark:text-amber-400">
-                      {techCost.wood.toLocaleString()}
-                    </span>
+                    <span className="text-amber-700 dark:text-amber-400">{techCost.wood.toLocaleString()}</span>
                   </div>
                 )}
                 {techCost.gold > 0 && (
                   <div className="flex justify-between">
                     <span>Gold:</span>
-                    <span className="text-yellow-600 dark:text-yellow-400">
-                      {techCost.gold.toLocaleString()}
-                    </span>
+                    <span className="text-yellow-600 dark:text-yellow-400">{techCost.gold.toLocaleString()}</span>
                   </div>
                 )}
                 {techCost.stone > 0 && (
                   <div className="flex justify-between">
                     <span>Stone:</span>
-                    <span className="text-gray-600 dark:text-gray-400">
-                      {techCost.stone.toLocaleString()}
-                    </span>
+                    <span className="text-gray-600 dark:text-gray-400">{techCost.stone.toLocaleString()}</span>
                   </div>
                 )}
               </div>
@@ -237,47 +222,34 @@ export default function ResourceTracker() {
 
       {/* Individual Resource Mode Display */}
       {config.resourceLimitMode === 'individual' && (
-        <div className="space-y-5 mb-6">
+        <div className="space-y-2 mb-3">
           {RESOURCES.map((resource) => {
             const isOverLimit = combinedCost[resource] > config.resourceLimits[resource];
-            const status = getStatusIndicator(resourcePercentages[resource], isOverLimit);
 
             return (
-              <div key={resource} className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
-                <div className="flex justify-between items-center text-sm mb-2">
-                  <span className="font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2" id={`${resource}-label`}>
-                    <ResourceIcon resource={resource} size="lg" />
+              <div key={resource}>
+                <div className="flex justify-between items-center text-xs mb-1">
+                  <span className="font-medium text-gray-700 dark:text-gray-300 flex items-center gap-1" id={`${resource}-label`}>
+                    <ResourceIcon resource={resource} size="sm" />
                     {RESOURCE_DISPLAY_NAMES[resource]}
-                    <span className="text-sm" title={status.text}>{status.icon}</span>
                   </span>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1">
                     <span
-                      className={`font-bold text-base ${
-                        isOverLimit
-                          ? 'text-red-600 dark:text-red-400 animate-pulse'
-                          : 'text-gray-900 dark:text-white'
+                      className={`font-bold ${
+                        isOverLimit ? 'text-red-600 dark:text-red-400' : 'text-gray-900 dark:text-white'
                       }`}
                       aria-live="polite"
                     >
                       {combinedCost[resource].toLocaleString()}
                     </span>
-                    <span className="text-gray-500 dark:text-gray-400">/</span>
+                    <span className="text-gray-400">/</span>
                     <span className="text-gray-600 dark:text-gray-300">
                       {config.resourceLimits[resource].toLocaleString()}
-                    </span>
-                    <span className={`text-xs font-medium px-2 py-1 rounded ${
-                      isOverLimit
-                        ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300'
-                        : resourcePercentages[resource] >= 80
-                          ? 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300'
-                          : 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300'
-                    }`}>
-                      {resourcePercentages[resource].toFixed(1)}%
                     </span>
                   </div>
                 </div>
                 <div
-                  className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-6 overflow-hidden shadow-inner"
+                  className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5 overflow-hidden"
                   role="progressbar"
                   aria-labelledby={`${resource}-label`}
                   aria-valuenow={Math.min(100, resourcePercentages[resource])}
@@ -285,11 +257,9 @@ export default function ResourceTracker() {
                   aria-valuemax="100"
                 >
                   <div
-                    className={`h-full resource-bar bg-gradient-to-r ${
-                      isOverLimit
-                        ? 'from-red-500 to-red-600 animate-pulse'
-                        : RESOURCE_GRADIENT_COLORS[resource]
-                    } transition-all duration-500 ease-out rounded-full shadow-md`}
+                    className={`h-full bg-gradient-to-r ${
+                      isOverLimit ? 'from-red-500 to-red-600' : RESOURCE_GRADIENT_COLORS[resource]
+                    } transition-all duration-300 rounded-full`}
                     style={{ width: `${Math.min(100, resourcePercentages[resource])}%` }}
                   />
                 </div>
@@ -299,18 +269,15 @@ export default function ResourceTracker() {
 
           {/* Tech cost breakdown for individual mode */}
           {hasTechCosts && (
-            <div className="p-4 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-700 rounded-lg">
-              <div className="text-sm font-semibold text-indigo-700 dark:text-indigo-300 mb-3 flex items-center gap-2">
-                <span className="text-xl" role="img" aria-label="technology">⚙️</span>
-                Technology Costs (included above)
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+            <div className="p-2 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-700 rounded text-xs">
+              <div className="font-medium text-indigo-700 dark:text-indigo-300 mb-1">⚙️ Tech Costs:</div>
+              <div className="grid grid-cols-2 gap-1">
                 {RESOURCES.map(
                   (resource) =>
                     techCost[resource] > 0 && (
-                      <div key={resource} className="flex items-center justify-between bg-white dark:bg-gray-800 p-2 rounded shadow-sm">
+                      <div key={resource} className="flex justify-between">
                         <span className="flex items-center gap-1">
-                          <ResourceIcon resource={resource} size="sm" />
+                          <ResourceIcon resource={resource} size="xs" />
                           {RESOURCE_DISPLAY_NAMES[resource]}:
                         </span>
                         <span className="font-semibold">{techCost[resource].toLocaleString()}</span>
@@ -324,39 +291,30 @@ export default function ResourceTracker() {
       )}
 
       {/* Population */}
-      <div className="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-700">
-        <div className="flex justify-between items-center text-sm mb-2">
-          <span className="font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2" id="population-label">
-            <span className="text-xl" role="img" aria-label="Population">👥</span>
+      <div className="bg-purple-50 dark:bg-purple-900/20 p-2 rounded border border-purple-200 dark:border-purple-700">
+        <div className="flex justify-between items-center text-xs mb-1">
+          <span className="font-medium text-gray-700 dark:text-gray-300 flex items-center gap-1" id="population-label">
+            <span role="img" aria-label="Population">👥</span>
             Population
-            <span className="text-sm" title={populationStatus.text}>{populationStatus.icon}</span>
           </span>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             <span
-              className={`font-bold text-base ${
-                totalPopulation > config.populationCap
-                  ? 'text-red-600 dark:text-red-400 animate-pulse'
-                  : 'text-gray-900 dark:text-white'
+              className={`font-bold ${
+                totalPopulation > config.populationCap ? 'text-red-600 dark:text-red-400' : 'text-gray-900 dark:text-white'
               }`}
               aria-live="polite"
             >
               {totalPopulation}
             </span>
-            <span className="text-gray-500 dark:text-gray-400">/</span>
+            <span className="text-gray-400">/</span>
             <span className="text-gray-600 dark:text-gray-300">{config.populationCap}</span>
-            <span className={`text-xs font-medium px-2 py-1 rounded ${
-              totalPopulation > config.populationCap
-                ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300'
-                : populationPercentage >= 80
-                  ? 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300'
-                  : 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300'
-            }`}>
-              {populationPercentage.toFixed(1)}%
+            <span className="text-xs font-medium bg-purple-100 dark:bg-purple-800/50 px-1.5 py-0.5 rounded ml-1">
+              {populationPercentage.toFixed(0)}%
             </span>
           </div>
         </div>
         <div
-          className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-6 overflow-hidden shadow-inner"
+          className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5 overflow-hidden"
           role="progressbar"
           aria-labelledby="population-label"
           aria-valuenow={Math.min(100, populationPercentage)}
@@ -364,13 +322,13 @@ export default function ResourceTracker() {
           aria-valuemax="100"
         >
           <div
-            className={`h-full resource-bar bg-gradient-to-r ${
+            className={`h-full bg-gradient-to-r ${
               totalPopulation > config.populationCap
-                ? 'from-red-500 to-red-600 animate-pulse'
+                ? 'from-red-500 to-red-600'
                 : populationPercentage >= 80
                   ? 'from-purple-400 to-indigo-500'
                   : 'from-purple-400 to-purple-600'
-            } transition-all duration-500 ease-out rounded-full shadow-md`}
+            } transition-all duration-300 rounded-full`}
             style={{ width: `${Math.min(100, populationPercentage)}%` }}
           />
         </div>
