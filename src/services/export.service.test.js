@@ -200,21 +200,25 @@ describe('ExportService', () => {
       const mockCreateElement = vi.spyOn(document, 'createElement').mockReturnValue(mockLink);
       const mockAppendChild = vi.spyOn(document.body, 'appendChild').mockImplementation(() => {});
       const mockRemoveChild = vi.spyOn(document.body, 'removeChild').mockImplementation(() => {});
-      const mockCreateObjectURL = vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:url');
-      const mockRevokeObjectURL = vi.spyOn(URL, 'revokeObjectURL').mockImplementation(() => {});
+
+      // Define URL methods if they don't exist (jsdom doesn't have them)
+      const originalCreateObjectURL = URL.createObjectURL;
+      const originalRevokeObjectURL = URL.revokeObjectURL;
+      URL.createObjectURL = vi.fn().mockReturnValue('blob:url');
+      URL.revokeObjectURL = vi.fn().mockImplementation(() => {});
 
       ExportService.downloadCSV('csv content');
 
       expect(mockCreateElement).toHaveBeenCalledWith('a');
       expect(mockLink.click).toHaveBeenCalled();
       expect(mockLink.download).toContain('.csv');
-      expect(mockRevokeObjectURL).toHaveBeenCalled();
+      expect(URL.revokeObjectURL).toHaveBeenCalled();
 
       mockCreateElement.mockRestore();
       mockAppendChild.mockRestore();
       mockRemoveChild.mockRestore();
-      mockCreateObjectURL.mockRestore();
-      mockRevokeObjectURL.mockRestore();
+      URL.createObjectURL = originalCreateObjectURL;
+      URL.revokeObjectURL = originalRevokeObjectURL;
     });
 
     it('should use custom filename when provided', () => {
@@ -228,12 +232,19 @@ describe('ExportService', () => {
       vi.spyOn(document, 'createElement').mockReturnValue(mockLink);
       vi.spyOn(document.body, 'appendChild').mockImplementation(() => {});
       vi.spyOn(document.body, 'removeChild').mockImplementation(() => {});
-      vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:url');
-      vi.spyOn(URL, 'revokeObjectURL').mockImplementation(() => {});
+
+      // Define URL methods if they don't exist (jsdom doesn't have them)
+      const originalCreateObjectURL = URL.createObjectURL;
+      const originalRevokeObjectURL = URL.revokeObjectURL;
+      URL.createObjectURL = vi.fn().mockReturnValue('blob:url');
+      URL.revokeObjectURL = vi.fn().mockImplementation(() => {});
 
       ExportService.downloadCSV('csv content', 'custom.csv');
 
       expect(mockLink.download).toBe('custom.csv');
+
+      URL.createObjectURL = originalCreateObjectURL;
+      URL.revokeObjectURL = originalRevokeObjectURL;
     });
   });
 
@@ -249,13 +260,20 @@ describe('ExportService', () => {
       vi.spyOn(document, 'createElement').mockReturnValue(mockLink);
       vi.spyOn(document.body, 'appendChild').mockImplementation(() => {});
       vi.spyOn(document.body, 'removeChild').mockImplementation(() => {});
-      vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:url');
-      vi.spyOn(URL, 'revokeObjectURL').mockImplementation(() => {});
+
+      // Define URL methods if they don't exist (jsdom doesn't have them)
+      const originalCreateObjectURL = URL.createObjectURL;
+      const originalRevokeObjectURL = URL.revokeObjectURL;
+      URL.createObjectURL = vi.fn().mockReturnValue('blob:url');
+      URL.revokeObjectURL = vi.fn().mockImplementation(() => {});
 
       ExportService.downloadJSON('json content');
 
       expect(mockLink.download).toContain('.json');
       expect(mockLink.click).toHaveBeenCalled();
+
+      URL.createObjectURL = originalCreateObjectURL;
+      URL.revokeObjectURL = originalRevokeObjectURL;
     });
   });
 

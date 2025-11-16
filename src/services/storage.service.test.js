@@ -30,14 +30,23 @@ describe('StorageService', () => {
     });
 
     it('should return false when localStorage throws an error', () => {
-      const originalSetItem = localStorage.setItem;
-      localStorage.setItem = vi.fn(() => {
-        throw new Error('QuotaExceeded');
-      });
+      // Create a mock localStorage that throws on setItem
+      const mockLocalStorage = {
+        getItem: vi.fn(),
+        setItem: vi.fn(() => {
+          throw new Error('QuotaExceeded');
+        }),
+        removeItem: vi.fn(),
+        clear: vi.fn(),
+        length: 0,
+        key: vi.fn()
+      };
+
+      vi.stubGlobal('localStorage', mockLocalStorage);
 
       expect(StorageService.isAvailable()).toBe(false);
 
-      localStorage.setItem = originalSetItem;
+      vi.unstubAllGlobals();
     });
   });
 
@@ -159,6 +168,11 @@ describe('StorageService', () => {
     });
 
     it('should not affect other compositions', () => {
+      // Mock Date.now to ensure unique IDs
+      let mockTime = 1000;
+      const originalDateNow = Date.now;
+      Date.now = vi.fn(() => mockTime++);
+
       const saved1 = StorageService.save('Army 1', mockComposition, mockConfig);
       StorageService.save('Army 2', { knight: 20 }, mockConfig);
 
@@ -167,6 +181,8 @@ describe('StorageService', () => {
       const compositions = StorageService.getAll();
       expect(compositions).toHaveLength(1);
       expect(compositions[0].name).toBe('Army 2');
+
+      Date.now = originalDateNow;
     });
   });
 
@@ -183,15 +199,24 @@ describe('StorageService', () => {
     });
 
     it('should handle errors gracefully', () => {
-      const originalRemoveItem = localStorage.removeItem;
-      localStorage.removeItem = vi.fn(() => {
-        throw new Error('Storage error');
-      });
+      // Create a mock localStorage that throws on removeItem
+      const mockLocalStorage = {
+        getItem: vi.fn(),
+        setItem: vi.fn(),
+        removeItem: vi.fn(() => {
+          throw new Error('Storage error');
+        }),
+        clear: vi.fn(),
+        length: 0,
+        key: vi.fn()
+      };
+
+      vi.stubGlobal('localStorage', mockLocalStorage);
 
       const result = StorageService.deleteAll();
       expect(result).toBe(false);
 
-      localStorage.removeItem = originalRemoveItem;
+      vi.unstubAllGlobals();
     });
   });
 });
