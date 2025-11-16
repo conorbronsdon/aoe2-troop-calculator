@@ -2,11 +2,12 @@ import React, { useMemo } from 'react';
 import { useArmy } from '../context/ArmyContext';
 import { calculateCombinedTotals, calculatePercentage, getResourceColor } from '../utils/calculations';
 import { fortifications } from '../data/fortifications';
+import { calculateTechCost } from '../data/technologies';
 import { RESOURCES, RESOURCE_DISPLAY_NAMES } from '../constants';
 
 export default function ResourceTracker() {
   const { state } = useArmy();
-  const { composition, fortificationComposition, config } = state;
+  const { composition, fortificationComposition, config, researchedTechs } = state;
 
   // Memoize expensive calculations to prevent unnecessary recalculation
   const { totalCost, totalPopulation } = useMemo(() =>
@@ -20,10 +21,30 @@ export default function ResourceTracker() {
     [composition, fortificationComposition, config.selectedCiv, config.selectedAge]
   );
 
-  // Memoize total resources used calculation
+  // Calculate technology costs
+  const techCost = useMemo(() =>
+    calculateTechCost(researchedTechs || []),
+    [researchedTechs]
+  );
+
+  // Calculate combined costs (units + fortifications + technologies)
+  const combinedCost = useMemo(() => ({
+    food: totalCost.food + techCost.food,
+    wood: totalCost.wood + techCost.wood,
+    gold: totalCost.gold + techCost.gold,
+    stone: totalCost.stone + techCost.stone
+  }), [totalCost, techCost]);
+
+  // Memoize total resources used calculation (including tech costs)
   const totalResourcesUsed = useMemo(() =>
-    totalCost.food + totalCost.wood + totalCost.gold + totalCost.stone,
-    [totalCost]
+    combinedCost.food + combinedCost.wood + combinedCost.gold + combinedCost.stone,
+    [combinedCost]
+  );
+
+  // Check if any techs are researched
+  const hasTechCosts = useMemo(() =>
+    techCost.food > 0 || techCost.wood > 0 || techCost.gold > 0 || techCost.stone > 0,
+    [techCost]
   );
 
   // Memoize percentage calculations
@@ -36,11 +57,11 @@ export default function ResourceTracker() {
       }, { total: totalPercentage });
     } else {
       return RESOURCES.reduce((acc, resource) => {
-        acc[resource] = calculatePercentage(totalCost[resource], config.resourceLimits[resource]);
+        acc[resource] = calculatePercentage(combinedCost[resource], config.resourceLimits[resource]);
         return acc;
       }, {});
     }
-  }, [config.resourceLimitMode, config.totalResourceLimit, config.resourceLimits, totalCost, totalResourcesUsed]);
+  }, [config.resourceLimitMode, config.totalResourceLimit, config.resourceLimits, combinedCost, totalResourcesUsed]);
 
   const populationPercentage = useMemo(() =>
     calculatePercentage(totalPopulation, config.populationCap),
@@ -81,12 +102,47 @@ export default function ResourceTracker() {
           {/* Breakdown of individual resources */}
           <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
             {RESOURCES.map(resource => (
-              <div key={resource} className="flex justify-between items-center p-2 bg-gray-50 rounded">
+              <div key={resource} className="flex justify-between items-center p-2 bg-gray-50 dark:bg-gray-700 rounded">
                 <span className="font-medium">{RESOURCE_DISPLAY_NAMES[resource]}</span>
-                <span>{totalCost[resource].toLocaleString()}</span>
+                <span>{combinedCost[resource].toLocaleString()}</span>
               </div>
             ))}
           </div>
+
+          {/* Tech cost breakdown (if any techs researched) */}
+          {hasTechCosts && (
+            <div className="mt-4 p-3 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-700 rounded-lg">
+              <div className="text-sm font-semibold text-indigo-700 dark:text-indigo-300 mb-2">
+                <span role="img" aria-label="technology">⚙️</span> Technology Costs (included above):
+              </div>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                {techCost.food > 0 && (
+                  <div className="flex justify-between">
+                    <span>Food:</span>
+                    <span className="text-orange-600 dark:text-orange-400">{techCost.food.toLocaleString()}</span>
+                  </div>
+                )}
+                {techCost.wood > 0 && (
+                  <div className="flex justify-between">
+                    <span>Wood:</span>
+                    <span className="text-amber-700 dark:text-amber-400">{techCost.wood.toLocaleString()}</span>
+                  </div>
+                )}
+                {techCost.gold > 0 && (
+                  <div className="flex justify-between">
+                    <span>Gold:</span>
+                    <span className="text-yellow-600 dark:text-yellow-400">{techCost.gold.toLocaleString()}</span>
+                  </div>
+                )}
+                {techCost.stone > 0 && (
+                  <div className="flex justify-between">
+                    <span>Stone:</span>
+                    <span className="text-gray-600 dark:text-gray-400">{techCost.stone.toLocaleString()}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
@@ -98,10 +154,10 @@ export default function ResourceTracker() {
               <div className="flex justify-between text-sm mb-1">
                 <span className="font-medium" id={`${resource}-label`}>{RESOURCE_DISPLAY_NAMES[resource]}</span>
                 <span
-                  className={totalCost[resource] > config.resourceLimits[resource] ? 'text-red-600 font-bold' : ''}
+                  className={combinedCost[resource] > config.resourceLimits[resource] ? 'text-red-600 font-bold' : ''}
                   aria-live="polite"
                 >
-                  {totalCost[resource].toLocaleString()} / {config.resourceLimits[resource].toLocaleString()}
+                  {combinedCost[resource].toLocaleString()} / {config.resourceLimits[resource].toLocaleString()}
                   ({resourcePercentages[resource].toFixed(1)}%)
                 </span>
               </div>
@@ -120,6 +176,23 @@ export default function ResourceTracker() {
               </div>
             </div>
           ))}
+
+          {/* Tech cost breakdown for individual mode */}
+          {hasTechCosts && (
+            <div className="mt-2 p-3 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-700 rounded-lg">
+              <div className="text-sm font-semibold text-indigo-700 dark:text-indigo-300 mb-2">
+                <span role="img" aria-label="technology">⚙️</span> Technology Costs (included above):
+              </div>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                {RESOURCES.map(resource => techCost[resource] > 0 && (
+                  <div key={resource} className="flex justify-between">
+                    <span>{RESOURCE_DISPLAY_NAMES[resource]}:</span>
+                    <span>{techCost[resource].toLocaleString()}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
 

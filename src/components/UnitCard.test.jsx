@@ -51,6 +51,12 @@ vi.mock('../data/units', () => ({
   })
 }));
 
+// Mock stat calculator
+vi.mock('../utils/statCalculator', () => ({
+  calculateUnitStats: vi.fn(() => null), // Return null by default (no base stats)
+  formatStatValue: vi.fn((type, value) => value.toString())
+}));
+
 // Mock UnitIcon to avoid complex SVG rendering
 vi.mock('./UnitIcon', () => ({
   default: () => <div data-testid="unit-icon">Icon</div>
@@ -70,6 +76,7 @@ const mockDispatch = vi.fn();
 const createMockState = (composition = {}) => ({
   composition,
   fortificationComposition: {},
+  researchedTechs: [],
   config: {
     resourceLimitMode: 'total',
     resourceLimits: { food: 8000, wood: 8000, gold: 4000, stone: 0 },
@@ -78,7 +85,8 @@ const createMockState = (composition = {}) => ({
     selectedAge: 'imperial',
     selectedCiv: 'generic',
     previewCiv: 'generic',
-    displayMode: 'units'
+    displayMode: 'units',
+    showTechPanel: false
   },
   savedCompositions: [],
   comparisonMode: false,
@@ -355,7 +363,12 @@ describe('UnitCard', () => {
     it('should show expand indicator when collapsed', () => {
       renderWithProvider(mockUnit);
 
-      expect(screen.getByText('►')).toBeInTheDocument();
+      // Find the counters section by its button text
+      const countersButton = screen.getByText('Counters & Weaknesses');
+      const buttonContainer = countersButton.parentElement;
+
+      // The expand indicator should be in the same container
+      expect(buttonContainer.textContent).toContain('►');
     });
 
     it('should show collapse indicator when expanded', () => {
@@ -364,7 +377,8 @@ describe('UnitCard', () => {
       const toggleButton = screen.getByText('Counters & Weaknesses');
       fireEvent.click(toggleButton);
 
-      expect(screen.getByText('▼')).toBeInTheDocument();
+      const buttonContainer = toggleButton.parentElement;
+      expect(buttonContainer.textContent).toContain('▼');
     });
   });
 

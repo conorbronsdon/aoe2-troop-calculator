@@ -7,6 +7,7 @@ const ArmyContext = createContext();
 const initialState = {
   composition: {},
   fortificationComposition: {}, // Separate composition for fortifications
+  researchedTechs: [], // Array of researched technology IDs
   config: {
     resourceLimitMode: 'total',
     resourceLimits: { food: 8000, wood: 8000, gold: 4000, stone: 0 },
@@ -15,7 +16,8 @@ const initialState = {
     selectedAge: 'imperial',
     selectedCiv: 'generic', // The applied civilization (affects calculations)
     previewCiv: 'generic', // The civilization being previewed in the dropdown
-    displayMode: 'units' // Display mode: 'units', 'both', or 'fortifications'
+    displayMode: 'units', // Display mode: 'units', 'both', or 'fortifications'
+    showTechPanel: false // Whether to show the technology panel (default hidden)
   },
   savedCompositions: [],
   comparisonMode: false,
@@ -39,6 +41,11 @@ export const ACTION_TYPES = {
   UPDATE_COMPARISON_ARMY: 'UPDATE_COMPARISON_ARMY',
   APPLY_CIVILIZATION: 'APPLY_CIVILIZATION',
   SET_DISPLAY_MODE: 'SET_DISPLAY_MODE',
+  // Technology management
+  RESEARCH_TECH: 'RESEARCH_TECH',
+  UNRESEARCH_TECH: 'UNRESEARCH_TECH',
+  SET_RESEARCHED_TECHS: 'SET_RESEARCHED_TECHS',
+  RESET_TECHS: 'RESET_TECHS',
   // Deprecated - kept for backwards compatibility
   TOGGLE_FORTIFICATION_MODE: 'TOGGLE_FORTIFICATION_MODE'
 };
@@ -179,6 +186,33 @@ function armyReducer(state, action) {
           selectedCiv: action.civId,
           previewCiv: action.civId
         }
+      };
+
+    case ACTION_TYPES.RESEARCH_TECH:
+      if (state.researchedTechs.includes(action.techId)) {
+        return state; // Already researched
+      }
+      return {
+        ...state,
+        researchedTechs: [...state.researchedTechs, action.techId]
+      };
+
+    case ACTION_TYPES.UNRESEARCH_TECH:
+      return {
+        ...state,
+        researchedTechs: state.researchedTechs.filter(id => id !== action.techId)
+      };
+
+    case ACTION_TYPES.SET_RESEARCHED_TECHS:
+      return {
+        ...state,
+        researchedTechs: action.techIds || []
+      };
+
+    case ACTION_TYPES.RESET_TECHS:
+      return {
+        ...state,
+        researchedTechs: []
       };
 
     default:

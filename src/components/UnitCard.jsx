@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { calculateUnitCost, hasDiscount } from '../utils/calculations';
 import { civilizations } from '../data/civilizations';
 import { getUnitById } from '../data/units';
 import { LIMITS } from '../constants';
+import { calculateUnitStats, formatStatValue } from '../utils/statCalculator';
 import UnitIcon from './UnitIcon';
 import ResourceCost from './ResourceCost';
 
 export default function UnitCard({ unit }) {
   const { state, dispatch } = useArmy();
-  const { composition, config } = state;
+  const { composition, config, researchedTechs } = state;
   const [showCounters, setShowCounters] = useState(false);
+  const [showStats, setShowStats] = useState(false);
 
   const adjustedCost = calculateUnitCost(unit, config.selectedCiv, config.selectedAge);
   const baseCost = unit.cost;
@@ -29,6 +31,21 @@ export default function UnitCard({ unit }) {
     : [];
 
   const hasBonuses = applicableBonuses.length > 0;
+
+  // Calculate modified stats based on researched technologies
+  const unitStats = useMemo(() => {
+    return calculateUnitStats(unit, researchedTechs || [], config.selectedCiv);
+  }, [unit, researchedTechs, config.selectedCiv]);
+
+  const hasStatsChanged = useMemo(() => {
+    if (!unitStats) {
+      return false;
+    }
+    const { base, modified } = unitStats;
+    return Object.keys(base).some(key =>
+      Math.abs(modified[key] - base[key]) > 0.001
+    );
+  }, [unitStats]);
 
   const addUnit = () => {
     dispatch({ type: ACTION_TYPES.ADD_UNIT, unitId: unit.id });
@@ -85,6 +102,142 @@ export default function UnitCard({ unit }) {
       <div className="mb-3">
         <ResourceCost cost={adjustedCost} baseCost={baseCost} showDiscount={showDiscount} />
       </div>
+
+      {/* Combat Stats Section */}
+      {unitStats && (
+        <div className="mb-3 border-t pt-2">
+          <button
+            onClick={() => setShowStats(!showStats)}
+            className="text-xs text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 font-medium flex items-center gap-1 w-full"
+          >
+            <span>{showStats ? '▼' : '►'}</span>
+            <span>Combat Stats</span>
+            {hasStatsChanged && (
+              <span className="ml-auto text-green-600 dark:text-green-400 text-xs font-semibold">
+                Modified
+              </span>
+            )}
+          </button>
+
+          {showStats && (
+            <div className="mt-2 space-y-1 bg-gray-50 dark:bg-gray-700/50 rounded p-2">
+              {/* HP */}
+              <div className="flex justify-between text-xs">
+                <span className="text-gray-600 dark:text-gray-400">
+                  <span role="img" aria-label="health">❤️</span> HP:
+                </span>
+                <span className={hasStatsChanged && unitStats.modified.hp !== unitStats.base.hp ? 'text-green-600 dark:text-green-400 font-semibold' : ''}>
+                  {unitStats.base.hp !== unitStats.modified.hp ? (
+                    <>
+                      <span className="text-gray-400 line-through mr-1">{unitStats.base.hp}</span>
+                      {formatStatValue('hp', unitStats.modified.hp)}
+                    </>
+                  ) : (
+                    formatStatValue('hp', unitStats.modified.hp)
+                  )}
+                </span>
+              </div>
+
+              {/* Attack */}
+              <div className="flex justify-between text-xs">
+                <span className="text-gray-600 dark:text-gray-400">
+                  <span role="img" aria-label="attack">⚔️</span> Attack:
+                </span>
+                <span className={hasStatsChanged && unitStats.modified.attack !== unitStats.base.attack ? 'text-green-600 dark:text-green-400 font-semibold' : ''}>
+                  {unitStats.base.attack !== unitStats.modified.attack ? (
+                    <>
+                      <span className="text-gray-400 line-through mr-1">{unitStats.base.attack}</span>
+                      {formatStatValue('attack', unitStats.modified.attack)}
+                    </>
+                  ) : (
+                    formatStatValue('attack', unitStats.modified.attack)
+                  )}
+                </span>
+              </div>
+
+              {/* Armor */}
+              <div className="flex justify-between text-xs">
+                <span className="text-gray-600 dark:text-gray-400">
+                  <span role="img" aria-label="armor">🛡️</span> Armor:
+                </span>
+                <span className={
+                  (unitStats.modified.meleeArmor !== unitStats.base.meleeArmor ||
+                   unitStats.modified.pierceArmor !== unitStats.base.pierceArmor)
+                    ? 'text-green-600 dark:text-green-400 font-semibold' : ''
+                }>
+                  {(unitStats.base.meleeArmor !== unitStats.modified.meleeArmor ||
+                    unitStats.base.pierceArmor !== unitStats.modified.pierceArmor) ? (
+                    <>
+                      <span className="text-gray-400 line-through mr-1">
+                        {unitStats.base.meleeArmor}/{unitStats.base.pierceArmor}
+                      </span>
+                      {formatStatValue('meleeArmor', unitStats.modified.meleeArmor)}/
+                      {formatStatValue('pierceArmor', unitStats.modified.pierceArmor)}
+                    </>
+                  ) : (
+                    `${formatStatValue('meleeArmor', unitStats.modified.meleeArmor)}/${formatStatValue('pierceArmor', unitStats.modified.pierceArmor)}`
+                  )}
+                </span>
+              </div>
+
+              {/* Range (only for ranged units) */}
+              {unitStats.base.range > 0 && (
+                <div className="flex justify-between text-xs">
+                  <span className="text-gray-600 dark:text-gray-400">
+                    <span role="img" aria-label="range">🎯</span> Range:
+                  </span>
+                  <span className={unitStats.modified.range !== unitStats.base.range ? 'text-green-600 dark:text-green-400 font-semibold' : ''}>
+                    {unitStats.base.range !== unitStats.modified.range ? (
+                      <>
+                        <span className="text-gray-400 line-through mr-1">{unitStats.base.range}</span>
+                        {formatStatValue('range', unitStats.modified.range)}
+                      </>
+                    ) : (
+                      formatStatValue('range', unitStats.modified.range)
+                    )}
+                  </span>
+                </div>
+              )}
+
+              {/* Speed */}
+              <div className="flex justify-between text-xs">
+                <span className="text-gray-600 dark:text-gray-400">
+                  <span role="img" aria-label="speed">🏃</span> Speed:
+                </span>
+                <span className={Math.abs(unitStats.modified.speed - unitStats.base.speed) > 0.001 ? 'text-green-600 dark:text-green-400 font-semibold' : ''}>
+                  {Math.abs(unitStats.modified.speed - unitStats.base.speed) > 0.001 ? (
+                    <>
+                      <span className="text-gray-400 line-through mr-1">{formatStatValue('speed', unitStats.base.speed)}</span>
+                      {formatStatValue('speed', unitStats.modified.speed)}
+                    </>
+                  ) : (
+                    formatStatValue('speed', unitStats.modified.speed)
+                  )}
+                </span>
+              </div>
+
+              {/* Breakdown of bonuses */}
+              {hasStatsChanged && (
+                <div className="mt-2 pt-2 border-t border-gray-200 dark:border-gray-600">
+                  <div className="text-xs font-semibold text-indigo-700 dark:text-indigo-300 mb-1">Bonuses Applied:</div>
+                  <div className="space-y-0.5">
+                    {Object.entries(unitStats.breakdown).map(([stat, bonuses]) =>
+                      bonuses.map((bonus, idx) => (
+                        <div key={`${stat}-${idx}`} className="text-xs text-gray-600 dark:text-gray-400">
+                          <span className="text-green-600 dark:text-green-400">{bonus.value}</span>{' '}
+                          {stat === 'meleeArmor' ? 'Melee Armor' :
+                           stat === 'pierceArmor' ? 'Pierce Armor' :
+                           stat.charAt(0).toUpperCase() + stat.slice(1)} from {bonus.source}
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Counter Information */}
       {hasCounterInfo && (

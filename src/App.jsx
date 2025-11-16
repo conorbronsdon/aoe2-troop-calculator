@@ -5,6 +5,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import ConfigurationPanel from './components/ConfigurationPanel';
 import CivilizationIndicator from './components/CivilizationIndicator';
 import CivilizationBonuses from './components/CivilizationBonuses';
+import TechnologyPanel from './components/TechnologyPanel';
 import ResourceTracker from './components/ResourceTracker';
 import UnitSelection from './components/UnitSelection';
 import FortificationSelection from './components/FortificationSelection';
@@ -100,6 +101,7 @@ function AppContent() {
       </div>
       <CivilizationIndicator />
       <CivilizationBonuses />
+      {config.showTechPanel && <TechnologyPanel />}
       <CivilizationComparison />
       <ResourceTracker />
       <SaveLoadPanel />
