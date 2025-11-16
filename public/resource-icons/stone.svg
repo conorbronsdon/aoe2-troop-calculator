@@ -1,21 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <!-- AoE2 DE style resource icon - Stone (rocks) -->
   <defs>
-    <linearGradient id="stoneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="stoneResourceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#a9a9a9;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#696969;stop-opacity:1" />
     </linearGradient>
-    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="stoneBorderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#b8860b;stop-opacity:1" />
     </linearGradient>
   </defs>
   <!-- Outer border -->
-  <rect x="2" y="2" width="60" height="60" rx="6" fill="url(#borderGrad)" stroke="#8b6914" stroke-width="2"/>
+  <rect x="2" y="2" width="60" height="60" rx="6" fill="url(#stoneBorderGrad)" stroke="#8b6914" stroke-width="2"/>
   <!-- Inner background -->
   <rect x="6" y="6" width="52" height="52" rx="4" fill="#1a1a1a"/>
   <!-- Large stone (bottom) -->
-  <path d="M 16 46 L 22 38 L 34 36 L 44 40 L 48 46 L 42 50 L 24 50 Z" fill="url(#stoneGrad)" stroke="#4a4a4a" stroke-width="1.5"/>
+  <path d="M 16 46 L 22 38 L 34 36 L 44 40 L 48 46 L 42 50 L 24 50 Z" fill="url(#stoneResourceGrad)" stroke="#4a4a4a" stroke-width="1.5"/>
   <!-- Medium stone (top left) -->
   <path d="M 14 36 L 18 28 L 28 26 L 34 30 L 32 36 L 22 38 Z" fill="#808080" stroke="#4a4a4a" stroke-width="1.5"/>
   <!-- Small stone (top right) -->

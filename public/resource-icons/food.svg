@@ -1,21 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <!-- AoE2 DE style resource icon - Food (meat/berry) -->
   <defs>
-    <linearGradient id="foodGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="foodResourceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#ff6b4a;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#c9302c;stop-opacity:1" />
     </linearGradient>
-    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="foodBorderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#b8860b;stop-opacity:1" />
     </linearGradient>
   </defs>
   <!-- Outer border -->
-  <rect x="2" y="2" width="60" height="60" rx="6" fill="url(#borderGrad)" stroke="#8b6914" stroke-width="2"/>
+  <rect x="2" y="2" width="60" height="60" rx="6" fill="url(#foodBorderGrad)" stroke="#8b6914" stroke-width="2"/>
   <!-- Inner background -->
   <rect x="6" y="6" width="52" height="52" rx="4" fill="#2a1810"/>
   <!-- Meat/Food icon -->
-  <path d="M 20 44 Q 16 40 18 35 Q 20 30 24 32 L 28 28 Q 32 24 36 26 Q 40 28 38 32 L 42 36 Q 46 40 44 44 Q 42 48 38 46 L 34 42 Q 30 46 26 44 Z" fill="url(#foodGrad)" stroke="#8b2500" stroke-width="1.5"/>
+  <path d="M 20 44 Q 16 40 18 35 Q 20 30 24 32 L 28 28 Q 32 24 36 26 Q 40 28 38 32 L 42 36 Q 46 40 44 44 Q 42 48 38 46 L 34 42 Q 30 46 26 44 Z" fill="url(#foodResourceGrad)" stroke="#8b2500" stroke-width="1.5"/>
   <!-- Bone highlight -->
   <ellipse cx="22" cy="38" rx="3" ry="2" fill="#f5deb3" opacity="0.8"/>
   <ellipse cx="40" cy="38" rx="3" ry="2" fill="#f5deb3" opacity="0.8"/>
