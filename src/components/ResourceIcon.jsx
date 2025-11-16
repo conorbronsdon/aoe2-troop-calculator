@@ -3,25 +3,26 @@ import { useState } from 'react';
 
 /**
  * Resource icon configuration with paths and fallback emojis
+ * Uses import.meta.env.BASE_URL to handle deployment to subdirectories
  */
 const RESOURCE_CONFIG = {
   food: {
-    path: '/resource-icons/food.svg',
+    path: `${import.meta.env.BASE_URL}resource-icons/food.svg`,
     fallback: '🌾',
     label: 'Food',
   },
   wood: {
-    path: '/resource-icons/wood.svg',
+    path: `${import.meta.env.BASE_URL}resource-icons/wood.svg`,
     fallback: '🌲',
     label: 'Wood',
   },
   gold: {
-    path: '/resource-icons/gold.svg',
+    path: `${import.meta.env.BASE_URL}resource-icons/gold.svg`,
     fallback: '💰',
     label: 'Gold',
   },
   stone: {
-    path: '/resource-icons/stone.svg',
+    path: `${import.meta.env.BASE_URL}resource-icons/stone.svg`,
     fallback: '🗿',
     label: 'Stone',
   },
