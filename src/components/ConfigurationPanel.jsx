@@ -176,57 +176,20 @@ export default function ConfigurationPanel() {
 
         {/* Display Mode Selection */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Display Mode</label>
-          <div className="space-y-2">
-            <label className="flex items-center cursor-pointer p-2 rounded border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-gray-900 dark:text-gray-100">
-              <input
-                type="radio"
-                name="displayMode"
-                value="units"
-                checked={config.displayMode === 'units'}
-                onChange={(e) =>
-                  dispatch({ type: ACTION_TYPES.SET_DISPLAY_MODE, mode: e.target.value })
-                }
-                className="mr-2"
-              />
-              <span className="flex items-center gap-2">
-                <span>⚔️</span>
-                <span className="font-medium">Units Only</span>
-              </span>
-            </label>
-            <label className="flex items-center cursor-pointer p-2 rounded border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-gray-900 dark:text-gray-100">
-              <input
-                type="radio"
-                name="displayMode"
-                value="both"
-                checked={config.displayMode === 'both'}
-                onChange={(e) =>
-                  dispatch({ type: ACTION_TYPES.SET_DISPLAY_MODE, mode: e.target.value })
-                }
-                className="mr-2"
-              />
-              <span className="flex items-center gap-2">
-                <span>⚔️🏰</span>
-                <span className="font-medium">Units & Fortifications</span>
-              </span>
-            </label>
-            <label className="flex items-center cursor-pointer p-2 rounded border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-gray-900 dark:text-gray-100">
-              <input
-                type="radio"
-                name="displayMode"
-                value="fortifications"
-                checked={config.displayMode === 'fortifications'}
-                onChange={(e) =>
-                  dispatch({ type: ACTION_TYPES.SET_DISPLAY_MODE, mode: e.target.value })
-                }
-                className="mr-2"
-              />
-              <span className="flex items-center gap-2">
-                <span>🏰</span>
-                <span className="font-medium">Fortifications Only</span>
-              </span>
-            </label>
-          </div>
+          <label htmlFor="displayModeSelect" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Display Mode</label>
+          <select
+            id="displayModeSelect"
+            className="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+            value={config.displayMode}
+            onChange={(e) =>
+              dispatch({ type: ACTION_TYPES.SET_DISPLAY_MODE, mode: e.target.value })
+            }
+            aria-label="Select display mode"
+          >
+            <option value="units">⚔️ Units Only</option>
+            <option value="both">⚔️🏰 Units & Fortifications</option>
+            <option value="fortifications">🏰 Fortifications Only</option>
+          </select>
           <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
             {config.displayMode === 'units' && 'Select military units for your army'}
             {config.displayMode === 'both' && 'Plan both military units and defensive structures'}
