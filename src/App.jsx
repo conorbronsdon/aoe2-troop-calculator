@@ -66,11 +66,11 @@ function AppContent() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
             <div>
-              <h1 className="text-2xl lg:text-3xl font-bold">
-                AoE2 Army Calculator
+              <h1 className="text-xl lg:text-2xl font-bold">
+                Age of Empires II Definitive Edition: Army + Troop Composition Calculator
               </h1>
               <p className="text-sm text-blue-100 dark:text-gray-300">
-                100+ units · 51 civilizations · Accurate bonuses
+                100+ units · 51 civilizations · Accurate bonuses · Resource tracking · Saved army presets
               </p>
             </div>
             <div className="flex items-center gap-3">
