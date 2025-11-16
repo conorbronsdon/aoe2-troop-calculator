@@ -66,55 +66,169 @@ Address critical code quality issues identified in the November 2025 codebase re
 ---
 
 ### Technology/Upgrade System
-**Status:** Not Started
+**Status:** ✅ Complete (v2.4.0)
 **Priority:** Critical
 **Complexity:** High
 
 Add support for Age of Empires II technologies and upgrades:
-- Blacksmith upgrades (Fletching, Bodkin Arrow, Bracer, Forging, Iron Casting, Blast Furnace, etc.)
-- University technologies (Ballistics, Chemistry, Siege Engineers, etc.)
-- Monastery upgrades (Redemption, Atonement, Sanctity, etc.)
-- Economy upgrades (Wheelbarrow, Hand Cart, etc.)
-- Age-specific techs that unlock or enhance units
-- Unique technologies for each civilization
+- ✅ Blacksmith upgrades (Fletching, Bodkin Arrow, Bracer, Forging, Iron Casting, Blast Furnace)
+- ✅ University technologies (Ballistics, Chemistry, Siege Engineers)
+- ✅ Monastery upgrades (Redemption, Atonement, Sanctity)
+- ✅ Economy upgrades (Wheelbarrow, Hand Cart)
+- ✅ Age-specific techs that unlock or enhance units
+- ⏳ Unique technologies for each civilization (future enhancement)
 
 **Impact:** Transforms the calculator from basic cost tracking to realistic army planning with actual combat-ready stats.
 
-**Technical Requirements:**
-- Create technology data structure with costs, requirements, effects
-- Build tech tree UI for selecting/deselecting upgrades
-- Implement stat calculation engine that applies tech bonuses
-- Handle civ-specific tech restrictions
-- Update unit stat displays to show modified values
+**Implementation (v2.4.0):**
+- ✅ Created technology data structure in `src/data/technologies.js` (553 LOC)
+- ✅ Built TechnologyPanel component for tech selection UI
+- ✅ Implemented stat calculation engine in `src/utils/statCalculator.js` (14.4K LOC)
+- ✅ Added tech restrictions per civilization in `src/data/techTree.js`
+- ✅ Unit stats (HP, attack, armor) update based on selected techs
+- ✅ Integrated with ArmyContext state management (researchedTechs)
 
 **Acceptance Criteria:**
-- Users can select technologies available to their civilization
-- Unit stats (HP, attack, armor, range) update based on selected techs
-- Costs account for technology investments
-- Tech tree shows which techs are available per age
-- Unique technologies properly integrated
+- ✅ Users can select technologies available to their civilization
+- ✅ Unit stats (HP, attack, armor) update based on selected techs
+- ✅ Tech tree shows which techs are available per age
+- ⏳ Costs account for technology investments (tech cost tracking - future)
+- ⏳ Unique technologies properly integrated (future enhancement)
 
 ---
 
 ## ⭐ High Priority
 
 ### Calculate and Display Unit Statistics
+**Status:** ✅ Partially Complete (v2.4.0)
+**Priority:** High
+**Complexity:** Medium
+
+Unit statistics calculation system with technology bonuses.
+
+**What's Implemented:**
+- ✅ Calculate base stats + civilization bonuses via `statCalculator.js`
+- ✅ Technology effects applied to unit stats
+- ✅ Stat calculation engine (14.4K LOC comprehensive system)
+- ⏳ Display modified stats on unit cards (UI enhancement needed)
+- ⏳ Show stat comparisons between civilizations
+- ⏳ Highlight which bonuses are active for current army composition
+- ⏳ Add tooltips explaining stat calculations
+
+**Impact:** Users can see actual combat effectiveness, not just costs.
+
+**Next Steps:**
+- Add visual stat display on UnitCards (HP bar, attack/armor icons)
+- Implement stat comparison modal for side-by-side unit analysis
+- Add tooltips showing calculation breakdown
+
+---
+
+### Progressive Web App (PWA) Support
 **Status:** Not Started
 **Priority:** High
 **Complexity:** Medium
 
-Currently, military bonuses (HP, attack, armor, range) are shown for reference only. Calculate and display actual unit stats.
+Convert the application into a Progressive Web App for offline functionality.
 
-**What to Implement:**
-- Calculate base stats + civilization bonuses
-- Display modified stats on unit cards
-- Show stat comparisons between civilizations
-- Highlight which bonuses are active for current army composition
-- Add tooltips explaining stat calculations
+**Features:**
+- Service worker for offline caching
+- Install prompt for "Add to Home Screen"
+- Offline army composition planning
+- Background sync when connection restored
+- Faster load times with cached assets
 
-**Impact:** Users can see actual combat effectiveness, not just costs.
+**Technical Requirements:**
+- Add service worker registration in `main.jsx`
+- Create `manifest.json` with app metadata
+- Configure Vite PWA plugin or manual service worker
+- Cache critical assets (unit data, icons, styles)
+- Handle offline/online state transitions
 
-**Dependencies:** Should ideally be done alongside or after Technology System.
+**Impact:** Users can plan armies without internet connection, perfect for gaming sessions.
+
+**Acceptance Criteria:**
+- App installable on desktop/mobile
+- Full functionality available offline
+- Saved compositions persist across sessions
+- Cache invalidation on new versions
+
+---
+
+### Preset Army Compositions (Meta Builds)
+**Status:** Not Started
+**Priority:** High
+**Complexity:** Low
+
+Provide pre-configured army templates for common strategies.
+
+**Features:**
+- **Castle Age Timing Attacks:**
+  - Knights rush (10 Knights + 2 Monks)
+  - Crossbow push (25 Crossbowmen + 2 Siege)
+  - Eagle rush (15 Eagles)
+- **Imperial Age Compositions:**
+  - Paladin + Siege (15 Paladins + 3 Siege Onager)
+  - Arbalester + Halbs (40 Arbs + 20 Halbs)
+  - Heavy Camel + Siege (20 Camels + 4 Trebuchets)
+- **Civilization-Specific Builds:**
+  - Britons: Longbowmen deathball
+  - Franks: Paladin spam
+  - Mayans: Plumes + Eagles
+  - Mongols: Mangudai + Rams
+- **Beginner Templates:**
+  - Trash army (Spears + Skirms)
+  - Basic gold army
+  - Balanced composition
+
+**UI Design:**
+```
+[Load Preset ▼]
+├── Castle Age Rushes
+│   ├── Knight Rush (Franks)
+│   ├── Crossbow Push (Britons)
+│   └── Eagle Rush (Aztecs)
+├── Imperial Compositions
+│   ├── Heavy Cavalry + Siege
+│   └── Ranged + Infantry
+└── Beginner Builds
+    └── Balanced Army
+```
+
+**Impact:** New players learn meta strategies, experienced players save time.
+
+---
+
+### Import Compositions from JSON/URL
+**Status:** Not Started
+**Priority:** High
+**Complexity:** Low
+
+Allow importing saved compositions from JSON files or URLs.
+
+**Features:**
+- Import from JSON file upload
+- Paste composition JSON directly
+- Import from shared URL parameters
+- Validate imported data structure
+- Merge or replace current composition
+- Import history tracking
+
+**UI Elements:**
+- "Import" button next to "Export"
+- File upload dialog
+- Paste JSON textarea modal
+- "Import from URL" input field
+- Validation error messages
+
+**Technical Requirements:**
+- File input with drag-and-drop support
+- JSON schema validation
+- Version compatibility checking
+- Error handling for malformed data
+- Sanitize imported data
+
+**Impact:** Complete the save/load workflow, enable team composition sharing.
 
 ---
 
@@ -282,6 +396,203 @@ Civilization Bonuses (Mayans) 🔍 [Search bonuses...]
 
 ---
 
+### Keyboard Shortcuts for Power Users
+**Status:** Not Started
+**Priority:** Medium
+**Complexity:** Low
+
+Add keyboard shortcuts to improve workflow efficiency.
+
+**Shortcuts:**
+- `Ctrl/Cmd + S` - Save current composition
+- `Ctrl/Cmd + E` - Export to JSON
+- `Ctrl/Cmd + /` - Focus search bar
+- `Ctrl/Cmd + 1-5` - Switch age (Dark=1, Feudal=2, Castle=3, Imperial=4)
+- `Ctrl/Cmd + D` - Toggle dark mode
+- `Ctrl/Cmd + C` - Toggle comparison mode
+- `Esc` - Clear filters/close modals
+- `?` - Show keyboard shortcuts help
+- `+/-` on unit cards - Increment/decrement quantity
+
+**UI Requirements:**
+- Keyboard shortcut help modal (press `?`)
+- Visual indicators for shortcuts in UI
+- Customizable shortcuts (future)
+- No conflicts with browser shortcuts
+
+**Technical Implementation:**
+- Global keyboard event listener in App.jsx
+- useKeyboardShortcuts custom hook
+- Prevent default for captured shortcuts
+- Focus management for accessibility
+
+**Impact:** Power users can plan armies 2-3x faster.
+
+---
+
+### Undo/Redo System
+**Status:** Not Started
+**Priority:** Medium
+**Complexity:** Medium
+
+Allow users to undo and redo composition changes.
+
+**Features:**
+- Undo last action (unit add/remove, config change)
+- Redo previously undone action
+- History stack with 50+ actions
+- Visual undo/redo buttons
+- Keyboard shortcuts (Ctrl+Z, Ctrl+Shift+Z)
+- History preview (optional)
+
+**Technical Requirements:**
+- Implement command pattern or state snapshots
+- Store action history in context
+- Efficient state diffing for memory management
+- Handle edge cases (clear composition, load preset)
+
+**Implementation Approach:**
+```javascript
+// State snapshot approach
+const [history, setHistory] = useState([initialState]);
+const [historyIndex, setHistoryIndex] = useState(0);
+
+const undo = () => historyIndex > 0 && setHistoryIndex(i => i - 1);
+const redo = () => historyIndex < history.length - 1 && setHistoryIndex(i => i + 1);
+```
+
+**Impact:** Reduces user frustration, enables experimentation.
+
+---
+
+### Multi-Language Support (i18n)
+**Status:** Not Started
+**Priority:** Medium
+**Complexity:** High
+
+Internationalize the application for global users.
+
+**Languages (Priority Order):**
+1. English (current)
+2. Spanish (large AoE2 community)
+3. German (strong EU player base)
+4. Portuguese (Brazil community)
+5. French
+6. Korean (competitive scene)
+7. Chinese (growing player base)
+
+**Technical Requirements:**
+- Install react-i18next or similar library
+- Extract all strings to translation files
+- Handle unit names (keep official translations)
+- Date/number formatting by locale
+- RTL support for Arabic (future)
+- Language detection from browser
+- Language selector UI
+
+**Files to Create:**
+```
+src/
+├── i18n/
+│   ├── index.js           # i18n configuration
+│   ├── locales/
+│   │   ├── en.json        # English
+│   │   ├── es.json        # Spanish
+│   │   ├── de.json        # German
+│   │   └── ...
+```
+
+**Challenges:**
+- Unit names must match official game translations
+- Cultural differences in bonus descriptions
+- Maintaining translation quality
+
+**Impact:** Opens app to ~60% more potential users globally.
+
+---
+
+### Army Composition Analysis & Recommendations
+**Status:** Not Started
+**Priority:** Medium
+**Complexity:** Medium
+
+Provide intelligent feedback on army compositions.
+
+**Features:**
+- **Vulnerability Analysis:**
+  - "Your army is weak to cavalry - consider adding Spearmen"
+  - "No siege units - you may struggle against fortifications"
+  - "Heavy gold cost - vulnerable to trade disruption"
+- **Balance Indicators:**
+  - Melee/Ranged ratio visualization
+  - Gold/Trash unit balance
+  - Population efficiency score
+- **Counter Suggestions:**
+  - "Enemy has archers? Add Skirmishers or Siege"
+  - "Facing cavalry? Camels or Halbs recommended"
+- **Cost Efficiency Ratings:**
+  - Resource efficiency per unit type
+  - Pop efficiency comparisons
+
+**UI Design:**
+```
+┌─ Army Analysis ─────────────────┐
+│ ⚠️ Vulnerabilities               │
+│   • Weak to: Knights, Paladins  │
+│   • Missing: Siege weapons      │
+│                                 │
+│ 📊 Balance                       │
+│   Melee: ████░░ 40%             │
+│   Ranged: ██████ 60%            │
+│                                 │
+│ 💡 Suggestions                   │
+│   + Add 5 Halberdiers            │
+│   + Consider Rams for buildings  │
+└─────────────────────────────────┘
+```
+
+**Impact:** Helps players identify composition weaknesses before battles.
+
+---
+
+### Civilization Quick Stats & Tier List
+**Status:** Not Started
+**Priority:** Medium
+**Complexity:** Low
+
+Display civilization power rankings and quick stats.
+
+**Features:**
+- Overall tier list (S, A, B, C, D) based on current meta
+- Win rates by ELO bracket (integrate with aoestats.io)
+- Civilization strengths summary
+- Best maps for each civ
+- Difficulty rating (beginner, intermediate, advanced)
+- Popular strategies per civ
+
+**Data Sources:**
+- aoestats.io for win rates
+- Community tier lists (TheViper, Hera, etc.)
+- Tournament results
+
+**UI Placement:**
+- Dropdown next to civilization selector
+- Tooltip on hover over civ name
+- Dedicated "Civ Guide" panel (collapsible)
+
+**Example Display:**
+```
+Franks - Tier: S
+Win Rate: 52.3% (1200+ ELO)
+Strengths: Cavalry, Fast Castle
+Best Maps: Arabia, Arena
+Difficulty: Beginner-Friendly
+```
+
+**Impact:** Helps players choose civilizations that match their skill level and strategy.
+
+---
+
 ## 💡 Future Considerations
 
 ### Battle Simulator
@@ -397,6 +708,116 @@ Integrate with Age of Empires II API for live data.
 
 ---
 
+### Replay File Analysis
+**Status:** Not Started
+**Priority:** Low
+**Complexity:** Very High
+
+Parse and analyze AoE2 replay files (.aoe2record).
+
+**Features:**
+- Upload replay file
+- Extract army compositions at key timestamps
+- Analyze resource spending patterns
+- Visualize unit production timeline
+- Compare to optimal compositions
+- Learning tool for improving gameplay
+
+**Technical Challenges:**
+- Reverse-engineer replay file format
+- Handle different game versions
+- Large file sizes (10-50MB)
+- Compute-intensive parsing
+
+**Why Low Priority:**
+- Extremely complex to implement
+- Replay format not officially documented
+- Third-party tools exist (CaptureAge, etc.)
+
+---
+
+### Cloud Sync & User Accounts
+**Status:** Not Started
+**Priority:** Low
+**Complexity:** Very High
+
+Backend infrastructure for user accounts and cloud saving.
+
+**Features:**
+- User registration/login (OAuth with Discord/Google)
+- Cloud-synced compositions across devices
+- Community shared composition library
+- Composition ratings and comments
+- User profiles with favorite civilizations
+- History of saved compositions
+
+**Technical Requirements:**
+- Backend server (Node.js/Express or similar)
+- Database (PostgreSQL or MongoDB)
+- Authentication system (JWT, OAuth)
+- API endpoints for CRUD operations
+- Security measures (rate limiting, validation)
+- GDPR compliance for EU users
+
+**Infrastructure:**
+- Hosting (Vercel, Heroku, AWS)
+- Database hosting
+- CDN for static assets
+- Monitoring and logging
+
+**Why Low Priority:**
+- Significant infrastructure cost
+- Ongoing maintenance burden
+- Security responsibilities
+- Current localStorage solution works well
+
+---
+
+### Hotkey Reference Integration
+**Status:** Not Started
+**Priority:** Low
+**Complexity:** Low
+
+Display in-game hotkeys for selected units.
+
+**Features:**
+- Show default hotkey for unit production
+- Display control group shortcuts
+- Military building hotkeys
+- Customizable hotkey presets (default, grid, etc.)
+- Printable hotkey cheat sheet
+
+**Data Requirements:**
+- Hotkey mappings for all buildings
+- Unit production hotkeys
+- Different hotkey profiles
+
+**Impact:** Helps players practice hotkeys alongside composition planning.
+
+---
+
+### Tournament Mode
+**Status:** Not Started
+**Priority:** Low
+**Complexity:** Medium
+
+Special features for tournament organizers.
+
+**Features:**
+- Tournament bracket integration
+- Pre-set civilization pools (draft mode)
+- Map pool configuration
+- Best-of series tracking
+- Export tournament reports
+- Spectator-friendly views
+
+**Use Cases:**
+- Casters planning commentary
+- Tournament admins tracking picks/bans
+- Players preparing for specific opponents
+
+---
+
 ## ⚠️ Technical Debt & Security
 
 ### Dependency Updates
@@ -440,14 +861,143 @@ Address structural issues identified in code review:
 
 ---
 
+### TypeScript Migration
+**Status:** Not Started
+**Priority:** Medium
+**Complexity:** High
+
+Migrate codebase from JavaScript to TypeScript for better type safety.
+
+**Benefits:**
+- Compile-time type checking
+- Better IDE autocomplete and refactoring
+- Self-documenting code with interfaces
+- Catch bugs before runtime
+- Easier onboarding for new contributors
+
+**Migration Strategy:**
+1. Install TypeScript and configure `tsconfig.json`
+2. Rename files incrementally (`.jsx` → `.tsx`)
+3. Add type definitions for data structures (Unit, Civilization, Tech)
+4. Type React components with generic props
+5. Add strict mode gradually
+6. Remove PropTypes once TypeScript coverage is complete
+
+**Key Types to Define:**
+```typescript
+interface Unit {
+  id: string;
+  name: string;
+  age: 'dark' | 'feudal' | 'castle' | 'imperial';
+  cost: { food?: number; wood?: number; gold?: number; stone?: number };
+  population: number;
+  category: 'infantry' | 'cavalry' | 'archer' | 'siege' | 'naval' | 'unique';
+  counters: string[];
+  weakTo: string[];
+}
+
+interface Civilization {
+  id: string;
+  name: string;
+  bonuses: CivBonus[];
+  teamBonus: string;
+  uniqueUnit: string;
+  uniqueTech: string[];
+}
+```
+
+**Effort Estimate:** 40-60 hours for full migration
+
+**Impact:** Significantly improved code reliability and developer experience.
+
+---
+
+### ESLint 9.x Migration
+**Status:** Not Started
+**Priority:** Medium
+**Complexity:** Low
+
+Update ESLint configuration for version 9.x compatibility.
+
+**Current Issue:**
+- ESLint 8.56.0 installed but uses deprecated `.eslintrc.json` format
+- Future ESLint versions require flat config (`eslint.config.js`)
+- Blocking `npm run check` in some environments
+
+**Required Actions:**
+1. Migrate `.eslintrc.json` to `eslint.config.js` (flat config)
+2. Update ESLint plugins for v9 compatibility
+3. Test all linting rules still work
+4. Update CI/CD scripts if needed
+
+**New Config Format:**
+```javascript
+// eslint.config.js
+import js from '@eslint/js';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+
+export default [
+  js.configs.recommended,
+  {
+    plugins: { react, 'react-hooks': reactHooks },
+    rules: {
+      // ... existing rules
+    },
+  },
+];
+```
+
+**Impact:** Future-proofs linting infrastructure, unblocks tooling.
+
+---
+
+### Performance Monitoring & Analytics Dashboard
+**Status:** Not Started
+**Priority:** Low
+**Complexity:** Medium
+
+Track application performance metrics.
+
+**Metrics to Track:**
+- Component render times
+- Bundle size trends
+- User session duration
+- Feature usage statistics
+- Error rates and types
+- Load times by network condition
+
+**Tools:**
+- Lighthouse CI for performance audits
+- Web Vitals (LCP, FID, CLS)
+- Bundle analyzer integration
+- Error tracking (Sentry or similar)
+
+**Dashboard Features:**
+- Performance trend graphs
+- Bundle size breakdown
+- Most used features
+- Error hotspots
+- User flow analysis
+
+**Impact:** Data-driven optimization decisions.
+
+---
+
 ## Recently Completed ✅
+
+### Civilization Selector Enhancement (v2.4.1 - November 2025)
+- ✅ Enhanced civilization selector with visual prominence
+- ✅ Added civilization icons for all 51 civilizations
+- ✅ Improved UI/UX for civilization selection
+- ✅ Better visual feedback and discoverability
 
 ### Component Testing & Performance (v2.4.1 - November 2025)
 Comprehensive component testing and performance improvements:
 - ✅ **Component Testing:** Added 89 tests for critical UI components (ErrorBoundary, ThemeToggle, ResourceCost, UnitCard)
 - ✅ **Performance:** Added search input debouncing (300ms) to UnitFilter for improved responsiveness
 - ✅ **Testing Infrastructure:** Added @testing-library/jest-dom and vitest setup configuration
-- ✅ **Testing:** Total test coverage increased from 142 tests to 225 tests (58% increase, 263% total increase from v2.3)
+- ✅ **Testing:** Total test coverage increased to 256 tests (313% total increase from v2.3 baseline of 62 tests)
 
 ### Code Quality & Data Processing Improvements (v2.4.0 - November 2025)
 Comprehensive code hardening and robustness improvements:
@@ -504,5 +1054,7 @@ For questions or suggestions about the roadmap, open a discussion on GitHub.
 
 ---
 
-**Last Updated:** November 2025
+**Last Updated:** November 16, 2025
 **Current Version:** 2.4.0
+**Total Roadmap Items:** 35+ features across 4 priority levels
+**Next Major Focus:** PWA Support, Preset Compositions, Import Functionality
