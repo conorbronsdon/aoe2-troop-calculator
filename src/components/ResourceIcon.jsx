@@ -4,25 +4,27 @@ import { useState } from 'react';
 /**
  * Resource icon configuration with paths and fallback emojis
  * Uses import.meta.env.BASE_URL to handle deployment to subdirectories
+ * Icons sourced from SiegeEngineers/aoe2techtree (official AoE2 DE icons)
+ * https://github.com/SiegeEngineers/aoe2techtree
  */
 const RESOURCE_CONFIG = {
   food: {
-    path: `${import.meta.env.BASE_URL}resource-icons/food.svg`,
+    path: `${import.meta.env.BASE_URL}resource-icons/food.png`,
     fallback: '🌾',
     label: 'Food',
   },
   wood: {
-    path: `${import.meta.env.BASE_URL}resource-icons/wood.svg`,
+    path: `${import.meta.env.BASE_URL}resource-icons/wood.png`,
     fallback: '🌲',
     label: 'Wood',
   },
   gold: {
-    path: `${import.meta.env.BASE_URL}resource-icons/gold.svg`,
+    path: `${import.meta.env.BASE_URL}resource-icons/gold.png`,
     fallback: '💰',
     label: 'Gold',
   },
   stone: {
-    path: `${import.meta.env.BASE_URL}resource-icons/stone.svg`,
+    path: `${import.meta.env.BASE_URL}resource-icons/stone.png`,
     fallback: '🗿',
     label: 'Stone',
   },
