@@ -16,9 +16,28 @@ export default function ArmyCompositionSummary() {
   const [exportMessage, setExportMessage] = useState('');
   const [importMessage, setImportMessage] = useState('');
   const [isImportModalOpen, setIsImportModalOpen] = useState(false);
+  const [showSaveDialog, setShowSaveDialog] = useState(false);
+  const [saveName, setSaveName] = useState('');
+  const [saveMessage, setSaveMessage] = useState('');
 
   const resetComposition = () => {
     dispatch({ type: ACTION_TYPES.RESET_COMPOSITION });
+  };
+
+  const handleSaveComposition = () => {
+    if (!saveName.trim()) {
+      setSaveMessage('Please enter a name');
+      setTimeout(() => setSaveMessage(''), 2000);
+      return;
+    }
+
+    StorageService.save(saveName.trim(), composition, config);
+    setSaveName('');
+    setShowSaveDialog(false);
+    setSaveMessage('✓ Saved!');
+    setTimeout(() => setSaveMessage(''), 2000);
+    // Dispatch custom event to notify other components
+    window.dispatchEvent(new Event('savedCompositionsUpdated'));
   };
 
   const handleImport = (data, mode, source, filename = null) => {
@@ -118,6 +137,13 @@ export default function ArmyCompositionSummary() {
           <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-200">Army Composition</h2>
           <div className="flex gap-2 flex-wrap">
             <button
+              onClick={() => setShowSaveDialog(!showSaveDialog)}
+              className="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-colors"
+              title="Save current composition"
+            >
+              💾 Save Current
+            </button>
+            <button
               onClick={() => setIsImportModalOpen(true)}
               className="bg-indigo-500 hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white px-4 py-2 rounded text-sm transition-colors"
               title="Import composition from file or URL"
@@ -126,7 +152,7 @@ export default function ArmyCompositionSummary() {
             </button>
             <button
               onClick={handleShare}
-              className="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-colors"
+              className="bg-cyan-500 hover:bg-cyan-600 dark:bg-cyan-600 dark:hover:bg-cyan-700 text-white px-4 py-2 rounded text-sm transition-colors"
               title="Copy shareable link"
             >
               📋 Share
@@ -159,11 +185,45 @@ export default function ArmyCompositionSummary() {
         </div>
 
         {/* Status messages */}
-        {(shareMessage || exportMessage || importMessage) && (
+        {(shareMessage || exportMessage || importMessage || saveMessage) && (
           <div className="mb-4 text-sm text-center">
             {shareMessage && <span className="text-blue-600 dark:text-blue-400 mr-4">{shareMessage}</span>}
             {exportMessage && <span className="text-green-600 dark:text-green-400 mr-4">{exportMessage}</span>}
-            {importMessage && <span className="text-indigo-600 dark:text-indigo-400">{importMessage}</span>}
+            {importMessage && <span className="text-indigo-600 dark:text-indigo-400 mr-4">{importMessage}</span>}
+            {saveMessage && <span className="text-green-600 dark:text-green-400">{saveMessage}</span>}
+          </div>
+        )}
+
+        {/* Save Dialog */}
+        {showSaveDialog && (
+          <div className="mb-4 p-4 border border-gray-200 dark:border-gray-600 rounded bg-gray-50 dark:bg-gray-700">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Composition Name</label>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={saveName}
+                onChange={(e) => setSaveName(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSaveComposition()}
+                placeholder="e.g., Knight Rush Build"
+                className="flex-1 border border-gray-300 dark:border-gray-600 rounded px-3 py-2 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                autoFocus
+              />
+              <button
+                onClick={handleSaveComposition}
+                className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-4 py-2 rounded text-sm transition-colors"
+              >
+                Save
+              </button>
+              <button
+                onClick={() => {
+                  setShowSaveDialog(false);
+                  setSaveName('');
+                }}
+                className="bg-gray-400 hover:bg-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500 text-white px-4 py-2 rounded text-sm transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         )}
 

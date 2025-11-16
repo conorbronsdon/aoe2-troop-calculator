@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { StorageService } from '../services/storage.service';
 
-export default function SaveLoadPanel() {
+export default function SaveLoadPanel({ hideSaveButton = false }) {
   const { state, dispatch } = useArmy();
   const { composition, config } = state;
   const [savedCompositions, setSavedCompositions] = useState([]);
@@ -35,6 +36,8 @@ export default function SaveLoadPanel() {
     loadSavedCompositions();
     setMessage('✓ Saved!');
     setTimeout(() => setMessage(''), 2000);
+    // Dispatch custom event to notify other components
+    window.dispatchEvent(new Event('savedCompositionsUpdated'));
   };
 
   const handleLoad = (saved) => {
@@ -53,6 +56,8 @@ export default function SaveLoadPanel() {
       loadSavedCompositions();
       setMessage('✓ Deleted');
       setTimeout(() => setMessage(''), 2000);
+      // Dispatch custom event to notify other components
+      window.dispatchEvent(new Event('savedCompositionsUpdated'));
     }
   };
 
@@ -63,15 +68,15 @@ export default function SaveLoadPanel() {
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-6 transition-colors duration-300">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-200">Saved Compositions</h2>
-        {hasUnits && (
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 transition-colors duration-300">
+      <div className="flex justify-between items-center mb-3">
+        <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-200">💾 Saved Compositions</h2>
+        {hasUnits && !hideSaveButton && (
           <button
             onClick={() => setShowSaveDialog(!showSaveDialog)}
-            className="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-colors"
+            className="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-3 py-1.5 rounded text-sm transition-colors"
           >
-            💾 Save Current
+            Save Current
           </button>
         )}
       </div>
@@ -80,8 +85,8 @@ export default function SaveLoadPanel() {
 
       {/* Save Dialog */}
       {showSaveDialog && (
-        <div className="mb-4 p-4 border border-gray-200 dark:border-gray-600 rounded bg-gray-50 dark:bg-gray-700">
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Composition Name</label>
+        <div className="mb-3 p-3 border border-gray-200 dark:border-gray-600 rounded bg-gray-50 dark:bg-gray-700">
+          <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1.5">Composition Name</label>
           <div className="flex gap-2">
             <input
               type="text"
@@ -89,12 +94,12 @@ export default function SaveLoadPanel() {
               onChange={(e) => setSaveName(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSave()}
               placeholder="e.g., Knight Rush Build"
-              className="flex-1 border border-gray-300 dark:border-gray-600 rounded px-3 py-2 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              className="flex-1 border border-gray-300 dark:border-gray-600 rounded px-2 py-1.5 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
               autoFocus
             />
             <button
               onClick={handleSave}
-              className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-4 py-2 rounded text-sm transition-colors"
+              className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-3 py-1.5 rounded text-sm transition-colors"
             >
               Save
             </button>
@@ -103,7 +108,7 @@ export default function SaveLoadPanel() {
                 setShowSaveDialog(false);
                 setSaveName('');
               }}
-              className="bg-gray-400 hover:bg-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500 text-white px-4 py-2 rounded text-sm transition-colors"
+              className="bg-gray-400 hover:bg-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500 text-white px-3 py-1.5 rounded text-sm transition-colors"
             >
               Cancel
             </button>
@@ -159,3 +164,7 @@ export default function SaveLoadPanel() {
     </div>
   );
 }
+
+SaveLoadPanel.propTypes = {
+  hideSaveButton: PropTypes.bool,
+};

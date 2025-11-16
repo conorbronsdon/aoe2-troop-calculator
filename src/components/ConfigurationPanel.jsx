@@ -104,9 +104,9 @@ export default function ConfigurationPanel() {
             }
             aria-label="Select display mode"
           >
-            <option value="units">Units Only</option>
-            <option value="both">Units & Fortifications</option>
-            <option value="fortifications">Fortifications Only</option>
+            <option value="units">⚔️ Units Only</option>
+            <option value="both">⚔️🏰 Units & Fortifications</option>
+            <option value="fortifications">🏰 Fortifications Only</option>
           </select>
         </div>
 
