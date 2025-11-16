@@ -5,6 +5,61 @@ All notable changes to the Age of Empires II Army Composition Calculator will be
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.0] - 2025-11-16
+
+### Added
+- **Import Compositions Feature**: Complete import functionality for army compositions
+  - New `ImportService` (`src/services/import.service.js`):
+    - Full JSON schema validation with detailed error messages
+    - Version compatibility checking with migration warnings
+    - Data sanitization to prevent XSS/injection attacks
+    - Auto-detection of input format (JSON, URL, base64 encoded)
+    - File reading with FileReader API
+    - Unit existence validation with unknown unit warnings
+    - Age and civilization validation
+  - New `ImportModal` component (`src/components/ImportModal.jsx`):
+    - Three-tab interface: File Upload, Paste JSON, Import from URL
+    - Drag-and-drop file upload with visual feedback
+    - File size validation (1MB max)
+    - Real-time validation error and warning display
+    - Import mode selection: Replace or Merge compositions
+    - Responsive design with dark mode support
+    - Accessible UI with proper ARIA attributes
+  - Import history tracking in `StorageService`:
+    - Automatic history logging in localStorage
+    - Tracks source type (file/paste/url), filename, timestamp
+    - Records success/failure and unit count
+    - History limited to 50 most recent entries
+    - Import statistics via `StorageService.getImportStats()`
+  - New `IMPORT_COMPOSITION` action type in `ArmyContext`
+  - Import button in `ArmyCompositionSummary` component
+  - Import constants in `src/constants.js`:
+    - `IMPORT_SOURCES`, `IMPORT_MODES`, `MAX_IMPORT_FILE_SIZE`
+    - `IMPORT_HISTORY_KEY`, `MAX_IMPORT_HISTORY`
+
+### Changed
+- Updated `ArmyCompositionSummary` to include import button and modal
+- Enhanced `ArmyContext` reducer with import composition handling
+- Extended `StorageService` with import history management
+- Updated `STORAGE_KEYS` to include `IMPORT_HISTORY`
+- Version bumped to 2.6.0 in `package.json` and `constants.js`
+
+### Tests
+- Added 34 comprehensive unit tests for `ImportService`
+  - Validation tests for JSON structure, version compatibility
+  - Parsing tests for various input formats
+  - Sanitization tests for security (XSS protection)
+  - History entry creation tests
+  - Auto-detection tests for URLs, JSON, and encoded data
+  - File import tests with size and type validation
+- Total test count: 290 tests (all passing)
+
+### Documentation
+- Updated ROADMAP.md to mark import feature as complete
+- Added import feature to README.md features section
+- Updated project structure in README.md
+- Incremented version numbers throughout documentation
+
 ## [2.3.0] - 2025-11-15
 
 ### Added

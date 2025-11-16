@@ -200,35 +200,77 @@ Provide pre-configured army templates for common strategies.
 ---
 
 ### Import Compositions from JSON/URL
-**Status:** Not Started
+**Status:** ✅ Complete (v2.6.0)
 **Priority:** High
 **Complexity:** Low
 
 Allow importing saved compositions from JSON files or URLs.
 
-**Features:**
-- Import from JSON file upload
-- Paste composition JSON directly
-- Import from shared URL parameters
-- Validate imported data structure
-- Merge or replace current composition
-- Import history tracking
+**Completed Implementation:**
+
+1. **Import Service** (`src/services/import.service.js`):
+   - ✅ Full JSON schema validation with detailed error messages
+   - ✅ Version compatibility checking with migration warnings
+   - ✅ Data sanitization to prevent XSS/injection attacks
+   - ✅ Auto-detection of input format (JSON, URL, base64 encoded)
+   - ✅ File reading with drag-and-drop support
+   - ✅ Unit existence validation with unknown unit warnings
+   - ✅ Age and civilization validation
+
+2. **Import Modal Component** (`src/components/ImportModal.jsx`):
+   - ✅ Three-tab interface: File Upload, Paste JSON, Import from URL
+   - ✅ Drag-and-drop file upload with visual feedback
+   - ✅ File size validation (1MB max)
+   - ✅ Real-time validation error and warning display
+   - ✅ Import mode selection: Replace or Merge compositions
+   - ✅ Responsive design with dark mode support
+   - ✅ Accessible UI with proper ARIA attributes
+
+3. **Import History Tracking**:
+   - ✅ Automatic history logging in localStorage
+   - ✅ Tracks source type (file/paste/url), filename, timestamp
+   - ✅ Records success/failure and unit count
+   - ✅ History limited to 50 most recent entries
+   - ✅ Import statistics available via `StorageService.getImportStats()`
+
+4. **ArmyContext Integration**:
+   - ✅ New `IMPORT_COMPOSITION` action type
+   - ✅ Merge mode: adds quantities for matching units
+   - ✅ Replace mode: completely replaces current composition
+   - ✅ Config merging with imported settings taking precedence
+
+5. **UI Integration**:
+   - ✅ "Import" button prominently displayed next to Export buttons
+   - ✅ Import available even with empty composition
+   - ✅ Success message showing number of imported unit types
+   - ✅ Color-coded validation messages (errors=red, warnings=yellow)
 
 **UI Elements:**
-- "Import" button next to "Export"
-- File upload dialog
-- Paste JSON textarea modal
-- "Import from URL" input field
-- Validation error messages
+- ✅ "Import" button (indigo) next to "Share"
+- ✅ File upload dialog with drag-and-drop
+- ✅ Paste JSON textarea modal with auto-detection
+- ✅ "Import from URL" input field
+- ✅ Comprehensive validation error messages
 
-**Technical Requirements:**
-- File input with drag-and-drop support
-- JSON schema validation
-- Version compatibility checking
-- Error handling for malformed data
-- Sanitize imported data
+**Technical Features:**
+- ✅ File input with drag-and-drop support
+- ✅ JSON schema validation with specific error messages
+- ✅ Version compatibility checking with warnings
+- ✅ Error handling for malformed data with detailed feedback
+- ✅ Data sanitization (XSS protection, bounds checking)
+- ✅ 34 comprehensive unit tests
 
-**Impact:** Complete the save/load workflow, enable team composition sharing.
+**Acceptance Criteria:**
+- ✅ Users can import from JSON files via upload or drag-and-drop
+- ✅ Users can paste JSON or encoded army data directly
+- ✅ Users can import from shared URLs
+- ✅ Validation errors clearly displayed
+- ✅ Merge or replace current composition options
+- ✅ Import history tracked automatically
+- ✅ All 290 tests pass
+- ✅ Build succeeds without errors
+
+**Impact:** Completes the save/load workflow, enables team composition sharing, and allows users to back up and restore their army compositions.
 
 ---
 
@@ -1096,6 +1138,17 @@ Track application performance metrics.
 
 ## Recently Completed ✅
 
+### Import Compositions Feature (v2.6.0 - November 2025)
+Complete import functionality for army compositions:
+- ✅ **Import Service:** Full JSON validation, version compatibility, data sanitization
+- ✅ **Import Modal:** Three-tab interface (File Upload, Paste JSON, Import from URL)
+- ✅ **Drag-and-Drop:** File upload with visual feedback and size validation
+- ✅ **Import Modes:** Replace or Merge with current composition
+- ✅ **History Tracking:** Automatic logging of import attempts with statistics
+- ✅ **Data Security:** XSS protection and input sanitization
+- ✅ **Testing:** 34 comprehensive unit tests (290 total tests passing)
+- ✅ **UI Integration:** Import button available on all composition states
+
 ### UI Visual Enhancements (v2.5.0 - November 2025)
 Comprehensive UI polish and usability improvements:
 - ✅ **Compact Resource Bar:** Fixed bottom bar showing total resources and population at a glance
@@ -1174,6 +1227,6 @@ For questions or suggestions about the roadmap, open a discussion on GitHub.
 ---
 
 **Last Updated:** November 16, 2025
-**Current Version:** 2.5.0
+**Current Version:** 2.6.0
 **Total Roadmap Items:** 35+ features across 4 priority levels
-**Next Major Focus:** PWA Support, Preset Compositions, Import Functionality
+**Next Major Focus:** PWA Support, Preset Compositions, Unit Statistics Display
