@@ -4,7 +4,7 @@ import {
   calculateTotals,
   hasDiscount,
   calculatePercentage,
-  groupUnitsByCategory
+  groupUnitsByCategory,
 } from './calculations';
 import { getUnitById } from '../data/units';
 
@@ -97,7 +97,7 @@ describe('Calculation Functions', () => {
     it('should calculate totals for multiple unit types', () => {
       const composition = {
         knight: 10,
-        crossbowman: 20
+        crossbowman: 20,
       };
       const { totalCost, totalPopulation } = calculateTotals(composition, 'generic', 'castle');
 
@@ -129,7 +129,7 @@ describe('Calculation Functions', () => {
     it('should ignore zero quantity units', () => {
       const composition = {
         knight: 10,
-        crossbowman: 0
+        crossbowman: 0,
       };
       const { totalCost, totalPopulation } = calculateTotals(composition, 'generic', 'castle');
 
@@ -205,7 +205,7 @@ describe('Calculation Functions', () => {
         getUnitById('knight'),
         getUnitById('cavalier'),
         getUnitById('archer'),
-        getUnitById('crossbowman')
+        getUnitById('crossbowman'),
       ];
       const grouped = groupUnitsByCategory(units);
 
@@ -234,7 +234,7 @@ describe('Calculation Functions', () => {
       const composition = {
         knight: 20,
         crossbowman: 30,
-        halberdier: 10
+        halberdier: 10,
       };
 
       // Generic (no bonuses)
@@ -252,7 +252,7 @@ describe('Calculation Functions', () => {
         knight: 15,
         crossbowman: 25,
         mangonel: 3,
-        trebuchet: 2
+        trebuchet: 2,
       };
 
       const { totalCost, totalPopulation } = calculateTotals(composition, 'generic', 'imperial');

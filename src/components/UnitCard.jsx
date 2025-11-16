@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { calculateUnitCost, hasDiscount } from '../utils/calculations';
@@ -22,29 +22,31 @@ export default function UnitCard({ unit }) {
   const quantity = composition[unit.id] || 0;
 
   // Get bonuses that apply to this unit
-  const currentCiv = civilizations.find(civ => civ.id === config.selectedCiv);
-  const applicableBonuses = currentCiv && currentCiv.id !== 'generic'
-    ? currentCiv.bonuses.filter(bonus => {
-        if (bonus.type !== 'cost') {return false;}
-        return bonus.units === 'all' || bonus.units.includes(unit.id);
-      })
-    : [];
+  const currentCiv = civilizations.find((civ) => civ.id === config.selectedCiv);
+  const applicableBonuses =
+    currentCiv && currentCiv.id !== 'generic'
+      ? currentCiv.bonuses.filter((bonus) => {
+          if (bonus.type !== 'cost') {
+            return false;
+          }
+          return bonus.units === 'all' || bonus.units.includes(unit.id);
+        })
+      : [];
 
   const hasBonuses = applicableBonuses.length > 0;
 
   // Calculate modified stats based on researched technologies
-  const unitStats = useMemo(() => {
-    return calculateUnitStats(unit, researchedTechs || [], config.selectedCiv);
-  }, [unit, researchedTechs, config.selectedCiv]);
+  const unitStats = useMemo(
+    () => calculateUnitStats(unit, researchedTechs || [], config.selectedCiv),
+    [unit, researchedTechs, config.selectedCiv]
+  );
 
   const hasStatsChanged = useMemo(() => {
     if (!unitStats) {
       return false;
     }
     const { base, modified } = unitStats;
-    return Object.keys(base).some(key =>
-      Math.abs(modified[key] - base[key]) > 0.001
-    );
+    return Object.keys(base).some((key) => Math.abs(modified[key] - base[key]) > 0.001);
   }, [unitStats]);
 
   const addUnit = () => {
@@ -67,12 +69,15 @@ export default function UnitCard({ unit }) {
     return foundUnit ? foundUnit.name : unitId;
   };
 
-  const hasCounterInfo = (unit.counters && unit.counters.length > 0) || (unit.weakTo && unit.weakTo.length > 0);
+  const hasCounterInfo =
+    (unit.counters && unit.counters.length > 0) || (unit.weakTo && unit.weakTo.length > 0);
 
   return (
-    <div className={`border rounded-lg p-3 hover:shadow-md transition-all ${
-      hasBonuses ? 'border-blue-300 bg-blue-50/30' : ''
-    }`}>
+    <div
+      className={`border rounded-lg p-3 hover:shadow-md transition-all ${
+        hasBonuses ? 'border-blue-300 bg-blue-50/30' : ''
+      }`}
+    >
       <div className="flex justify-between items-start mb-2">
         <div className="flex-1">
           <div className="font-semibold text-sm flex items-center gap-2">
@@ -81,7 +86,7 @@ export default function UnitCard({ unit }) {
             {hasBonuses && (
               <span
                 className="text-xs px-1.5 py-0.5 bg-blue-500 text-white rounded-full font-bold cursor-help"
-                title={`${currentCiv.name} bonuses:\n${applicableBonuses.map(b => b.description).join('\n')}`}
+                title={`${currentCiv.name} bonuses:\n${applicableBonuses.map((b) => b.description).join('\n')}`}
               >
                 🏛️
               </span>
@@ -90,11 +95,17 @@ export default function UnitCard({ unit }) {
           <div className="text-xs text-gray-500 capitalize">{unit.age} Age</div>
           {hasBonuses && showDiscount && (
             <div className="text-xs text-blue-600 font-semibold mt-1">
-              <span role="img" aria-label="Discount">💰</span> {currentCiv.name} discount applied
+              <span role="img" aria-label="Discount">
+                💰
+              </span>{' '}
+              {currentCiv.name} discount applied
             </div>
           )}
         </div>
-        <span className="text-xs bg-gray-200 px-2 py-1 rounded" aria-label={`Population cost: ${unit.population}`}>
+        <span
+          className="text-xs bg-gray-200 px-2 py-1 rounded"
+          aria-label={`Population cost: ${unit.population}`}
+        >
           Pop: {unit.population}
         </span>
       </div>
@@ -124,9 +135,18 @@ export default function UnitCard({ unit }) {
               {/* HP */}
               <div className="flex justify-between text-xs">
                 <span className="text-gray-600 dark:text-gray-400">
-                  <span role="img" aria-label="health">❤️</span> HP:
+                  <span role="img" aria-label="health">
+                    ❤️
+                  </span>{' '}
+                  HP:
                 </span>
-                <span className={hasStatsChanged && unitStats.modified.hp !== unitStats.base.hp ? 'text-green-600 dark:text-green-400 font-semibold' : ''}>
+                <span
+                  className={
+                    hasStatsChanged && unitStats.modified.hp !== unitStats.base.hp
+                      ? 'text-green-600 dark:text-green-400 font-semibold'
+                      : ''
+                  }
+                >
                   {unitStats.base.hp !== unitStats.modified.hp ? (
                     <>
                       <span className="text-gray-400 line-through mr-1">{unitStats.base.hp}</span>
@@ -141,12 +161,23 @@ export default function UnitCard({ unit }) {
               {/* Attack */}
               <div className="flex justify-between text-xs">
                 <span className="text-gray-600 dark:text-gray-400">
-                  <span role="img" aria-label="attack">⚔️</span> Attack:
+                  <span role="img" aria-label="attack">
+                    ⚔️
+                  </span>{' '}
+                  Attack:
                 </span>
-                <span className={hasStatsChanged && unitStats.modified.attack !== unitStats.base.attack ? 'text-green-600 dark:text-green-400 font-semibold' : ''}>
+                <span
+                  className={
+                    hasStatsChanged && unitStats.modified.attack !== unitStats.base.attack
+                      ? 'text-green-600 dark:text-green-400 font-semibold'
+                      : ''
+                  }
+                >
                   {unitStats.base.attack !== unitStats.modified.attack ? (
                     <>
-                      <span className="text-gray-400 line-through mr-1">{unitStats.base.attack}</span>
+                      <span className="text-gray-400 line-through mr-1">
+                        {unitStats.base.attack}
+                      </span>
                       {formatStatValue('attack', unitStats.modified.attack)}
                     </>
                   ) : (
@@ -158,15 +189,21 @@ export default function UnitCard({ unit }) {
               {/* Armor */}
               <div className="flex justify-between text-xs">
                 <span className="text-gray-600 dark:text-gray-400">
-                  <span role="img" aria-label="armor">🛡️</span> Armor:
+                  <span role="img" aria-label="armor">
+                    🛡️
+                  </span>{' '}
+                  Armor:
                 </span>
-                <span className={
-                  (unitStats.modified.meleeArmor !== unitStats.base.meleeArmor ||
-                   unitStats.modified.pierceArmor !== unitStats.base.pierceArmor)
-                    ? 'text-green-600 dark:text-green-400 font-semibold' : ''
-                }>
-                  {(unitStats.base.meleeArmor !== unitStats.modified.meleeArmor ||
-                    unitStats.base.pierceArmor !== unitStats.modified.pierceArmor) ? (
+                <span
+                  className={
+                    unitStats.modified.meleeArmor !== unitStats.base.meleeArmor ||
+                    unitStats.modified.pierceArmor !== unitStats.base.pierceArmor
+                      ? 'text-green-600 dark:text-green-400 font-semibold'
+                      : ''
+                  }
+                >
+                  {unitStats.base.meleeArmor !== unitStats.modified.meleeArmor ||
+                  unitStats.base.pierceArmor !== unitStats.modified.pierceArmor ? (
                     <>
                       <span className="text-gray-400 line-through mr-1">
                         {unitStats.base.meleeArmor}/{unitStats.base.pierceArmor}
@@ -184,12 +221,23 @@ export default function UnitCard({ unit }) {
               {unitStats.base.range > 0 && (
                 <div className="flex justify-between text-xs">
                   <span className="text-gray-600 dark:text-gray-400">
-                    <span role="img" aria-label="range">🎯</span> Range:
+                    <span role="img" aria-label="range">
+                      🎯
+                    </span>{' '}
+                    Range:
                   </span>
-                  <span className={unitStats.modified.range !== unitStats.base.range ? 'text-green-600 dark:text-green-400 font-semibold' : ''}>
+                  <span
+                    className={
+                      unitStats.modified.range !== unitStats.base.range
+                        ? 'text-green-600 dark:text-green-400 font-semibold'
+                        : ''
+                    }
+                  >
                     {unitStats.base.range !== unitStats.modified.range ? (
                       <>
-                        <span className="text-gray-400 line-through mr-1">{unitStats.base.range}</span>
+                        <span className="text-gray-400 line-through mr-1">
+                          {unitStats.base.range}
+                        </span>
                         {formatStatValue('range', unitStats.modified.range)}
                       </>
                     ) : (
@@ -202,12 +250,23 @@ export default function UnitCard({ unit }) {
               {/* Speed */}
               <div className="flex justify-between text-xs">
                 <span className="text-gray-600 dark:text-gray-400">
-                  <span role="img" aria-label="speed">🏃</span> Speed:
+                  <span role="img" aria-label="speed">
+                    🏃
+                  </span>{' '}
+                  Speed:
                 </span>
-                <span className={Math.abs(unitStats.modified.speed - unitStats.base.speed) > 0.001 ? 'text-green-600 dark:text-green-400 font-semibold' : ''}>
+                <span
+                  className={
+                    Math.abs(unitStats.modified.speed - unitStats.base.speed) > 0.001
+                      ? 'text-green-600 dark:text-green-400 font-semibold'
+                      : ''
+                  }
+                >
                   {Math.abs(unitStats.modified.speed - unitStats.base.speed) > 0.001 ? (
                     <>
-                      <span className="text-gray-400 line-through mr-1">{formatStatValue('speed', unitStats.base.speed)}</span>
+                      <span className="text-gray-400 line-through mr-1">
+                        {formatStatValue('speed', unitStats.base.speed)}
+                      </span>
                       {formatStatValue('speed', unitStats.modified.speed)}
                     </>
                   ) : (
@@ -219,15 +278,23 @@ export default function UnitCard({ unit }) {
               {/* Breakdown of bonuses */}
               {hasStatsChanged && (
                 <div className="mt-2 pt-2 border-t border-gray-200 dark:border-gray-600">
-                  <div className="text-xs font-semibold text-indigo-700 dark:text-indigo-300 mb-1">Bonuses Applied:</div>
+                  <div className="text-xs font-semibold text-indigo-700 dark:text-indigo-300 mb-1">
+                    Bonuses Applied:
+                  </div>
                   <div className="space-y-0.5">
                     {Object.entries(unitStats.breakdown).map(([stat, bonuses]) =>
-                      bonuses.map((bonus, idx) => (
-                        <div key={`${stat}-${idx}`} className="text-xs text-gray-600 dark:text-gray-400">
+                      bonuses.map((bonus) => (
+                        <div
+                          key={`${stat}-${bonus.source}`}
+                          className="text-xs text-gray-600 dark:text-gray-400"
+                        >
                           <span className="text-green-600 dark:text-green-400">{bonus.value}</span>{' '}
-                          {stat === 'meleeArmor' ? 'Melee Armor' :
-                           stat === 'pierceArmor' ? 'Pierce Armor' :
-                           stat.charAt(0).toUpperCase() + stat.slice(1)} from {bonus.source}
+                          {stat === 'meleeArmor'
+                            ? 'Melee Armor'
+                            : stat === 'pierceArmor'
+                              ? 'Pierce Armor'
+                              : stat.charAt(0).toUpperCase() + stat.slice(1)}{' '}
+                          from {bonus.source}
                         </div>
                       ))
                     )}
@@ -254,9 +321,11 @@ export default function UnitCard({ unit }) {
             <div className="mt-2 space-y-2">
               {unit.counters && unit.counters.length > 0 && (
                 <div>
-                  <div className="text-xs font-semibold text-green-700 mb-1">✅ Strong Against:</div>
+                  <div className="text-xs font-semibold text-green-700 mb-1">
+                    ✅ Strong Against:
+                  </div>
                   <div className="flex flex-wrap gap-1">
-                    {unit.counters.map(counterId => (
+                    {unit.counters.map((counterId) => (
                       <span
                         key={counterId}
                         className="inline-block text-xs px-2 py-0.5 bg-green-100 text-green-800 rounded-full border border-green-300"
@@ -273,7 +342,7 @@ export default function UnitCard({ unit }) {
                 <div>
                   <div className="text-xs font-semibold text-red-700 mb-1">⚠️ Weak To:</div>
                   <div className="flex flex-wrap gap-1">
-                    {unit.weakTo.map(weakId => (
+                    {unit.weakTo.map((weakId) => (
                       <span
                         key={weakId}
                         className="inline-block text-xs px-2 py-0.5 bg-red-100 text-red-800 rounded-full border border-red-300"
@@ -329,10 +398,10 @@ UnitCard.propTypes = {
       food: PropTypes.number.isRequired,
       wood: PropTypes.number.isRequired,
       gold: PropTypes.number.isRequired,
-      stone: PropTypes.number.isRequired
+      stone: PropTypes.number.isRequired,
     }).isRequired,
     population: PropTypes.number.isRequired,
     counters: PropTypes.arrayOf(PropTypes.string),
-    weakTo: PropTypes.arrayOf(PropTypes.string)
-  }).isRequired
+    weakTo: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
 };

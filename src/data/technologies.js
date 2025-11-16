@@ -21,7 +21,7 @@ export const TECH_CATEGORIES = {
   BARRACKS: 'Barracks',
   CASTLE: 'Castle',
   DOCK: 'Dock',
-  TOWN_CENTER: 'Town Center'
+  TOWN_CENTER: 'Town Center',
 };
 
 /**
@@ -37,7 +37,7 @@ export const EFFECT_TYPES = {
   ACCURACY: 'accuracy',
   LINE_OF_SIGHT: 'lineOfSight',
   ATTACK_SPEED: 'attackSpeed',
-  CONVERSION_RESISTANCE: 'conversionResistance'
+  CONVERSION_RESISTANCE: 'conversionResistance',
 };
 
 /**
@@ -55,10 +55,8 @@ export const technologies = [
     cost: { food: 150, wood: 0, gold: 0, stone: 0 },
     researchTime: 50,
     prerequisites: [],
-    effects: [
-      { type: EFFECT_TYPES.ATTACK, value: 1, affectsUnits: ['Infantry', 'Cavalry'] }
-    ],
-    description: '+1 attack for infantry and cavalry'
+    effects: [{ type: EFFECT_TYPES.ATTACK, value: 1, affectsUnits: ['Infantry', 'Cavalry'] }],
+    description: '+1 attack for infantry and cavalry',
   },
   {
     id: 'iron-casting',
@@ -68,10 +66,8 @@ export const technologies = [
     cost: { food: 220, wood: 0, gold: 120, stone: 0 },
     researchTime: 75,
     prerequisites: ['forging'],
-    effects: [
-      { type: EFFECT_TYPES.ATTACK, value: 1, affectsUnits: ['Infantry', 'Cavalry'] }
-    ],
-    description: '+1 attack for infantry and cavalry'
+    effects: [{ type: EFFECT_TYPES.ATTACK, value: 1, affectsUnits: ['Infantry', 'Cavalry'] }],
+    description: '+1 attack for infantry and cavalry',
   },
   {
     id: 'blast-furnace',
@@ -81,10 +77,8 @@ export const technologies = [
     cost: { food: 275, wood: 0, gold: 225, stone: 0 },
     researchTime: 100,
     prerequisites: ['iron-casting'],
-    effects: [
-      { type: EFFECT_TYPES.ATTACK, value: 2, affectsUnits: ['Infantry', 'Cavalry'] }
-    ],
-    description: '+2 attack for infantry and cavalry'
+    effects: [{ type: EFFECT_TYPES.ATTACK, value: 2, affectsUnits: ['Infantry', 'Cavalry'] }],
+    description: '+2 attack for infantry and cavalry',
   },
 
   // ==========================================================================
@@ -100,9 +94,9 @@ export const technologies = [
     prerequisites: [],
     effects: [
       { type: EFFECT_TYPES.MELEE_ARMOR, value: 1, affectsUnits: ['Infantry'] },
-      { type: EFFECT_TYPES.PIERCE_ARMOR, value: 1, affectsUnits: ['Infantry'] }
+      { type: EFFECT_TYPES.PIERCE_ARMOR, value: 1, affectsUnits: ['Infantry'] },
     ],
-    description: '+1/+1 armor for infantry'
+    description: '+1/+1 armor for infantry',
   },
   {
     id: 'chain-mail-armor',
@@ -114,9 +108,9 @@ export const technologies = [
     prerequisites: ['scale-mail-armor'],
     effects: [
       { type: EFFECT_TYPES.MELEE_ARMOR, value: 1, affectsUnits: ['Infantry'] },
-      { type: EFFECT_TYPES.PIERCE_ARMOR, value: 1, affectsUnits: ['Infantry'] }
+      { type: EFFECT_TYPES.PIERCE_ARMOR, value: 1, affectsUnits: ['Infantry'] },
     ],
-    description: '+1/+1 armor for infantry'
+    description: '+1/+1 armor for infantry',
   },
   {
     id: 'plate-mail-armor',
@@ -128,9 +122,9 @@ export const technologies = [
     prerequisites: ['chain-mail-armor'],
     effects: [
       { type: EFFECT_TYPES.MELEE_ARMOR, value: 1, affectsUnits: ['Infantry'] },
-      { type: EFFECT_TYPES.PIERCE_ARMOR, value: 2, affectsUnits: ['Infantry'] }
+      { type: EFFECT_TYPES.PIERCE_ARMOR, value: 2, affectsUnits: ['Infantry'] },
     ],
-    description: '+1/+2 armor for infantry'
+    description: '+1/+2 armor for infantry',
   },
 
   // ==========================================================================
@@ -146,9 +140,9 @@ export const technologies = [
     prerequisites: [],
     effects: [
       { type: EFFECT_TYPES.MELEE_ARMOR, value: 1, affectsUnits: ['Cavalry'] },
-      { type: EFFECT_TYPES.PIERCE_ARMOR, value: 1, affectsUnits: ['Cavalry'] }
+      { type: EFFECT_TYPES.PIERCE_ARMOR, value: 1, affectsUnits: ['Cavalry'] },
     ],
-    description: '+1/+1 armor for cavalry'
+    description: '+1/+1 armor for cavalry',
   },
   {
     id: 'chain-barding-armor',
@@ -160,9 +154,9 @@ export const technologies = [
     prerequisites: ['scale-barding-armor'],
     effects: [
       { type: EFFECT_TYPES.MELEE_ARMOR, value: 1, affectsUnits: ['Cavalry'] },
-      { type: EFFECT_TYPES.PIERCE_ARMOR, value: 1, affectsUnits: ['Cavalry'] }
+      { type: EFFECT_TYPES.PIERCE_ARMOR, value: 1, affectsUnits: ['Cavalry'] },
     ],
-    description: '+1/+1 armor for cavalry'
+    description: '+1/+1 armor for cavalry',
   },
   {
     id: 'plate-barding-armor',
@@ -174,9 +168,9 @@ export const technologies = [
     prerequisites: ['chain-barding-armor'],
     effects: [
       { type: EFFECT_TYPES.MELEE_ARMOR, value: 1, affectsUnits: ['Cavalry'] },
-      { type: EFFECT_TYPES.PIERCE_ARMOR, value: 2, affectsUnits: ['Cavalry'] }
+      { type: EFFECT_TYPES.PIERCE_ARMOR, value: 2, affectsUnits: ['Cavalry'] },
     ],
-    description: '+1/+2 armor for cavalry'
+    description: '+1/+2 armor for cavalry',
   },
 
   // ==========================================================================
@@ -192,9 +186,9 @@ export const technologies = [
     prerequisites: [],
     effects: [
       { type: EFFECT_TYPES.ATTACK, value: 1, affectsUnits: ['Archer', 'Siege'] },
-      { type: EFFECT_TYPES.RANGE, value: 1, affectsUnits: ['Archer', 'Siege'] }
+      { type: EFFECT_TYPES.RANGE, value: 1, affectsUnits: ['Archer', 'Siege'] },
     ],
-    description: '+1 attack and +1 range for archers and siege'
+    description: '+1 attack and +1 range for archers and siege',
   },
   {
     id: 'bodkin-arrow',
@@ -206,9 +200,9 @@ export const technologies = [
     prerequisites: ['fletching'],
     effects: [
       { type: EFFECT_TYPES.ATTACK, value: 1, affectsUnits: ['Archer', 'Siege'] },
-      { type: EFFECT_TYPES.RANGE, value: 1, affectsUnits: ['Archer', 'Siege'] }
+      { type: EFFECT_TYPES.RANGE, value: 1, affectsUnits: ['Archer', 'Siege'] },
     ],
-    description: '+1 attack and +1 range for archers and siege'
+    description: '+1 attack and +1 range for archers and siege',
   },
   {
     id: 'bracer',
@@ -220,9 +214,9 @@ export const technologies = [
     prerequisites: ['bodkin-arrow'],
     effects: [
       { type: EFFECT_TYPES.ATTACK, value: 1, affectsUnits: ['Archer', 'Siege'] },
-      { type: EFFECT_TYPES.RANGE, value: 1, affectsUnits: ['Archer', 'Siege'] }
+      { type: EFFECT_TYPES.RANGE, value: 1, affectsUnits: ['Archer', 'Siege'] },
     ],
-    description: '+1 attack and +1 range for archers and siege'
+    description: '+1 attack and +1 range for archers and siege',
   },
 
   // ==========================================================================
@@ -238,9 +232,9 @@ export const technologies = [
     prerequisites: [],
     effects: [
       { type: EFFECT_TYPES.MELEE_ARMOR, value: 1, affectsUnits: ['Archer'] },
-      { type: EFFECT_TYPES.PIERCE_ARMOR, value: 1, affectsUnits: ['Archer'] }
+      { type: EFFECT_TYPES.PIERCE_ARMOR, value: 1, affectsUnits: ['Archer'] },
     ],
-    description: '+1/+1 armor for archers'
+    description: '+1/+1 armor for archers',
   },
   {
     id: 'leather-archer-armor',
@@ -252,9 +246,9 @@ export const technologies = [
     prerequisites: ['padded-archer-armor'],
     effects: [
       { type: EFFECT_TYPES.MELEE_ARMOR, value: 1, affectsUnits: ['Archer'] },
-      { type: EFFECT_TYPES.PIERCE_ARMOR, value: 1, affectsUnits: ['Archer'] }
+      { type: EFFECT_TYPES.PIERCE_ARMOR, value: 1, affectsUnits: ['Archer'] },
     ],
-    description: '+1/+1 armor for archers'
+    description: '+1/+1 armor for archers',
   },
   {
     id: 'ring-archer-armor',
@@ -266,9 +260,9 @@ export const technologies = [
     prerequisites: ['leather-archer-armor'],
     effects: [
       { type: EFFECT_TYPES.MELEE_ARMOR, value: 1, affectsUnits: ['Archer'] },
-      { type: EFFECT_TYPES.PIERCE_ARMOR, value: 2, affectsUnits: ['Archer'] }
+      { type: EFFECT_TYPES.PIERCE_ARMOR, value: 2, affectsUnits: ['Archer'] },
     ],
-    description: '+1/+2 armor for archers'
+    description: '+1/+2 armor for archers',
   },
 
   // ==========================================================================
@@ -282,10 +276,8 @@ export const technologies = [
     cost: { food: 150, wood: 0, gold: 100, stone: 0 },
     researchTime: 50,
     prerequisites: [],
-    effects: [
-      { type: EFFECT_TYPES.HP, value: 20, affectsUnits: ['Cavalry'] }
-    ],
-    description: '+20 HP for cavalry'
+    effects: [{ type: EFFECT_TYPES.HP, value: 20, affectsUnits: ['Cavalry'] }],
+    description: '+20 HP for cavalry',
   },
   {
     id: 'husbandry',
@@ -295,10 +287,8 @@ export const technologies = [
     cost: { food: 150, wood: 0, gold: 0, stone: 0 },
     researchTime: 40,
     prerequisites: [],
-    effects: [
-      { type: EFFECT_TYPES.SPEED, value: 0.1, affectsUnits: ['Cavalry'] }
-    ],
-    description: '+10% speed for cavalry'
+    effects: [{ type: EFFECT_TYPES.SPEED, value: 0.1, affectsUnits: ['Cavalry'] }],
+    description: '+10% speed for cavalry',
   },
 
   // ==========================================================================
@@ -314,9 +304,9 @@ export const technologies = [
     prerequisites: [],
     effects: [
       { type: EFFECT_TYPES.ACCURACY, value: 100, affectsUnits: ['Archer'] },
-      { type: EFFECT_TYPES.ATTACK_SPEED, value: 0.18, affectsUnits: ['Archer'] }
+      { type: EFFECT_TYPES.ATTACK_SPEED, value: 0.18, affectsUnits: ['Archer'] },
     ],
-    description: '100% accuracy and +18% attack speed for archers'
+    description: '100% accuracy and +18% attack speed for archers',
   },
   {
     id: 'parthian-tactics',
@@ -327,11 +317,23 @@ export const technologies = [
     researchTime: 65,
     prerequisites: [],
     effects: [
-      { type: EFFECT_TYPES.MELEE_ARMOR, value: 1, affectsUnits: ['cavalry-archer', 'heavy-cavalry-archer'] },
-      { type: EFFECT_TYPES.PIERCE_ARMOR, value: 2, affectsUnits: ['cavalry-archer', 'heavy-cavalry-archer'] },
-      { type: EFFECT_TYPES.ATTACK, value: 2, affectsUnits: ['cavalry-archer', 'heavy-cavalry-archer'] }
+      {
+        type: EFFECT_TYPES.MELEE_ARMOR,
+        value: 1,
+        affectsUnits: ['cavalry-archer', 'heavy-cavalry-archer'],
+      },
+      {
+        type: EFFECT_TYPES.PIERCE_ARMOR,
+        value: 2,
+        affectsUnits: ['cavalry-archer', 'heavy-cavalry-archer'],
+      },
+      {
+        type: EFFECT_TYPES.ATTACK,
+        value: 2,
+        affectsUnits: ['cavalry-archer', 'heavy-cavalry-archer'],
+      },
     ],
-    description: '+1/+2 armor and +2 attack vs spearmen for cavalry archers'
+    description: '+1/+2 armor and +2 attack vs spearmen for cavalry archers',
   },
 
   // ==========================================================================
@@ -345,10 +347,8 @@ export const technologies = [
     cost: { food: 0, wood: 300, gold: 175, stone: 0 },
     researchTime: 60,
     prerequisites: [],
-    effects: [
-      { type: EFFECT_TYPES.ACCURACY, value: 100, affectsUnits: ['Archer', 'Siege'] }
-    ],
-    description: 'Ranged units hit moving targets'
+    effects: [{ type: EFFECT_TYPES.ACCURACY, value: 100, affectsUnits: ['Archer', 'Siege'] }],
+    description: 'Ranged units hit moving targets',
   },
   {
     id: 'chemistry',
@@ -358,10 +358,8 @@ export const technologies = [
     cost: { food: 300, wood: 0, gold: 200, stone: 0 },
     researchTime: 100,
     prerequisites: [],
-    effects: [
-      { type: EFFECT_TYPES.ATTACK, value: 1, affectsUnits: ['Archer', 'Siege'] }
-    ],
-    description: '+1 attack for ranged units and enables gunpowder units'
+    effects: [{ type: EFFECT_TYPES.ATTACK, value: 1, affectsUnits: ['Archer', 'Siege'] }],
+    description: '+1 attack for ranged units and enables gunpowder units',
   },
   {
     id: 'siege-engineers',
@@ -373,9 +371,9 @@ export const technologies = [
     prerequisites: [],
     effects: [
       { type: EFFECT_TYPES.RANGE, value: 1, affectsUnits: ['Siege'] },
-      { type: EFFECT_TYPES.ATTACK, value: 20, affectsUnits: ['Siege'] } // +20% vs buildings
+      { type: EFFECT_TYPES.ATTACK, value: 20, affectsUnits: ['Siege'] }, // +20% vs buildings
     ],
-    description: '+1 range for siege, +20% attack vs buildings'
+    description: '+1 range for siege, +20% attack vs buildings',
   },
 
   // ==========================================================================
@@ -389,10 +387,8 @@ export const technologies = [
     cost: { food: 100, wood: 0, gold: 0, stone: 0 },
     researchTime: 40,
     prerequisites: [],
-    effects: [
-      { type: EFFECT_TYPES.SPEED, value: 0.1, affectsUnits: ['Infantry'] }
-    ],
-    description: '+10% speed for infantry'
+    effects: [{ type: EFFECT_TYPES.SPEED, value: 0.1, affectsUnits: ['Infantry'] }],
+    description: '+10% speed for infantry',
   },
   {
     id: 'arson',
@@ -403,9 +399,9 @@ export const technologies = [
     researchTime: 25,
     prerequisites: [],
     effects: [
-      { type: EFFECT_TYPES.ATTACK, value: 2, affectsUnits: ['Infantry'] } // vs buildings
+      { type: EFFECT_TYPES.ATTACK, value: 2, affectsUnits: ['Infantry'] }, // vs buildings
     ],
-    description: '+2 attack vs buildings for infantry'
+    description: '+2 attack vs buildings for infantry',
   },
 
   // ==========================================================================
@@ -420,7 +416,7 @@ export const technologies = [
     researchTime: 60,
     prerequisites: [],
     effects: [],
-    description: 'Military units created 33% faster'
+    description: 'Military units created 33% faster',
   },
 
   // ==========================================================================
@@ -435,7 +431,7 @@ export const technologies = [
     researchTime: 50,
     prerequisites: [],
     effects: [],
-    description: 'Monks can convert buildings and siege weapons'
+    description: 'Monks can convert buildings and siege weapons',
   },
   {
     id: 'atonement',
@@ -446,7 +442,7 @@ export const technologies = [
     researchTime: 40,
     prerequisites: [],
     effects: [],
-    description: 'Monks can convert other monks'
+    description: 'Monks can convert other monks',
   },
   {
     id: 'sanctity',
@@ -456,10 +452,8 @@ export const technologies = [
     cost: { food: 0, wood: 0, gold: 120, stone: 0 },
     researchTime: 60,
     prerequisites: [],
-    effects: [
-      { type: EFFECT_TYPES.HP, value: 15, affectsUnits: ['Monk'] }
-    ],
-    description: '+15 HP for monks'
+    effects: [{ type: EFFECT_TYPES.HP, value: 15, affectsUnits: ['Monk'] }],
+    description: '+15 HP for monks',
   },
   {
     id: 'fervor',
@@ -469,10 +463,8 @@ export const technologies = [
     cost: { food: 0, wood: 0, gold: 140, stone: 0 },
     researchTime: 50,
     prerequisites: [],
-    effects: [
-      { type: EFFECT_TYPES.SPEED, value: 0.15, affectsUnits: ['Monk'] }
-    ],
-    description: '+15% speed for monks'
+    effects: [{ type: EFFECT_TYPES.SPEED, value: 0.15, affectsUnits: ['Monk'] }],
+    description: '+15% speed for monks',
   },
   {
     id: 'faith',
@@ -482,10 +474,8 @@ export const technologies = [
     cost: { food: 0, wood: 0, gold: 750, stone: 0 },
     researchTime: 60,
     prerequisites: [],
-    effects: [
-      { type: EFFECT_TYPES.CONVERSION_RESISTANCE, value: 50, affectsUnits: ['all'] }
-    ],
-    description: 'Units resist conversion'
+    effects: [{ type: EFFECT_TYPES.CONVERSION_RESISTANCE, value: 50, affectsUnits: ['all'] }],
+    description: 'Units resist conversion',
   },
 
   // ==========================================================================
@@ -500,8 +490,8 @@ export const technologies = [
     researchTime: 25,
     prerequisites: [],
     effects: [],
-    description: '+15 HP and +1/+2 armor for villagers'
-  }
+    description: '+15 HP and +1/+2 armor for villagers',
+  },
 ];
 
 /**
@@ -509,27 +499,22 @@ export const technologies = [
  * @param {string} category - The category to filter by
  * @returns {Array} Technologies in that category
  */
-export const getTechsByCategory = (category) => {
-  return technologies.filter(tech => tech.category === category);
-};
+export const getTechsByCategory = (category) =>
+  technologies.filter((tech) => tech.category === category);
 
 /**
  * Get technologies by age
  * @param {string} age - The age to filter by (dark, feudal, castle, imperial)
  * @returns {Array} Technologies available in that age
  */
-export const getTechsByAge = (age) => {
-  return technologies.filter(tech => tech.age === age);
-};
+export const getTechsByAge = (age) => technologies.filter((tech) => tech.age === age);
 
 /**
  * Get a technology by ID
  * @param {string} id - The technology ID
  * @returns {Object|undefined} The technology object
  */
-export const getTechById = (id) => {
-  return technologies.find(tech => tech.id === id);
-};
+export const getTechById = (id) => technologies.find((tech) => tech.id === id);
 
 /**
  * Check if prerequisites are met for a technology
@@ -543,7 +528,7 @@ export const canResearchTech = (techId, researchedTechs = []) => {
     return false;
   }
 
-  return tech.prerequisites.every(prereq => researchedTechs.includes(prereq));
+  return tech.prerequisites.every((prereq) => researchedTechs.includes(prereq));
 };
 
 /**
@@ -554,7 +539,7 @@ export const canResearchTech = (techId, researchedTechs = []) => {
 export const calculateTechCost = (techIds = []) => {
   const totalCost = { food: 0, wood: 0, gold: 0, stone: 0 };
 
-  techIds.forEach(id => {
+  techIds.forEach((id) => {
     const tech = getTechById(id);
     if (tech) {
       totalCost.food += tech.cost.food;

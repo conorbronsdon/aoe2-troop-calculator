@@ -11,7 +11,7 @@ export const archerUnits = [
     cost: { food: 0, wood: 25, gold: 45, stone: 0 },
     population: 1,
     counters: ['spearman', 'skirmisher'],
-    weakTo: ['knight', 'mangonel', 'skirmisher', 'eagle-warrior']
+    weakTo: ['knight', 'mangonel', 'skirmisher', 'eagle-warrior'],
   },
   {
     id: 'crossbowman',
@@ -21,7 +21,7 @@ export const archerUnits = [
     cost: { food: 0, wood: 25, gold: 45, stone: 0 },
     population: 1,
     counters: ['spearman', 'skirmisher'],
-    weakTo: ['knight', 'mangonel', 'skirmisher', 'eagle-warrior']
+    weakTo: ['knight', 'mangonel', 'skirmisher', 'eagle-warrior'],
   },
   {
     id: 'arbalester',
@@ -31,7 +31,7 @@ export const archerUnits = [
     cost: { food: 0, wood: 25, gold: 45, stone: 0 },
     population: 1,
     counters: ['spearman', 'infantry'],
-    weakTo: ['knight', 'huskarl', 'skirmisher', 'eagle-warrior', 'onager']
+    weakTo: ['knight', 'huskarl', 'skirmisher', 'eagle-warrior', 'onager'],
   },
   // Skirmisher line
   {
@@ -42,7 +42,7 @@ export const archerUnits = [
     cost: { food: 25, wood: 35, gold: 0, stone: 0 },
     population: 1,
     counters: ['archer', 'crossbowman'],
-    weakTo: ['knight', 'scout', 'mangonel']
+    weakTo: ['knight', 'scout', 'mangonel'],
   },
   {
     id: 'elite-skirmisher',
@@ -52,7 +52,7 @@ export const archerUnits = [
     cost: { food: 25, wood: 35, gold: 0, stone: 0 },
     population: 1,
     counters: ['archer', 'crossbowman', 'arbalester'],
-    weakTo: ['knight', 'cavalier', 'mangonel']
+    weakTo: ['knight', 'cavalier', 'mangonel'],
   },
   {
     id: 'imperial-skirmisher',
@@ -62,7 +62,7 @@ export const archerUnits = [
     cost: { food: 25, wood: 35, gold: 0, stone: 0 },
     population: 1,
     counters: ['archer', 'crossbowman', 'arbalester', 'hand-cannoneer'],
-    weakTo: ['knight', 'cavalier', 'paladin', 'onager']
+    weakTo: ['knight', 'cavalier', 'paladin', 'onager'],
   },
   // Cavalry Archer line
   {
@@ -73,7 +73,7 @@ export const archerUnits = [
     cost: { food: 0, wood: 40, gold: 60, stone: 0 },
     population: 1,
     counters: ['spearman', 'skirmisher', 'infantry'],
-    weakTo: ['skirmisher', 'camel', 'eagle-warrior']
+    weakTo: ['skirmisher', 'camel', 'eagle-warrior'],
   },
   {
     id: 'heavy-cavalry-archer',
@@ -83,7 +83,7 @@ export const archerUnits = [
     cost: { food: 0, wood: 40, gold: 60, stone: 0 },
     population: 1,
     counters: ['spearman', 'infantry', 'siege'],
-    weakTo: ['skirmisher', 'camel', 'eagle-warrior', 'huskarl']
+    weakTo: ['skirmisher', 'camel', 'eagle-warrior', 'huskarl'],
   },
   // Hand Cannoneer
   {
@@ -94,7 +94,7 @@ export const archerUnits = [
     cost: { food: 45, wood: 0, gold: 50, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer', 'spearman'],
-    weakTo: ['knight', 'skirmisher', 'onager', 'huskarl']
+    weakTo: ['knight', 'skirmisher', 'onager', 'huskarl'],
   },
   // Slinger (Mesoamerican ranged unit)
   {
@@ -105,7 +105,7 @@ export const archerUnits = [
     cost: { food: 30, wood: 0, gold: 40, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer'],
-    weakTo: ['knight', 'scout', 'eagle-warrior']
+    weakTo: ['knight', 'scout', 'eagle-warrior'],
   },
   // Genitour line (Berbers and allies)
   {
@@ -116,7 +116,7 @@ export const archerUnits = [
     cost: { food: 35, wood: 50, gold: 0, stone: 0 },
     population: 1,
     counters: ['archer', 'cavalry-archer'],
-    weakTo: ['knight', 'eagle-warrior', 'huskarl']
+    weakTo: ['knight', 'eagle-warrior', 'huskarl'],
   },
   {
     id: 'elite-genitour',
@@ -126,6 +126,6 @@ export const archerUnits = [
     cost: { food: 35, wood: 50, gold: 0, stone: 0 },
     population: 1,
     counters: ['archer', 'cavalry-archer', 'hand-cannoneer'],
-    weakTo: ['knight', 'eagle-warrior', 'huskarl']
+    weakTo: ['knight', 'eagle-warrior', 'huskarl'],
   },
 ];

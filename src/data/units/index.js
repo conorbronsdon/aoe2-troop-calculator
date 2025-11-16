@@ -21,7 +21,7 @@ export const units = [
   ...siegeUnits,
   ...navalUnits,
   ...uniqueUnits,
-  ...otherUnits
+  ...otherUnits,
 ];
 
 /**
@@ -29,14 +29,14 @@ export const units = [
  * @param {string} unitId - Unit identifier
  * @returns {Object|undefined} Unit data or undefined if not found
  */
-export const getUnitById = (unitId) => units.find(unit => unit.id === unitId);
+export const getUnitById = (unitId) => units.find((unit) => unit.id === unitId);
 
 /**
  * Get units by category
  * @param {string} category - Unit category
  * @returns {Array} Array of units in the category
  */
-export const getUnitsByCategory = (category) => units.filter(unit => unit.category === category);
+export const getUnitsByCategory = (category) => units.filter((unit) => unit.category === category);
 
 /**
  * Get units available in a specific age
@@ -46,7 +46,7 @@ export const getUnitsByCategory = (category) => units.filter(unit => unit.catego
 export const getUnitsByAge = (age) => {
   const ageOrder = { dark: 0, feudal: 1, castle: 2, imperial: 3 };
   const targetAgeValue = ageOrder[age];
-  return units.filter(unit => ageOrder[unit.age] <= targetAgeValue);
+  return units.filter((unit) => ageOrder[unit.age] <= targetAgeValue);
 };
 
 /**
@@ -55,8 +55,10 @@ export const getUnitsByAge = (age) => {
  * @returns {Array} Array of unique units for that civilization
  */
 export const getUniqueUnitsByCiv = (civId) => {
-  if (!civId || civId === 'generic') {return [];}
-  return uniqueUnits.filter(unit => unit.civilization === civId);
+  if (!civId || civId === 'generic') {
+    return [];
+  }
+  return uniqueUnits.filter((unit) => unit.civilization === civId);
 };
 
 /**
@@ -72,18 +74,16 @@ export const getUnitsForCiv = (civId, age) => {
   const targetAgeValue = ageOrder[age];
 
   // Get all non-unique units filtered by age
-  const genericUnits = units.filter(unit =>
-    unit.category !== 'Unique' && ageOrder[unit.age] <= targetAgeValue
+  const genericUnits = units.filter(
+    (unit) => unit.category !== 'Unique' && ageOrder[unit.age] <= targetAgeValue
   );
 
   // Filter out units that the civilization cannot build (tech tree restrictions)
-  const availableGenericUnits = genericUnits.filter(unit =>
-    canCivBuildUnit(civId, unit.id)
-  );
+  const availableGenericUnits = genericUnits.filter((unit) => canCivBuildUnit(civId, unit.id));
 
   // Get unique units for this civ
-  const civUniqueUnits = getUniqueUnitsByCiv(civId).filter(unit =>
-    ageOrder[unit.age] <= targetAgeValue
+  const civUniqueUnits = getUniqueUnitsByCiv(civId).filter(
+    (unit) => ageOrder[unit.age] <= targetAgeValue
   );
 
   return [...availableGenericUnits, ...civUniqueUnits];

@@ -13,7 +13,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 0, gold: 30, stone: 0 },
     population: 1,
     counters: ['infantry', 'eagle-warrior'],
-    weakTo: ['archer', 'cavalry']
+    weakTo: ['archer', 'cavalry'],
   },
   {
     id: 'elite-jaguar-warrior',
@@ -24,7 +24,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 0, gold: 30, stone: 0 },
     population: 1,
     counters: ['infantry', 'eagle-warrior', 'huskarl'],
-    weakTo: ['archer', 'cavalry']
+    weakTo: ['archer', 'cavalry'],
   },
   // Berbers
   {
@@ -36,7 +36,7 @@ export const uniqueUnits = [
     cost: { food: 50, wood: 60, gold: 0, stone: 0 },
     population: 1,
     counters: ['cavalry', 'archer'],
-    weakTo: ['skirmisher', 'camel']
+    weakTo: ['skirmisher', 'camel'],
   },
   {
     id: 'elite-camel-archer',
@@ -47,7 +47,7 @@ export const uniqueUnits = [
     cost: { food: 50, wood: 60, gold: 0, stone: 0 },
     population: 1,
     counters: ['cavalry', 'archer', 'knight'],
-    weakTo: ['skirmisher', 'elite-skirmisher']
+    weakTo: ['skirmisher', 'elite-skirmisher'],
   },
   // Britons
   {
@@ -59,7 +59,7 @@ export const uniqueUnits = [
     cost: { food: 35, wood: 40, gold: 0, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer'],
-    weakTo: ['knight', 'skirmisher', 'huskarl']
+    weakTo: ['knight', 'skirmisher', 'huskarl'],
   },
   {
     id: 'elite-longbowman',
@@ -70,7 +70,7 @@ export const uniqueUnits = [
     cost: { food: 35, wood: 40, gold: 0, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer', 'siege'],
-    weakTo: ['knight', 'skirmisher', 'huskarl']
+    weakTo: ['knight', 'skirmisher', 'huskarl'],
   },
   // Byzantines
   {
@@ -82,7 +82,7 @@ export const uniqueUnits = [
     cost: { food: 70, wood: 0, gold: 75, stone: 0 },
     population: 1,
     counters: ['infantry', 'cavalry'],
-    weakTo: ['archer', 'monk']
+    weakTo: ['archer', 'monk'],
   },
   {
     id: 'elite-cataphract',
@@ -93,7 +93,7 @@ export const uniqueUnits = [
     cost: { food: 70, wood: 0, gold: 75, stone: 0 },
     population: 1,
     counters: ['infantry', 'cavalry', 'camel'],
-    weakTo: ['archer', 'monk']
+    weakTo: ['archer', 'monk'],
   },
   // Celts
   {
@@ -105,7 +105,7 @@ export const uniqueUnits = [
     cost: { food: 65, wood: 0, gold: 25, stone: 0 },
     population: 1,
     counters: ['siege', 'archer'],
-    weakTo: ['cavalry', 'archer', 'cataphract']
+    weakTo: ['cavalry', 'archer', 'cataphract'],
   },
   {
     id: 'elite-woad-raider',
@@ -116,7 +116,7 @@ export const uniqueUnits = [
     cost: { food: 65, wood: 0, gold: 25, stone: 0 },
     population: 1,
     counters: ['siege', 'archer', 'infantry'],
-    weakTo: ['cavalry', 'cataphract']
+    weakTo: ['cavalry', 'cataphract'],
   },
   // Chinese
   {
@@ -128,7 +128,7 @@ export const uniqueUnits = [
     cost: { food: 40, wood: 35, gold: 0, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer'],
-    weakTo: ['skirmisher', 'huskarl', 'siege']
+    weakTo: ['skirmisher', 'huskarl', 'siege'],
   },
   {
     id: 'elite-chu-ko-nu',
@@ -139,7 +139,7 @@ export const uniqueUnits = [
     cost: { food: 40, wood: 35, gold: 0, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer', 'cavalry'],
-    weakTo: ['skirmisher', 'huskarl', 'onager']
+    weakTo: ['skirmisher', 'huskarl', 'onager'],
   },
   // Franks
   {
@@ -151,7 +151,7 @@ export const uniqueUnits = [
     cost: { food: 55, wood: 0, gold: 25, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer'],
-    weakTo: ['cavalry', 'cataphract']
+    weakTo: ['cavalry', 'cataphract'],
   },
   {
     id: 'elite-throwing-axeman',
@@ -162,7 +162,7 @@ export const uniqueUnits = [
     cost: { food: 55, wood: 0, gold: 25, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer', 'eagle-warrior'],
-    weakTo: ['cavalry', 'cataphract']
+    weakTo: ['cavalry', 'cataphract'],
   },
   // Goths
   {
@@ -174,7 +174,7 @@ export const uniqueUnits = [
     cost: { food: 52, wood: 0, gold: 26, stone: 0 },
     population: 1,
     counters: ['archer', 'siege'],
-    weakTo: ['infantry', 'cavalry', 'cataphract']
+    weakTo: ['infantry', 'cavalry', 'cataphract'],
   },
   {
     id: 'elite-huskarl',
@@ -185,7 +185,7 @@ export const uniqueUnits = [
     cost: { food: 52, wood: 0, gold: 26, stone: 0 },
     population: 1,
     counters: ['archer', 'siege', 'hand-cannoneer'],
-    weakTo: ['infantry', 'cavalry', 'jaguar-warrior']
+    weakTo: ['infantry', 'cavalry', 'jaguar-warrior'],
   },
   // Japanese
   {
@@ -197,7 +197,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 0, gold: 30, stone: 0 },
     population: 1,
     counters: ['unique', 'eagle-warrior'],
-    weakTo: ['archer', 'cavalry']
+    weakTo: ['archer', 'cavalry'],
   },
   {
     id: 'elite-samurai',
@@ -208,7 +208,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 0, gold: 30, stone: 0 },
     population: 1,
     counters: ['unique', 'eagle-warrior', 'huskarl'],
-    weakTo: ['archer', 'cavalry']
+    weakTo: ['archer', 'cavalry'],
   },
   // Koreans
   {
@@ -220,7 +220,7 @@ export const uniqueUnits = [
     cost: { food: 110, wood: 60, gold: 0, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer'],
-    weakTo: ['monk', 'siege', 'camel']
+    weakTo: ['monk', 'siege', 'camel'],
   },
   {
     id: 'elite-war-wagon',
@@ -231,7 +231,7 @@ export const uniqueUnits = [
     cost: { food: 110, wood: 60, gold: 0, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer', 'cavalry'],
-    weakTo: ['monk', 'siege', 'heavy-camel']
+    weakTo: ['monk', 'siege', 'heavy-camel'],
   },
   {
     id: 'turtle-ship',
@@ -242,7 +242,7 @@ export const uniqueUnits = [
     cost: { food: 0, wood: 190, gold: 180, stone: 0 },
     population: 1,
     counters: ['ship', 'fire-ship'],
-    weakTo: ['demolition-ship', 'cannon-galleon']
+    weakTo: ['demolition-ship', 'cannon-galleon'],
   },
   {
     id: 'elite-turtle-ship',
@@ -253,7 +253,7 @@ export const uniqueUnits = [
     cost: { food: 0, wood: 190, gold: 180, stone: 0 },
     population: 1,
     counters: ['ship', 'fire-ship', 'galleon'],
-    weakTo: ['heavy-demolition-ship']
+    weakTo: ['heavy-demolition-ship'],
   },
   // Mayans
   {
@@ -265,7 +265,7 @@ export const uniqueUnits = [
     cost: { food: 46, wood: 46, gold: 0, stone: 0 },
     population: 1,
     counters: ['infantry', 'monk'],
-    weakTo: ['skirmisher', 'cavalry']
+    weakTo: ['skirmisher', 'cavalry'],
   },
   {
     id: 'elite-plumed-archer',
@@ -276,7 +276,7 @@ export const uniqueUnits = [
     cost: { food: 46, wood: 46, gold: 0, stone: 0 },
     population: 1,
     counters: ['infantry', 'monk', 'siege'],
-    weakTo: ['skirmisher', 'cavalry', 'eagle-warrior']
+    weakTo: ['skirmisher', 'cavalry', 'eagle-warrior'],
   },
   // Mongols
   {
@@ -288,7 +288,7 @@ export const uniqueUnits = [
     cost: { food: 55, wood: 65, gold: 0, stone: 0 },
     population: 1,
     counters: ['siege', 'archer'],
-    weakTo: ['skirmisher', 'camel']
+    weakTo: ['skirmisher', 'camel'],
   },
   {
     id: 'elite-mangudai',
@@ -299,7 +299,7 @@ export const uniqueUnits = [
     cost: { food: 55, wood: 65, gold: 0, stone: 0 },
     population: 1,
     counters: ['siege', 'archer', 'infantry'],
-    weakTo: ['skirmisher', 'camel', 'huskarl']
+    weakTo: ['skirmisher', 'camel', 'huskarl'],
   },
   // Persians
   {
@@ -311,7 +311,7 @@ export const uniqueUnits = [
     cost: { food: 200, wood: 0, gold: 75, stone: 0 },
     population: 1,
     counters: ['infantry', 'cavalry', 'building'],
-    weakTo: ['monk', 'halberdier', 'camel']
+    weakTo: ['monk', 'halberdier', 'camel'],
   },
   {
     id: 'elite-war-elephant',
@@ -322,7 +322,7 @@ export const uniqueUnits = [
     cost: { food: 200, wood: 0, gold: 75, stone: 0 },
     population: 1,
     counters: ['infantry', 'cavalry', 'building', 'siege'],
-    weakTo: ['monk', 'halberdier', 'heavy-camel']
+    weakTo: ['monk', 'halberdier', 'heavy-camel'],
   },
   // Saracens
   {
@@ -334,7 +334,7 @@ export const uniqueUnits = [
     cost: { food: 55, wood: 0, gold: 85, stone: 0 },
     population: 1,
     counters: ['cavalry', 'camel'],
-    weakTo: ['archer', 'infantry']
+    weakTo: ['archer', 'infantry'],
   },
   {
     id: 'elite-mameluke',
@@ -345,7 +345,7 @@ export const uniqueUnits = [
     cost: { food: 55, wood: 0, gold: 85, stone: 0 },
     population: 1,
     counters: ['cavalry', 'camel', 'war-elephant'],
-    weakTo: ['archer', 'infantry', 'eagle-warrior']
+    weakTo: ['archer', 'infantry', 'eagle-warrior'],
   },
   // Teutons
   {
@@ -357,7 +357,7 @@ export const uniqueUnits = [
     cost: { food: 85, wood: 0, gold: 40, stone: 0 },
     population: 1,
     counters: ['infantry', 'cavalry'],
-    weakTo: ['archer', 'cavalry']
+    weakTo: ['archer', 'cavalry'],
   },
   {
     id: 'elite-teutonic-knight',
@@ -368,7 +368,7 @@ export const uniqueUnits = [
     cost: { food: 85, wood: 0, gold: 40, stone: 0 },
     population: 1,
     counters: ['infantry', 'cavalry', 'eagle-warrior'],
-    weakTo: ['archer', 'cavalry', 'scorpion']
+    weakTo: ['archer', 'cavalry', 'scorpion'],
   },
   // Turks
   {
@@ -380,7 +380,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 0, gold: 55, stone: 0 },
     population: 1,
     counters: ['infantry', 'ram'],
-    weakTo: ['cavalry', 'skirmisher']
+    weakTo: ['cavalry', 'skirmisher'],
   },
   {
     id: 'elite-janissary',
@@ -391,7 +391,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 0, gold: 55, stone: 0 },
     population: 1,
     counters: ['infantry', 'ram', 'huskarl'],
-    weakTo: ['cavalry', 'skirmisher']
+    weakTo: ['cavalry', 'skirmisher'],
   },
   // Vikings
   {
@@ -403,7 +403,7 @@ export const uniqueUnits = [
     cost: { food: 65, wood: 0, gold: 25, stone: 0 },
     population: 1,
     counters: ['infantry', 'eagle-warrior'],
-    weakTo: ['archer', 'cavalry', 'cataphract']
+    weakTo: ['archer', 'cavalry', 'cataphract'],
   },
   {
     id: 'elite-berserk',
@@ -414,7 +414,7 @@ export const uniqueUnits = [
     cost: { food: 65, wood: 0, gold: 25, stone: 0 },
     population: 1,
     counters: ['infantry', 'eagle-warrior', 'cavalry'],
-    weakTo: ['archer', 'cataphract']
+    weakTo: ['archer', 'cataphract'],
   },
   {
     id: 'longboat',
@@ -425,7 +425,7 @@ export const uniqueUnits = [
     cost: { food: 0, wood: 100, gold: 50, stone: 0 },
     population: 1,
     counters: ['ship', 'transport'],
-    weakTo: ['fire-ship', 'demolition-ship']
+    weakTo: ['fire-ship', 'demolition-ship'],
   },
   {
     id: 'elite-longboat',
@@ -436,7 +436,7 @@ export const uniqueUnits = [
     cost: { food: 0, wood: 100, gold: 50, stone: 0 },
     population: 1,
     counters: ['ship', 'transport', 'galleon'],
-    weakTo: ['fast-fire-ship', 'heavy-demolition-ship']
+    weakTo: ['fast-fire-ship', 'heavy-demolition-ship'],
   },
   // Spanish
   {
@@ -448,7 +448,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 0, gold: 70, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer'],
-    weakTo: ['skirmisher', 'camel']
+    weakTo: ['skirmisher', 'camel'],
   },
   {
     id: 'elite-conquistador',
@@ -459,7 +459,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 0, gold: 70, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer', 'eagle-warrior'],
-    weakTo: ['skirmisher', 'camel', 'huskarl']
+    weakTo: ['skirmisher', 'camel', 'huskarl'],
   },
   // Incas
   {
@@ -471,7 +471,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 0, gold: 30, stone: 0 },
     population: 1,
     counters: ['cavalry', 'eagle-warrior'],
-    weakTo: ['archer', 'hand-cannoneer']
+    weakTo: ['archer', 'hand-cannoneer'],
   },
   {
     id: 'elite-kamayuk',
@@ -482,7 +482,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 0, gold: 30, stone: 0 },
     population: 1,
     counters: ['cavalry', 'eagle-warrior', 'war-elephant'],
-    weakTo: ['archer', 'hand-cannoneer', 'jaguar-warrior']
+    weakTo: ['archer', 'hand-cannoneer', 'jaguar-warrior'],
   },
   // Magyars
   {
@@ -494,7 +494,7 @@ export const uniqueUnits = [
     cost: { food: 80, wood: 0, gold: 10, stone: 0 },
     population: 1,
     counters: ['siege', 'archer'],
-    weakTo: ['camel', 'halberdier']
+    weakTo: ['camel', 'halberdier'],
   },
   {
     id: 'elite-magyar-huszar',
@@ -505,7 +505,7 @@ export const uniqueUnits = [
     cost: { food: 80, wood: 0, gold: 10, stone: 0 },
     population: 1,
     counters: ['siege', 'archer', 'monk'],
-    weakTo: ['camel', 'halberdier', 'eagle-warrior']
+    weakTo: ['camel', 'halberdier', 'eagle-warrior'],
   },
   // Slavs
   {
@@ -517,7 +517,7 @@ export const uniqueUnits = [
     cost: { food: 50, wood: 0, gold: 80, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer'],
-    weakTo: ['monk', 'camel']
+    weakTo: ['monk', 'camel'],
   },
   {
     id: 'elite-boyar',
@@ -528,7 +528,7 @@ export const uniqueUnits = [
     cost: { food: 50, wood: 0, gold: 80, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer', 'cavalry'],
-    weakTo: ['monk', 'heavy-camel']
+    weakTo: ['monk', 'heavy-camel'],
   },
   // Ethiopians
   {
@@ -540,7 +540,7 @@ export const uniqueUnits = [
     cost: { food: 50, wood: 0, gold: 35, stone: 0 },
     population: 1,
     counters: ['archer', 'eagle-warrior'],
-    weakTo: ['cavalry', 'cataphract']
+    weakTo: ['cavalry', 'cataphract'],
   },
   {
     id: 'elite-shotel-warrior',
@@ -551,7 +551,7 @@ export const uniqueUnits = [
     cost: { food: 50, wood: 0, gold: 35, stone: 0 },
     population: 1,
     counters: ['archer', 'eagle-warrior', 'infantry'],
-    weakTo: ['cavalry', 'cataphract']
+    weakTo: ['cavalry', 'cataphract'],
   },
   // Malians
   {
@@ -563,7 +563,7 @@ export const uniqueUnits = [
     cost: { food: 50, wood: 0, gold: 40, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry'],
-    weakTo: ['cavalry', 'eagle-warrior']
+    weakTo: ['cavalry', 'eagle-warrior'],
   },
   {
     id: 'elite-gbeto',
@@ -574,7 +574,7 @@ export const uniqueUnits = [
     cost: { food: 50, wood: 0, gold: 40, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry', 'siege'],
-    weakTo: ['cavalry', 'huskarl']
+    weakTo: ['cavalry', 'huskarl'],
   },
   // Portuguese
   {
@@ -586,7 +586,7 @@ export const uniqueUnits = [
     cost: { food: 0, wood: 80, gold: 70, stone: 0 },
     population: 3,
     counters: ['infantry', 'archer'],
-    weakTo: ['cavalry', 'siege']
+    weakTo: ['cavalry', 'siege'],
   },
   {
     id: 'elite-organ-gun',
@@ -597,7 +597,7 @@ export const uniqueUnits = [
     cost: { food: 0, wood: 80, gold: 70, stone: 0 },
     population: 3,
     counters: ['infantry', 'archer', 'ram'],
-    weakTo: ['cavalry', 'onager']
+    weakTo: ['cavalry', 'onager'],
   },
   // Khmer
   {
@@ -609,7 +609,7 @@ export const uniqueUnits = [
     cost: { food: 100, wood: 0, gold: 80, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer', 'building'],
-    weakTo: ['monk', 'halberdier', 'camel']
+    weakTo: ['monk', 'halberdier', 'camel'],
   },
   {
     id: 'elite-ballista-elephant',
@@ -620,7 +620,7 @@ export const uniqueUnits = [
     cost: { food: 100, wood: 0, gold: 80, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer', 'building', 'cavalry'],
-    weakTo: ['monk', 'halberdier', 'heavy-camel']
+    weakTo: ['monk', 'halberdier', 'heavy-camel'],
   },
   // Vietnamese
   {
@@ -632,7 +632,7 @@ export const uniqueUnits = [
     cost: { food: 45, wood: 50, gold: 0, stone: 0 },
     population: 1,
     counters: ['infantry', 'cavalry'],
-    weakTo: ['scorpion', 'siege']
+    weakTo: ['scorpion', 'siege'],
   },
   {
     id: 'elite-rattan-archer',
@@ -643,7 +643,7 @@ export const uniqueUnits = [
     cost: { food: 45, wood: 50, gold: 0, stone: 0 },
     population: 1,
     counters: ['infantry', 'cavalry', 'skirmisher'],
-    weakTo: ['scorpion', 'onager']
+    weakTo: ['scorpion', 'onager'],
   },
   // Italians
   {
@@ -655,7 +655,7 @@ export const uniqueUnits = [
     cost: { food: 45, wood: 45, gold: 0, stone: 0 },
     population: 1,
     counters: ['cavalry', 'war-elephant'],
-    weakTo: ['infantry', 'archer', 'siege']
+    weakTo: ['infantry', 'archer', 'siege'],
   },
   {
     id: 'elite-genoese-crossbowman',
@@ -666,7 +666,7 @@ export const uniqueUnits = [
     cost: { food: 45, wood: 45, gold: 0, stone: 0 },
     population: 1,
     counters: ['cavalry', 'war-elephant', 'camel'],
-    weakTo: ['infantry', 'skirmisher', 'onager']
+    weakTo: ['infantry', 'skirmisher', 'onager'],
   },
   {
     id: 'condottiero',
@@ -677,7 +677,7 @@ export const uniqueUnits = [
     cost: { food: 50, wood: 0, gold: 35, stone: 0 },
     population: 1,
     counters: ['gunpowder', 'archer'],
-    weakTo: ['cavalry', 'archer']
+    weakTo: ['cavalry', 'archer'],
   },
   // Huns
   {
@@ -689,7 +689,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 0, gold: 60, stone: 0 },
     population: 1,
     counters: ['building', 'siege'],
-    weakTo: ['monk', 'halberdier', 'camel']
+    weakTo: ['monk', 'halberdier', 'camel'],
   },
   {
     id: 'elite-tarkan',
@@ -700,7 +700,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 0, gold: 60, stone: 0 },
     population: 1,
     counters: ['building', 'siege', 'archer'],
-    weakTo: ['monk', 'halberdier', 'heavy-camel']
+    weakTo: ['monk', 'halberdier', 'heavy-camel'],
   },
   // Lithuanians
   {
@@ -712,7 +712,7 @@ export const uniqueUnits = [
     cost: { food: 70, wood: 0, gold: 80, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer'],
-    weakTo: ['camel', 'monk', 'archer']
+    weakTo: ['camel', 'monk', 'archer'],
   },
   {
     id: 'elite-leitis',
@@ -723,7 +723,7 @@ export const uniqueUnits = [
     cost: { food: 70, wood: 0, gold: 80, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer', 'cavalry'],
-    weakTo: ['camel', 'monk', 'archer']
+    weakTo: ['camel', 'monk', 'archer'],
   },
   // Bulgarians
   {
@@ -735,7 +735,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 0, gold: 70, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry'],
-    weakTo: ['camel', 'monk', 'halberdier']
+    weakTo: ['camel', 'monk', 'halberdier'],
   },
   {
     id: 'elite-konnik',
@@ -746,7 +746,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 0, gold: 70, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry', 'siege'],
-    weakTo: ['camel', 'monk', 'halberdier']
+    weakTo: ['camel', 'monk', 'halberdier'],
   },
   {
     id: 'konnik-dismounted',
@@ -757,7 +757,7 @@ export const uniqueUnits = [
     cost: { food: 0, wood: 0, gold: 0, stone: 0 },
     population: 1,
     counters: ['archer'],
-    weakTo: ['cavalry', 'archer']
+    weakTo: ['cavalry', 'archer'],
   },
   // Cumans
   {
@@ -769,7 +769,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 35, gold: 0, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer'],
-    weakTo: ['skirmisher', 'eagle-warrior']
+    weakTo: ['skirmisher', 'eagle-warrior'],
   },
   {
     id: 'elite-kipchak',
@@ -780,7 +780,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 35, gold: 0, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer', 'cavalry'],
-    weakTo: ['skirmisher', 'eagle-warrior', 'huskarl']
+    weakTo: ['skirmisher', 'eagle-warrior', 'huskarl'],
   },
   // Tatars
   {
@@ -792,7 +792,7 @@ export const uniqueUnits = [
     cost: { food: 50, wood: 0, gold: 80, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry'],
-    weakTo: ['camel', 'monk', 'halberdier']
+    weakTo: ['camel', 'monk', 'halberdier'],
   },
   {
     id: 'elite-keshik',
@@ -803,7 +803,7 @@ export const uniqueUnits = [
     cost: { food: 50, wood: 0, gold: 80, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry', 'siege'],
-    weakTo: ['camel', 'monk', 'halberdier']
+    weakTo: ['camel', 'monk', 'halberdier'],
   },
   {
     id: 'flaming-camel',
@@ -814,7 +814,7 @@ export const uniqueUnits = [
     cost: { food: 75, wood: 0, gold: 0, stone: 0 },
     population: 1,
     counters: ['cavalry', 'elephant'],
-    weakTo: ['archer', 'infantry']
+    weakTo: ['archer', 'infantry'],
   },
   // Hindustanis (formerly Indians)
   {
@@ -826,7 +826,7 @@ export const uniqueUnits = [
     cost: { food: 55, wood: 0, gold: 45, stone: 0 },
     population: 1,
     counters: ['archer', 'gunpowder'],
-    weakTo: ['cavalry', 'scorpion']
+    weakTo: ['cavalry', 'scorpion'],
   },
   {
     id: 'elite-ghulam',
@@ -837,7 +837,7 @@ export const uniqueUnits = [
     cost: { food: 55, wood: 0, gold: 45, stone: 0 },
     population: 1,
     counters: ['archer', 'gunpowder', 'infantry'],
-    weakTo: ['cavalry', 'onager']
+    weakTo: ['cavalry', 'onager'],
   },
   // Bengalis
   {
@@ -849,7 +849,7 @@ export const uniqueUnits = [
     cost: { food: 70, wood: 50, gold: 0, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer'],
-    weakTo: ['camel', 'halberdier']
+    weakTo: ['camel', 'halberdier'],
   },
   {
     id: 'elite-ratha-melee',
@@ -860,7 +860,7 @@ export const uniqueUnits = [
     cost: { food: 70, wood: 50, gold: 0, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer', 'cavalry'],
-    weakTo: ['camel', 'halberdier']
+    weakTo: ['camel', 'halberdier'],
   },
   // Dravidians
   {
@@ -872,7 +872,7 @@ export const uniqueUnits = [
     cost: { food: 65, wood: 0, gold: 25, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry'],
-    weakTo: ['cavalry', 'siege']
+    weakTo: ['cavalry', 'siege'],
   },
   {
     id: 'elite-urumi-swordsman',
@@ -883,7 +883,7 @@ export const uniqueUnits = [
     cost: { food: 65, wood: 0, gold: 25, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry', 'eagle-warrior'],
-    weakTo: ['cavalry', 'onager']
+    weakTo: ['cavalry', 'onager'],
   },
   // Gurjaras
   {
@@ -895,7 +895,7 @@ export const uniqueUnits = [
     cost: { food: 70, wood: 0, gold: 30, stone: 0 },
     population: 1,
     counters: ['archer', 'siege'],
-    weakTo: ['camel', 'halberdier']
+    weakTo: ['camel', 'halberdier'],
   },
   {
     id: 'elite-shrivamsha-rider',
@@ -906,7 +906,7 @@ export const uniqueUnits = [
     cost: { food: 70, wood: 0, gold: 30, stone: 0 },
     population: 1,
     counters: ['archer', 'siege', 'monk'],
-    weakTo: ['camel', 'halberdier']
+    weakTo: ['camel', 'halberdier'],
   },
   {
     id: 'chakram-thrower',
@@ -917,7 +917,7 @@ export const uniqueUnits = [
     cost: { food: 40, wood: 30, gold: 0, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer'],
-    weakTo: ['cavalry', 'skirmisher']
+    weakTo: ['cavalry', 'skirmisher'],
   },
   {
     id: 'elite-chakram-thrower',
@@ -928,7 +928,7 @@ export const uniqueUnits = [
     cost: { food: 40, wood: 30, gold: 0, stone: 0 },
     population: 1,
     counters: ['infantry', 'archer', 'siege'],
-    weakTo: ['cavalry', 'skirmisher']
+    weakTo: ['cavalry', 'skirmisher'],
   },
   // Burmese
   {
@@ -940,7 +940,7 @@ export const uniqueUnits = [
     cost: { food: 75, wood: 60, gold: 0, stone: 0 },
     population: 1,
     counters: ['archer', 'siege', 'building'],
-    weakTo: ['skirmisher', 'eagle-warrior']
+    weakTo: ['skirmisher', 'eagle-warrior'],
   },
   {
     id: 'elite-arambai',
@@ -951,7 +951,7 @@ export const uniqueUnits = [
     cost: { food: 75, wood: 60, gold: 0, stone: 0 },
     population: 1,
     counters: ['archer', 'siege', 'building', 'cavalry'],
-    weakTo: ['skirmisher', 'eagle-warrior']
+    weakTo: ['skirmisher', 'eagle-warrior'],
   },
   // Malay
   {
@@ -963,7 +963,7 @@ export const uniqueUnits = [
     cost: { food: 30, wood: 0, gold: 10, stone: 0 },
     population: 0.5,
     counters: ['archer', 'eagle-warrior'],
-    weakTo: ['cavalry', 'siege']
+    weakTo: ['cavalry', 'siege'],
   },
   {
     id: 'elite-karambit-warrior',
@@ -974,7 +974,7 @@ export const uniqueUnits = [
     cost: { food: 30, wood: 0, gold: 10, stone: 0 },
     population: 0.5,
     counters: ['archer', 'eagle-warrior', 'infantry'],
-    weakTo: ['cavalry', 'cataphract']
+    weakTo: ['cavalry', 'cataphract'],
   },
   // Poles
   {
@@ -986,7 +986,7 @@ export const uniqueUnits = [
     cost: { food: 75, wood: 0, gold: 25, stone: 0 },
     population: 1,
     counters: ['archer', 'cavalry'],
-    weakTo: ['archer', 'hand-cannoneer']
+    weakTo: ['archer', 'hand-cannoneer'],
   },
   {
     id: 'elite-obuch',
@@ -997,7 +997,7 @@ export const uniqueUnits = [
     cost: { food: 75, wood: 0, gold: 25, stone: 0 },
     population: 1,
     counters: ['archer', 'cavalry', 'infantry'],
-    weakTo: ['archer', 'hand-cannoneer']
+    weakTo: ['archer', 'hand-cannoneer'],
   },
   // Bohemians
   {
@@ -1009,7 +1009,7 @@ export const uniqueUnits = [
     cost: { food: 110, wood: 70, gold: 0, stone: 0 },
     population: 3,
     counters: ['infantry', 'cavalry'],
-    weakTo: ['siege', 'bombard-cannon']
+    weakTo: ['siege', 'bombard-cannon'],
   },
   {
     id: 'elite-hussite-wagon',
@@ -1020,7 +1020,7 @@ export const uniqueUnits = [
     cost: { food: 110, wood: 70, gold: 0, stone: 0 },
     population: 3,
     counters: ['infantry', 'cavalry', 'archer'],
-    weakTo: ['siege', 'bombard-cannon']
+    weakTo: ['siege', 'bombard-cannon'],
   },
   // Sicilians
   {
@@ -1032,7 +1032,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 0, gold: 30, stone: 0 },
     population: 1,
     counters: ['archer', 'cavalry'],
-    weakTo: ['infantry', 'archer']
+    weakTo: ['infantry', 'archer'],
   },
   {
     id: 'elite-serjeant',
@@ -1043,7 +1043,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 0, gold: 30, stone: 0 },
     population: 1,
     counters: ['archer', 'cavalry', 'eagle-warrior'],
-    weakTo: ['infantry', 'hand-cannoneer']
+    weakTo: ['infantry', 'hand-cannoneer'],
   },
   // Burgundians
   {
@@ -1055,7 +1055,7 @@ export const uniqueUnits = [
     cost: { food: 55, wood: 0, gold: 55, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry', 'siege'],
-    weakTo: ['camel', 'halberdier', 'monk']
+    weakTo: ['camel', 'halberdier', 'monk'],
   },
   {
     id: 'elite-coustillier',
@@ -1066,7 +1066,7 @@ export const uniqueUnits = [
     cost: { food: 55, wood: 0, gold: 55, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry', 'siege', 'cavalry'],
-    weakTo: ['camel', 'halberdier', 'monk']
+    weakTo: ['camel', 'halberdier', 'monk'],
   },
   // Armenians
   {
@@ -1078,7 +1078,7 @@ export const uniqueUnits = [
     cost: { food: 50, wood: 40, gold: 0, stone: 0 },
     population: 1,
     counters: ['infantry', 'cavalry'],
-    weakTo: ['skirmisher', 'eagle-warrior']
+    weakTo: ['skirmisher', 'eagle-warrior'],
   },
   {
     id: 'elite-composite-bowman',
@@ -1089,7 +1089,7 @@ export const uniqueUnits = [
     cost: { food: 50, wood: 40, gold: 0, stone: 0 },
     population: 1,
     counters: ['infantry', 'cavalry', 'archer'],
-    weakTo: ['skirmisher', 'eagle-warrior']
+    weakTo: ['skirmisher', 'eagle-warrior'],
   },
   // Georgians
   {
@@ -1101,7 +1101,7 @@ export const uniqueUnits = [
     cost: { food: 80, wood: 0, gold: 60, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry'],
-    weakTo: ['camel', 'halberdier', 'monk']
+    weakTo: ['camel', 'halberdier', 'monk'],
   },
   {
     id: 'elite-monaspa',
@@ -1112,7 +1112,7 @@ export const uniqueUnits = [
     cost: { food: 80, wood: 0, gold: 60, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry', 'cavalry'],
-    weakTo: ['camel', 'halberdier', 'monk']
+    weakTo: ['camel', 'halberdier', 'monk'],
   },
   // Romans
   {
@@ -1124,7 +1124,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 0, gold: 50, stone: 0 },
     population: 1,
     counters: ['infantry', 'cavalry'],
-    weakTo: ['archer', 'siege']
+    weakTo: ['archer', 'siege'],
   },
   {
     id: 'elite-centurion',
@@ -1135,7 +1135,7 @@ export const uniqueUnits = [
     cost: { food: 60, wood: 0, gold: 50, stone: 0 },
     population: 1,
     counters: ['infantry', 'cavalry', 'eagle-warrior'],
-    weakTo: ['archer', 'onager']
+    weakTo: ['archer', 'onager'],
   },
   {
     id: 'scorpio',
@@ -1146,7 +1146,7 @@ export const uniqueUnits = [
     cost: { food: 0, wood: 80, gold: 60, stone: 0 },
     population: 2,
     counters: ['archer', 'infantry'],
-    weakTo: ['cavalry', 'siege']
+    weakTo: ['cavalry', 'siege'],
   },
   {
     id: 'elite-scorpio',
@@ -1157,6 +1157,6 @@ export const uniqueUnits = [
     cost: { food: 0, wood: 80, gold: 60, stone: 0 },
     population: 2,
     counters: ['archer', 'infantry', 'cavalry'],
-    weakTo: ['onager', 'bombard-cannon']
+    weakTo: ['onager', 'bombard-cannon'],
   },
 ];

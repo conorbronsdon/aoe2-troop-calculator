@@ -1,10 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { civilizations } from '../data/civilizations';
 import { LIMITS, AGES as ALL_AGES } from '../constants';
 
-const AGES = ALL_AGES.filter(age => age !== 'dark'); // Exclude Dark Age for army planning
+const AGES = ALL_AGES.filter((age) => age !== 'dark'); // Exclude Dark Age for army planning
 
 export default function ConfigurationPanel() {
   const { state, dispatch } = useArmy();
@@ -29,13 +27,15 @@ export default function ConfigurationPanel() {
   const applyCivilization = () => {
     dispatch({
       type: ACTION_TYPES.APPLY_CIVILIZATION,
-      civId: config.previewCiv || config.selectedCiv
+      civId: config.previewCiv || config.selectedCiv,
     });
   };
 
   const isPreviewing = config.previewCiv && config.previewCiv !== config.selectedCiv;
-  const previewCiv = civilizations.find(civ => civ.id === (config.previewCiv || config.selectedCiv));
-  const appliedCiv = civilizations.find(civ => civ.id === config.selectedCiv);
+  const previewCiv = civilizations.find(
+    (civ) => civ.id === (config.previewCiv || config.selectedCiv)
+  );
+  const appliedCiv = civilizations.find((civ) => civ.id === config.selectedCiv);
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
@@ -76,7 +76,10 @@ export default function ConfigurationPanel() {
         {/* Total Resource Limit (shown when mode is 'total') */}
         {config.resourceLimitMode === 'total' && (
           <div>
-            <label htmlFor="totalResourceLimit" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="totalResourceLimit"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Total Resource Limit
             </label>
             <input
@@ -86,7 +89,9 @@ export default function ConfigurationPanel() {
               max={LIMITS.MAX_RESOURCE_VALUE}
               className="w-full border rounded px-3 py-2"
               value={config.totalResourceLimit}
-              onChange={(e) => updateConfig({ totalResourceLimit: validateResourceValue(e.target.value) })}
+              onChange={(e) =>
+                updateConfig({ totalResourceLimit: validateResourceValue(e.target.value) })
+              }
               placeholder="e.g., 20000"
               aria-describedby="totalResourceLimitHelp"
             />
@@ -103,9 +108,12 @@ export default function ConfigurationPanel() {
               <legend className="block text-sm font-medium text-gray-700 mb-2">
                 Individual Resource Limits
               </legend>
-              {['food', 'wood', 'gold', 'stone'].map(resource => (
+              {['food', 'wood', 'gold', 'stone'].map((resource) => (
                 <div key={resource} className="mb-2">
-                  <label htmlFor={`resource-${resource}`} className="text-xs text-gray-600 capitalize">
+                  <label
+                    htmlFor={`resource-${resource}`}
+                    className="text-xs text-gray-600 capitalize"
+                  >
                     {resource}
                   </label>
                   <input
@@ -115,12 +123,14 @@ export default function ConfigurationPanel() {
                     max={LIMITS.MAX_RESOURCE_VALUE}
                     className="w-full border rounded px-3 py-1 text-sm"
                     value={config.resourceLimits[resource]}
-                    onChange={(e) => updateConfig({
-                      resourceLimits: {
-                        ...config.resourceLimits,
-                        [resource]: validateResourceValue(e.target.value)
-                      }
-                    })}
+                    onChange={(e) =>
+                      updateConfig({
+                        resourceLimits: {
+                          ...config.resourceLimits,
+                          [resource]: validateResourceValue(e.target.value),
+                        },
+                      })
+                    }
                     aria-label={`${resource} resource limit`}
                   />
                 </div>
@@ -151,7 +161,9 @@ export default function ConfigurationPanel() {
 
         {/* Age Selection */}
         <div>
-          <label htmlFor="ageSelect" className="block text-sm font-medium text-gray-700 mb-2">Age</label>
+          <label htmlFor="ageSelect" className="block text-sm font-medium text-gray-700 mb-2">
+            Age
+          </label>
           <select
             id="ageSelect"
             className="w-full border rounded px-3 py-2 capitalize"
@@ -159,7 +171,7 @@ export default function ConfigurationPanel() {
             onChange={(e) => updateConfig({ selectedAge: e.target.value })}
             aria-label="Select game age"
           >
-            {AGES.map(age => (
+            {AGES.map((age) => (
               <option key={age} value={age} className="capitalize">
                 {age} Age
               </option>
@@ -169,9 +181,7 @@ export default function ConfigurationPanel() {
 
         {/* Display Mode Selection */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Display Mode
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Display Mode</label>
           <div className="space-y-2">
             <label className="flex items-center cursor-pointer p-2 rounded border border-gray-300 hover:bg-gray-50 transition-colors">
               <input
@@ -179,7 +189,9 @@ export default function ConfigurationPanel() {
                 name="displayMode"
                 value="units"
                 checked={config.displayMode === 'units'}
-                onChange={(e) => dispatch({ type: ACTION_TYPES.SET_DISPLAY_MODE, mode: e.target.value })}
+                onChange={(e) =>
+                  dispatch({ type: ACTION_TYPES.SET_DISPLAY_MODE, mode: e.target.value })
+                }
                 className="mr-2"
               />
               <span className="flex items-center gap-2">
@@ -193,7 +205,9 @@ export default function ConfigurationPanel() {
                 name="displayMode"
                 value="both"
                 checked={config.displayMode === 'both'}
-                onChange={(e) => dispatch({ type: ACTION_TYPES.SET_DISPLAY_MODE, mode: e.target.value })}
+                onChange={(e) =>
+                  dispatch({ type: ACTION_TYPES.SET_DISPLAY_MODE, mode: e.target.value })
+                }
                 className="mr-2"
               />
               <span className="flex items-center gap-2">
@@ -207,7 +221,9 @@ export default function ConfigurationPanel() {
                 name="displayMode"
                 value="fortifications"
                 checked={config.displayMode === 'fortifications'}
-                onChange={(e) => dispatch({ type: ACTION_TYPES.SET_DISPLAY_MODE, mode: e.target.value })}
+                onChange={(e) =>
+                  dispatch({ type: ACTION_TYPES.SET_DISPLAY_MODE, mode: e.target.value })
+                }
                 className="mr-2"
               />
               <span className="flex items-center gap-2">
@@ -225,9 +241,7 @@ export default function ConfigurationPanel() {
 
         {/* Technology Panel Toggle */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Advanced Options
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Advanced Options</label>
           <label className="flex items-center cursor-pointer p-2 rounded border border-gray-300 hover:bg-gray-50 transition-colors">
             <input
               type="checkbox"
@@ -236,7 +250,9 @@ export default function ConfigurationPanel() {
               className="mr-2 rounded text-indigo-600 focus:ring-indigo-500"
             />
             <span className="flex items-center gap-2">
-              <span role="img" aria-label="gear">⚙️</span>
+              <span role="img" aria-label="gear">
+                ⚙️
+              </span>
               <span className="font-medium">Show Technology Panel</span>
             </span>
           </label>
@@ -265,7 +281,7 @@ export default function ConfigurationPanel() {
               value={config.previewCiv || config.selectedCiv}
               onChange={(e) => updateConfig({ previewCiv: e.target.value })}
             >
-              {civilizations.map(civ => (
+              {civilizations.map((civ) => (
                 <option key={civ.id} value={civ.id}>
                   {civ.name} {civ.region !== 'None' ? `(${civ.region})` : ''}
                 </option>
@@ -279,7 +295,11 @@ export default function ConfigurationPanel() {
                   ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105'
                   : 'bg-gray-300 text-gray-500 cursor-not-allowed'
               }`}
-              title={isPreviewing ? `Apply ${previewCiv.name} bonuses` : 'Select a different civilization to apply'}
+              title={
+                isPreviewing
+                  ? `Apply ${previewCiv.name} bonuses`
+                  : 'Select a different civilization to apply'
+              }
             >
               {isPreviewing ? 'Apply' : 'Applied'}
             </button>
@@ -288,7 +308,8 @@ export default function ConfigurationPanel() {
             <p className="text-sm text-amber-700 mt-2 flex items-center gap-1">
               <span className="animate-pulse">⚠️</span>
               <span>
-                Previewing <strong>{previewCiv.name}</strong>. Click &quot;Apply&quot; to activate bonuses and update calculations.
+                Previewing <strong>{previewCiv.name}</strong>. Click &quot;Apply&quot; to activate
+                bonuses and update calculations.
               </span>
             </p>
           )}

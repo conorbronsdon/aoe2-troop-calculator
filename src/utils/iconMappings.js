@@ -76,16 +76,16 @@ import {
  */
 export const unitIconComponents = {
   // Infantry line
-  'militiaman': GiBroadDagger,
+  militiaman: GiBroadDagger,
   'man-at-arms': GiSwordman,
-  'longswordsman': GiSwordman,
+  longswordsman: GiSwordman,
   'two-handed-swordsman': GiTwoHandedSword,
-  'champion': GiCrossedSwords,
+  champion: GiCrossedSwords,
 
   // Spearman line
-  'spearman': GiSpears,
-  'pikeman': GiSpears,
-  'halberdier': GiSpears,
+  spearman: GiSpears,
+  pikeman: GiSpears,
+  halberdier: GiSpears,
 
   // Eagle line
   'eagle-scout': GiEagleEmblem,
@@ -93,12 +93,12 @@ export const unitIconComponents = {
   'elite-eagle-warrior': GiEagleEmblem,
 
   // Archer line
-  'archer': GiBowArrow,
-  'crossbowman': GiCrossbow,
-  'arbalester': GiCrossbow,
+  archer: GiBowArrow,
+  crossbowman: GiCrossbow,
+  arbalester: GiCrossbow,
 
   // Skirmisher line
-  'skirmisher': GiTargetArrows,
+  skirmisher: GiTargetArrows,
   'elite-skirmisher': GiTargetArrows,
   'imperial-skirmisher': GiTargetArrows,
 
@@ -108,19 +108,19 @@ export const unitIconComponents = {
 
   // Other archers
   'hand-cannoneer': GiPistolGun,
-  'slinger': GiSling,
-  'genitour': GiHoodedFigure,
+  slinger: GiSling,
+  genitour: GiHoodedFigure,
   'elite-genitour': GiHoodedFigure,
 
   // Knight line
-  'knight': GiKnightBanner,
-  'cavalier': GiCavalry,
-  'paladin': GiCavalry,
+  knight: GiKnightBanner,
+  cavalier: GiCavalry,
+  paladin: GiCavalry,
 
   // Scout line
   'scout-cavalry': GiHorseHead,
   'light-cavalry': GiHorseHead,
-  'hussar': GiHorseHead,
+  hussar: GiHorseHead,
   'winged-hussar': GiHorseHead,
 
   // Camel line
@@ -137,22 +137,22 @@ export const unitIconComponents = {
   'elite-steppe-lancer': GiSpearHook,
 
   // Siege units
-  'ram': GiRam,
+  ram: GiRam,
   'capped-ram': GiRam,
   'siege-ram': GiRam,
-  'mangonel': GiCatapult,
-  'onager': GiCatapult,
+  mangonel: GiCatapult,
+  onager: GiCatapult,
   'siege-onager': GiCatapult,
-  'scorpion': GiScorpion,
+  scorpion: GiScorpion,
   'heavy-scorpion': GiScorpion,
   'bombard-cannon': GiCannonShot,
-  'trebuchet': GiTrebuchet,
-  'petard': GiMineExplosion,
+  trebuchet: GiTrebuchet,
+  petard: GiMineExplosion,
 
   // Naval units
-  'galley': GiGalley,
+  galley: GiGalley,
   'war-galley': GiGalley,
-  'galleon': GiGalley,
+  galleon: GiGalley,
   'fire-galley': GiBurningRoundShot,
   'fire-ship': GiBurningRoundShot,
   'fast-fire-ship': GiBurningRoundShot,
@@ -166,9 +166,9 @@ export const unitIconComponents = {
   'fishing-ship': GiFishingBoat,
 
   // Other units
-  'monk': GiMonkFace,
-  'missionary': GiMonkFace,
-  'villager': GiFarmer,
+  monk: GiMonkFace,
+  missionary: GiMonkFace,
+  villager: GiFarmer,
 
   // Unique units - Aztecs
   'jaguar-warrior': GiTiger,
@@ -179,11 +179,11 @@ export const unitIconComponents = {
   'elite-camel-archer': GiDesert,
 
   // Unique units - Britons
-  'longbowman': GiBowArrow,
+  longbowman: GiBowArrow,
   'elite-longbowman': GiBowArrow,
 
   // Unique units - Byzantines
-  'cataphract': GiByzantinTemple,
+  cataphract: GiByzantinTemple,
   'elite-cataphract': GiByzantinTemple,
 
   // Unique units - Celts
@@ -199,11 +199,11 @@ export const unitIconComponents = {
   'elite-throwing-axeman': GiAxeSword,
 
   // Unique units - Goths
-  'huskarl': GiBattleGear,
+  huskarl: GiBattleGear,
   'elite-huskarl': GiBattleGear,
 
   // Unique units - Japanese
-  'samurai': GiKatana,
+  samurai: GiKatana,
   'elite-samurai': GiKatana,
 
   // Unique units - Koreans
@@ -217,7 +217,7 @@ export const unitIconComponents = {
   'elite-plumed-archer': GiFeather,
 
   // Unique units - Mongols
-  'mangudai': GiMongolia,
+  mangudai: GiMongolia,
   'elite-mangudai': GiMongolia,
 
   // Unique units - Persians
@@ -225,11 +225,11 @@ export const unitIconComponents = {
   'elite-war-elephant': GiElephant,
 
   // Unique units - Saracens
-  'mameluke': GiSaberSlash,
+  mameluke: GiSaberSlash,
   'elite-mameluke': GiSaberSlash,
 
   // Unique units - Spanish
-  'conquistador': GiSpain,
+  conquistador: GiSpain,
   'elite-conquistador': GiSpain,
 
   // Unique units - Teutons
@@ -237,19 +237,19 @@ export const unitIconComponents = {
   'elite-teutonic-knight': GiTwoHandedSword,
 
   // Unique units - Turks
-  'janissary': GiMusket,
+  janissary: GiMusket,
   'elite-janissary': GiMusket,
 
   // Unique units - Vikings
-  'berserk': GiVikingHelmet,
+  berserk: GiVikingHelmet,
   'elite-berserk': GiVikingHelmet,
-  'longboat': GiVikingLonghouse,
+  longboat: GiVikingLonghouse,
   'elite-longboat': GiVikingLonghouse,
 
   // Additional unique units from expansions
-  'tarkan': GiHorsemanHead,
+  tarkan: GiHorsemanHead,
   'elite-tarkan': GiHorsemanHead,
-  'kamayuk': GiSpears,
+  kamayuk: GiSpears,
   'elite-kamayuk': GiSpears,
   'elephant-archer': GiIndianPalace,
   'elite-elephant-archer': GiIndianPalace,
@@ -257,7 +257,7 @@ export const unitIconComponents = {
   'elite-genoese-crossbowman': GiCrossbow,
   'magyar-huszar': GiCrown,
   'elite-magyar-huszar': GiCrown,
-  'boyar': GiBattleGear,
+  boyar: GiBattleGear,
   'elite-boyar': GiBattleGear,
 };
 
@@ -265,13 +265,13 @@ export const unitIconComponents = {
  * Category fallback icons
  */
 export const categoryIcons = {
-  'Infantry': GiSwordman,
-  'Archer': GiBowArrow,
-  'Cavalry': GiHorseHead,
-  'Siege': GiCatapult,
-  'Naval': GiGalley,
-  'Other': GiFarmer,
-  'Unique': GiCrossedSwords,
+  Infantry: GiSwordman,
+  Archer: GiBowArrow,
+  Cavalry: GiHorseHead,
+  Siege: GiCatapult,
+  Naval: GiGalley,
+  Other: GiFarmer,
+  Unique: GiCrossedSwords,
 };
 
 /**
@@ -280,4 +280,5 @@ export const categoryIcons = {
  * @param {string} category - Unit category (fallback)
  * @returns {React.Component} Icon component
  */
-export const getUnitIcon = (unitId, category) => unitIconComponents[unitId] || categoryIcons[category] || GiSwordman;
+export const getUnitIcon = (unitId, category) =>
+  unitIconComponents[unitId] || categoryIcons[category] || GiSwordman;

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { useArmy } from '../context/ArmyContext';
 import { getUnitsForCiv } from '../data/units';
 import { groupUnitsByCategory } from '../utils/calculations';
@@ -13,7 +13,7 @@ export default function UnitSelection() {
     categories: [],
     costType: 'all',
     ageFilter: 'all',
-    hideNaval: false
+    hideNaval: false,
   });
 
   // Filter units by age and civilization (includes unique units)
@@ -25,27 +25,23 @@ export default function UnitSelection() {
 
     // Hide Naval filter (quick toggle)
     if (filters.hideNaval) {
-      filtered = filtered.filter(unit => unit.category !== 'Naval');
+      filtered = filtered.filter((unit) => unit.category !== 'Naval');
     }
 
     // Search filter
     if (filters.searchTerm) {
       const searchLower = filters.searchTerm.toLowerCase();
-      filtered = filtered.filter(unit =>
-        unit.name.toLowerCase().includes(searchLower)
-      );
+      filtered = filtered.filter((unit) => unit.name.toLowerCase().includes(searchLower));
     }
 
     // Category filter
     if (filters.categories.length > 0) {
-      filtered = filtered.filter(unit =>
-        filters.categories.includes(unit.category)
-      );
+      filtered = filtered.filter((unit) => filters.categories.includes(unit.category));
     }
 
     // Cost type filter
     if (filters.costType !== 'all') {
-      filtered = filtered.filter(unit => {
+      filtered = filtered.filter((unit) => {
         const totalCost = unit.cost.food + unit.cost.wood + unit.cost.gold + unit.cost.stone;
         switch (filters.costType) {
           case 'trash':
@@ -62,7 +58,7 @@ export default function UnitSelection() {
 
     // Age filter
     if (filters.ageFilter !== 'all') {
-      filtered = filtered.filter(unit => unit.age === filters.ageFilter);
+      filtered = filtered.filter((unit) => unit.age === filters.ageFilter);
     }
 
     return filtered;
@@ -80,7 +76,11 @@ export default function UnitSelection() {
       <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
         <h2 className="text-2xl font-semibold mb-4 text-gray-700">
           Select Units
-          {filters.searchTerm || filters.categories.length > 0 || filters.costType !== 'all' || filters.ageFilter !== 'all' || filters.hideNaval ? (
+          {filters.searchTerm ||
+          filters.categories.length > 0 ||
+          filters.costType !== 'all' ||
+          filters.ageFilter !== 'all' ||
+          filters.hideNaval ? (
             <span className="text-sm font-normal text-gray-500 ml-2">
               ({filteredUnits.length} {filteredUnits.length === 1 ? 'unit' : 'units'} found)
             </span>
@@ -99,7 +99,7 @@ export default function UnitSelection() {
                 {category} ({units.length})
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-                {units.map(unit => (
+                {units.map((unit) => (
                   <UnitCard key={unit.id} unit={unit} />
                 ))}
               </div>

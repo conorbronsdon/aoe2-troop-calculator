@@ -3,14 +3,13 @@
  */
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import React from 'react';
 import ErrorBoundary from './ErrorBoundary';
 
 // Mock the logger to prevent actual logging during tests
 vi.mock('../utils/errorHandler', () => ({
   logger: {
-    error: vi.fn()
-  }
+    error: vi.fn(),
+  },
 }));
 
 // Component that throws an error for testing
@@ -216,7 +215,10 @@ describe('ErrorBoundary', () => {
 
       const link = screen.getByRole('link', { name: /report an issue/i });
       expect(link).toBeInTheDocument();
-      expect(link).toHaveAttribute('href', 'https://github.com/conorbronsdon/aoe2-troop-calculator/issues');
+      expect(link).toHaveAttribute(
+        'href',
+        'https://github.com/conorbronsdon/aoe2-troop-calculator/issues'
+      );
       expect(link).toHaveAttribute('target', '_blank');
       expect(link).toHaveAttribute('rel', 'noopener noreferrer');
     });

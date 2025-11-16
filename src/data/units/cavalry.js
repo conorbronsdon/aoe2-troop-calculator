@@ -11,7 +11,7 @@ export const cavalryUnits = [
     cost: { food: 80, wood: 0, gold: 0, stone: 0 },
     population: 1,
     counters: ['archer', 'skirmisher', 'monk'],
-    weakTo: ['spearman', 'pikeman', 'camel']
+    weakTo: ['spearman', 'pikeman', 'camel'],
   },
   {
     id: 'light-cavalry',
@@ -21,7 +21,7 @@ export const cavalryUnits = [
     cost: { food: 80, wood: 0, gold: 0, stone: 0 },
     population: 1,
     counters: ['archer', 'skirmisher', 'monk', 'siege'],
-    weakTo: ['spearman', 'pikeman', 'camel', 'halberdier']
+    weakTo: ['spearman', 'pikeman', 'camel', 'halberdier'],
   },
   {
     id: 'hussar',
@@ -31,7 +31,7 @@ export const cavalryUnits = [
     cost: { food: 80, wood: 0, gold: 0, stone: 0 },
     population: 1,
     counters: ['archer', 'skirmisher', 'monk', 'siege'],
-    weakTo: ['pikeman', 'halberdier', 'camel', 'eagle-warrior']
+    weakTo: ['pikeman', 'halberdier', 'camel', 'eagle-warrior'],
   },
   // Knight line
   {
@@ -42,7 +42,7 @@ export const cavalryUnits = [
     cost: { food: 60, wood: 0, gold: 75, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry', 'siege'],
-    weakTo: ['pikeman', 'halberdier', 'camel', 'monk']
+    weakTo: ['pikeman', 'halberdier', 'camel', 'monk'],
   },
   {
     id: 'cavalier',
@@ -52,7 +52,7 @@ export const cavalryUnits = [
     cost: { food: 60, wood: 0, gold: 75, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry', 'siege'],
-    weakTo: ['halberdier', 'camel', 'monk', 'kamayuk']
+    weakTo: ['halberdier', 'camel', 'monk', 'kamayuk'],
   },
   {
     id: 'paladin',
@@ -62,7 +62,7 @@ export const cavalryUnits = [
     cost: { food: 60, wood: 0, gold: 75, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry', 'siege', 'eagle-warrior'],
-    weakTo: ['halberdier', 'heavy-camel', 'monk', 'kamayuk']
+    weakTo: ['halberdier', 'heavy-camel', 'monk', 'kamayuk'],
   },
   // Camel line
   {
@@ -73,7 +73,7 @@ export const cavalryUnits = [
     cost: { food: 55, wood: 0, gold: 60, stone: 0 },
     population: 1,
     counters: ['knight', 'cavalier', 'cavalry'],
-    weakTo: ['archer', 'infantry', 'monk']
+    weakTo: ['archer', 'infantry', 'monk'],
   },
   {
     id: 'heavy-camel',
@@ -83,7 +83,7 @@ export const cavalryUnits = [
     cost: { food: 55, wood: 0, gold: 60, stone: 0 },
     population: 1,
     counters: ['knight', 'cavalier', 'paladin', 'cavalry'],
-    weakTo: ['archer', 'infantry', 'monk', 'mameluke']
+    weakTo: ['archer', 'infantry', 'monk', 'mameluke'],
   },
   {
     id: 'imperial-camel',
@@ -93,7 +93,7 @@ export const cavalryUnits = [
     cost: { food: 55, wood: 0, gold: 60, stone: 0 },
     population: 1,
     counters: ['knight', 'cavalier', 'paladin', 'cavalry', 'war-elephant'],
-    weakTo: ['archer', 'infantry', 'monk']
+    weakTo: ['archer', 'infantry', 'monk'],
   },
   // Battle Elephant line
   {
@@ -104,7 +104,7 @@ export const cavalryUnits = [
     cost: { food: 100, wood: 0, gold: 70, stone: 0 },
     population: 1,
     counters: ['infantry', 'cavalry', 'buildings'],
-    weakTo: ['monk', 'halberdier', 'camel', 'mameluke']
+    weakTo: ['monk', 'halberdier', 'camel', 'mameluke'],
   },
   {
     id: 'elite-battle-elephant',
@@ -114,7 +114,7 @@ export const cavalryUnits = [
     cost: { food: 100, wood: 0, gold: 70, stone: 0 },
     population: 1,
     counters: ['infantry', 'cavalry', 'buildings', 'siege'],
-    weakTo: ['monk', 'halberdier', 'heavy-camel', 'mameluke']
+    weakTo: ['monk', 'halberdier', 'heavy-camel', 'mameluke'],
   },
   // Steppe Lancer line
   {
@@ -125,7 +125,7 @@ export const cavalryUnits = [
     cost: { food: 70, wood: 0, gold: 45, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry'],
-    weakTo: ['pikeman', 'halberdier', 'camel', 'eagle-warrior']
+    weakTo: ['pikeman', 'halberdier', 'camel', 'eagle-warrior'],
   },
   {
     id: 'elite-steppe-lancer',
@@ -135,6 +135,6 @@ export const cavalryUnits = [
     cost: { food: 70, wood: 0, gold: 45, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry', 'cavalry'],
-    weakTo: ['halberdier', 'camel', 'eagle-warrior', 'kamayuk']
+    weakTo: ['halberdier', 'camel', 'eagle-warrior', 'kamayuk'],
   },
 ];

@@ -3,9 +3,7 @@
  */
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { render, screen, fireEvent, cleanup } from '@testing-library/react';
-import React from 'react';
 import UnitCard from './UnitCard';
-import { ACTION_TYPES } from '../context/ArmyContext';
 
 // Mock dependencies
 vi.mock('../utils/calculations', () => ({
@@ -13,9 +11,9 @@ vi.mock('../utils/calculations', () => ({
     food: unit.cost.food,
     wood: unit.cost.wood,
     gold: unit.cost.gold,
-    stone: unit.cost.stone
+    stone: unit.cost.stone,
   })),
-  hasDiscount: vi.fn(() => false)
+  hasDiscount: vi.fn(() => false),
 }));
 
 vi.mock('../data/civilizations', () => ({
@@ -23,7 +21,7 @@ vi.mock('../data/civilizations', () => ({
     {
       id: 'generic',
       name: 'Generic',
-      bonuses: []
+      bonuses: [],
     },
     {
       id: 'britons',
@@ -32,11 +30,11 @@ vi.mock('../data/civilizations', () => ({
         {
           type: 'cost',
           units: ['archer'],
-          description: 'Archers cost -10% wood'
-        }
-      ]
-    }
-  ]
+          description: 'Archers cost -10% wood',
+        },
+      ],
+    },
+  ],
 }));
 
 vi.mock('../data/units', () => ({
@@ -45,21 +43,21 @@ vi.mock('../data/units', () => ({
       militia: { name: 'Militia' },
       archer: { name: 'Archer' },
       knight: { name: 'Knight' },
-      skirmisher: { name: 'Skirmisher' }
+      skirmisher: { name: 'Skirmisher' },
     };
     return units[id] || { name: id };
-  })
+  }),
 }));
 
 // Mock stat calculator
 vi.mock('../utils/statCalculator', () => ({
   calculateUnitStats: vi.fn(() => null), // Return null by default (no base stats)
-  formatStatValue: vi.fn((type, value) => value.toString())
+  formatStatValue: vi.fn((type, value) => value.toString()),
 }));
 
 // Mock UnitIcon to avoid complex SVG rendering
 vi.mock('./UnitIcon', () => ({
-  default: () => <div data-testid="unit-icon">Icon</div>
+  default: () => <div data-testid="unit-icon">Icon</div>,
 }));
 
 // Mock the logger to prevent console output
@@ -67,8 +65,8 @@ vi.mock('../utils/errorHandler', () => ({
   logger: {
     debug: vi.fn(),
     warn: vi.fn(),
-    error: vi.fn()
-  }
+    error: vi.fn(),
+  },
 }));
 
 // Create a custom wrapper that provides mock context
@@ -86,11 +84,11 @@ const createMockState = (composition = {}) => ({
     selectedCiv: 'generic',
     previewCiv: 'generic',
     displayMode: 'units',
-    showTechPanel: false
+    showTechPanel: false,
   },
   savedCompositions: [],
   comparisonMode: false,
-  comparisonArmies: { a: {}, b: {} }
+  comparisonArmies: { a: {}, b: {} },
 });
 
 // Mock the useArmy hook directly for simpler testing
@@ -98,17 +96,17 @@ vi.mock('../context/ArmyContext', async () => {
   const actual = await vi.importActual('../context/ArmyContext');
   return {
     ...actual,
-    useArmy: vi.fn()
+    useArmy: vi.fn(),
   };
 });
 
-import { useArmy } from '../context/ArmyContext';
+import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 
 // Helper to render with mock context
 const renderWithProvider = (unit, composition = {}) => {
   useArmy.mockReturnValue({
     state: createMockState(composition),
-    dispatch: mockDispatch
+    dispatch: mockDispatch,
   });
 
   return render(<UnitCard unit={unit} />);
@@ -123,7 +121,7 @@ describe('UnitCard', () => {
     cost: { food: 25, wood: 45, gold: 0, stone: 0 },
     population: 1,
     counters: ['skirmisher'],
-    weakTo: ['knight']
+    weakTo: ['knight'],
   };
 
   const mockMilitia = {
@@ -134,7 +132,7 @@ describe('UnitCard', () => {
     cost: { food: 60, wood: 20, gold: 0, stone: 0 },
     population: 1,
     counters: [],
-    weakTo: []
+    weakTo: [],
   };
 
   beforeEach(() => {
@@ -231,7 +229,7 @@ describe('UnitCard', () => {
 
       expect(mockDispatch).toHaveBeenCalledWith({
         type: ACTION_TYPES.ADD_UNIT,
-        unitId: 'archer'
+        unitId: 'archer',
       });
     });
 
@@ -243,7 +241,7 @@ describe('UnitCard', () => {
 
       expect(mockDispatch).toHaveBeenCalledWith({
         type: ACTION_TYPES.REMOVE_UNIT,
-        unitId: 'archer'
+        unitId: 'archer',
       });
     });
 
@@ -256,7 +254,7 @@ describe('UnitCard', () => {
       expect(mockDispatch).toHaveBeenCalledWith({
         type: ACTION_TYPES.SET_UNIT_QUANTITY,
         unitId: 'archer',
-        quantity: 10
+        quantity: 10,
       });
     });
 
@@ -270,7 +268,7 @@ describe('UnitCard', () => {
       expect(mockDispatch).toHaveBeenCalledWith({
         type: ACTION_TYPES.SET_UNIT_QUANTITY,
         unitId: 'archer',
-        quantity: 9999
+        quantity: 9999,
       });
     });
 
@@ -283,7 +281,7 @@ describe('UnitCard', () => {
       expect(mockDispatch).toHaveBeenCalledWith({
         type: ACTION_TYPES.SET_UNIT_QUANTITY,
         unitId: 'archer',
-        quantity: 0
+        quantity: 0,
       });
     });
 
@@ -296,7 +294,7 @@ describe('UnitCard', () => {
       expect(mockDispatch).toHaveBeenCalledWith({
         type: ACTION_TYPES.SET_UNIT_QUANTITY,
         unitId: 'archer',
-        quantity: 0
+        quantity: 0,
       });
     });
   });
@@ -438,7 +436,7 @@ describe('UnitCard', () => {
       const unitNoCounters = {
         ...mockUnit,
         counters: undefined,
-        weakTo: undefined
+        weakTo: undefined,
       };
 
       renderWithProvider(unitNoCounters);
@@ -452,7 +450,7 @@ describe('UnitCard', () => {
       const unitEmptyCounters = {
         ...mockUnit,
         counters: [],
-        weakTo: []
+        weakTo: [],
       };
 
       renderWithProvider(unitEmptyCounters);
@@ -465,7 +463,7 @@ describe('UnitCard', () => {
       const unitOnlyCounters = {
         ...mockUnit,
         counters: ['skirmisher'],
-        weakTo: []
+        weakTo: [],
       };
 
       const { container } = renderWithProvider(unitOnlyCounters);
@@ -481,7 +479,7 @@ describe('UnitCard', () => {
       const unitOnlyWeakTo = {
         ...mockUnit,
         counters: [],
-        weakTo: ['knight']
+        weakTo: ['knight'],
       };
 
       const { container } = renderWithProvider(unitOnlyWeakTo);

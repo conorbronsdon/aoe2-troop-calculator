@@ -10,7 +10,7 @@ export const otherUnits = [
     cost: { food: 0, wood: 0, gold: 100, stone: 0 },
     population: 1,
     counters: ['cavalry', 'knight', 'elephant'],
-    weakTo: ['archer', 'scout', 'eagle-warrior']
+    weakTo: ['archer', 'scout', 'eagle-warrior'],
   },
   {
     id: 'missionary',
@@ -20,7 +20,7 @@ export const otherUnits = [
     cost: { food: 0, wood: 0, gold: 100, stone: 0 },
     population: 1,
     counters: ['cavalry', 'knight'],
-    weakTo: ['archer', 'skirmisher', 'eagle-warrior']
+    weakTo: ['archer', 'skirmisher', 'eagle-warrior'],
   },
   // Petard - infantry kamikaze unit
   {
@@ -31,6 +31,6 @@ export const otherUnits = [
     cost: { food: 80, wood: 0, gold: 20, stone: 0 },
     population: 1,
     counters: ['building', 'wall', 'gate'],
-    weakTo: ['archer', 'knight', 'cavalry']
+    weakTo: ['archer', 'knight', 'cavalry'],
   },
 ];

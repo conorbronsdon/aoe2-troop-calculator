@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { LIMITS } from '../constants';
@@ -29,16 +28,20 @@ export default function FortificationCard({ fortification }) {
     dispatch({
       type: ACTION_TYPES.SET_FORTIFICATION_QUANTITY,
       fortificationId: fortification.id,
-      quantity: validated
+      quantity: validated,
     });
   };
 
   const getCategoryIcon = (category) => {
     switch (category) {
-      case 'Walls': return { icon: '🧱', label: 'Wall' };
-      case 'Towers': return { icon: '🗼', label: 'Tower' };
-      case 'Castles': return { icon: '🏰', label: 'Castle' };
-      default: return { icon: '🏗️', label: 'Building' };
+      case 'Walls':
+        return { icon: '🧱', label: 'Wall' };
+      case 'Towers':
+        return { icon: '🗼', label: 'Tower' };
+      case 'Castles':
+        return { icon: '🏰', label: 'Castle' };
+      default:
+        return { icon: '🏗️', label: 'Building' };
     }
   };
 
@@ -56,9 +59,7 @@ export default function FortificationCard({ fortification }) {
           </div>
           <div className="text-xs text-gray-500 capitalize">{fortification.age} Age</div>
           {fortification.description && (
-            <div className="text-xs text-gray-600 mt-1 italic">
-              {fortification.description}
-            </div>
+            <div className="text-xs text-gray-600 mt-1 italic">{fortification.description}</div>
           )}
         </div>
       </div>
@@ -68,7 +69,9 @@ export default function FortificationCard({ fortification }) {
         {fortification.hp && (
           <div className="flex items-center justify-between">
             <span>
-              <span role="img" aria-label="Hit Points">❤️</span>
+              <span role="img" aria-label="Hit Points">
+                ❤️
+              </span>
               <span className="sr-only">HP:</span>
               <span aria-hidden="true"> HP:</span>
             </span>
@@ -78,7 +81,9 @@ export default function FortificationCard({ fortification }) {
         {fortification.attack !== undefined && fortification.attack > 0 && (
           <div className="flex items-center justify-between">
             <span>
-              <span role="img" aria-label="Attack">⚔️</span>
+              <span role="img" aria-label="Attack">
+                ⚔️
+              </span>
               <span className="sr-only">Attack:</span>
               <span aria-hidden="true"> Attack:</span>
             </span>
@@ -88,7 +93,9 @@ export default function FortificationCard({ fortification }) {
         {fortification.range && (
           <div className="flex items-center justify-between">
             <span>
-              <span role="img" aria-label="Range">🎯</span>
+              <span role="img" aria-label="Range">
+                🎯
+              </span>
               <span className="sr-only">Range:</span>
               <span aria-hidden="true"> Range:</span>
             </span>
@@ -142,11 +149,11 @@ FortificationCard.propTypes = {
       food: PropTypes.number.isRequired,
       wood: PropTypes.number.isRequired,
       gold: PropTypes.number.isRequired,
-      stone: PropTypes.number.isRequired
+      stone: PropTypes.number.isRequired,
     }).isRequired,
     hp: PropTypes.number,
     attack: PropTypes.number,
     range: PropTypes.number,
-    description: PropTypes.string
-  }).isRequired
+    description: PropTypes.string,
+  }).isRequired,
 };

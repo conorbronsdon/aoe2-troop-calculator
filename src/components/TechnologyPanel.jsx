@@ -1,7 +1,12 @@
-import React, { useState, useMemo } from 'react';
-import PropTypes from 'prop-types';
+import { useState, useMemo } from 'react';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
-import { technologies, TECH_CATEGORIES, getTechById, canResearchTech, calculateTechCost } from '../data/technologies';
+import {
+  technologies,
+  TECH_CATEGORIES,
+  getTechById,
+  canResearchTech,
+  calculateTechCost,
+} from '../data/technologies';
 import { AGE_ORDER } from '../constants';
 
 /**
@@ -17,19 +22,21 @@ export default function TechnologyPanel() {
   const [searchTerm, setSearchTerm] = useState('');
 
   // Filter technologies based on selected age
-  const availableTechs = useMemo(() => {
-    return technologies.filter(tech => {
-      const techAgeOrder = AGE_ORDER[tech.age] || 0;
-      const selectedAgeOrder = AGE_ORDER[config.selectedAge] || 3;
-      return techAgeOrder <= selectedAgeOrder;
-    });
-  }, [config.selectedAge]);
+  const availableTechs = useMemo(
+    () =>
+      technologies.filter((tech) => {
+        const techAgeOrder = AGE_ORDER[tech.age] || 0;
+        const selectedAgeOrder = AGE_ORDER[config.selectedAge] || 3;
+        return techAgeOrder <= selectedAgeOrder;
+      }),
+    [config.selectedAge]
+  );
 
   // Group technologies by category
   const techsByCategory = useMemo(() => {
     const grouped = {};
-    Object.values(TECH_CATEGORIES).forEach(cat => {
-      grouped[cat] = availableTechs.filter(tech => tech.category === cat);
+    Object.values(TECH_CATEGORIES).forEach((cat) => {
+      grouped[cat] = availableTechs.filter((tech) => tech.category === cat);
     });
     return grouped;
   }, [availableTechs]);
@@ -47,9 +54,9 @@ export default function TechnologyPanel() {
       let filtered = techs;
       if (searchTerm) {
         const term = searchTerm.toLowerCase();
-        filtered = techs.filter(tech =>
-          tech.name.toLowerCase().includes(term) ||
-          tech.description.toLowerCase().includes(term)
+        filtered = techs.filter(
+          (tech) =>
+            tech.name.toLowerCase().includes(term) || tech.description.toLowerCase().includes(term)
         );
       }
 
@@ -61,24 +68,21 @@ export default function TechnologyPanel() {
   }, [techsByCategory, selectedCategories, searchTerm]);
 
   // Calculate total tech cost
-  const totalTechCost = useMemo(() => {
-    return calculateTechCost(researchedTechs);
-  }, [researchedTechs]);
+  const totalTechCost = useMemo(() => calculateTechCost(researchedTechs), [researchedTechs]);
 
   const handleTechToggle = (techId) => {
     if (researchedTechs.includes(techId)) {
       // Unresearch the tech and any dependent techs
-      const tech = getTechById(techId);
       const techsToRemove = [techId];
 
       // Find techs that depend on this one
-      technologies.forEach(t => {
+      technologies.forEach((t) => {
         if (t.prerequisites.includes(techId) && researchedTechs.includes(t.id)) {
           techsToRemove.push(t.id);
         }
       });
 
-      const newTechs = researchedTechs.filter(id => !techsToRemove.includes(id));
+      const newTechs = researchedTechs.filter((id) => !techsToRemove.includes(id));
       dispatch({ type: ACTION_TYPES.SET_RESEARCHED_TECHS, techIds: newTechs });
     } else {
       // Research the tech (check prerequisites)
@@ -89,9 +93,9 @@ export default function TechnologyPanel() {
   };
 
   const handleCategoryToggle = (category) => {
-    setSelectedCategories(prev => {
+    setSelectedCategories((prev) => {
       if (prev.includes(category)) {
-        return prev.filter(c => c !== category);
+        return prev.filter((c) => c !== category);
       }
       return [...prev, category];
     });
@@ -116,7 +120,7 @@ export default function TechnologyPanel() {
       [TECH_CATEGORIES.BARRACKS]: '🛡️',
       [TECH_CATEGORIES.CASTLE]: '🏰',
       [TECH_CATEGORIES.DOCK]: '⚓',
-      [TECH_CATEGORIES.TOWN_CENTER]: '🏠'
+      [TECH_CATEGORIES.TOWN_CENTER]: '🏠',
     };
     return icons[category] || '⚙️';
   };
@@ -126,7 +130,7 @@ export default function TechnologyPanel() {
       dark: 'bg-gray-600',
       feudal: 'bg-green-600',
       castle: 'bg-blue-600',
-      imperial: 'bg-purple-600'
+      imperial: 'bg-purple-600',
     };
     return colors[age] || 'bg-gray-600';
   };
@@ -141,7 +145,9 @@ export default function TechnologyPanel() {
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <h3 className="text-xl font-semibold text-indigo-900 dark:text-indigo-100 flex items-center gap-2">
-          <span role="img" aria-label="technology">⚙️</span>
+          <span role="img" aria-label="technology">
+            ⚙️
+          </span>
           Technologies & Upgrades
           <span className="text-sm font-normal text-indigo-600 dark:text-indigo-300">
             ({researchedTechs.length} researched)
@@ -154,17 +160,26 @@ export default function TechnologyPanel() {
               <span className="text-indigo-700 dark:text-indigo-300 font-medium">Tech Cost:</span>
               {totalTechCost.food > 0 && (
                 <span className="text-orange-600 dark:text-orange-400" title="Food">
-                  <span role="img" aria-label="food">🌾</span>{totalTechCost.food}
+                  <span role="img" aria-label="food">
+                    🌾
+                  </span>
+                  {totalTechCost.food}
                 </span>
               )}
               {totalTechCost.wood > 0 && (
                 <span className="text-amber-700 dark:text-amber-400" title="Wood">
-                  <span role="img" aria-label="wood">🪵</span>{totalTechCost.wood}
+                  <span role="img" aria-label="wood">
+                    🪵
+                  </span>
+                  {totalTechCost.wood}
                 </span>
               )}
               {totalTechCost.gold > 0 && (
                 <span className="text-yellow-600 dark:text-yellow-400" title="Gold">
-                  <span role="img" aria-label="gold">🪙</span>{totalTechCost.gold}
+                  <span role="img" aria-label="gold">
+                    🪙
+                  </span>
+                  {totalTechCost.gold}
                 </span>
               )}
             </div>
@@ -201,20 +216,22 @@ export default function TechnologyPanel() {
 
             {/* Category Filters */}
             <div className="flex flex-wrap gap-2">
-              {Object.values(TECH_CATEGORIES).slice(0, 6).map(category => (
-                <button
-                  key={category}
-                  onClick={() => handleCategoryToggle(category)}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                    selectedCategories.includes(category)
-                      ? 'bg-indigo-600 text-white shadow-md'
-                      : 'bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-800/50'
-                  }`}
-                  aria-pressed={selectedCategories.includes(category)}
-                >
-                  {getCategoryIcon(category)} {category}
-                </button>
-              ))}
+              {Object.values(TECH_CATEGORIES)
+                .slice(0, 6)
+                .map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => handleCategoryToggle(category)}
+                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                      selectedCategories.includes(category)
+                        ? 'bg-indigo-600 text-white shadow-md'
+                        : 'bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-800/50'
+                    }`}
+                    aria-pressed={selectedCategories.includes(category)}
+                  >
+                    {getCategoryIcon(category)} {category}
+                  </button>
+                ))}
             </div>
 
             {/* Action Buttons */}
@@ -243,15 +260,17 @@ export default function TechnologyPanel() {
             {Object.entries(filteredTechsByCategory).map(([category, techs]) => (
               <div key={category} className="bg-white dark:bg-gray-800 rounded-lg p-3 shadow-sm">
                 <h4 className="text-md font-semibold text-gray-800 dark:text-gray-200 mb-3 flex items-center gap-2">
-                  <span role="img" aria-label={category}>{getCategoryIcon(category)}</span>
+                  <span role="img" aria-label={category}>
+                    {getCategoryIcon(category)}
+                  </span>
                   {category}
                   <span className="text-xs font-normal text-gray-500">
-                    ({techs.filter(t => researchedTechs.includes(t.id)).length}/{techs.length})
+                    ({techs.filter((t) => researchedTechs.includes(t.id)).length}/{techs.length})
                   </span>
                 </h4>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-                  {techs.map(tech => {
+                  {techs.map((tech) => {
                     const isResearched = researchedTechs.includes(tech.id);
                     const canResearch = canResearchTech(tech.id, researchedTechs);
                     const isLocked = !isResearched && !canResearch;
@@ -263,10 +282,12 @@ export default function TechnologyPanel() {
                           isResearched
                             ? 'bg-green-50 dark:bg-green-900/30 border-green-300 dark:border-green-600'
                             : isLocked
-                            ? 'bg-gray-100 dark:bg-gray-700/50 border-gray-300 dark:border-gray-600 opacity-60 cursor-not-allowed'
-                            : 'bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/30'
+                              ? 'bg-gray-100 dark:bg-gray-700/50 border-gray-300 dark:border-gray-600 opacity-60 cursor-not-allowed'
+                              : 'bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/30'
                         }`}
-                        title={isLocked ? `Requires: ${tech.prerequisites.join(', ')}` : tech.description}
+                        title={
+                          isLocked ? `Requires: ${tech.prerequisites.join(', ')}` : tech.description
+                        }
                       >
                         <input
                           type="checkbox"
@@ -280,30 +301,42 @@ export default function TechnologyPanel() {
                             <span className="font-medium text-sm text-gray-900 dark:text-gray-100">
                               {tech.name}
                             </span>
-                            <span className={`text-xs px-1.5 py-0.5 rounded text-white ${getAgeBadgeColor(tech.age)}`}>
+                            <span
+                              className={`text-xs px-1.5 py-0.5 rounded text-white ${getAgeBadgeColor(tech.age)}`}
+                            >
                               {tech.age.charAt(0).toUpperCase()}
                             </span>
                           </div>
                           <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                             {tech.cost.food > 0 && (
                               <span className="mr-1">
-                                <span role="img" aria-label="food">🌾</span>{tech.cost.food}
+                                <span role="img" aria-label="food">
+                                  🌾
+                                </span>
+                                {tech.cost.food}
                               </span>
                             )}
                             {tech.cost.wood > 0 && (
                               <span className="mr-1">
-                                <span role="img" aria-label="wood">🪵</span>{tech.cost.wood}
+                                <span role="img" aria-label="wood">
+                                  🪵
+                                </span>
+                                {tech.cost.wood}
                               </span>
                             )}
                             {tech.cost.gold > 0 && (
                               <span className="mr-1">
-                                <span role="img" aria-label="gold">🪙</span>{tech.cost.gold}
+                                <span role="img" aria-label="gold">
+                                  🪙
+                                </span>
+                                {tech.cost.gold}
                               </span>
                             )}
                           </div>
                           {isLocked && tech.prerequisites.length > 0 && (
                             <div className="text-xs text-red-600 dark:text-red-400 mt-1">
-                              Requires: {tech.prerequisites.map(p => getTechById(p)?.name || p).join(' → ')}
+                              Requires:{' '}
+                              {tech.prerequisites.map((p) => getTechById(p)?.name || p).join(' → ')}
                             </div>
                           )}
                         </div>
@@ -329,16 +362,28 @@ export default function TechnologyPanel() {
               </div>
               <div className="flex flex-wrap gap-3 text-sm">
                 <span className="text-orange-600 dark:text-orange-400">
-                  <span role="img" aria-label="food">🌾</span> {totalTechCost.food}
+                  <span role="img" aria-label="food">
+                    🌾
+                  </span>{' '}
+                  {totalTechCost.food}
                 </span>
                 <span className="text-amber-700 dark:text-amber-400">
-                  <span role="img" aria-label="wood">🪵</span> {totalTechCost.wood}
+                  <span role="img" aria-label="wood">
+                    🪵
+                  </span>{' '}
+                  {totalTechCost.wood}
                 </span>
                 <span className="text-yellow-600 dark:text-yellow-400">
-                  <span role="img" aria-label="gold">🪙</span> {totalTechCost.gold}
+                  <span role="img" aria-label="gold">
+                    🪙
+                  </span>{' '}
+                  {totalTechCost.gold}
                 </span>
                 <span className="text-gray-600 dark:text-gray-400">
-                  <span role="img" aria-label="stone">🪨</span> {totalTechCost.stone}
+                  <span role="img" aria-label="stone">
+                    🪨
+                  </span>{' '}
+                  {totalTechCost.stone}
                 </span>
               </div>
             </div>

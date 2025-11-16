@@ -7,7 +7,7 @@ import {
   getUniqueUnitsByCiv,
   getUnitsForCiv,
   canCivBuildUnit,
-  getMissingUnitsForCiv
+  getMissingUnitsForCiv,
 } from './index';
 
 describe('Unit Data Functions', () => {
@@ -58,7 +58,7 @@ describe('Unit Data Functions', () => {
     it('should return infantry units', () => {
       const infantry = getUnitsByCategory('Infantry');
       expect(infantry.length).toBeGreaterThan(0);
-      infantry.forEach(unit => {
+      infantry.forEach((unit) => {
         expect(unit.category).toBe('Infantry');
       });
     });
@@ -66,7 +66,7 @@ describe('Unit Data Functions', () => {
     it('should return cavalry units', () => {
       const cavalry = getUnitsByCategory('Cavalry');
       expect(cavalry.length).toBeGreaterThan(0);
-      cavalry.forEach(unit => {
+      cavalry.forEach((unit) => {
         expect(unit.category).toBe('Cavalry');
       });
     });
@@ -74,7 +74,7 @@ describe('Unit Data Functions', () => {
     it('should return unique units', () => {
       const unique = getUnitsByCategory('Unique');
       expect(unique.length).toBeGreaterThan(0);
-      unique.forEach(unit => {
+      unique.forEach((unit) => {
         expect(unit.category).toBe('Unique');
         expect(unit).toHaveProperty('civilization');
       });
@@ -83,7 +83,7 @@ describe('Unit Data Functions', () => {
     it('should return naval units', () => {
       const naval = getUnitsByCategory('Naval');
       expect(naval.length).toBeGreaterThan(0);
-      naval.forEach(unit => {
+      naval.forEach((unit) => {
         expect(unit.category).toBe('Naval');
       });
     });
@@ -93,7 +93,7 @@ describe('Unit Data Functions', () => {
     it('should return dark age units', () => {
       const darkAge = getUnitsByAge('dark');
       expect(darkAge.length).toBeGreaterThan(0);
-      darkAge.forEach(unit => {
+      darkAge.forEach((unit) => {
         expect(unit.age).toBe('dark');
       });
     });
@@ -101,15 +101,15 @@ describe('Unit Data Functions', () => {
     it('should return feudal and earlier units', () => {
       const feudal = getUnitsByAge('feudal');
       expect(feudal.length).toBeGreaterThan(0);
-      const ages = [...new Set(feudal.map(u => u.age))];
-      expect(ages.every(age => ['dark', 'feudal'].includes(age))).toBe(true);
+      const ages = [...new Set(feudal.map((u) => u.age))];
+      expect(ages.every((age) => ['dark', 'feudal'].includes(age))).toBe(true);
     });
 
     it('should return castle and earlier units', () => {
       const castle = getUnitsByAge('castle');
       expect(castle.length).toBeGreaterThan(0);
-      const ages = [...new Set(castle.map(u => u.age))];
-      expect(ages.every(age => ['dark', 'feudal', 'castle'].includes(age))).toBe(true);
+      const ages = [...new Set(castle.map((u) => u.age))];
+      expect(ages.every((age) => ['dark', 'feudal', 'castle'].includes(age))).toBe(true);
     });
 
     it('should return all units for imperial age', () => {
@@ -143,7 +143,7 @@ describe('Unit Data Functions', () => {
     it('should return britons unique units', () => {
       const units = getUniqueUnitsByCiv('britons');
       expect(units.length).toBeGreaterThan(0);
-      units.forEach(unit => {
+      units.forEach((unit) => {
         expect(unit.civilization).toBe('britons');
         expect(['longbowman', 'elite-longbowman']).toContain(unit.id);
       });
@@ -152,7 +152,7 @@ describe('Unit Data Functions', () => {
     it('should return aztecs unique units', () => {
       const units = getUniqueUnitsByCiv('aztecs');
       expect(units.length).toBeGreaterThan(0);
-      units.forEach(unit => {
+      units.forEach((unit) => {
         expect(unit.civilization).toBe('aztecs');
       });
     });
@@ -160,7 +160,7 @@ describe('Unit Data Functions', () => {
     it('should return goths unique units', () => {
       const units = getUniqueUnitsByCiv('goths');
       expect(units.length).toBeGreaterThan(0);
-      units.forEach(unit => {
+      units.forEach((unit) => {
         expect(unit.civilization).toBe('goths');
         expect(['huskarl', 'elite-huskarl']).toContain(unit.id);
       });
@@ -170,39 +170,39 @@ describe('Unit Data Functions', () => {
   describe('getUnitsForCiv', () => {
     it('should return generic units and no unique units for generic civ', () => {
       const units = getUnitsForCiv('generic', 'imperial');
-      const uniqueUnits = units.filter(u => u.category === 'Unique');
+      const uniqueUnits = units.filter((u) => u.category === 'Unique');
       expect(uniqueUnits.length).toBe(0);
     });
 
     it('should include unique units for specific civilization', () => {
       const units = getUnitsForCiv('britons', 'imperial');
-      const longbowman = units.find(u => u.id === 'longbowman');
-      const eliteLongbowman = units.find(u => u.id === 'elite-longbowman');
+      const longbowman = units.find((u) => u.id === 'longbowman');
+      const eliteLongbowman = units.find((u) => u.id === 'elite-longbowman');
       expect(longbowman).toBeDefined();
       expect(eliteLongbowman).toBeDefined();
     });
 
     it('should filter by age correctly', () => {
       const feudalUnits = getUnitsForCiv('britons', 'feudal');
-      const eliteLongbowman = feudalUnits.find(u => u.id === 'elite-longbowman');
+      const eliteLongbowman = feudalUnits.find((u) => u.id === 'elite-longbowman');
       expect(eliteLongbowman).toBeUndefined(); // Imperial age unit
     });
 
     it('should include civilization unique units in castle age', () => {
       const castleUnits = getUnitsForCiv('britons', 'castle');
-      const longbowman = castleUnits.find(u => u.id === 'longbowman');
+      const longbowman = castleUnits.find((u) => u.id === 'longbowman');
       expect(longbowman).toBeDefined(); // Castle age unique unit
     });
 
     it('should not include other civilizations unique units', () => {
       const britonsUnits = getUnitsForCiv('britons', 'imperial');
-      const chuKoNu = britonsUnits.find(u => u.id === 'chu-ko-nu'); // Chinese unit
+      const chuKoNu = britonsUnits.find((u) => u.id === 'chu-ko-nu'); // Chinese unit
       expect(chuKoNu).toBeUndefined();
     });
 
     it('should include generic units for all civilizations', () => {
       const britonsUnits = getUnitsForCiv('britons', 'castle');
-      const knight = britonsUnits.find(u => u.id === 'knight');
+      const knight = britonsUnits.find((u) => u.id === 'knight');
       expect(knight).toBeDefined();
     });
 
@@ -218,20 +218,20 @@ describe('Unit Data Functions', () => {
 
   describe('Data Integrity', () => {
     it('should have unique unit IDs', () => {
-      const ids = units.map(u => u.id);
+      const ids = units.map((u) => u.id);
       const uniqueIds = [...new Set(ids)];
       expect(ids.length).toBe(uniqueIds.length);
     });
 
     it('should have valid ages', () => {
       const validAges = ['dark', 'feudal', 'castle', 'imperial'];
-      units.forEach(unit => {
+      units.forEach((unit) => {
         expect(validAges).toContain(unit.age);
       });
     });
 
     it('should have non-negative costs', () => {
-      units.forEach(unit => {
+      units.forEach((unit) => {
         expect(unit.cost.food).toBeGreaterThanOrEqual(0);
         expect(unit.cost.wood).toBeGreaterThanOrEqual(0);
         expect(unit.cost.gold).toBeGreaterThanOrEqual(0);
@@ -240,14 +240,14 @@ describe('Unit Data Functions', () => {
     });
 
     it('should have non-negative population', () => {
-      units.forEach(unit => {
+      units.forEach((unit) => {
         expect(unit.population).toBeGreaterThanOrEqual(0);
       });
     });
 
     it('should have positive population for military units', () => {
       const militaryCategories = ['Infantry', 'Cavalry', 'Archer', 'Siege', 'Monk', 'Unique'];
-      units.forEach(unit => {
+      units.forEach((unit) => {
         if (militaryCategories.includes(unit.category)) {
           expect(unit.population).toBeGreaterThan(0);
         }
@@ -256,7 +256,7 @@ describe('Unit Data Functions', () => {
 
     it('should have unique units with civilization field', () => {
       const uniqueUnits = getUnitsByCategory('Unique');
-      uniqueUnits.forEach(unit => {
+      uniqueUnits.forEach((unit) => {
         expect(unit).toHaveProperty('civilization');
         expect(typeof unit.civilization).toBe('string');
         expect(unit.civilization.length).toBeGreaterThan(0);
@@ -400,9 +400,9 @@ describe('Unit Data Functions', () => {
     describe('getUnitsForCiv with tech tree restrictions', () => {
       it('should not include cavalry for Aztecs', () => {
         const units = getUnitsForCiv('aztecs', 'imperial');
-        const knight = units.find(u => u.id === 'knight');
-        const paladin = units.find(u => u.id === 'paladin');
-        const cavArcher = units.find(u => u.id === 'cavalry-archer');
+        const knight = units.find((u) => u.id === 'knight');
+        const paladin = units.find((u) => u.id === 'paladin');
+        const cavArcher = units.find((u) => u.id === 'cavalry-archer');
 
         expect(knight).toBeUndefined();
         expect(paladin).toBeUndefined();
@@ -411,8 +411,8 @@ describe('Unit Data Functions', () => {
 
       it('should include Eagle Warriors for Aztecs', () => {
         const units = getUnitsForCiv('aztecs', 'imperial');
-        const eagleScout = units.find(u => u.id === 'eagle-scout');
-        const eagleWarrior = units.find(u => u.id === 'eagle-warrior');
+        const eagleScout = units.find((u) => u.id === 'eagle-scout');
+        const eagleWarrior = units.find((u) => u.id === 'eagle-warrior');
 
         expect(eagleScout).toBeDefined();
         expect(eagleWarrior).toBeDefined();
@@ -420,16 +420,16 @@ describe('Unit Data Functions', () => {
 
       it('should include Aztec unique units', () => {
         const units = getUnitsForCiv('aztecs', 'imperial');
-        const jaguarWarrior = units.find(u => u.id === 'jaguar-warrior');
+        const jaguarWarrior = units.find((u) => u.id === 'jaguar-warrior');
 
         expect(jaguarWarrior).toBeDefined();
       });
 
       it('should not include restricted units for Vikings', () => {
         const units = getUnitsForCiv('vikings', 'imperial');
-        const knight = units.find(u => u.id === 'knight');
-        const paladin = units.find(u => u.id === 'paladin');
-        const cavArcher = units.find(u => u.id === 'cavalry-archer');
+        const knight = units.find((u) => u.id === 'knight');
+        const paladin = units.find((u) => u.id === 'paladin');
+        const cavArcher = units.find((u) => u.id === 'cavalry-archer');
 
         expect(knight).toBeDefined(); // Vikings DO get Knights
         expect(paladin).toBeUndefined(); // But not Paladin
@@ -438,8 +438,8 @@ describe('Unit Data Functions', () => {
 
       it('should still include allowed units for Vikings', () => {
         const units = getUnitsForCiv('vikings', 'imperial');
-        const champion = units.find(u => u.id === 'champion');
-        const arbalester = units.find(u => u.id === 'arbalester');
+        const champion = units.find((u) => u.id === 'champion');
+        const arbalester = units.find((u) => u.id === 'arbalester');
 
         expect(champion).toBeDefined();
         expect(arbalester).toBeDefined();
@@ -449,8 +449,8 @@ describe('Unit Data Functions', () => {
         const britonsUnits = getUnitsForCiv('britons', 'imperial');
         const gothsUnits = getUnitsForCiv('goths', 'imperial');
 
-        const britonsPaladin = britonsUnits.find(u => u.id === 'paladin');
-        const gothsPaladin = gothsUnits.find(u => u.id === 'paladin');
+        const britonsPaladin = britonsUnits.find((u) => u.id === 'paladin');
+        const gothsPaladin = gothsUnits.find((u) => u.id === 'paladin');
 
         expect(britonsPaladin).toBeUndefined();
         expect(gothsPaladin).toBeUndefined();
@@ -458,9 +458,9 @@ describe('Unit Data Functions', () => {
 
       it('should allow generic civ to have all units', () => {
         const units = getUnitsForCiv('generic', 'imperial');
-        const knight = units.find(u => u.id === 'knight');
-        const paladin = units.find(u => u.id === 'paladin');
-        const cavArcher = units.find(u => u.id === 'cavalry-archer');
+        const knight = units.find((u) => u.id === 'knight');
+        const paladin = units.find((u) => u.id === 'paladin');
+        const cavArcher = units.find((u) => u.id === 'cavalry-archer');
 
         expect(knight).toBeDefined();
         expect(paladin).toBeDefined();

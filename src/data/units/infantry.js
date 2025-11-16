@@ -10,7 +10,7 @@ export const infantryUnits = [
     cost: { food: 60, wood: 0, gold: 20, stone: 0 },
     population: 1,
     counters: ['archer', 'skirmisher'],
-    weakTo: ['knight', 'archer', 'cataphract']
+    weakTo: ['knight', 'archer', 'cataphract'],
   },
   {
     id: 'man-at-arms',
@@ -20,7 +20,7 @@ export const infantryUnits = [
     cost: { food: 60, wood: 0, gold: 20, stone: 0 },
     population: 1,
     counters: ['archer', 'skirmisher'],
-    weakTo: ['knight', 'scout', 'cataphract']
+    weakTo: ['knight', 'scout', 'cataphract'],
   },
   {
     id: 'longswordsman',
@@ -30,7 +30,7 @@ export const infantryUnits = [
     cost: { food: 60, wood: 0, gold: 20, stone: 0 },
     population: 1,
     counters: ['archer', 'skirmisher', 'eagle-warrior'],
-    weakTo: ['knight', 'cataphract', 'jaguar-warrior']
+    weakTo: ['knight', 'cataphract', 'jaguar-warrior'],
   },
   {
     id: 'two-handed-swordsman',
@@ -40,7 +40,7 @@ export const infantryUnits = [
     cost: { food: 60, wood: 0, gold: 20, stone: 0 },
     population: 1,
     counters: ['archer', 'skirmisher', 'eagle-warrior'],
-    weakTo: ['knight', 'cataphract', 'jaguar-warrior', 'hand-cannoneer']
+    weakTo: ['knight', 'cataphract', 'jaguar-warrior', 'hand-cannoneer'],
   },
   {
     id: 'champion',
@@ -50,7 +50,7 @@ export const infantryUnits = [
     cost: { food: 60, wood: 0, gold: 20, stone: 0 },
     population: 1,
     counters: ['archer', 'skirmisher', 'eagle-warrior', 'huskarl'],
-    weakTo: ['knight', 'cataphract', 'jaguar-warrior', 'hand-cannoneer']
+    weakTo: ['knight', 'cataphract', 'jaguar-warrior', 'hand-cannoneer'],
   },
   {
     id: 'spearman',
@@ -60,7 +60,7 @@ export const infantryUnits = [
     cost: { food: 35, wood: 25, gold: 0, stone: 0 },
     population: 1,
     counters: ['knight', 'scout', 'camel'],
-    weakTo: ['archer', 'crossbowman', 'cataphract']
+    weakTo: ['archer', 'crossbowman', 'cataphract'],
   },
   {
     id: 'pikeman',
@@ -70,7 +70,7 @@ export const infantryUnits = [
     cost: { food: 35, wood: 25, gold: 0, stone: 0 },
     population: 1,
     counters: ['knight', 'cavalier', 'camel'],
-    weakTo: ['archer', 'crossbowman', 'hand-cannoneer', 'cataphract']
+    weakTo: ['archer', 'crossbowman', 'hand-cannoneer', 'cataphract'],
   },
   {
     id: 'halberdier',
@@ -80,7 +80,7 @@ export const infantryUnits = [
     cost: { food: 35, wood: 25, gold: 0, stone: 0 },
     population: 1,
     counters: ['knight', 'cavalier', 'paladin', 'war-elephant'],
-    weakTo: ['archer', 'hand-cannoneer', 'jaguar-warrior']
+    weakTo: ['archer', 'hand-cannoneer', 'jaguar-warrior'],
   },
   // Eagle Warrior line (Mesoamerican civilizations only)
   {
@@ -91,7 +91,7 @@ export const infantryUnits = [
     cost: { food: 25, wood: 0, gold: 50, stone: 0 },
     population: 1,
     counters: ['monk', 'siege'],
-    weakTo: ['knight', 'archer', 'militia']
+    weakTo: ['knight', 'archer', 'militia'],
   },
   {
     id: 'eagle-warrior',
@@ -101,7 +101,7 @@ export const infantryUnits = [
     cost: { food: 25, wood: 0, gold: 50, stone: 0 },
     population: 1,
     counters: ['monk', 'siege', 'archer'],
-    weakTo: ['knight', 'militia', 'samurai']
+    weakTo: ['knight', 'militia', 'samurai'],
   },
   {
     id: 'elite-eagle-warrior',
@@ -111,6 +111,6 @@ export const infantryUnits = [
     cost: { food: 25, wood: 0, gold: 50, stone: 0 },
     population: 1,
     counters: ['monk', 'siege', 'archer', 'cavalry'],
-    weakTo: ['knight', 'militia', 'samurai', 'cataphract']
+    weakTo: ['knight', 'militia', 'samurai', 'cataphract'],
   },
 ];

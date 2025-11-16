@@ -13,7 +13,7 @@ export const fortifications = [
     cost: { food: 0, wood: 2, gold: 0, stone: 0 },
     population: 0,
     description: 'Basic wooden wall, provides early game defense',
-    hp: 250
+    hp: 250,
   },
   {
     id: 'palisade-gate',
@@ -23,7 +23,7 @@ export const fortifications = [
     cost: { food: 0, wood: 30, gold: 0, stone: 0 },
     population: 0,
     description: 'Basic wooden gate, allows passage through palisade walls',
-    hp: 250
+    hp: 250,
   },
   // Walls - Feudal Age
   {
@@ -34,7 +34,7 @@ export const fortifications = [
     cost: { food: 0, wood: 0, gold: 0, stone: 5 },
     population: 0,
     description: 'Strong stone wall, much more durable than palisades',
-    hp: 1800
+    hp: 1800,
   },
   {
     id: 'gate',
@@ -44,7 +44,7 @@ export const fortifications = [
     cost: { food: 0, wood: 0, gold: 0, stone: 30 },
     population: 0,
     description: 'Stone gate, allows passage through stone walls',
-    hp: 2750
+    hp: 2750,
   },
   {
     id: 'fortified-wall',
@@ -54,7 +54,7 @@ export const fortifications = [
     cost: { food: 0, wood: 0, gold: 0, stone: 5 },
     population: 0,
     description: 'Upgraded stone wall with increased durability (requires Masonry)',
-    hp: 3000
+    hp: 3000,
   },
   // Towers - Feudal Age
   {
@@ -67,7 +67,7 @@ export const fortifications = [
     description: 'Basic lookout tower, provides line of sight but no attack',
     hp: 500,
     attack: 0,
-    range: 8
+    range: 8,
   },
   {
     id: 'watch-tower',
@@ -79,7 +79,7 @@ export const fortifications = [
     description: 'Basic defensive tower with arrow attack',
     hp: 700,
     attack: 3,
-    range: 7
+    range: 7,
   },
   {
     id: 'guard-tower',
@@ -91,7 +91,7 @@ export const fortifications = [
     description: 'Upgraded tower with increased range and attack',
     hp: 1020,
     attack: 4,
-    range: 8
+    range: 8,
   },
   {
     id: 'keep',
@@ -103,7 +103,7 @@ export const fortifications = [
     description: 'Most powerful tower with maximum range and attack',
     hp: 1500,
     attack: 5,
-    range: 8
+    range: 8,
   },
   {
     id: 'bombard-tower',
@@ -115,7 +115,7 @@ export const fortifications = [
     description: 'Artillery tower with cannon attack, devastating against units and buildings',
     hp: 1500,
     attack: 40,
-    range: 8
+    range: 8,
   },
   // Castles - Castle Age
   {
@@ -128,7 +128,7 @@ export const fortifications = [
     description: 'Powerful defensive structure that trains unique units and fires multiple arrows',
     hp: 4800,
     attack: 11,
-    range: 8
+    range: 8,
   },
   // Krepost (Bulgarians unique fortification)
   {
@@ -142,7 +142,7 @@ export const fortifications = [
     hp: 2400,
     attack: 6,
     range: 7,
-    civilization: 'bulgarians'
+    civilization: 'bulgarians',
   },
   // Donjon (Sicilians unique fortification)
   {
@@ -152,12 +152,13 @@ export const fortifications = [
     age: 'feudal',
     cost: { food: 0, wood: 0, gold: 0, stone: 75 },
     population: 0,
-    description: 'Sicilian unique building, can train Serjeants and provides defensive capabilities',
+    description:
+      'Sicilian unique building, can train Serjeants and provides defensive capabilities',
     hp: 2400,
     attack: 5,
     range: 7,
-    civilization: 'sicilians'
-  }
+    civilization: 'sicilians',
+  },
 ];
 
 /**
@@ -170,7 +171,7 @@ export const getFortificationsForCiv = (civId, age) => {
   const ageOrder = { dark: 0, feudal: 1, castle: 2, imperial: 3 };
   const targetAgeValue = ageOrder[age];
 
-  return fortifications.filter(fortification => {
+  return fortifications.filter((fortification) => {
     // Check age requirement
     if (ageOrder[fortification.age] > targetAgeValue) {
       return false;

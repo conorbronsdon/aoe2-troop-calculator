@@ -11,7 +11,7 @@ describe('StorageService', () => {
     totalResourceLimit: 20000,
     populationCap: 200,
     selectedAge: 'imperial',
-    selectedCiv: 'britons'
+    selectedCiv: 'britons',
   };
 
   beforeEach(() => {
@@ -39,7 +39,7 @@ describe('StorageService', () => {
         removeItem: vi.fn(),
         clear: vi.fn(),
         length: 0,
-        key: vi.fn()
+        key: vi.fn(),
       };
 
       vi.stubGlobal('localStorage', mockLocalStorage);
@@ -123,11 +123,11 @@ describe('StorageService', () => {
       const saved = StorageService.save('Original', mockComposition, mockConfig);
 
       // Small delay to ensure updatedAt differs
-      await new Promise(resolve => setTimeout(resolve, 10));
+      await new Promise((resolve) => setTimeout(resolve, 10));
 
       const updated = StorageService.update(saved.id, {
         name: 'Updated',
-        composition: { knight: 30 }
+        composition: { knight: 30 },
       });
 
       expect(updated.name).toBe('Updated');
@@ -208,7 +208,7 @@ describe('StorageService', () => {
         }),
         clear: vi.fn(),
         length: 0,
-        key: vi.fn()
+        key: vi.fn(),
       };
 
       vi.stubGlobal('localStorage', mockLocalStorage);

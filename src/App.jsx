@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { ArmyProvider, useArmy, ACTION_TYPES } from './context/ArmyContext';
 import { ThemeProvider } from './context/ThemeContext';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -48,7 +48,7 @@ function AppContent() {
       dispatch({
         type: ACTION_TYPES.LOAD_COMPOSITION,
         composition: urlData.composition,
-        config: urlData.config
+        config: urlData.config,
       });
 
       // Clean up URL after loading
@@ -67,7 +67,8 @@ function AppContent() {
             AoE2: Definitive Edition Army Calculator
           </h1>
           <p className="text-lg md:text-xl mb-6 text-blue-100">
-            100+ units · 51 civilizations · Fortifications · Accurate bonuses · Tech tree restrictions
+            100+ units · 51 civilizations · Fortifications · Accurate bonuses · Tech tree
+            restrictions
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-4">
             <a
@@ -107,9 +108,7 @@ function AppContent() {
       <SaveLoadPanel />
 
       {/* Conditionally show Units and/or Fortifications based on display mode */}
-      {(config.displayMode === 'units' || config.displayMode === 'both') && (
-        <UnitSelection />
-      )}
+      {(config.displayMode === 'units' || config.displayMode === 'both') && <UnitSelection />}
       {(config.displayMode === 'fortifications' || config.displayMode === 'both') && (
         <FortificationSelection />
       )}
@@ -173,9 +172,7 @@ function AppContent() {
         </div>
         <div className="text-center text-sm text-gray-500 dark:text-gray-400">
           <p>Age of Empires II © Microsoft Corporation</p>
-          <p className="mt-2">
-            Built for AoE2 players | Inspired by pro player strategies
-          </p>
+          <p className="mt-2">Built for AoE2 players | Inspired by pro player strategies</p>
         </div>
       </div>
     </div>

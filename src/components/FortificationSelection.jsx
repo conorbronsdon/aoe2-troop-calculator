@@ -1,4 +1,3 @@
-import React from 'react';
 import { useArmy } from '../context/ArmyContext';
 import { getFortificationsForCiv } from '../data/fortifications';
 import FortificationCard from './FortificationCard';
@@ -27,9 +26,7 @@ export default function FortificationSelection() {
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-semibold text-gray-700">
-          🏰 Select Fortifications
-        </h2>
+        <h2 className="text-2xl font-semibold text-gray-700">🏰 Select Fortifications</h2>
         <div className="text-sm text-gray-600 bg-amber-50 px-3 py-1 rounded border border-amber-200">
           Plan your defensive structures
         </div>
@@ -37,8 +34,8 @@ export default function FortificationSelection() {
 
       <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
         <p className="text-sm text-blue-800">
-          <strong>💡 Tip:</strong> Fortifications don&apos;t consume population but require resources.
-          Stone is crucial for walls, towers, and castles. Plan your economy accordingly!
+          <strong>💡 Tip:</strong> Fortifications don&apos;t consume population but require
+          resources. Stone is crucial for walls, towers, and castles. Plan your economy accordingly!
         </p>
       </div>
 
@@ -57,7 +54,7 @@ export default function FortificationSelection() {
               <span>{category}</span>
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-              {fortifications.map(fortification => (
+              {fortifications.map((fortification) => (
                 <FortificationCard key={fortification.id} fortification={fortification} />
               ))}
             </div>

@@ -11,7 +11,7 @@ export const siegeUnits = [
     cost: { food: 0, wood: 160, gold: 75, stone: 0 },
     population: 1,
     counters: ['building'],
-    weakTo: ['infantry', 'cavalry']
+    weakTo: ['infantry', 'cavalry'],
   },
   {
     id: 'capped-ram',
@@ -21,7 +21,7 @@ export const siegeUnits = [
     cost: { food: 0, wood: 160, gold: 75, stone: 0 },
     population: 1,
     counters: ['building'],
-    weakTo: ['infantry', 'cavalry', 'monk']
+    weakTo: ['infantry', 'cavalry', 'monk'],
   },
   {
     id: 'siege-ram',
@@ -31,7 +31,7 @@ export const siegeUnits = [
     cost: { food: 0, wood: 160, gold: 75, stone: 0 },
     population: 1,
     counters: ['building', 'archer'],
-    weakTo: ['cavalry', 'monk']
+    weakTo: ['cavalry', 'monk'],
   },
   // Mangonel line
   {
@@ -42,7 +42,7 @@ export const siegeUnits = [
     cost: { food: 0, wood: 160, gold: 135, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry', 'building'],
-    weakTo: ['knight', 'cavalry', 'onager']
+    weakTo: ['knight', 'cavalry', 'onager'],
   },
   {
     id: 'onager',
@@ -52,7 +52,7 @@ export const siegeUnits = [
     cost: { food: 0, wood: 160, gold: 135, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry', 'building', 'ram'],
-    weakTo: ['knight', 'cavalry', 'bombard-cannon']
+    weakTo: ['knight', 'cavalry', 'bombard-cannon'],
   },
   {
     id: 'siege-onager',
@@ -62,7 +62,7 @@ export const siegeUnits = [
     cost: { food: 0, wood: 160, gold: 135, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry', 'building', 'ram', 'army'],
-    weakTo: ['knight', 'cavalry', 'bombard-cannon']
+    weakTo: ['knight', 'cavalry', 'bombard-cannon'],
   },
   // Scorpion line
   {
@@ -73,7 +73,7 @@ export const siegeUnits = [
     cost: { food: 0, wood: 75, gold: 75, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry', 'ram'],
-    weakTo: ['knight', 'cavalry', 'mangonel']
+    weakTo: ['knight', 'cavalry', 'mangonel'],
   },
   {
     id: 'heavy-scorpion',
@@ -83,7 +83,7 @@ export const siegeUnits = [
     cost: { food: 0, wood: 75, gold: 75, stone: 0 },
     population: 1,
     counters: ['archer', 'infantry', 'ram', 'cavalry'],
-    weakTo: ['knight', 'onager', 'bombard-cannon']
+    weakTo: ['knight', 'onager', 'bombard-cannon'],
   },
   // Bombard Cannon
   {
@@ -94,7 +94,7 @@ export const siegeUnits = [
     cost: { food: 0, wood: 225, gold: 225, stone: 0 },
     population: 1,
     counters: ['building', 'siege', 'trebuchet'],
-    weakTo: ['knight', 'cavalry', 'ram']
+    weakTo: ['knight', 'cavalry', 'ram'],
   },
   // Trebuchet
   {
@@ -105,6 +105,6 @@ export const siegeUnits = [
     cost: { food: 0, wood: 200, gold: 200, stone: 0 },
     population: 1,
     counters: ['building', 'castle'],
-    weakTo: ['knight', 'cavalry', 'bombard-cannon']
+    weakTo: ['knight', 'cavalry', 'bombard-cannon'],
   },
 ];

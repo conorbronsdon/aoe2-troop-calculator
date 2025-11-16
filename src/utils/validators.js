@@ -13,7 +13,7 @@ import { logger } from './errorHandler';
  */
 export const validateUnit = (unit) => {
   const required = ['id', 'name', 'category', 'age', 'cost', 'population'];
-  const missing = required.filter(field => !(field in unit));
+  const missing = required.filter((field) => !(field in unit));
 
   if (missing.length > 0) {
     throw new Error(`Unit ${unit.id || 'unknown'} missing fields: ${missing.join(', ')}`);
@@ -21,7 +21,7 @@ export const validateUnit = (unit) => {
 
   // Validate cost structure
   const resources = ['food', 'wood', 'gold', 'stone'];
-  resources.forEach(res => {
+  resources.forEach((res) => {
     if (typeof unit.cost[res] !== 'number' || unit.cost[res] < 0) {
       throw new Error(`Invalid ${res} cost for ${unit.id}`);
     }
@@ -49,7 +49,7 @@ export const validateUnit = (unit) => {
  */
 export const validateCivilization = (civ) => {
   const required = ['id', 'name', 'region', 'bonuses'];
-  const missing = required.filter(field => !(field in civ));
+  const missing = required.filter((field) => !(field in civ));
 
   if (missing.length > 0) {
     throw new Error(`Civilization ${civ.id || 'unknown'} missing fields: ${missing.join(', ')}`);

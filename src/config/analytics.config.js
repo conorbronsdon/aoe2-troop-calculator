@@ -19,5 +19,5 @@ export const analyticsConfig = {
   enabled: import.meta.env.PROD && import.meta.env.VITE_GA_MEASUREMENT_ID,
 
   // Debug mode (logs events to console)
-  debug: import.meta.env.DEV
+  debug: import.meta.env.DEV,
 };
