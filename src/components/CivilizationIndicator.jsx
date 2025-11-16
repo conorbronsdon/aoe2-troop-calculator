@@ -23,31 +23,11 @@ export default function CivilizationIndicator() {
     return null;
   }
 
-  const isGeneric = appliedCiv.id === 'generic';
-
-  // Only show indicator for generic civilization or preview mode
+  // Only show indicator for preview mode
   // For regular civilizations, the CivilizationBonuses component handles the display
-  if (!isGeneric && !isPreviewing) {
+  // For generic civilization, the CivilizationSelector already shows a warning
+  if (!isPreviewing) {
     return null;
-  }
-
-  // Show generic civilization notice
-  if (isGeneric) {
-    return (
-      <div className="rounded-lg shadow-md p-4 mb-6 border border-gray-300 bg-gray-50 dark:bg-gray-800 dark:border-gray-600">
-        <div className="flex items-center gap-3">
-          <div className="text-3xl opacity-60">⚔️</div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
-              No Civilization Selected
-            </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Select a civilization to apply bonuses and see available units
-            </p>
-          </div>
-        </div>
-      </div>
-    );
   }
 
   // Show preview notice

@@ -187,24 +187,6 @@ export default function ResourceTracker() {
             />
           </div>
 
-          {/* Breakdown of individual resources with icons */}
-          <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-            {RESOURCES.map((resource) => (
-              <div
-                key={resource}
-                className="flex flex-col items-center p-3 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600 hover:shadow-md transition-shadow"
-              >
-                <ResourceIcon resource={resource} size="xl" className="mb-1" />
-                <span className="font-semibold text-gray-700 dark:text-gray-300">
-                  {RESOURCE_DISPLAY_NAMES[resource]}
-                </span>
-                <span className="text-lg font-bold text-gray-900 dark:text-white">
-                  {combinedCost[resource].toLocaleString()}
-                </span>
-              </div>
-            ))}
-          </div>
-
           {/* Tech cost breakdown (if any techs researched) */}
           {hasTechCosts && (
             <div className="mt-4 p-3 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-700 rounded-lg">
