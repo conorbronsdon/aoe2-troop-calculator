@@ -22,7 +22,7 @@ Address critical code quality issues identified in the November 2025 codebase re
 **Testing Gaps:**
 - ✅ Added Error Boundary component to prevent full app crashes
 - ✅ Added 54 unit tests for all service layers (ShareService, ExportService, StorageService)
-- Add component tests for critical UI components (infrastructure in place)
+- ✅ Added 89 component tests for critical UI components (ErrorBoundary, ThemeToggle, ResourceCost, UnitCard)
 - ✅ Added validation for URL parameters in shared compositions
 
 **Input Validation:**
@@ -38,7 +38,7 @@ Address critical code quality issues identified in the November 2025 codebase re
 **Performance Optimizations:**
 - ✅ Added memoization for expensive calculations (useMemo in ResourceTracker, CivilizationBonuses)
 - ✅ Optimized bonus matching algorithm from O(n²) to O(n) using Set-based lookups
-- Add debouncing for search inputs (constants defined)
+- ✅ Added debouncing for search inputs (UnitFilter with 300ms delay)
 - ✅ Fixed inefficient re-renders in ResourceTracker with comprehensive memoization
 
 **Accessibility:**
@@ -52,7 +52,9 @@ Address critical code quality issues identified in the November 2025 codebase re
 - ✅ Extracted duplicate CostDisplay logic into shared ResourceCost component
 - ✅ Added prop-types dependency for type safety
 - ✅ Added jsdom dependency for service layer testing
-- ✅ Test coverage increased from 62 tests to 142 tests (129% increase)
+- ✅ Added @testing-library/jest-dom for component testing matchers
+- ✅ Test coverage increased from 62 tests to 225 tests (263% increase)
+- ✅ Added vitest test setup configuration for automatic cleanup
 
 **Acceptance Criteria:**
 - ✅ Error boundary catches and displays component errors gracefully
@@ -439,6 +441,13 @@ Address structural issues identified in code review:
 ---
 
 ## Recently Completed ✅
+
+### Component Testing & Performance (v2.4.1 - November 2025)
+Comprehensive component testing and performance improvements:
+- ✅ **Component Testing:** Added 89 tests for critical UI components (ErrorBoundary, ThemeToggle, ResourceCost, UnitCard)
+- ✅ **Performance:** Added search input debouncing (300ms) to UnitFilter for improved responsiveness
+- ✅ **Testing Infrastructure:** Added @testing-library/jest-dom and vitest setup configuration
+- ✅ **Testing:** Total test coverage increased from 142 tests to 225 tests (58% increase, 263% total increase from v2.3)
 
 ### Code Quality & Data Processing Improvements (v2.4.0 - November 2025)
 Comprehensive code hardening and robustness improvements:
