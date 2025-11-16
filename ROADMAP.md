@@ -436,29 +436,42 @@ With 100+ units, browsing is cumbersome. Add search and filter functionality.
 ## 🎯 Medium Priority
 
 ### Enhanced Unique Unit Documentation
-**Status:** Partially Complete
+**Status:** ✅ Complete (v2.8.0)
 **Priority:** Medium
 **Complexity:** Low
 
 Create comprehensive documentation showcasing unique units.
 
-**What to Add:**
-- `UNIQUE_UNITS.md` file documenting all 50+ unique units
-- Unique unit stats, costs, and special abilities
-- Which civilizations get which unique units
-- Historical/cultural context for unique units
-- Visual guide with unit icons
-- Link from main README
+**Completed:**
+- ✅ `UNIQUE_UNITS.md` file with 1,360+ lines documenting all 90+ unique units
+- ✅ Complete stats tables (HP, Attack, Armor, Speed, Range) for all units
+- ✅ Training times for all unique units
+- ✅ Elite upgrade costs and research times
+- ✅ Counter information and tactical recommendations
+- ✅ Special abilities and unique mechanics
+- ✅ All 45 civilizations documented (including Portuguese)
+- ✅ Regional organization (American, African, Asian, European, Middle Eastern)
+- ✅ Historical context section
+- ✅ Quick reference comparison tables
+- ✅ Link from main README in new Documentation section
+- ✅ Table of Contents with navigation links
 
-**Structure:**
+**Documentation Structure:**
 ```markdown
-## European Civilizations
+## Quick Reference
+- Stats Comparison Tables (Infantry, Archer, Cavalry, Siege, Naval)
+- Training Times
+- Upgrade Costs
 
-### Britons - Longbowman
-- **Age:** Castle Age
-- **Cost:** 35W, 40G
-- **Special Ability:** +1 range, fires faster than Arbalester
-- **Best Use:** Massed behind meat shield, siege support
+## [Regional] Civilizations
+### [Civilization]
+#### [Unit Name]
+- Age, Cost, Population
+- Strong vs / Weak to
+- Best Use / Special Ability
+
+#### Elite [Unit Name]
+- Upgrade Benefits
 ```
 
 ---
@@ -1145,6 +1158,19 @@ Track application performance metrics.
 ---
 
 ## Recently Completed ✅
+
+### Enhanced Unique Unit Documentation (v2.8.0 - November 2025)
+Comprehensive documentation for all unique units:
+- ✅ **Complete Stats Tables:** HP, Attack, Melee/Pierce Armor, Speed, Range for 90+ units
+- ✅ **Training Times:** All unique units with training time in seconds
+- ✅ **Elite Upgrade Costs:** Food, Gold, and research time for all elite upgrades
+- ✅ **45 Civilizations:** Full coverage including Portuguese (previously missing)
+- ✅ **Counter Information:** Strong vs / Weak to for all units
+- ✅ **Tactical Recommendations:** Best Use and Special Abilities documented
+- ✅ **Regional Organization:** Units grouped by American, African, Asian, European, Middle Eastern
+- ✅ **Quick Reference:** Comparison tables for rapid unit lookup
+- ✅ **README Integration:** New Documentation section with links to all guides
+- ✅ **1,360+ Lines:** Comprehensive 1,360+ line documentation file
 
 ### Unique Technologies Integration (v2.7.0 - November 2025)
 Complete civilization-specific unique technologies:

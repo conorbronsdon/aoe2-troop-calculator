@@ -5,6 +5,57 @@ All notable changes to the Age of Empires II Army Composition Calculator will be
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.8.0] - 2025-11-16
+
+### Added
+- **Enhanced Unique Unit Documentation**: Comprehensive guide to all unique units
+  - Complete stats comparison tables (HP, Attack, Armor, Speed, Range)
+  - Infantry, Archer, Cavalry, Siege & Special, Naval unit categories
+  - Training times for all 48 unique unit types
+  - Elite upgrade costs (Food, Gold, Research Time) for all units
+  - Portuguese civilization documentation (Organ Gun, Elite Organ Gun)
+  - Regional organization (American, African, Asian, European, Middle Eastern)
+  - Quick reference section with comparison tables
+  - Historical context and tactical recommendations
+  - 1,360+ lines of comprehensive documentation
+
+### Changed
+- **README.md Updates**:
+  - Added new Documentation section with links to all guides
+  - Updated Table of Contents to include Documentation
+  - Updated project stats to reflect enhanced documentation
+  - Version updated to 2.8.0
+- **UNIQUE_UNITS.md Improvements**:
+  - Cleaned up Table of Contents (removed non-existent civilizations)
+  - Added Portuguese with Organ Gun documentation
+  - Added comprehensive Quick Reference section
+  - Updated footer with version info and cross-references
+
+### Documentation
+- ROADMAP.md: Marked "Enhanced Unique Unit Documentation" as complete
+- Added cross-references between documentation files
+- Total documentation now covers 45 civilizations with 90+ unique units
+
+## [2.7.0] - 2025-11-16
+
+### Added
+- **Complete Unique Technologies System**: All 50 civilizations now have unique technologies
+  - 100+ unique technologies covering Castle Age and Imperial Age
+  - Full stat effects integration (HP, attack, armor, range, speed bonuses)
+  - Cost tracking included in total resource calculations
+  - Visual distinction with yellow styling and ⭐ icons
+  - Civilization-specific display (only shows when civ selected)
+  - Tech prerequisites (Imperial Age techs require Castle Age techs)
+
+### Changed
+- Updated civilization data to include all unique technologies
+- Enhanced technology effects system for unique bonuses
+- Version bumped to 2.7.0
+
+### Documentation
+- Updated ROADMAP.md to mark unique technologies as complete
+- Added unique technologies section to civilization features
+
 ## [2.6.0] - 2025-11-16
 
 ### Added

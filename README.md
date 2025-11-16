@@ -32,6 +32,7 @@ Plan your armies • Calculate costs • Compare civilizations • Optimize reso
 - [🎨 Asset Resources](#-asset-resources)
 - [🎯 Roadmap](#-roadmap)
 - [🙏 Credits](#-credits)
+- [📚 Documentation](#-documentation)
 - [🐛 Support & Feedback](#-support--feedback)
 
 ---
@@ -493,6 +494,19 @@ Other community-built AoE2 army cost calculators:
 
 *Different tools serve different needs - check out the alternatives!*
 
+## 📚 Documentation
+
+Comprehensive guides and references for the project:
+
+| Document | Description |
+|----------|-------------|
+| **[UNIQUE_UNITS.md](UNIQUE_UNITS.md)** | Complete guide to all 90+ unique units with detailed stats, training times, upgrade costs, counters, and tactical recommendations |
+| **[CIV_BONUSES.md](CIV_BONUSES.md)** | Comprehensive civilization bonuses reference for all 51 civilizations |
+| **[FEATURES.md](FEATURES.md)** | Detailed breakdown of all application features |
+| **[DEVELOPMENT.md](DEVELOPMENT.md)** | Developer guide for contributing to the project |
+| **[ROADMAP.md](ROADMAP.md)** | Future development plans and completed milestones |
+| **[CHANGELOG.md](CHANGELOG.md)** | Version history and release notes |
+
 ## 🐛 Support & Feedback
 
 Found a bug or have a suggestion?
@@ -509,11 +523,11 @@ Found a bug or have a suggestion?
 
 ### 📊 Project Stats
 
-![Version](https://img.shields.io/badge/Version-2.6.0-brightgreen?style=flat)
+![Version](https://img.shields.io/badge/Version-2.8.0-brightgreen?style=flat)
 ![Last Updated](https://img.shields.io/badge/Last_Updated-November_2025-blue?style=flat)
 ![Status](https://img.shields.io/badge/Status-Production_Ready-success?style=flat)
 
-**100+ Units • 101 Unique Units • 51 Civilizations • Import/Export System • 290 Tests**
+**100+ Units • 90+ Unique Units • 51 Civilizations • Complete Stats Documentation • 290 Tests**
 
 ---
 
