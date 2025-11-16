@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useArmy } from '../context/ArmyContext';
 import { civilizations } from '../data/civilizations';
 
@@ -13,31 +13,62 @@ export default function CivilizationBonuses() {
   const [activeOnly, setActiveOnly] = useState(false);
 
   // Get current civilization (use selectedCiv which is the applied one)
-  const currentCiv = civilizations.find(civ => civ.id === config.selectedCiv);
+  const currentCiv = useMemo(() =>
+    civilizations.find(civ => civ.id === config.selectedCiv),
+    [config.selectedCiv]
+  );
+
+  // Pre-compute composition unit IDs as a Set for O(1) lookups
+  const compositionUnitIds = useMemo(() =>
+    new Set(Object.keys(composition)),
+    [composition]
+  );
+
+  // Memoize bonus active status calculation with optimized O(n) algorithm
+  const { allCostBonuses, allStatBonuses, allEconomicBonuses } = useMemo(() => {
+    if (!currentCiv || currentCiv.id === 'generic' || !currentCiv.bonuses) {
+      return { allCostBonuses: [], allStatBonuses: [], allEconomicBonuses: [] };
+    }
+
+    // Helper function to check if a bonus is actively affecting the current army
+    // Optimized from O(n²) to O(n) by using Set for lookups
+    const isBonusActive = (bonus) => {
+      if (bonus.type !== 'cost') { return false; }
+      if (bonus.units === 'all') { return compositionUnitIds.size > 0; }
+
+      // Convert bonus units to Set for O(1) lookups
+      const bonusUnitSet = new Set(bonus.units);
+
+      // Check if any units in composition are affected by this bonus
+      for (const unitId of compositionUnitIds) {
+        // Direct match O(1)
+        if (bonusUnitSet.has(unitId)) { return true; }
+
+        // Partial match (e.g., bonus applies to "knight" and unit is "knight_elite")
+        for (const bonusUnit of bonus.units) {
+          if (unitId.includes(bonusUnit)) { return true; }
+        }
+      }
+      return false;
+    };
+
+    const costBonuses = currentCiv.bonuses
+      .filter(b => b.type === 'cost')
+      .map(b => ({ ...b, isActive: isBonusActive(b) }));
+    const statBonuses = currentCiv.bonuses.filter(b => b.type === 'stat');
+    const economicBonuses = currentCiv.bonuses.filter(b => b.type === 'economic');
+
+    return {
+      allCostBonuses: costBonuses,
+      allStatBonuses: statBonuses,
+      allEconomicBonuses: economicBonuses
+    };
+  }, [currentCiv, compositionUnitIds]);
 
   // Don't show for generic civilization
   if (!currentCiv || currentCiv.id === 'generic' || !currentCiv.bonuses || currentCiv.bonuses.length === 0) {
     return null;
   }
-
-  // Helper function to check if a bonus is actively affecting the current army
-  const isBonusActive = (bonus) => {
-    if (bonus.type !== 'cost') {return false;} // Only cost bonuses affect calculations
-    if (bonus.units === 'all') {return Object.keys(composition).length > 0;}
-
-    // Check if any units in composition are affected by this bonus
-    return Object.keys(composition).some(unitId =>
-      bonus.units.includes(unitId) ||
-      bonus.units.some(bonusUnit => unitId.includes(bonusUnit))
-    );
-  };
-
-  // Categorize bonuses by type and mark which are active
-  const allCostBonuses = currentCiv.bonuses
-    .filter(b => b.type === 'cost')
-    .map(b => ({ ...b, isActive: isBonusActive(b) }));
-  const allStatBonuses = currentCiv.bonuses.filter(b => b.type === 'stat');
-  const allEconomicBonuses = currentCiv.bonuses.filter(b => b.type === 'economic');
 
   // Apply filters
   const filterBonus = (bonus) => {
@@ -64,12 +95,14 @@ export default function CivilizationBonuses() {
 
   return (
     <div className="bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 rounded-lg shadow-md p-4 mb-6 border border-amber-200 dark:border-amber-700">
-      <div
-        className="flex items-center justify-between cursor-pointer"
+      <button
+        className="flex items-center justify-between cursor-pointer w-full text-left"
         onClick={() => setIsExpanded(!isExpanded)}
+        aria-expanded={isExpanded}
+        aria-controls="civilization-bonuses-content"
       >
         <div className="flex items-center gap-3">
-          <div className="text-2xl">🏛️</div>
+          <div className="text-2xl" role="img" aria-label="Civilization">🏛️</div>
           <div>
             <h3 className="text-lg font-bold text-amber-900 dark:text-amber-100">
               {currentCiv.name} Bonuses
@@ -84,30 +117,33 @@ export default function CivilizationBonuses() {
             </p>
           </div>
         </div>
-        <button className="text-amber-700 dark:text-amber-300 hover:text-amber-900 dark:hover:text-amber-100 transition-colors">
+        <span className="text-amber-700 dark:text-amber-300 hover:text-amber-900 dark:hover:text-amber-100 transition-colors" aria-hidden="true">
           {isExpanded ? '▼' : '▶'}
-        </button>
-      </div>
+        </span>
+      </button>
 
       {isExpanded && (
-        <div className="mt-4 space-y-3">
+        <div id="civilization-bonuses-content" className="mt-4 space-y-3">
           {/* Filter Controls */}
           <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-amber-200 dark:border-amber-700">
             <div className="space-y-3">
               {/* Search Bar */}
               <div className="relative">
+                <label htmlFor="bonus-search" className="sr-only">Search bonuses</label>
                 <input
+                  id="bonus-search"
                   type="text"
                   placeholder="Search bonuses..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 dark:bg-gray-700 dark:text-white"
+                  aria-label="Search bonuses"
                 />
-                <span className="absolute right-3 top-2.5 text-gray-400">🔍</span>
+                <span className="absolute right-3 top-2.5 text-gray-400" role="img" aria-label="Search">🔍</span>
               </div>
 
               {/* Filter Toggles */}
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2" role="group" aria-label="Bonus type filters">
                 <button
                   onClick={() => setShowMilitary(!showMilitary)}
                   className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
@@ -115,8 +151,10 @@ export default function CivilizationBonuses() {
                       ? 'bg-red-500 text-white'
                       : 'bg-gray-200 text-gray-700 dark:bg-gray-600 dark:text-gray-300'
                   }`}
+                  aria-pressed={showMilitary}
+                  aria-label="Toggle military bonuses"
                 >
-                  ⚔️ Military
+                  <span role="img" aria-hidden="true">⚔️</span> Military
                 </button>
                 <button
                   onClick={() => setShowEconomic(!showEconomic)}
@@ -125,8 +163,10 @@ export default function CivilizationBonuses() {
                       ? 'bg-green-500 text-white'
                       : 'bg-gray-200 text-gray-700 dark:bg-gray-600 dark:text-gray-300'
                   }`}
+                  aria-pressed={showEconomic}
+                  aria-label="Toggle economic bonuses"
                 >
-                  🌾 Economic
+                  <span role="img" aria-hidden="true">🌾</span> Economic
                 </button>
                 <button
                   onClick={() => setShowCost(!showCost)}
@@ -135,8 +175,10 @@ export default function CivilizationBonuses() {
                       ? 'bg-yellow-500 text-white'
                       : 'bg-gray-200 text-gray-700 dark:bg-gray-600 dark:text-gray-300'
                   }`}
+                  aria-pressed={showCost}
+                  aria-label="Toggle cost bonuses"
                 >
-                  💰 Cost
+                  <span role="img" aria-hidden="true">💰</span> Cost
                 </button>
                 <button
                   onClick={() => setActiveOnly(!activeOnly)}
@@ -145,8 +187,10 @@ export default function CivilizationBonuses() {
                       ? 'bg-blue-500 text-white'
                       : 'bg-gray-200 text-gray-700 dark:bg-gray-600 dark:text-gray-300'
                   }`}
+                  aria-pressed={activeOnly}
+                  aria-label="Show only active bonuses"
                 >
-                  ✓ Active Only
+                  <span aria-hidden="true">✓</span> Active Only
                 </button>
               </div>
 

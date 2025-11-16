@@ -417,11 +417,11 @@ Found a bug or have a suggestion?
 
 ### 📊 Project Stats
 
-![Version](https://img.shields.io/badge/Version-2.3.0-brightgreen?style=flat)
+![Version](https://img.shields.io/badge/Version-2.4.0-brightgreen?style=flat)
 ![Last Updated](https://img.shields.io/badge/Last_Updated-November_2025-blue?style=flat)
 ![Status](https://img.shields.io/badge/Status-Production_Ready-success?style=flat)
 
-**100+ Units • 101 Unique Units • 51 Civilizations • Unit Search & Filters • Counter Visualization**
+**100+ Units • 101 Unique Units • 51 Civilizations • Unit Search & Filters • Counter Visualization • 142 Tests**
 
 ---
 
