@@ -15,6 +15,7 @@ import SocialShareButtons from './components/SocialShareButtons';
 import BuyMeCoffee from './components/BuyMeCoffee';
 import CivilizationComparison from './components/CivilizationComparison';
 import ThemeToggle from './components/ThemeToggle';
+import CompactResourceBar from './components/CompactResourceBar';
 import { units } from './data/units';
 import { civilizations } from './data/civilizations';
 import { validateGameData } from './utils/validators';
@@ -57,7 +58,7 @@ function AppContent() {
   }, [dispatch]);
 
   return (
-    <div className="container mx-auto p-4 max-w-7xl">
+    <div className="container mx-auto p-4 max-w-7xl pb-24">
       <ThemeToggle />
 
       {/* Hero Section */}
@@ -114,6 +115,9 @@ function AppContent() {
       )}
 
       <ArmyCompositionSummary />
+
+      {/* Compact Resource Tracker at Bottom */}
+      <CompactResourceBar />
 
       {/* Buy Me a Coffee CTA */}
       <BuyMeCoffee />

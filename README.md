@@ -73,6 +73,12 @@ Plan your armies • Calculate costs • Compare civilizations • Optimize reso
   - 🌾 **Economic Bonuses**: Resource gathering, building costs, age advancement bonuses
   - 🤝 **Team Bonuses**: Allied team benefits displayed
 - **Interactive Bonus Panel**: Expanded by default showing all active bonuses by category
+- **Consolidated Civilization Display** (NEW in v2.5.0):
+  - Prominent civilization insignia (64x64 icon) in bonuses header
+  - Region-specific color coding (European=blue, Asian=red, African=orange, etc.)
+  - "ACTIVE" badge for clear status indication
+  - Streamlined indicator (only shows for generic or preview mode)
+  - Quick bonus summary showing Military/Economic/Cost counts inline
 
 ### 🎯 Army Planning Tools
 - **Custom Resource Limits**: Set available food, wood, gold, and stone
@@ -87,6 +93,24 @@ Plan your armies • Calculate costs • Compare civilizations • Optimize reso
 - **Real-Time Tracking**: Live resource and population counters with visual progress bars
 - **Visual Feedback**: Green/yellow/red progress bars based on resource usage
 - **Discount Display**: Shows both discounted and original prices when bonuses apply
+- **Compact Resource Bar**: Fixed bottom bar showing totals while scrolling through army compositions
+
+### 📊 Enhanced Resource Tracker (NEW in v2.5.0)
+- **Gradient Progress Bars**: Resource-specific colors with visual depth
+  - 🍖 Food: Orange to red gradient
+  - 🪵 Wood: Amber gradient
+  - 🪙 Gold: Yellow gradient
+  - 🪨 Stone: Gray gradient
+  - 👥 Population: Purple gradient
+- **Status Indicators**: Dynamic icons showing resource status
+  - ✅ Good (under 50%)
+  - 📈 Moderate (50-80%)
+  - 📊 High (80-95%)
+  - ⚠️ Critical (95-100%)
+  - 🚫 Over Limit
+- **Animated Transitions**: Smooth 500ms animations when values change
+- **Pulse Effects**: Visual alert when approaching or exceeding limits
+- **Fixed Bottom Bar**: Track totals while scrolling through large armies
 
 ### 💾 Composition Management
 - **Save/Load System**: Store multiple army compositions locally
@@ -286,6 +310,11 @@ All unit costs, population values, and civilization bonuses are based on Age of 
 - ✅ **Unit Counter Visualization** (Strong Against/Weak To badges on unit cards)
 - ✅ **Advanced Bonus Filtering** (search, type filters, active-only toggle)
 - ✅ **Technology/Upgrade System** (Blacksmith upgrades with stat calculations)
+- ✅ **UI Visual Enhancements v2.5.0** (November 2025):
+  - Compact Resource Bar (fixed bottom tracking)
+  - Resource Tracker Visual Enhancement (gradients, status indicators, animations)
+  - Civilization UI Consolidation (insignia in bonuses, streamlined layout)
+  - Enhanced Status Indicators (✅📈📊⚠️🚫 dynamic icons)
 
 </details>
 
@@ -421,11 +450,11 @@ Found a bug or have a suggestion?
 
 ### 📊 Project Stats
 
-![Version](https://img.shields.io/badge/Version-2.4.0-brightgreen?style=flat)
+![Version](https://img.shields.io/badge/Version-2.5.0-brightgreen?style=flat)
 ![Last Updated](https://img.shields.io/badge/Last_Updated-November_2025-blue?style=flat)
 ![Status](https://img.shields.io/badge/Status-Production_Ready-success?style=flat)
 
-**100+ Units • 101 Unique Units • 51 Civilizations • Unit Search & Filters • Counter Visualization • 256 Tests**
+**100+ Units • 101 Unique Units • 51 Civilizations • Enhanced Resource Tracking • 256 Tests**
 
 ---
 
