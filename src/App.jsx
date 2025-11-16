@@ -117,16 +117,16 @@ function AppContent() {
 
       <ArmyCompositionSummary />
 
-      {/* Saved Compositions - moved to bottom for better UX */}
-      <div id="saved-compositions">
-        <SaveLoadPanel />
-      </div>
-
       {/* Compact Resource Tracker at Bottom */}
       <CompactResourceBar />
 
       {/* Buy Me a Coffee CTA */}
       <BuyMeCoffee />
+
+      {/* Saved Compositions - moved to bottom for better UX */}
+      <div id="saved-compositions" className="mt-8">
+        <SaveLoadPanel />
+      </div>
 
       {/* Footer */}
       <div className="mt-8 border-t border-gray-200 dark:border-gray-700 pt-6">
