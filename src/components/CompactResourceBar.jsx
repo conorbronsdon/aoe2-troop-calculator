@@ -170,19 +170,19 @@ export default function CompactResourceBar() {
               </span>
             </div>
             <div className="flex items-center gap-1">
-              <span className="text-amber-700" role="img" aria-label="Wood">🪵</span>
+              <span className="text-amber-700" role="img" aria-label="Wood">🌲</span>
               <span className="font-medium text-gray-700 dark:text-gray-300">
                 {combinedCost.wood.toLocaleString()}
               </span>
             </div>
             <div className="flex items-center gap-1">
-              <span className="text-yellow-500" role="img" aria-label="Gold">🪙</span>
+              <span className="text-yellow-500" role="img" aria-label="Gold">💰</span>
               <span className="font-medium text-gray-700 dark:text-gray-300">
                 {combinedCost.gold.toLocaleString()}
               </span>
             </div>
             <div className="flex items-center gap-1">
-              <span className="text-gray-500" role="img" aria-label="Stone">🪨</span>
+              <span className="text-gray-500" role="img" aria-label="Stone">🗿</span>
               <span className="font-medium text-gray-700 dark:text-gray-300">
                 {combinedCost.stone.toLocaleString()}
               </span>

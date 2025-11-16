@@ -12,9 +12,9 @@ import { RESOURCES, RESOURCE_DISPLAY_NAMES } from '../constants';
 // Resource-specific icons and colors
 const RESOURCE_ICONS = {
   food: '🍖',
-  wood: '🪵',
-  gold: '🪙',
-  stone: '🪨',
+  wood: '🌲',
+  gold: '💰',
+  stone: '🗿',
 };
 
 const RESOURCE_GRADIENT_COLORS = {

@@ -8,9 +8,9 @@ import PropTypes from 'prop-types';
 export default function ResourceCost({ cost, baseCost = null, showDiscount = false }) {
   const resources = [
     { key: 'food', icon: '🌾', label: 'Food' },
-    { key: 'wood', icon: '🪵', label: 'Wood' },
-    { key: 'gold', icon: '🪙', label: 'Gold' },
-    { key: 'stone', icon: '🪨', label: 'Stone' },
+    { key: 'wood', icon: '🌲', label: 'Wood' },
+    { key: 'gold', icon: '💰', label: 'Gold' },
+    { key: 'stone', icon: '🗿', label: 'Stone' },
   ];
 
   return (
