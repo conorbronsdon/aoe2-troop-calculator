@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import ResourceIcon from './ResourceIcon';
 
 /**
  * ResourceCost Component
@@ -7,15 +8,15 @@ import PropTypes from 'prop-types';
  */
 export default function ResourceCost({ cost, baseCost = null, showDiscount = false }) {
   const resources = [
-    { key: 'food', icon: '🌾', label: 'Food' },
-    { key: 'wood', icon: '🌲', label: 'Wood' },
-    { key: 'gold', icon: '💰', label: 'Gold' },
-    { key: 'stone', icon: '🗿', label: 'Stone' },
+    { key: 'food', label: 'Food' },
+    { key: 'wood', label: 'Wood' },
+    { key: 'gold', label: 'Gold' },
+    { key: 'stone', label: 'Stone' },
   ];
 
   return (
     <div className="text-xs space-y-1 text-gray-900 dark:text-gray-100">
-      {resources.map(({ key, icon, label }) => {
+      {resources.map(({ key, label }) => {
         if (cost[key] <= 0) {
           return null;
         }
@@ -24,12 +25,10 @@ export default function ResourceCost({ cost, baseCost = null, showDiscount = fal
 
         return (
           <div key={key} className="flex items-center justify-between">
-            <span>
-              <span role="img" aria-label={label}>
-                {icon}
-              </span>
+            <span className="flex items-center gap-1">
+              <ResourceIcon resource={key} size="xs" />
               <span className="sr-only">{label}:</span>
-              <span aria-hidden="true"> {label}:</span>
+              <span aria-hidden="true">{label}:</span>
             </span>
             <span className={hasDiscountForResource ? 'text-green-600 dark:text-green-400 font-semibold' : ''}>
               {cost[key]}

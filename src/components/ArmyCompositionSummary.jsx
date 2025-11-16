@@ -4,6 +4,7 @@ import { getUnitById } from '../data/units';
 import { calculateUnitCost } from '../utils/calculations';
 import { ExportService } from '../services/export.service';
 import { ShareService } from '../services/share.service';
+import ResourceIcon from './ResourceIcon';
 
 export default function ArmyCompositionSummary() {
   const { state, dispatch } = useArmy();
@@ -123,10 +124,25 @@ export default function ArmyCompositionSummary() {
                 <span className="font-semibold text-lg text-gray-900 dark:text-gray-100">{quantity}x</span>
                 <span className="font-medium text-gray-800 dark:text-gray-200">{unit.name}</span>
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-300">
-                {totalUnitCost.food > 0 && <span className="mr-3">🌾 {totalUnitCost.food}</span>}
-                {totalUnitCost.wood > 0 && <span className="mr-3">🌲 {totalUnitCost.wood}</span>}
-                {totalUnitCost.gold > 0 && <span className="mr-3">💰 {totalUnitCost.gold}</span>}
+              <div className="text-sm text-gray-600 dark:text-gray-300 flex items-center">
+                {totalUnitCost.food > 0 && (
+                  <span className="mr-3 inline-flex items-center gap-1">
+                    <ResourceIcon resource="food" size="xs" />
+                    {totalUnitCost.food}
+                  </span>
+                )}
+                {totalUnitCost.wood > 0 && (
+                  <span className="mr-3 inline-flex items-center gap-1">
+                    <ResourceIcon resource="wood" size="xs" />
+                    {totalUnitCost.wood}
+                  </span>
+                )}
+                {totalUnitCost.gold > 0 && (
+                  <span className="mr-3 inline-flex items-center gap-1">
+                    <ResourceIcon resource="gold" size="xs" />
+                    {totalUnitCost.gold}
+                  </span>
+                )}
                 <span className="ml-3 text-blue-600 dark:text-blue-400">Pop: {unit.population * quantity}</span>
               </div>
             </div>

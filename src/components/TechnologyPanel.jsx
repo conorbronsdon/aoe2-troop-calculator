@@ -8,6 +8,7 @@ import {
   calculateTechCost,
 } from '../data/technologies';
 import { AGE_ORDER } from '../constants';
+import ResourceIcon from './ResourceIcon';
 
 /**
  * TechnologyPanel - Allows users to select technologies and upgrades
@@ -159,26 +160,20 @@ export default function TechnologyPanel() {
             <div className="hidden sm:flex items-center gap-2 text-sm">
               <span className="text-indigo-700 dark:text-indigo-300 font-medium">Tech Cost:</span>
               {totalTechCost.food > 0 && (
-                <span className="text-orange-600 dark:text-orange-400" title="Food">
-                  <span role="img" aria-label="food">
-                    🌾
-                  </span>
+                <span className="text-orange-600 dark:text-orange-400 flex items-center gap-0.5" title="Food">
+                  <ResourceIcon resource="food" size="xs" />
                   {totalTechCost.food}
                 </span>
               )}
               {totalTechCost.wood > 0 && (
-                <span className="text-amber-700 dark:text-amber-400" title="Wood">
-                  <span role="img" aria-label="wood">
-                    🌲
-                  </span>
+                <span className="text-amber-700 dark:text-amber-400 flex items-center gap-0.5" title="Wood">
+                  <ResourceIcon resource="wood" size="xs" />
                   {totalTechCost.wood}
                 </span>
               )}
               {totalTechCost.gold > 0 && (
-                <span className="text-yellow-600 dark:text-yellow-400" title="Gold">
-                  <span role="img" aria-label="gold">
-                    💰
-                  </span>
+                <span className="text-yellow-600 dark:text-yellow-400 flex items-center gap-0.5" title="Gold">
+                  <ResourceIcon resource="gold" size="xs" />
                   {totalTechCost.gold}
                 </span>
               )}
@@ -307,28 +302,22 @@ export default function TechnologyPanel() {
                               {tech.age.charAt(0).toUpperCase()}
                             </span>
                           </div>
-                          <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                          <div className="text-xs text-gray-600 dark:text-gray-400 mt-1 flex items-center gap-1">
                             {tech.cost.food > 0 && (
-                              <span className="mr-1">
-                                <span role="img" aria-label="food">
-                                  🌾
-                                </span>
+                              <span className="mr-1 inline-flex items-center gap-0.5">
+                                <ResourceIcon resource="food" size="xs" />
                                 {tech.cost.food}
                               </span>
                             )}
                             {tech.cost.wood > 0 && (
-                              <span className="mr-1">
-                                <span role="img" aria-label="wood">
-                                  🌲
-                                </span>
+                              <span className="mr-1 inline-flex items-center gap-0.5">
+                                <ResourceIcon resource="wood" size="xs" />
                                 {tech.cost.wood}
                               </span>
                             )}
                             {tech.cost.gold > 0 && (
-                              <span className="mr-1">
-                                <span role="img" aria-label="gold">
-                                  💰
-                                </span>
+                              <span className="mr-1 inline-flex items-center gap-0.5">
+                                <ResourceIcon resource="gold" size="xs" />
                                 {tech.cost.gold}
                               </span>
                             )}
@@ -361,28 +350,20 @@ export default function TechnologyPanel() {
                 Total Technology Cost:
               </div>
               <div className="flex flex-wrap gap-3 text-sm">
-                <span className="text-orange-600 dark:text-orange-400">
-                  <span role="img" aria-label="food">
-                    🌾
-                  </span>{' '}
+                <span className="text-orange-600 dark:text-orange-400 inline-flex items-center gap-1">
+                  <ResourceIcon resource="food" size="sm" />
                   {totalTechCost.food}
                 </span>
-                <span className="text-amber-700 dark:text-amber-400">
-                  <span role="img" aria-label="wood">
-                    🌲
-                  </span>{' '}
+                <span className="text-amber-700 dark:text-amber-400 inline-flex items-center gap-1">
+                  <ResourceIcon resource="wood" size="sm" />
                   {totalTechCost.wood}
                 </span>
-                <span className="text-yellow-600 dark:text-yellow-400">
-                  <span role="img" aria-label="gold">
-                    💰
-                  </span>{' '}
+                <span className="text-yellow-600 dark:text-yellow-400 inline-flex items-center gap-1">
+                  <ResourceIcon resource="gold" size="sm" />
                   {totalTechCost.gold}
                 </span>
-                <span className="text-gray-600 dark:text-gray-400">
-                  <span role="img" aria-label="stone">
-                    🗿
-                  </span>{' '}
+                <span className="text-gray-600 dark:text-gray-400 inline-flex items-center gap-1">
+                  <ResourceIcon resource="stone" size="sm" />
                   {totalTechCost.stone}
                 </span>
               </div>
