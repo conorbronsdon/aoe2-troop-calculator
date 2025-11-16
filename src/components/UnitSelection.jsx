@@ -73,29 +73,29 @@ export default function UnitSelection() {
     <div>
       <UnitFilter onFilterChange={setFilters} />
 
-      <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-        <h2 className="text-2xl font-semibold mb-4 text-gray-700">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-6 transition-colors duration-300">
+        <h2 className="text-2xl font-semibold mb-4 text-gray-700 dark:text-gray-200">
           Select Units
           {filters.searchTerm ||
           filters.categories.length > 0 ||
           filters.costType !== 'all' ||
           filters.ageFilter !== 'all' ||
           filters.hideNaval ? (
-            <span className="text-sm font-normal text-gray-500 ml-2">
+            <span className="text-sm font-normal text-gray-500 dark:text-gray-400 ml-2">
               ({filteredUnits.length} {filteredUnits.length === 1 ? 'unit' : 'units'} found)
             </span>
           ) : null}
         </h2>
 
         {!hasResults ? (
-          <div className="text-center py-8 text-gray-500">
+          <div className="text-center py-8 text-gray-500 dark:text-gray-400">
             <p className="text-lg mb-2">No units match your filters</p>
             <p className="text-sm">Try adjusting your search or filter criteria</p>
           </div>
         ) : (
           Object.entries(unitsByCategory).map(([category, units]) => (
             <div key={category} className="mb-6">
-              <h3 className="text-lg font-semibold mb-3 text-gray-600">
+              <h3 className="text-lg font-semibold mb-3 text-gray-600 dark:text-gray-300">
                 {category} ({units.length})
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">

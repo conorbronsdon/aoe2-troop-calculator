@@ -14,7 +14,7 @@ export default function ResourceCost({ cost, baseCost = null, showDiscount = fal
   ];
 
   return (
-    <div className="text-xs space-y-1">
+    <div className="text-xs space-y-1 text-gray-900 dark:text-gray-100">
       {resources.map(({ key, icon, label }) => {
         if (cost[key] <= 0) {
           return null;
@@ -31,11 +31,11 @@ export default function ResourceCost({ cost, baseCost = null, showDiscount = fal
               <span className="sr-only">{label}:</span>
               <span aria-hidden="true"> {label}:</span>
             </span>
-            <span className={hasDiscountForResource ? 'text-green-600 font-semibold' : ''}>
+            <span className={hasDiscountForResource ? 'text-green-600 dark:text-green-400 font-semibold' : ''}>
               {cost[key]}
               {hasDiscountForResource && (
                 <span
-                  className="text-gray-400 line-through ml-1"
+                  className="text-gray-400 dark:text-gray-500 line-through ml-1"
                   aria-label={`Original cost ${baseCost[key]}`}
                 >
                   {baseCost[key]}

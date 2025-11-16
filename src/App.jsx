@@ -62,19 +62,19 @@ function AppContent() {
       <ThemeToggle />
 
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-purple-900 text-white rounded-xl shadow-2xl p-8 mb-8">
+      <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-purple-900 dark:from-gray-900 dark:via-gray-800 dark:to-purple-950 text-white rounded-xl shadow-2xl p-8 mb-8 transition-colors duration-300">
         <div className="text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-3">
             AoE2: Definitive Edition Army Calculator
           </h1>
-          <p className="text-lg md:text-xl mb-6 text-blue-100">
+          <p className="text-lg md:text-xl mb-6 text-blue-100 dark:text-gray-300">
             100+ units · 51 civilizations · Fortifications · Accurate bonuses · Tech tree
             restrictions
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-4">
             <a
               href="#calculator"
-              className="bg-white text-blue-900 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg"
+              className="bg-white text-blue-900 dark:bg-gray-100 dark:text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 dark:hover:bg-white transition-all transform hover:scale-105 shadow-lg"
             >
               Start Planning
             </a>
@@ -82,14 +82,14 @@ function AppContent() {
               href="https://github.com/conorbronsdon/aoe2-troop-calculator"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-all flex items-center gap-2"
+              className="border-2 border-white dark:border-gray-400 px-8 py-3 rounded-lg font-semibold hover:bg-white/10 dark:hover:bg-gray-700/50 transition-all flex items-center gap-2"
             >
               <FaGithub className="w-5 h-5" />
               View on GitHub
             </a>
           </div>
-          <div className="flex justify-center items-center gap-2 text-sm text-blue-200">
-            <FaStar className="w-4 h-4 text-yellow-300" />
+          <div className="flex justify-center items-center gap-2 text-sm text-blue-200 dark:text-gray-400">
+            <FaStar className="w-4 h-4 text-yellow-300 dark:text-yellow-400" />
             <span>Star us on GitHub if you find this useful!</span>
           </div>
         </div>

@@ -78,7 +78,7 @@ const BuyMeCoffee = () => {
         </svg>
         <span>Like this calculator? Buy me a coffee!</span>
       </a>
-      <p className="text-xs text-gray-500 mt-2">Support the development of this tool</p>
+      <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Support the development of this tool</p>
     </div>
   );
 };

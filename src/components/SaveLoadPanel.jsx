@@ -63,25 +63,25 @@ export default function SaveLoadPanel() {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-6 transition-colors duration-300">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-semibold text-gray-700">Saved Compositions</h2>
+        <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-200">Saved Compositions</h2>
         {hasUnits && (
           <button
             onClick={() => setShowSaveDialog(!showSaveDialog)}
-            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded text-sm"
+            className="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-colors"
           >
             💾 Save Current
           </button>
         )}
       </div>
 
-      {message && <div className="mb-4 text-sm text-center text-green-600">{message}</div>}
+      {message && <div className="mb-4 text-sm text-center text-green-600 dark:text-green-400">{message}</div>}
 
       {/* Save Dialog */}
       {showSaveDialog && (
-        <div className="mb-4 p-4 border rounded bg-gray-50">
-          <label className="block text-sm font-medium text-gray-700 mb-2">Composition Name</label>
+        <div className="mb-4 p-4 border border-gray-200 dark:border-gray-600 rounded bg-gray-50 dark:bg-gray-700">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Composition Name</label>
           <div className="flex gap-2">
             <input
               type="text"
@@ -89,12 +89,12 @@ export default function SaveLoadPanel() {
               onChange={(e) => setSaveName(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSave()}
               placeholder="e.g., Knight Rush Build"
-              className="flex-1 border rounded px-3 py-2 text-sm"
+              className="flex-1 border border-gray-300 dark:border-gray-600 rounded px-3 py-2 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
               autoFocus
             />
             <button
               onClick={handleSave}
-              className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded text-sm"
+              className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-4 py-2 rounded text-sm transition-colors"
             >
               Save
             </button>
@@ -103,7 +103,7 @@ export default function SaveLoadPanel() {
                 setShowSaveDialog(false);
                 setSaveName('');
               }}
-              className="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded text-sm"
+              className="bg-gray-400 hover:bg-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500 text-white px-4 py-2 rounded text-sm transition-colors"
             >
               Cancel
             </button>
@@ -113,7 +113,7 @@ export default function SaveLoadPanel() {
 
       {/* Saved Compositions List */}
       {savedCompositions.length === 0 ? (
-        <p className="text-gray-500 text-center py-4">
+        <p className="text-gray-500 dark:text-gray-400 text-center py-4">
           No saved compositions yet. Build an army and click &quot;Save Current&quot; to get
           started!
         </p>
@@ -122,11 +122,11 @@ export default function SaveLoadPanel() {
           {savedCompositions.map((saved) => (
             <div
               key={saved.id}
-              className="border rounded p-3 flex justify-between items-center hover:bg-gray-50"
+              className="border border-gray-200 dark:border-gray-600 rounded p-3 flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               <div className="flex-1">
-                <div className="font-medium">{saved.name}</div>
-                <div className="text-xs text-gray-500">
+                <div className="font-medium text-gray-900 dark:text-gray-100">{saved.name}</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">
                   {saved.config.selectedCiv} • {saved.config.selectedAge} Age •{' '}
                   {Object.values(saved.composition).reduce((sum, q) => sum + q, 0)} units •{' '}
                   {new Date(saved.createdAt).toLocaleDateString()}
@@ -135,13 +135,13 @@ export default function SaveLoadPanel() {
               <div className="flex gap-2">
                 <button
                   onClick={() => handleLoad(saved)}
-                  className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm"
+                  className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-3 py-1 rounded text-sm transition-colors"
                 >
                   Load
                 </button>
                 <button
                   onClick={() => handleDelete(saved.id, saved.name)}
-                  className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm"
+                  className="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white px-3 py-1 rounded text-sm transition-colors"
                 >
                   Delete
                 </button>
@@ -152,7 +152,7 @@ export default function SaveLoadPanel() {
       )}
 
       {savedCompositions.length > 0 && (
-        <div className="mt-4 text-xs text-gray-500 text-center">
+        <div className="mt-4 text-xs text-gray-500 dark:text-gray-400 text-center">
           {savedCompositions.length} saved composition{savedCompositions.length !== 1 ? 's' : ''}
         </div>
       )}
