@@ -125,8 +125,8 @@ export default function ArmyCompositionSummary() {
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-300">
                 {totalUnitCost.food > 0 && <span className="mr-3">🌾 {totalUnitCost.food}</span>}
-                {totalUnitCost.wood > 0 && <span className="mr-3">🪵 {totalUnitCost.wood}</span>}
-                {totalUnitCost.gold > 0 && <span className="mr-3">🪙 {totalUnitCost.gold}</span>}
+                {totalUnitCost.wood > 0 && <span className="mr-3">🌲 {totalUnitCost.wood}</span>}
+                {totalUnitCost.gold > 0 && <span className="mr-3">💰 {totalUnitCost.gold}</span>}
                 <span className="ml-3 text-blue-600 dark:text-blue-400">Pop: {unit.population * quantity}</span>
               </div>
             </div>

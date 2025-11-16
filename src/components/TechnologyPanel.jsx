@@ -169,7 +169,7 @@ export default function TechnologyPanel() {
               {totalTechCost.wood > 0 && (
                 <span className="text-amber-700 dark:text-amber-400" title="Wood">
                   <span role="img" aria-label="wood">
-                    🪵
+                    🌲
                   </span>
                   {totalTechCost.wood}
                 </span>
@@ -177,7 +177,7 @@ export default function TechnologyPanel() {
               {totalTechCost.gold > 0 && (
                 <span className="text-yellow-600 dark:text-yellow-400" title="Gold">
                   <span role="img" aria-label="gold">
-                    🪙
+                    💰
                   </span>
                   {totalTechCost.gold}
                 </span>
@@ -319,7 +319,7 @@ export default function TechnologyPanel() {
                             {tech.cost.wood > 0 && (
                               <span className="mr-1">
                                 <span role="img" aria-label="wood">
-                                  🪵
+                                  🌲
                                 </span>
                                 {tech.cost.wood}
                               </span>
@@ -327,7 +327,7 @@ export default function TechnologyPanel() {
                             {tech.cost.gold > 0 && (
                               <span className="mr-1">
                                 <span role="img" aria-label="gold">
-                                  🪙
+                                  💰
                                 </span>
                                 {tech.cost.gold}
                               </span>
@@ -369,19 +369,19 @@ export default function TechnologyPanel() {
                 </span>
                 <span className="text-amber-700 dark:text-amber-400">
                   <span role="img" aria-label="wood">
-                    🪵
+                    🌲
                   </span>{' '}
                   {totalTechCost.wood}
                 </span>
                 <span className="text-yellow-600 dark:text-yellow-400">
                   <span role="img" aria-label="gold">
-                    🪙
+                    💰
                   </span>{' '}
                   {totalTechCost.gold}
                 </span>
                 <span className="text-gray-600 dark:text-gray-400">
                   <span role="img" aria-label="stone">
-                    🪨
+                    🗿
                   </span>{' '}
                   {totalTechCost.stone}
                 </span>
