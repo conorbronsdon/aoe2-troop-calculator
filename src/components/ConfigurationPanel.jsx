@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { civilizations } from '../data/civilizations';
+import { LIMITS, AGES as ALL_AGES } from '../constants';
 
-const AGES = ['feudal', 'castle', 'imperial'];
+const AGES = ALL_AGES.filter(age => age !== 'dark'); // Exclude Dark Age for army planning
 
 export default function ConfigurationPanel() {
   const { state, dispatch } = useArmy();
@@ -10,6 +12,18 @@ export default function ConfigurationPanel() {
 
   const updateConfig = (updates) => {
     dispatch({ type: ACTION_TYPES.UPDATE_CONFIG, config: updates });
+  };
+
+  // Validate and clamp resource values within bounds
+  const validateResourceValue = (value) => {
+    const parsed = parseInt(value) || 0;
+    return Math.max(0, Math.min(parsed, LIMITS.MAX_RESOURCE_VALUE));
+  };
+
+  // Validate and clamp population cap within bounds
+  const validatePopulationCap = (value) => {
+    const parsed = parseInt(value) || 0;
+    return Math.max(0, Math.min(parsed, LIMITS.MAX_POPULATION_CAP));
   };
 
   const applyCivilization = () => {
@@ -62,65 +76,88 @@ export default function ConfigurationPanel() {
         {/* Total Resource Limit (shown when mode is 'total') */}
         {config.resourceLimitMode === 'total' && (
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="totalResourceLimit" className="block text-sm font-medium text-gray-700 mb-2">
               Total Resource Limit
             </label>
             <input
+              id="totalResourceLimit"
               type="number"
+              min="0"
+              max={LIMITS.MAX_RESOURCE_VALUE}
               className="w-full border rounded px-3 py-2"
               value={config.totalResourceLimit}
-              onChange={(e) => updateConfig({ totalResourceLimit: parseInt(e.target.value) || 0 })}
+              onChange={(e) => updateConfig({ totalResourceLimit: validateResourceValue(e.target.value) })}
               placeholder="e.g., 20000"
+              aria-describedby="totalResourceLimitHelp"
             />
-            <p className="text-xs text-gray-500 mt-1">Combined limit for all resources</p>
+            <p id="totalResourceLimitHelp" className="text-xs text-gray-500 mt-1">
+              Combined limit for all resources (max: {LIMITS.MAX_RESOURCE_VALUE.toLocaleString()})
+            </p>
           </div>
         )}
 
         {/* Individual Resource Limits (shown when mode is 'individual') */}
         {config.resourceLimitMode === 'individual' && (
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Individual Resource Limits
-            </label>
-            {['food', 'wood', 'gold', 'stone'].map(resource => (
-              <div key={resource} className="mb-2">
-                <label className="text-xs text-gray-600 capitalize">{resource}</label>
-                <input
-                  type="number"
-                  className="w-full border rounded px-3 py-1 text-sm"
-                  value={config.resourceLimits[resource]}
-                  onChange={(e) => updateConfig({
-                    resourceLimits: {
-                      ...config.resourceLimits,
-                      [resource]: parseInt(e.target.value) || 0
-                    }
-                  })}
-                />
-              </div>
-            ))}
+            <fieldset>
+              <legend className="block text-sm font-medium text-gray-700 mb-2">
+                Individual Resource Limits
+              </legend>
+              {['food', 'wood', 'gold', 'stone'].map(resource => (
+                <div key={resource} className="mb-2">
+                  <label htmlFor={`resource-${resource}`} className="text-xs text-gray-600 capitalize">
+                    {resource}
+                  </label>
+                  <input
+                    id={`resource-${resource}`}
+                    type="number"
+                    min="0"
+                    max={LIMITS.MAX_RESOURCE_VALUE}
+                    className="w-full border rounded px-3 py-1 text-sm"
+                    value={config.resourceLimits[resource]}
+                    onChange={(e) => updateConfig({
+                      resourceLimits: {
+                        ...config.resourceLimits,
+                        [resource]: validateResourceValue(e.target.value)
+                      }
+                    })}
+                    aria-label={`${resource} resource limit`}
+                  />
+                </div>
+              ))}
+            </fieldset>
           </div>
         )}
 
         {/* Population Cap */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="populationCap" className="block text-sm font-medium text-gray-700 mb-2">
             Population Cap
           </label>
           <input
+            id="populationCap"
             type="number"
+            min="0"
+            max={LIMITS.MAX_POPULATION_CAP}
             className="w-full border rounded px-3 py-2"
             value={config.populationCap}
-            onChange={(e) => updateConfig({ populationCap: parseInt(e.target.value) || 0 })}
+            onChange={(e) => updateConfig({ populationCap: validatePopulationCap(e.target.value) })}
+            aria-describedby="populationCapHelp"
           />
+          <p id="populationCapHelp" className="text-xs text-gray-500 mt-1">
+            Max: {LIMITS.MAX_POPULATION_CAP.toLocaleString()}
+          </p>
         </div>
 
         {/* Age Selection */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Age</label>
+          <label htmlFor="ageSelect" className="block text-sm font-medium text-gray-700 mb-2">Age</label>
           <select
+            id="ageSelect"
             className="w-full border rounded px-3 py-2 capitalize"
             value={config.selectedAge}
             onChange={(e) => updateConfig({ selectedAge: e.target.value })}
+            aria-label="Select game age"
           >
             {AGES.map(age => (
               <option key={age} value={age} className="capitalize">

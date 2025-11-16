@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { calculateUnitCost, hasDiscount } from '../utils/calculations';
 import { civilizations } from '../data/civilizations';
 import { getUnitById } from '../data/units';
+import { LIMITS } from '../constants';
 import UnitIcon from './UnitIcon';
+import ResourceCost from './ResourceCost';
 
 export default function UnitCard({ unit }) {
   const { state, dispatch } = useArmy();
@@ -36,7 +39,9 @@ export default function UnitCard({ unit }) {
   };
 
   const setQuantity = (value) => {
-    dispatch({ type: ACTION_TYPES.SET_UNIT_QUANTITY, unitId: unit.id, quantity: value });
+    const parsed = parseInt(value) || 0;
+    const validated = Math.max(0, Math.min(parsed, LIMITS.MAX_UNIT_QUANTITY));
+    dispatch({ type: ACTION_TYPES.SET_UNIT_QUANTITY, unitId: unit.id, quantity: validated });
   };
 
   // Get unit names for counters and weaknesses
@@ -68,47 +73,17 @@ export default function UnitCard({ unit }) {
           <div className="text-xs text-gray-500 capitalize">{unit.age} Age</div>
           {hasBonuses && showDiscount && (
             <div className="text-xs text-blue-600 font-semibold mt-1">
-              💰 {currentCiv.name} discount applied
+              <span role="img" aria-label="Discount">💰</span> {currentCiv.name} discount applied
             </div>
           )}
         </div>
-        <span className="text-xs bg-gray-200 px-2 py-1 rounded">Pop: {unit.population}</span>
+        <span className="text-xs bg-gray-200 px-2 py-1 rounded" aria-label={`Population cost: ${unit.population}`}>
+          Pop: {unit.population}
+        </span>
       </div>
 
-      <div className="text-xs space-y-1 mb-3">
-        {adjustedCost.food > 0 && (
-          <div className="flex items-center justify-between">
-            <span>🌾 Food:</span>
-            <span className={showDiscount ? 'text-green-600 font-semibold' : ''}>
-              {adjustedCost.food}
-              {showDiscount && baseCost.food !== adjustedCost.food && (
-                <span className="text-gray-400 line-through ml-1">{baseCost.food}</span>
-              )}
-            </span>
-          </div>
-        )}
-        {adjustedCost.wood > 0 && (
-          <div className="flex items-center justify-between">
-            <span>🪵 Wood:</span>
-            <span className={showDiscount ? 'text-green-600 font-semibold' : ''}>
-              {adjustedCost.wood}
-              {showDiscount && baseCost.wood !== adjustedCost.wood && (
-                <span className="text-gray-400 line-through ml-1">{baseCost.wood}</span>
-              )}
-            </span>
-          </div>
-        )}
-        {adjustedCost.gold > 0 && (
-          <div className="flex items-center justify-between">
-            <span>🪙 Gold:</span>
-            <span className={showDiscount ? 'text-green-600 font-semibold' : ''}>
-              {adjustedCost.gold}
-              {showDiscount && baseCost.gold !== adjustedCost.gold && (
-                <span className="text-gray-400 line-through ml-1">{baseCost.gold}</span>
-              )}
-            </span>
-          </div>
-        )}
+      <div className="mb-3">
+        <ResourceCost cost={adjustedCost} baseCost={baseCost} showDiscount={showDiscount} />
       </div>
 
       {/* Counter Information */}
@@ -166,19 +141,23 @@ export default function UnitCard({ unit }) {
         <button
           onClick={removeUnit}
           className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-sm"
+          aria-label={`Remove one ${unit.name}`}
         >
           -
         </button>
         <input
           type="number"
           min="0"
+          max={LIMITS.MAX_UNIT_QUANTITY}
           className="flex-1 border rounded px-2 py-1 text-sm text-center"
           value={quantity}
           onChange={(e) => setQuantity(e.target.value)}
+          aria-label={`Quantity of ${unit.name}`}
         />
         <button
           onClick={addUnit}
           className="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded text-sm"
+          aria-label={`Add one ${unit.name}`}
         >
           +
         </button>
@@ -186,3 +165,21 @@ export default function UnitCard({ unit }) {
     </div>
   );
 }
+
+UnitCard.propTypes = {
+  unit: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    age: PropTypes.string.isRequired,
+    cost: PropTypes.shape({
+      food: PropTypes.number.isRequired,
+      wood: PropTypes.number.isRequired,
+      gold: PropTypes.number.isRequired,
+      stone: PropTypes.number.isRequired
+    }).isRequired,
+    population: PropTypes.number.isRequired,
+    counters: PropTypes.arrayOf(PropTypes.string),
+    weakTo: PropTypes.arrayOf(PropTypes.string)
+  }).isRequired
+};

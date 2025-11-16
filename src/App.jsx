@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { ArmyProvider, useArmy, ACTION_TYPES } from './context/ArmyContext';
 import { ThemeProvider } from './context/ThemeContext';
+import ErrorBoundary from './components/ErrorBoundary';
 import ConfigurationPanel from './components/ConfigurationPanel';
 import CivilizationIndicator from './components/CivilizationIndicator';
 import CivilizationBonuses from './components/CivilizationBonuses';
@@ -181,11 +182,13 @@ function AppContent() {
 
 function App() {
   return (
-    <ThemeProvider>
-      <ArmyProvider>
-        <AppContent />
-      </ArmyProvider>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <ArmyProvider>
+          <AppContent />
+        </ArmyProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }
 
