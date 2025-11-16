@@ -246,6 +246,18 @@ export default function CompactResourceBar() {
               <span>💾</span>
               <span className="hidden md:inline">Saved</span>
             </a>
+
+            {/* Star on GitHub */}
+            <a
+              href="https://github.com/conorbronsdon/aoe2-troop-calculator"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:flex items-center gap-1 px-3 py-1.5 bg-gray-700 hover:bg-gray-800 dark:bg-gray-600 dark:hover:bg-gray-500 text-white text-xs font-medium rounded transition-colors"
+              title="Star us on GitHub"
+            >
+              <span>⭐</span>
+              <span className="hidden md:inline">Star on GitHub</span>
+            </a>
           </div>
         </div>
       </div>
