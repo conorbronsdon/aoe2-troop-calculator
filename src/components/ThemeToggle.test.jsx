@@ -158,20 +158,20 @@ describe('ThemeToggle', () => {
   });
 
   describe('Styling', () => {
-    it('should have fixed positioning classes', () => {
+    it('should have inline styling classes for header placement', () => {
       renderWithTheme();
 
       const button = screen.getByRole('button');
-      expect(button.className).toContain('fixed');
-      expect(button.className).toContain('top-4');
-      expect(button.className).toContain('right-4');
+      expect(button.className).toContain('p-2');
+      expect(button.className).toContain('rounded-lg');
+      expect(button.className).toContain('bg-white/10');
     });
 
-    it('should have high z-index for visibility', () => {
+    it('should have hover effect', () => {
       renderWithTheme();
 
       const button = screen.getByRole('button');
-      expect(button.className).toContain('z-50');
+      expect(button.className).toContain('hover:bg-white/20');
     });
 
     it('should have transition classes for smooth effects', () => {
@@ -181,11 +181,11 @@ describe('ThemeToggle', () => {
       expect(button.className).toContain('transition-colors');
     });
 
-    it('should have shadow for elevation', () => {
+    it('should have consistent padding for header layout', () => {
       renderWithTheme();
 
       const button = screen.getByRole('button');
-      expect(button.className).toContain('shadow-lg');
+      expect(button.className).toContain('p-2');
     });
   });
 
