@@ -6,6 +6,7 @@ import {
   getTechById,
   canResearchTech,
   calculateTechCost,
+  getUniqueTechsByCiv,
 } from '../data/technologies';
 import { AGE_ORDER } from '../constants';
 import ResourceIcon from './ResourceIcon';
@@ -28,9 +29,23 @@ export default function TechnologyPanel() {
       technologies.filter((tech) => {
         const techAgeOrder = AGE_ORDER[tech.age] || 0;
         const selectedAgeOrder = AGE_ORDER[config.selectedAge] || 3;
+
+        // For unique techs, only show if they belong to the selected civilization
+        if (tech.category === TECH_CATEGORIES.UNIQUE) {
+          if (!tech.civilization || tech.civilization !== config.selectedCiv) {
+            return false;
+          }
+        }
+
         return techAgeOrder <= selectedAgeOrder;
       }),
-    [config.selectedAge]
+    [config.selectedAge, config.selectedCiv]
+  );
+
+  // Get unique techs for the selected civilization
+  const civUniqueTechs = useMemo(
+    () => getUniqueTechsByCiv(config.selectedCiv),
+    [config.selectedCiv]
   );
 
   // Group technologies by category
@@ -122,6 +137,7 @@ export default function TechnologyPanel() {
       [TECH_CATEGORIES.CASTLE]: '🏰',
       [TECH_CATEGORIES.DOCK]: '⚓',
       [TECH_CATEGORIES.TOWN_CENTER]: '🏠',
+      [TECH_CATEGORIES.UNIQUE]: '⭐',
     };
     return icons[category] || '⚙️';
   };
@@ -212,15 +228,34 @@ export default function TechnologyPanel() {
             {/* Category Filters */}
             <div className="flex flex-wrap gap-2">
               {Object.values(TECH_CATEGORIES)
-                .slice(0, 6)
+                .filter((cat) => {
+                  // Only show UNIQUE category if a specific civ is selected and has unique techs
+                  if (cat === TECH_CATEGORIES.UNIQUE) {
+                    return civUniqueTechs.length > 0;
+                  }
+                  // Show first 6 standard categories
+                  const standardCats = [
+                    TECH_CATEGORIES.BLACKSMITH,
+                    TECH_CATEGORIES.UNIVERSITY,
+                    TECH_CATEGORIES.MONASTERY,
+                    TECH_CATEGORIES.STABLE,
+                    TECH_CATEGORIES.ARCHERY_RANGE,
+                    TECH_CATEGORIES.BARRACKS,
+                  ];
+                  return standardCats.includes(cat);
+                })
                 .map((category) => (
                   <button
                     key={category}
                     onClick={() => handleCategoryToggle(category)}
                     className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
                       selectedCategories.includes(category)
-                        ? 'bg-indigo-600 text-white shadow-md'
-                        : 'bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-800/50'
+                        ? category === TECH_CATEGORIES.UNIQUE
+                          ? 'bg-yellow-500 text-white shadow-md'
+                          : 'bg-indigo-600 text-white shadow-md'
+                        : category === TECH_CATEGORIES.UNIQUE
+                          ? 'bg-yellow-100 dark:bg-yellow-900/50 text-yellow-700 dark:text-yellow-300 hover:bg-yellow-200 dark:hover:bg-yellow-800/50'
+                          : 'bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-800/50'
                     }`}
                     aria-pressed={selectedCategories.includes(category)}
                   >
@@ -269,16 +304,21 @@ export default function TechnologyPanel() {
                     const isResearched = researchedTechs.includes(tech.id);
                     const canResearch = canResearchTech(tech.id, researchedTechs);
                     const isLocked = !isResearched && !canResearch;
+                    const isUnique = tech.category === TECH_CATEGORIES.UNIQUE;
 
                     return (
                       <label
                         key={tech.id}
                         className={`flex items-start gap-2 p-2 rounded border transition-all cursor-pointer ${
                           isResearched
-                            ? 'bg-green-50 dark:bg-green-900/30 border-green-300 dark:border-green-600'
+                            ? isUnique
+                              ? 'bg-yellow-50 dark:bg-yellow-900/30 border-yellow-400 dark:border-yellow-600'
+                              : 'bg-green-50 dark:bg-green-900/30 border-green-300 dark:border-green-600'
                             : isLocked
                               ? 'bg-gray-100 dark:bg-gray-700/50 border-gray-300 dark:border-gray-600 opacity-60 cursor-not-allowed'
-                              : 'bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/30'
+                              : isUnique
+                                ? 'bg-yellow-50/50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-700 hover:bg-yellow-100 dark:hover:bg-yellow-900/40'
+                                : 'bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/30'
                         }`}
                         title={
                           isLocked ? `Requires: ${tech.prerequisites.join(', ')}` : tech.description
@@ -289,10 +329,15 @@ export default function TechnologyPanel() {
                           checked={isResearched}
                           onChange={() => !isLocked && handleTechToggle(tech.id)}
                           disabled={isLocked}
-                          className="mt-1 rounded text-indigo-600 focus:ring-indigo-500"
+                          className={`mt-1 rounded ${isUnique ? 'text-yellow-500 focus:ring-yellow-500' : 'text-indigo-600 focus:ring-indigo-500'}`}
                         />
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-1 flex-wrap">
+                            {isUnique && (
+                              <span className="text-yellow-500" role="img" aria-label="unique">
+                                ⭐
+                              </span>
+                            )}
                             <span className="font-medium text-sm text-gray-900 dark:text-gray-100">
                               {tech.name}
                             </span>
