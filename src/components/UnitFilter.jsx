@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { SEARCH_DEBOUNCE_MS } from '../constants';
 
 export default function UnitFilter({ onFilterChange }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -6,6 +7,9 @@ export default function UnitFilter({ onFilterChange }) {
   const [selectedCostType, setSelectedCostType] = useState('all');
   const [selectedAgeFilter, setSelectedAgeFilter] = useState('all');
   const [hideNaval, setHideNaval] = useState(false);
+
+  // Debounce timer ref for search input
+  const searchDebounceRef = useRef(null);
 
   const categories = ['Infantry', 'Cavalry', 'Archer', 'Siege', 'Naval', 'Unique', 'Other'];
   const costTypes = [
@@ -22,10 +26,28 @@ export default function UnitFilter({ onFilterChange }) {
     { id: 'imperial', label: 'Imperial Age' }
   ];
 
+  // Cleanup debounce timer on unmount
+  useEffect(() => {
+    return () => {
+      if (searchDebounceRef.current) {
+        clearTimeout(searchDebounceRef.current);
+      }
+    };
+  }, []);
+
   const handleSearchChange = (e) => {
     const value = e.target.value;
     setSearchTerm(value);
-    updateFilters({ searchTerm: value });
+
+    // Clear existing debounce timer
+    if (searchDebounceRef.current) {
+      clearTimeout(searchDebounceRef.current);
+    }
+
+    // Debounce the filter update for performance
+    searchDebounceRef.current = setTimeout(() => {
+      updateFilters({ searchTerm: value });
+    }, SEARCH_DEBOUNCE_MS);
   };
 
   const toggleCategory = (category) => {
@@ -64,6 +86,10 @@ export default function UnitFilter({ onFilterChange }) {
   };
 
   const clearFilters = () => {
+    // Clear any pending debounce timer
+    if (searchDebounceRef.current) {
+      clearTimeout(searchDebounceRef.current);
+    }
     setSearchTerm('');
     setSelectedCategories([]);
     setSelectedCostType('all');

@@ -23,7 +23,7 @@
     "react-icons": "^5.5.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^14.1.2",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
