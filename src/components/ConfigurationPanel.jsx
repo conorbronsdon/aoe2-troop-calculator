@@ -33,17 +33,17 @@ export default function ConfigurationPanel() {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-      <h2 className="text-2xl font-semibold mb-4 text-gray-700">Configuration</h2>
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-6 transition-colors duration-300">
+      <h2 className="text-2xl font-semibold mb-4 text-gray-700 dark:text-gray-200">Configuration</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {/* Resource Limit Mode Toggle */}
         <div className="md:col-span-2 lg:col-span-3">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Resource Limit Mode
           </label>
           <div className="flex gap-4">
-            <label className="flex items-center cursor-pointer">
+            <label className="flex items-center cursor-pointer text-gray-900 dark:text-gray-100">
               <input
                 type="radio"
                 name="resourceMode"
@@ -54,7 +54,7 @@ export default function ConfigurationPanel() {
               />
               <span>Total Resources</span>
             </label>
-            <label className="flex items-center cursor-pointer">
+            <label className="flex items-center cursor-pointer text-gray-900 dark:text-gray-100">
               <input
                 type="radio"
                 name="resourceMode"
@@ -73,7 +73,7 @@ export default function ConfigurationPanel() {
           <div>
             <label
               htmlFor="totalResourceLimit"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
             >
               Total Resource Limit
             </label>
@@ -82,7 +82,7 @@ export default function ConfigurationPanel() {
               type="number"
               min="0"
               max={LIMITS.MAX_RESOURCE_VALUE}
-              className="w-full border rounded px-3 py-2"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
               value={config.totalResourceLimit}
               onChange={(e) =>
                 updateConfig({ totalResourceLimit: validateResourceValue(e.target.value) })
@@ -90,7 +90,7 @@ export default function ConfigurationPanel() {
               placeholder="e.g., 20000"
               aria-describedby="totalResourceLimitHelp"
             />
-            <p id="totalResourceLimitHelp" className="text-xs text-gray-500 mt-1">
+            <p id="totalResourceLimitHelp" className="text-xs text-gray-500 dark:text-gray-400 mt-1">
               Combined limit for all resources (max: {LIMITS.MAX_RESOURCE_VALUE.toLocaleString()})
             </p>
           </div>
@@ -100,14 +100,14 @@ export default function ConfigurationPanel() {
         {config.resourceLimitMode === 'individual' && (
           <div>
             <fieldset>
-              <legend className="block text-sm font-medium text-gray-700 mb-2">
+              <legend className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Individual Resource Limits
               </legend>
               {['food', 'wood', 'gold', 'stone'].map((resource) => (
                 <div key={resource} className="mb-2">
                   <label
                     htmlFor={`resource-${resource}`}
-                    className="text-xs text-gray-600 capitalize"
+                    className="text-xs text-gray-600 dark:text-gray-400 capitalize"
                   >
                     {resource}
                   </label>
@@ -116,7 +116,7 @@ export default function ConfigurationPanel() {
                     type="number"
                     min="0"
                     max={LIMITS.MAX_RESOURCE_VALUE}
-                    className="w-full border rounded px-3 py-1 text-sm"
+                    className="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-1 text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
                     value={config.resourceLimits[resource]}
                     onChange={(e) =>
                       updateConfig({
@@ -136,7 +136,7 @@ export default function ConfigurationPanel() {
 
         {/* Population Cap */}
         <div>
-          <label htmlFor="populationCap" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="populationCap" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Population Cap
           </label>
           <input
@@ -144,24 +144,24 @@ export default function ConfigurationPanel() {
             type="number"
             min="0"
             max={LIMITS.MAX_POPULATION_CAP}
-            className="w-full border rounded px-3 py-2"
+            className="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
             value={config.populationCap}
             onChange={(e) => updateConfig({ populationCap: validatePopulationCap(e.target.value) })}
             aria-describedby="populationCapHelp"
           />
-          <p id="populationCapHelp" className="text-xs text-gray-500 mt-1">
+          <p id="populationCapHelp" className="text-xs text-gray-500 dark:text-gray-400 mt-1">
             Max: {LIMITS.MAX_POPULATION_CAP.toLocaleString()}
           </p>
         </div>
 
         {/* Age Selection */}
         <div>
-          <label htmlFor="ageSelect" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="ageSelect" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Age
           </label>
           <select
             id="ageSelect"
-            className="w-full border rounded px-3 py-2 capitalize"
+            className="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2 capitalize bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
             value={config.selectedAge}
             onChange={(e) => updateConfig({ selectedAge: e.target.value })}
             aria-label="Select game age"
@@ -176,9 +176,9 @@ export default function ConfigurationPanel() {
 
         {/* Display Mode Selection */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Display Mode</label>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Display Mode</label>
           <div className="space-y-2">
-            <label className="flex items-center cursor-pointer p-2 rounded border border-gray-300 hover:bg-gray-50 transition-colors">
+            <label className="flex items-center cursor-pointer p-2 rounded border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-gray-900 dark:text-gray-100">
               <input
                 type="radio"
                 name="displayMode"
@@ -194,7 +194,7 @@ export default function ConfigurationPanel() {
                 <span className="font-medium">Units Only</span>
               </span>
             </label>
-            <label className="flex items-center cursor-pointer p-2 rounded border border-gray-300 hover:bg-gray-50 transition-colors">
+            <label className="flex items-center cursor-pointer p-2 rounded border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-gray-900 dark:text-gray-100">
               <input
                 type="radio"
                 name="displayMode"
@@ -210,7 +210,7 @@ export default function ConfigurationPanel() {
                 <span className="font-medium">Units & Fortifications</span>
               </span>
             </label>
-            <label className="flex items-center cursor-pointer p-2 rounded border border-gray-300 hover:bg-gray-50 transition-colors">
+            <label className="flex items-center cursor-pointer p-2 rounded border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-gray-900 dark:text-gray-100">
               <input
                 type="radio"
                 name="displayMode"
@@ -227,7 +227,7 @@ export default function ConfigurationPanel() {
               </span>
             </label>
           </div>
-          <p className="text-xs text-gray-500 mt-2">
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
             {config.displayMode === 'units' && 'Select military units for your army'}
             {config.displayMode === 'both' && 'Plan both military units and defensive structures'}
             {config.displayMode === 'fortifications' && 'Build walls, towers, and castles'}
@@ -236,8 +236,8 @@ export default function ConfigurationPanel() {
 
         {/* Technology Panel Toggle */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Advanced Options</label>
-          <label className="flex items-center cursor-pointer p-2 rounded border border-gray-300 hover:bg-gray-50 transition-colors">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Advanced Options</label>
+          <label className="flex items-center cursor-pointer p-2 rounded border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-gray-900 dark:text-gray-100">
             <input
               type="checkbox"
               checked={config.showTechPanel || false}
@@ -251,20 +251,20 @@ export default function ConfigurationPanel() {
               <span className="font-medium">Show Technology Panel</span>
             </span>
           </label>
-          <p className="text-xs text-gray-500 mt-2">
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
             Configure Blacksmith, University, and other upgrades to see modified unit stats
           </p>
         </div>
 
         {/* Civilization Selection - Enhanced with visual prominence */}
         <div className="md:col-span-2 lg:col-span-3">
-          <div className="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-400 rounded-xl p-5 shadow-lg">
+          <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/30 dark:to-orange-900/30 border-2 border-amber-400 dark:border-amber-600 rounded-xl p-5 shadow-lg">
             <div className="mb-4">
-              <h3 className="text-xl font-bold text-amber-900 flex items-center gap-2">
+              <h3 className="text-xl font-bold text-amber-900 dark:text-amber-200 flex items-center gap-2">
                 <span className="text-2xl">🏛️</span>
                 Select Your Civilization
               </h3>
-              <p className="text-sm text-amber-700 mt-1">
+              <p className="text-sm text-amber-700 dark:text-amber-300 mt-1">
                 Choose a civilization to apply unique bonuses to your army composition
               </p>
             </div>

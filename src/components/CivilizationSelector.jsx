@@ -122,28 +122,28 @@ export default function CivilizationSelector({
           transition-all duration-200
           ${
             isPreviewing
-              ? 'border-amber-400 bg-amber-50 ring-2 ring-amber-200 shadow-lg'
-              : 'border-gray-300 bg-white hover:border-amber-400 hover:shadow-md'
+              ? 'border-amber-400 bg-amber-50 dark:bg-amber-900/30 ring-2 ring-amber-200 dark:ring-amber-700 shadow-lg'
+              : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 hover:border-amber-400 dark:hover:border-amber-500 hover:shadow-md'
           }
         `}
       >
         {renderCivIcon(currentCiv, 'w-10 h-10')}
 
         <div className="flex-1 text-left">
-          <div className="font-semibold text-gray-900">{currentCiv?.name || 'Select...'}</div>
+          <div className="font-semibold text-gray-900 dark:text-gray-100">{currentCiv?.name || 'Select...'}</div>
           {currentCiv?.region && currentCiv.region !== 'None' && (
-            <div className="text-xs text-gray-500">{currentCiv.region}</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400">{currentCiv.region}</div>
           )}
         </div>
 
         <div className="flex items-center gap-2">
           {isPreviewing && (
-            <span className="px-2 py-1 text-xs font-semibold bg-amber-200 text-amber-800 rounded-full animate-pulse">
+            <span className="px-2 py-1 text-xs font-semibold bg-amber-200 dark:bg-amber-700 text-amber-800 dark:text-amber-100 rounded-full animate-pulse">
               PREVIEW
             </span>
           )}
           <svg
-            className={`w-5 h-5 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+            className={`w-5 h-5 text-gray-400 dark:text-gray-500 transition-transform ${isOpen ? 'rotate-180' : ''}`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -155,14 +155,14 @@ export default function CivilizationSelector({
 
       {/* Dropdown panel */}
       {isOpen && (
-        <div className="absolute top-full mt-2 w-full bg-white border-2 border-amber-300 rounded-lg shadow-2xl z-50 max-h-96 overflow-hidden">
+        <div className="absolute top-full mt-2 w-full bg-white dark:bg-gray-800 border-2 border-amber-300 dark:border-amber-600 rounded-lg shadow-2xl z-50 max-h-96 overflow-hidden">
           {/* Search input */}
-          <div className="sticky top-0 bg-white border-b p-3">
+          <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-3">
             <input
               ref={searchInputRef}
               type="text"
               placeholder="Search civilizations..."
-              className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-amber-300 focus:border-amber-400"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-amber-300 dark:focus:ring-amber-600 focus:border-amber-400 dark:focus:border-amber-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -171,7 +171,7 @@ export default function CivilizationSelector({
           {/* Civilization list */}
           <div className="overflow-y-auto max-h-72">
             {filteredCivs.length === 0 ? (
-              <div className="p-4 text-center text-gray-500">
+              <div className="p-4 text-center text-gray-500 dark:text-gray-400">
                 No civilizations found matching &quot;{searchTerm}&quot;
               </div>
             ) : (
@@ -195,23 +195,23 @@ export default function CivilizationSelector({
                       className={`
                         w-full flex items-center gap-3 p-3 text-left
                         transition-colors duration-150
-                        ${civ.id === currentCivId ? 'bg-amber-100 border-l-4 border-amber-500' : 'hover:bg-gray-50 border-l-4 border-transparent'}
-                        ${civ.id === selectedCivId && civ.id !== currentCivId ? 'bg-green-50' : ''}
+                        ${civ.id === currentCivId ? 'bg-amber-100 dark:bg-amber-900/40 border-l-4 border-amber-500' : 'hover:bg-gray-50 dark:hover:bg-gray-700 border-l-4 border-transparent'}
+                        ${civ.id === selectedCivId && civ.id !== currentCivId ? 'bg-green-50 dark:bg-green-900/30' : ''}
                       `}
                     >
                       {renderCivIcon(civ)}
 
                       <div className="flex-1">
-                        <div className="font-medium text-gray-900">{civ.name}</div>
+                        <div className="font-medium text-gray-900 dark:text-gray-100">{civ.name}</div>
                         {civ.bonuses && civ.bonuses.length > 0 && (
-                          <div className="text-xs text-gray-500">
+                          <div className="text-xs text-gray-500 dark:text-gray-400">
                             {civ.bonuses.length} bonus{civ.bonuses.length !== 1 ? 'es' : ''}
                           </div>
                         )}
                       </div>
 
                       {civ.id === selectedCivId && (
-                        <span className="px-2 py-1 text-xs font-semibold bg-green-200 text-green-800 rounded-full">
+                        <span className="px-2 py-1 text-xs font-semibold bg-green-200 dark:bg-green-700 text-green-800 dark:text-green-100 rounded-full">
                           ACTIVE
                         </span>
                       )}
@@ -235,8 +235,8 @@ export default function CivilizationSelector({
             transition-all duration-200
             ${
               isPreviewing
-                ? 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl transform hover:scale-[1.02]'
-                : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                ? 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 dark:from-blue-700 dark:to-blue-800 dark:hover:from-blue-600 dark:hover:to-blue-700 text-white shadow-lg hover:shadow-xl transform hover:scale-[1.02]'
+                : 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed'
             }
           `}
           title={
@@ -258,22 +258,22 @@ export default function CivilizationSelector({
 
       {/* Status messages */}
       {isPreviewing && (
-        <div className="mt-3 p-3 bg-amber-50 border border-amber-300 rounded-lg">
-          <p className="text-amber-800 font-medium flex items-center gap-2">
+        <div className="mt-3 p-3 bg-amber-50 dark:bg-amber-900/30 border border-amber-300 dark:border-amber-600 rounded-lg">
+          <p className="text-amber-800 dark:text-amber-200 font-medium flex items-center gap-2">
             <span className="animate-pulse">⚠️</span>
             <span>
               Previewing <strong>{currentCiv?.name}</strong>
             </span>
           </p>
-          <p className="text-sm text-amber-700 mt-1">
+          <p className="text-sm text-amber-700 dark:text-amber-300 mt-1">
             Click &quot;Apply&quot; to activate bonuses and update all calculations.
           </p>
         </div>
       )}
 
       {!isPreviewing && appliedCiv && appliedCiv.id !== 'generic' && (
-        <div className="mt-3 p-3 bg-green-50 border border-green-300 rounded-lg">
-          <p className="text-green-800 font-medium flex items-center gap-2">
+        <div className="mt-3 p-3 bg-green-50 dark:bg-green-900/30 border border-green-300 dark:border-green-600 rounded-lg">
+          <p className="text-green-800 dark:text-green-200 font-medium flex items-center gap-2">
             <span>✓</span>
             <strong>{appliedCiv.name}</strong> bonuses are active
           </p>
@@ -282,12 +282,12 @@ export default function CivilizationSelector({
 
       {/* Warning for Generic selection */}
       {appliedCiv?.id === 'generic' && (
-        <div className="mt-3 p-4 bg-red-50 border-2 border-red-300 rounded-lg">
-          <p className="text-red-800 font-bold flex items-center gap-2">
+        <div className="mt-3 p-4 bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-600 rounded-lg">
+          <p className="text-red-800 dark:text-red-200 font-bold flex items-center gap-2">
             <span className="text-xl">⚠️</span>
             No Civilization Selected
           </p>
-          <p className="text-sm text-red-700 mt-2">
+          <p className="text-sm text-red-700 dark:text-red-300 mt-2">
             <strong>Important:</strong> Select and apply a civilization above to unlock unique
             bonuses and get accurate cost/stat calculations for your army composition.
           </p>

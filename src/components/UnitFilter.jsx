@@ -114,13 +114,13 @@ export default function UnitFilter({ onFilterChange }) {
     hideNaval;
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-4 mb-4">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 mb-4 transition-colors duration-300">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-gray-700">Filter Units</h3>
+        <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200">Filter Units</h3>
         {hasActiveFilters && (
           <button
             onClick={clearFilters}
-            className="text-sm text-blue-600 hover:text-blue-800 underline"
+            className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline"
           >
             Clear All Filters
           </button>
@@ -135,7 +135,7 @@ export default function UnitFilter({ onFilterChange }) {
             placeholder="Search units by name..."
             value={searchTerm}
             onChange={handleSearchChange}
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           />
           <span className="absolute right-3 top-2.5 text-gray-400">🔍</span>
         </div>
@@ -148,15 +148,15 @@ export default function UnitFilter({ onFilterChange }) {
             type="checkbox"
             checked={hideNaval}
             onChange={handleHideNavalChange}
-            className="form-checkbox h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
+            className="form-checkbox h-5 w-5 text-blue-600 rounded border-gray-300 dark:border-gray-600 focus:ring-blue-500"
           />
-          <span className="ml-2 text-sm font-medium text-gray-700">Hide Naval Units</span>
+          <span className="ml-2 text-sm font-medium text-gray-700 dark:text-gray-300">Hide Naval Units</span>
         </label>
       </div>
 
       {/* Category Filters */}
       <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 mb-2">Categories</label>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Categories</label>
         <div className="flex flex-wrap gap-2">
           {categories.map((category) => (
             <button
@@ -164,8 +164,8 @@ export default function UnitFilter({ onFilterChange }) {
               onClick={() => toggleCategory(category)}
               className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                 selectedCategories.includes(category)
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  ? 'bg-blue-500 dark:bg-blue-600 text-white'
+                  : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
               }`}
             >
               {category}
@@ -178,11 +178,11 @@ export default function UnitFilter({ onFilterChange }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Cost Type Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Cost Type</label>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Cost Type</label>
           <select
             value={selectedCostType}
             onChange={(e) => handleCostTypeChange(e.target.value)}
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           >
             {costTypes.map((type) => (
               <option key={type.id} value={type.id}>
@@ -194,11 +194,11 @@ export default function UnitFilter({ onFilterChange }) {
 
         {/* Age Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Age</label>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Age</label>
           <select
             value={selectedAgeFilter}
             onChange={(e) => handleAgeFilterChange(e.target.value)}
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           >
             {ageFilters.map((age) => (
               <option key={age.id} value={age.id}>

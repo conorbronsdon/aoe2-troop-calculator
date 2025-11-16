@@ -56,13 +56,13 @@ export default function ArmyCompositionSummary() {
   const totalUnits = Object.values(composition).reduce((sum, q) => sum + q, 0);
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-colors duration-300">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-semibold text-gray-700">Army Composition</h2>
+        <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-200">Army Composition</h2>
         <div className="flex gap-2">
           <button
             onClick={handleShare}
-            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded text-sm"
+            className="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-colors"
             title="Copy shareable link"
           >
             📋 Share
@@ -70,7 +70,7 @@ export default function ArmyCompositionSummary() {
           <div className="relative">
             <button
               onClick={handleExportCSV}
-              className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded text-sm"
+              className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-4 py-2 rounded text-sm transition-colors"
               title="Download as CSV"
             >
               📥 CSV
@@ -79,7 +79,7 @@ export default function ArmyCompositionSummary() {
           <div className="relative">
             <button
               onClick={handleExportJSON}
-              className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded text-sm"
+              className="bg-purple-500 hover:bg-purple-600 dark:bg-purple-600 dark:hover:bg-purple-700 text-white px-4 py-2 rounded text-sm transition-colors"
               title="Download as JSON"
             >
               📥 JSON
@@ -87,7 +87,7 @@ export default function ArmyCompositionSummary() {
           </div>
           <button
             onClick={resetComposition}
-            className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm"
+            className="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white px-4 py-2 rounded text-sm transition-colors"
           >
             Reset All
           </button>
@@ -97,8 +97,8 @@ export default function ArmyCompositionSummary() {
       {/* Status messages */}
       {(shareMessage || exportMessage) && (
         <div className="mb-4 text-sm text-center">
-          {shareMessage && <span className="text-blue-600 mr-4">{shareMessage}</span>}
-          {exportMessage && <span className="text-green-600">{exportMessage}</span>}
+          {shareMessage && <span className="text-blue-600 dark:text-blue-400 mr-4">{shareMessage}</span>}
+          {exportMessage && <span className="text-green-600 dark:text-green-400">{exportMessage}</span>}
         </div>
       )}
 
@@ -118,25 +118,25 @@ export default function ArmyCompositionSummary() {
           };
 
           return (
-            <div key={unitId} className="border rounded p-3 flex justify-between items-center">
+            <div key={unitId} className="border border-gray-200 dark:border-gray-600 rounded p-3 flex justify-between items-center bg-white dark:bg-gray-700/50">
               <div className="flex items-center space-x-3">
-                <span className="font-semibold text-lg">{quantity}x</span>
-                <span className="font-medium">{unit.name}</span>
+                <span className="font-semibold text-lg text-gray-900 dark:text-gray-100">{quantity}x</span>
+                <span className="font-medium text-gray-800 dark:text-gray-200">{unit.name}</span>
               </div>
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-gray-600 dark:text-gray-300">
                 {totalUnitCost.food > 0 && <span className="mr-3">🌾 {totalUnitCost.food}</span>}
                 {totalUnitCost.wood > 0 && <span className="mr-3">🪵 {totalUnitCost.wood}</span>}
                 {totalUnitCost.gold > 0 && <span className="mr-3">🪙 {totalUnitCost.gold}</span>}
-                <span className="ml-3 text-blue-600">Pop: {unit.population * quantity}</span>
+                <span className="ml-3 text-blue-600 dark:text-blue-400">Pop: {unit.population * quantity}</span>
               </div>
             </div>
           );
         })}
       </div>
 
-      <div className="mt-4 pt-4 border-t">
-        <div className="text-sm text-gray-600">
-          <strong>Total Units:</strong> {totalUnits}
+      <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600">
+        <div className="text-sm text-gray-600 dark:text-gray-300">
+          <strong className="text-gray-900 dark:text-gray-100">Total Units:</strong> {totalUnits}
         </div>
       </div>
     </div>

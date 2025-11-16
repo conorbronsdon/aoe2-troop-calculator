@@ -61,7 +61,7 @@ const SocialShareButtons = () => {
 
   return (
     <div className="flex items-center justify-center gap-3 mb-6">
-      <span className="text-sm text-gray-600 font-medium">Share:</span>
+      <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">Share:</span>
 
       {/* Twitter */}
       <SocialButton
