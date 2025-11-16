@@ -1,6 +1,7 @@
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { civilizations } from '../data/civilizations';
 import { LIMITS, AGES as ALL_AGES } from '../constants';
+import CivilizationSelector from './CivilizationSelector';
 
 const AGES = ALL_AGES.filter((age) => age !== 'dark'); // Exclude Dark Age for army planning
 
@@ -30,12 +31,6 @@ export default function ConfigurationPanel() {
       civId: config.previewCiv || config.selectedCiv,
     });
   };
-
-  const isPreviewing = config.previewCiv && config.previewCiv !== config.selectedCiv;
-  const previewCiv = civilizations.find(
-    (civ) => civ.id === (config.previewCiv || config.selectedCiv)
-  );
-  const appliedCiv = civilizations.find((civ) => civ.id === config.selectedCiv);
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
@@ -261,66 +256,26 @@ export default function ConfigurationPanel() {
           </p>
         </div>
 
-        {/* Civilization Selection */}
+        {/* Civilization Selection - Enhanced with visual prominence */}
         <div className="md:col-span-2 lg:col-span-3">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Select Civilization
-            {appliedCiv && appliedCiv.id !== 'generic' && (
-              <span className="ml-2 text-xs text-blue-600 font-semibold">
-                (Currently applied: {appliedCiv.name})
-              </span>
-            )}
-          </label>
-          <div className="flex gap-2">
-            <select
-              className={`flex-1 border rounded px-3 py-2 transition-all ${
-                isPreviewing
-                  ? 'border-amber-400 bg-amber-50 ring-2 ring-amber-200'
-                  : 'border-gray-300'
-              }`}
-              value={config.previewCiv || config.selectedCiv}
-              onChange={(e) => updateConfig({ previewCiv: e.target.value })}
-            >
-              {civilizations.map((civ) => (
-                <option key={civ.id} value={civ.id}>
-                  {civ.name} {civ.region !== 'None' ? `(${civ.region})` : ''}
-                </option>
-              ))}
-            </select>
-            <button
-              onClick={applyCivilization}
-              disabled={!isPreviewing}
-              className={`px-6 py-2 rounded font-semibold transition-all duration-200 ${
-                isPreviewing
-                  ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105'
-                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-              }`}
-              title={
-                isPreviewing
-                  ? `Apply ${previewCiv.name} bonuses`
-                  : 'Select a different civilization to apply'
-              }
-            >
-              {isPreviewing ? 'Apply' : 'Applied'}
-            </button>
+          <div className="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-400 rounded-xl p-5 shadow-lg">
+            <div className="mb-4">
+              <h3 className="text-xl font-bold text-amber-900 flex items-center gap-2">
+                <span className="text-2xl">🏛️</span>
+                Select Your Civilization
+              </h3>
+              <p className="text-sm text-amber-700 mt-1">
+                Choose a civilization to apply unique bonuses to your army composition
+              </p>
+            </div>
+
+            <CivilizationSelector
+              selectedCivId={config.selectedCiv}
+              previewCivId={config.previewCiv}
+              onPreviewChange={(civId) => updateConfig({ previewCiv: civId })}
+              onApply={applyCivilization}
+            />
           </div>
-          {isPreviewing && (
-            <p className="text-sm text-amber-700 mt-2 flex items-center gap-1">
-              <span className="animate-pulse">⚠️</span>
-              <span>
-                Previewing <strong>{previewCiv.name}</strong>. Click &quot;Apply&quot; to activate
-                bonuses and update calculations.
-              </span>
-            </p>
-          )}
-          {!isPreviewing && appliedCiv && appliedCiv.id !== 'generic' && (
-            <p className="text-sm text-green-700 mt-2 flex items-center gap-1">
-              <span>✓</span>
-              <span>
-                <strong>{appliedCiv.name}</strong> bonuses are active and affecting your army.
-              </span>
-            </p>
-          )}
         </div>
       </div>
     </div>
