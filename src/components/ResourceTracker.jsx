@@ -8,14 +8,7 @@ import {
 import { fortifications } from '../data/fortifications';
 import { calculateTechCost } from '../data/technologies';
 import { RESOURCES, RESOURCE_DISPLAY_NAMES } from '../constants';
-
-// Resource-specific icons and colors
-const RESOURCE_ICONS = {
-  food: '🍖',
-  wood: '🌲',
-  gold: '💰',
-  stone: '🗿',
-};
+import ResourceIcon from './ResourceIcon';
 
 const RESOURCE_GRADIENT_COLORS = {
   food: 'from-orange-400 to-red-500',
@@ -201,9 +194,7 @@ export default function ResourceTracker() {
                 key={resource}
                 className="flex flex-col items-center p-3 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600 hover:shadow-md transition-shadow"
               >
-                <span className="text-2xl mb-1" role="img" aria-label={RESOURCE_DISPLAY_NAMES[resource]}>
-                  {RESOURCE_ICONS[resource]}
-                </span>
+                <ResourceIcon resource={resource} size="xl" className="mb-1" />
                 <span className="font-semibold text-gray-700 dark:text-gray-300">
                   {RESOURCE_DISPLAY_NAMES[resource]}
                 </span>
@@ -273,9 +264,7 @@ export default function ResourceTracker() {
               <div key={resource} className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
                 <div className="flex justify-between items-center text-sm mb-2">
                   <span className="font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2" id={`${resource}-label`}>
-                    <span className="text-xl" role="img" aria-label={RESOURCE_DISPLAY_NAMES[resource]}>
-                      {RESOURCE_ICONS[resource]}
-                    </span>
+                    <ResourceIcon resource={resource} size="lg" />
                     {RESOURCE_DISPLAY_NAMES[resource]}
                     <span className="text-sm" title={status.text}>{status.icon}</span>
                   </span>
@@ -339,7 +328,7 @@ export default function ResourceTracker() {
                     techCost[resource] > 0 && (
                       <div key={resource} className="flex items-center justify-between bg-white dark:bg-gray-800 p-2 rounded shadow-sm">
                         <span className="flex items-center gap-1">
-                          <span role="img" aria-label={RESOURCE_DISPLAY_NAMES[resource]}>{RESOURCE_ICONS[resource]}</span>
+                          <ResourceIcon resource={resource} size="sm" />
                           {RESOURCE_DISPLAY_NAMES[resource]}:
                         </span>
                         <span className="font-semibold">{techCost[resource].toLocaleString()}</span>

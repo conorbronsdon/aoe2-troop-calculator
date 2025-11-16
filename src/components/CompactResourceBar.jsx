@@ -8,6 +8,7 @@ import {
 import { fortifications } from '../data/fortifications';
 import { calculateTechCost } from '../data/technologies';
 import { RESOURCES } from '../constants';
+import ResourceIcon from './ResourceIcon';
 
 /**
  * Compact resource and population tracking bar for bottom of page
@@ -164,25 +165,25 @@ export default function CompactResourceBar() {
           {/* Resource Breakdown (compact) */}
           <div className="hidden lg:flex items-center gap-3 text-sm">
             <div className="flex items-center gap-1">
-              <span className="text-orange-500" role="img" aria-label="Food">🍖</span>
+              <ResourceIcon resource="food" size="sm" />
               <span className="font-medium text-gray-700 dark:text-gray-300">
                 {combinedCost.food.toLocaleString()}
               </span>
             </div>
             <div className="flex items-center gap-1">
-              <span className="text-amber-700" role="img" aria-label="Wood">🌲</span>
+              <ResourceIcon resource="wood" size="sm" />
               <span className="font-medium text-gray-700 dark:text-gray-300">
                 {combinedCost.wood.toLocaleString()}
               </span>
             </div>
             <div className="flex items-center gap-1">
-              <span className="text-yellow-500" role="img" aria-label="Gold">💰</span>
+              <ResourceIcon resource="gold" size="sm" />
               <span className="font-medium text-gray-700 dark:text-gray-300">
                 {combinedCost.gold.toLocaleString()}
               </span>
             </div>
             <div className="flex items-center gap-1">
-              <span className="text-gray-500" role="img" aria-label="Stone">🗿</span>
+              <ResourceIcon resource="stone" size="sm" />
               <span className="font-medium text-gray-700 dark:text-gray-300">
                 {combinedCost.stone.toLocaleString()}
               </span>
