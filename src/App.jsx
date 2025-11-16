@@ -97,7 +97,7 @@ function AppContent() {
             <div className="lg:sticky lg:top-4 space-y-4 max-h-[calc(100vh-2rem)] lg:overflow-y-auto lg:pr-2">
               <ConfigurationPanel />
               <CivilizationIndicator />
-              <ResourceTracker />
+              <ArmyCompositionSummary />
               <CivilizationBonuses />
               {config.showTechPanel && <TechnologyPanel />}
               <CivilizationComparison />
@@ -107,13 +107,14 @@ function AppContent() {
 
           {/* Main Content Area - Unit Selection & Army */}
           <main className="flex-1 min-w-0">
+            {/* Resource Tracker at top of main content */}
+            <ResourceTracker />
+
             {/* Conditionally show Units and/or Fortifications based on display mode */}
             {(config.displayMode === 'units' || config.displayMode === 'both') && <UnitSelection />}
             {(config.displayMode === 'fortifications' || config.displayMode === 'both') && (
               <FortificationSelection />
             )}
-
-            <ArmyCompositionSummary />
 
             {/* Buy Me a Coffee CTA */}
             <BuyMeCoffee />
