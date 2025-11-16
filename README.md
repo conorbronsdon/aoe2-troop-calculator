@@ -115,6 +115,14 @@ Plan your armies • Calculate costs • Compare civilizations • Optimize reso
 ### 💾 Composition Management
 - **Save/Load System**: Store multiple army compositions locally
 - **Export to JSON**: Download your compositions for sharing
+- **Import Compositions** (NEW in v2.6.0):
+  - 📤 Import from JSON files via drag-and-drop or file browser
+  - 📋 Paste JSON or encoded army data directly
+  - 🔗 Import from shared URLs with army parameters
+  - ⚙️ Choose to Replace or Merge with current composition
+  - ✅ Full validation with error and warning messages
+  - 🔒 Data sanitization for security (XSS protection)
+  - 📊 Import history tracking with statistics
 - **URL Sharing**: Share compositions via link
 - **Comparison Mode**: Compare two different civilizations side-by-side
 
@@ -234,15 +242,21 @@ src/
 │   ├── CivilizationBonuses.jsx  # Bonus display
 │   ├── UnitSelection.jsx
 │   ├── UnitCard.jsx
-│   ├── FortificationSelection.jsx  # NEW: Fortification mode
-│   ├── FortificationCard.jsx      # NEW: Fortification cards
+│   ├── FortificationSelection.jsx  # Fortification mode
+│   ├── FortificationCard.jsx      # Fortification cards
+│   ├── ImportModal.jsx            # NEW: Import composition modal
 │   └── ...
 ├── context/            # State management
-│   ├── ArmyContext.jsx       # Updated: Fortification support
+│   ├── ArmyContext.jsx       # Updated: Import composition support
 │   └── ThemeContext.jsx
+├── services/          # Business logic services
+│   ├── import.service.js      # NEW: Import validation & parsing
+│   ├── export.service.js      # Export to CSV/JSON
+│   ├── share.service.js       # URL sharing
+│   └── storage.service.js     # LocalStorage management
 ├── data/              # Game data
 │   ├── civilizations.js         # 51 civs with bonuses
-│   ├── fortifications.js        # NEW: Walls, towers, castles
+│   ├── fortifications.js        # Walls, towers, castles
 │   └── units/
 │       ├── infantry.js
 │       ├── cavalry.js
@@ -252,7 +266,7 @@ src/
 │       ├── unique.js            # 50+ unique units
 │       └── other.js
 ├── utils/             # Helper functions
-│   ├── calculations.js          # Updated: Fortification calculations
+│   ├── calculations.js          # Cost calculations
 │   └── iconMappings.js          # Unit icon URL mappings
 └── App.jsx
 ```
@@ -271,14 +285,15 @@ npm run test:watch
 npm run test:coverage
 ```
 
-### Test Coverage (256 Tests)
+### Test Coverage (290 Tests)
 - **Unit Data** (59 tests): Validation for all 100+ units
 - **Component Tests** (134 tests): UnitCard, UnitFilter, ResourceCost, ThemeToggle, ErrorBoundary
-- **Service Tests** (54 tests): Export, Storage, Share services
+- **Service Tests** (88 tests): Export, Storage, Share, Import services
 - **Utility Tests** (29 tests): Cost calculations with civilization bonuses
 - Unit filtering by civilization and age
 - Component rendering and user interaction tests
 - Error handling and edge cases
+- Import validation and sanitization tests
 
 ## 📊 Data Accuracy
 
@@ -315,6 +330,14 @@ All unit costs, population values, and civilization bonuses are based on Age of 
   - Resource Tracker Visual Enhancement (gradients, status indicators, animations)
   - Civilization UI Consolidation (insignia in bonuses, streamlined layout)
   - Enhanced Status Indicators (✅📈📊⚠️🚫 dynamic icons)
+- ✅ **Import Compositions v2.6.0** (November 2025):
+  - Import from JSON files with drag-and-drop support
+  - Paste JSON or encoded army data directly
+  - Import from shared URLs
+  - Replace or Merge import modes
+  - Full validation with error/warning messages
+  - Data sanitization for security
+  - Import history tracking (34 new tests)
 
 </details>
 
@@ -450,11 +473,11 @@ Found a bug or have a suggestion?
 
 ### 📊 Project Stats
 
-![Version](https://img.shields.io/badge/Version-2.5.0-brightgreen?style=flat)
+![Version](https://img.shields.io/badge/Version-2.6.0-brightgreen?style=flat)
 ![Last Updated](https://img.shields.io/badge/Last_Updated-November_2025-blue?style=flat)
 ![Status](https://img.shields.io/badge/Status-Production_Ready-success?style=flat)
 
-**100+ Units • 101 Unique Units • 51 Civilizations • Enhanced Resource Tracking • 256 Tests**
+**100+ Units • 101 Unique Units • 51 Civilizations • Import/Export System • 290 Tests**
 
 ---
 

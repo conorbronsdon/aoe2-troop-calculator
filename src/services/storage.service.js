@@ -4,8 +4,10 @@
  */
 
 import { logger } from '../utils/errorHandler';
+import { STORAGE_KEYS, MAX_IMPORT_HISTORY } from '../constants';
 
 const STORAGE_KEY = 'aoe2_army_compositions';
+const IMPORT_HISTORY_KEY = STORAGE_KEYS.IMPORT_HISTORY;
 
 export const StorageService = {
   /**
@@ -123,5 +125,86 @@ export const StorageService = {
     } catch (error) {
       return false;
     }
+  },
+
+  // =========================================================================
+  // Import History Management
+  // =========================================================================
+
+  /**
+   * Add an entry to the import history
+   * @param {Object} entry - Import history entry
+   * @returns {Object} The saved entry
+   */
+  addImportHistory(entry) {
+    try {
+      const history = this.getImportHistory();
+      history.unshift(entry); // Add to beginning (most recent first)
+
+      // Keep only the most recent entries
+      const trimmedHistory = history.slice(0, MAX_IMPORT_HISTORY);
+
+      localStorage.setItem(IMPORT_HISTORY_KEY, JSON.stringify(trimmedHistory));
+      return entry;
+    } catch (error) {
+      logger.error('Failed to save import history', error);
+      return entry;
+    }
+  },
+
+  /**
+   * Get all import history entries
+   * @returns {Array} Array of import history entries
+   */
+  getImportHistory() {
+    try {
+      const data = localStorage.getItem(IMPORT_HISTORY_KEY);
+      return data ? JSON.parse(data) : [];
+    } catch (error) {
+      logger.error('Failed to load import history', error);
+      return [];
+    }
+  },
+
+  /**
+   * Clear all import history
+   * @returns {boolean} Success status
+   */
+  clearImportHistory() {
+    try {
+      localStorage.removeItem(IMPORT_HISTORY_KEY);
+      return true;
+    } catch (error) {
+      logger.error('Failed to clear import history', error);
+      return false;
+    }
+  },
+
+  /**
+   * Get import statistics
+   * @returns {Object} Statistics about imports
+   */
+  getImportStats() {
+    const history = this.getImportHistory();
+    const successful = history.filter((entry) => entry.success).length;
+    const failed = history.length - successful;
+
+    const sourceBreakdown = history.reduce(
+      (acc, entry) => {
+        if (entry.source) {
+          acc[entry.source] = (acc[entry.source] || 0) + 1;
+        }
+        return acc;
+      },
+      { file: 0, paste: 0, url: 0 }
+    );
+
+    return {
+      total: history.length,
+      successful,
+      failed,
+      bySource: sourceBreakdown,
+      lastImport: history[0] || null,
+    };
   },
 };

@@ -4,16 +4,41 @@ import { getUnitById } from '../data/units';
 import { calculateUnitCost } from '../utils/calculations';
 import { ExportService } from '../services/export.service';
 import { ShareService } from '../services/share.service';
+import { ImportService } from '../services/import.service';
+import { StorageService } from '../services/storage.service';
 import ResourceIcon from './ResourceIcon';
+import ImportModal from './ImportModal';
 
 export default function ArmyCompositionSummary() {
   const { state, dispatch } = useArmy();
   const { composition, config } = state;
   const [shareMessage, setShareMessage] = useState('');
   const [exportMessage, setExportMessage] = useState('');
+  const [importMessage, setImportMessage] = useState('');
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
 
   const resetComposition = () => {
     dispatch({ type: ACTION_TYPES.RESET_COMPOSITION });
+  };
+
+  const handleImport = (data, mode, source, filename = null) => {
+    dispatch({
+      type: ACTION_TYPES.IMPORT_COMPOSITION,
+      composition: data.composition,
+      config: data.config,
+      mode,
+    });
+
+    // Track import history
+    const historyEntry = ImportService.createHistoryEntry(source, filename, {
+      success: true,
+      data,
+    });
+    StorageService.addImportHistory(historyEntry);
+
+    const unitCount = Object.keys(data.composition).length;
+    setImportMessage(`Imported ${unitCount} unit type${unitCount !== 1 ? 's' : ''}`);
+    setTimeout(() => setImportMessage(''), 3000);
   };
 
   const handleExportCSV = () => {
@@ -51,57 +76,96 @@ export default function ArmyCompositionSummary() {
   const compositionEntries = Object.entries(composition).filter(([_, quantity]) => quantity > 0);
 
   if (compositionEntries.length === 0) {
-    return null;
+    return (
+      <>
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-colors duration-300">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-200">Army Composition</h2>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setIsImportModalOpen(true)}
+                className="bg-indigo-500 hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white px-4 py-2 rounded text-sm transition-colors"
+                title="Import composition from file or URL"
+              >
+                📤 Import
+              </button>
+            </div>
+          </div>
+          <p className="text-gray-500 dark:text-gray-400 text-center py-8">
+            No units selected. Add units from the list above or import a composition.
+          </p>
+          {importMessage && (
+            <div className="text-sm text-center">
+              <span className="text-indigo-600 dark:text-indigo-400">{importMessage}</span>
+            </div>
+          )}
+        </div>
+        <ImportModal
+          isOpen={isImportModalOpen}
+          onClose={() => setIsImportModalOpen(false)}
+          onImport={handleImport}
+        />
+      </>
+    );
   }
 
   const totalUnits = Object.values(composition).reduce((sum, q) => sum + q, 0);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-colors duration-300">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-200">Army Composition</h2>
-        <div className="flex gap-2">
-          <button
-            onClick={handleShare}
-            className="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-colors"
-            title="Copy shareable link"
-          >
-            📋 Share
-          </button>
-          <div className="relative">
+    <>
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-colors duration-300">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-200">Army Composition</h2>
+          <div className="flex gap-2 flex-wrap">
             <button
-              onClick={handleExportCSV}
-              className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-4 py-2 rounded text-sm transition-colors"
-              title="Download as CSV"
+              onClick={() => setIsImportModalOpen(true)}
+              className="bg-indigo-500 hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white px-4 py-2 rounded text-sm transition-colors"
+              title="Import composition from file or URL"
             >
-              📥 CSV
+              📤 Import
+            </button>
+            <button
+              onClick={handleShare}
+              className="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-colors"
+              title="Copy shareable link"
+            >
+              📋 Share
+            </button>
+            <div className="relative">
+              <button
+                onClick={handleExportCSV}
+                className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-4 py-2 rounded text-sm transition-colors"
+                title="Download as CSV"
+              >
+                📥 CSV
+              </button>
+            </div>
+            <div className="relative">
+              <button
+                onClick={handleExportJSON}
+                className="bg-purple-500 hover:bg-purple-600 dark:bg-purple-600 dark:hover:bg-purple-700 text-white px-4 py-2 rounded text-sm transition-colors"
+                title="Download as JSON"
+              >
+                📥 JSON
+              </button>
+            </div>
+            <button
+              onClick={resetComposition}
+              className="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white px-4 py-2 rounded text-sm transition-colors"
+            >
+              Reset All
             </button>
           </div>
-          <div className="relative">
-            <button
-              onClick={handleExportJSON}
-              className="bg-purple-500 hover:bg-purple-600 dark:bg-purple-600 dark:hover:bg-purple-700 text-white px-4 py-2 rounded text-sm transition-colors"
-              title="Download as JSON"
-            >
-              📥 JSON
-            </button>
-          </div>
-          <button
-            onClick={resetComposition}
-            className="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white px-4 py-2 rounded text-sm transition-colors"
-          >
-            Reset All
-          </button>
         </div>
-      </div>
 
-      {/* Status messages */}
-      {(shareMessage || exportMessage) && (
-        <div className="mb-4 text-sm text-center">
-          {shareMessage && <span className="text-blue-600 dark:text-blue-400 mr-4">{shareMessage}</span>}
-          {exportMessage && <span className="text-green-600 dark:text-green-400">{exportMessage}</span>}
-        </div>
-      )}
+        {/* Status messages */}
+        {(shareMessage || exportMessage || importMessage) && (
+          <div className="mb-4 text-sm text-center">
+            {shareMessage && <span className="text-blue-600 dark:text-blue-400 mr-4">{shareMessage}</span>}
+            {exportMessage && <span className="text-green-600 dark:text-green-400 mr-4">{exportMessage}</span>}
+            {importMessage && <span className="text-indigo-600 dark:text-indigo-400">{importMessage}</span>}
+          </div>
+        )}
 
       <div className="space-y-2">
         {compositionEntries.map(([unitId, quantity]) => {
@@ -155,6 +219,12 @@ export default function ArmyCompositionSummary() {
           <strong className="text-gray-900 dark:text-gray-100">Total Units:</strong> {totalUnits}
         </div>
       </div>
-    </div>
+      </div>
+      <ImportModal
+        isOpen={isImportModalOpen}
+        onClose={() => setIsImportModalOpen(false)}
+        onImport={handleImport}
+      />
+    </>
   );
 }

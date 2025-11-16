@@ -42,6 +42,8 @@ export const ACTION_TYPES = {
   UPDATE_COMPARISON_ARMY: 'UPDATE_COMPARISON_ARMY',
   APPLY_CIVILIZATION: 'APPLY_CIVILIZATION',
   SET_DISPLAY_MODE: 'SET_DISPLAY_MODE',
+  // Import composition
+  IMPORT_COMPOSITION: 'IMPORT_COMPOSITION',
   // Technology management
   RESEARCH_TECH: 'RESEARCH_TECH',
   UNRESEARCH_TECH: 'UNRESEARCH_TECH',
@@ -225,6 +227,37 @@ function armyReducer(state, action) {
         ...state,
         researchedTechs: [],
       };
+
+    case ACTION_TYPES.IMPORT_COMPOSITION: {
+      const { composition: importedComposition, config: importedConfig, mode } = action;
+
+      // Handle merge vs replace mode
+      let newComposition;
+      if (mode === 'merge') {
+        // Merge compositions - add quantities for matching units
+        newComposition = { ...state.composition };
+        Object.entries(importedComposition).forEach(([unitId, quantity]) => {
+          newComposition[unitId] = (newComposition[unitId] || 0) + quantity;
+        });
+      } else {
+        // Replace mode - use imported composition directly
+        newComposition = importedComposition;
+      }
+
+      // Merge config - imported config takes precedence but preserve unset values
+      const newConfig = {
+        ...state.config,
+        ...importedConfig,
+        // Always sync previewCiv with selectedCiv
+        previewCiv: importedConfig.selectedCiv || importedConfig.previewCiv || state.config.selectedCiv,
+      };
+
+      return {
+        ...state,
+        composition: newComposition,
+        config: newConfig,
+      };
+    }
 
     default:
       logger.warn(`Unknown action type: ${action.type}`);

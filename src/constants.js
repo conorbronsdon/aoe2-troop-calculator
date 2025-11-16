@@ -14,7 +14,7 @@
  * Application version - update this when releasing new versions
  * IMPORTANT: Keep in sync with package.json version
  */
-export const APP_VERSION = '2.4.0';
+export const APP_VERSION = '2.6.0';
 
 export const APP_NAME = 'AoE2 Troop Calculator';
 export const APP_DISPLAY_NAME = 'Age of Empires II Army Calculator';
@@ -32,6 +32,8 @@ export const STORAGE_KEYS = {
   ARMY_COMPOSITIONS: 'aoe2_army_compositions',
   /** User's theme preference (light/dark) */
   THEME: 'aoe2-calculator-theme',
+  /** Import history tracking */
+  IMPORT_HISTORY: 'aoe2_import_history',
 };
 
 // =============================================================================
@@ -199,6 +201,42 @@ export const EXPORT_FORMATS = {
   JSON: 'json',
   TEXT: 'text',
 };
+
+// =============================================================================
+// Import Constants
+// =============================================================================
+
+/**
+ * Import source types
+ */
+export const IMPORT_SOURCES = {
+  FILE: 'file',
+  PASTE: 'paste',
+  URL: 'url',
+};
+
+/**
+ * Import mode options
+ */
+export const IMPORT_MODES = {
+  REPLACE: 'replace',
+  MERGE: 'merge',
+};
+
+/**
+ * Maximum file size for import (1MB)
+ */
+export const MAX_IMPORT_FILE_SIZE = 1 * 1024 * 1024;
+
+/**
+ * Local storage key for import history
+ */
+export const IMPORT_HISTORY_KEY = 'aoe2_import_history';
+
+/**
+ * Maximum number of import history entries to keep
+ */
+export const MAX_IMPORT_HISTORY = 50;
 
 // =============================================================================
 // Civilization Constants
