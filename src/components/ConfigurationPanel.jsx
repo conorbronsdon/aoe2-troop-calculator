@@ -223,6 +223,28 @@ export default function ConfigurationPanel() {
           </p>
         </div>
 
+        {/* Technology Panel Toggle */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Advanced Options
+          </label>
+          <label className="flex items-center cursor-pointer p-2 rounded border border-gray-300 hover:bg-gray-50 transition-colors">
+            <input
+              type="checkbox"
+              checked={config.showTechPanel || false}
+              onChange={(e) => updateConfig({ showTechPanel: e.target.checked })}
+              className="mr-2 rounded text-indigo-600 focus:ring-indigo-500"
+            />
+            <span className="flex items-center gap-2">
+              <span role="img" aria-label="gear">⚙️</span>
+              <span className="font-medium">Show Technology Panel</span>
+            </span>
+          </label>
+          <p className="text-xs text-gray-500 mt-2">
+            Configure Blacksmith, University, and other upgrades to see modified unit stats
+          </p>
+        </div>
+
         {/* Civilization Selection */}
         <div className="md:col-span-2 lg:col-span-3">
           <label className="block text-sm font-medium text-gray-700 mb-2">
