@@ -236,6 +236,16 @@ export default function CompactResourceBar() {
                 </div>
               </div>
             </div>
+
+            {/* Quick Link to Saved Compositions */}
+            <a
+              href="#saved-compositions"
+              className="hidden sm:flex items-center gap-1 px-3 py-1.5 bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white text-xs font-medium rounded transition-colors"
+              title="Jump to Saved Compositions"
+            >
+              <span>💾</span>
+              <span className="hidden md:inline">Saved</span>
+            </a>
           </div>
         </div>
       </div>

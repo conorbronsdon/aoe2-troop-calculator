@@ -107,7 +107,6 @@ function AppContent() {
       {config.showTechPanel && <TechnologyPanel />}
       <CivilizationComparison />
       <ResourceTracker />
-      <SaveLoadPanel />
       <PresetSelector />
 
       {/* Conditionally show Units and/or Fortifications based on display mode */}
@@ -117,6 +116,11 @@ function AppContent() {
       )}
 
       <ArmyCompositionSummary />
+
+      {/* Saved Compositions - moved to bottom for better UX */}
+      <div id="saved-compositions">
+        <SaveLoadPanel />
+      </div>
 
       {/* Compact Resource Tracker at Bottom */}
       <CompactResourceBar />

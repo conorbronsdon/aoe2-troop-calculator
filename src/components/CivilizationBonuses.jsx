@@ -6,7 +6,7 @@ import { getCivilizationIconUrl, FALLBACK_ICON, GENERIC_ICON, getRegionColors } 
 export default function CivilizationBonuses() {
   const { state } = useArmy();
   const { config, composition } = state;
-  const [isExpanded, setIsExpanded] = useState(true); // Start expanded by default
+  const [isExpanded, setIsExpanded] = useState(false); // Start collapsed by default
   const [searchTerm, setSearchTerm] = useState('');
   const [showMilitary, setShowMilitary] = useState(true);
   const [showEconomic, setShowEconomic] = useState(true);
