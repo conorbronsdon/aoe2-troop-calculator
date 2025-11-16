@@ -1,13 +1,14 @@
 import { useArmy } from '../context/ArmyContext';
 import { civilizations } from '../data/civilizations';
+import { getCivilizationIconUrl, FALLBACK_ICON } from '../data/civilizationIcons';
 
 /**
- * Prominent indicator showing the currently applied civilization
- * Always visible to show which civilization bonuses are active
+ * Minimal indicator showing only preview state or generic civilization notice
+ * Main civilization info is now displayed in CivilizationBonuses component
  */
 export default function CivilizationIndicator() {
   const { state } = useArmy();
-  const { config, composition } = state;
+  const { config } = state;
 
   // Get applied and preview civilizations
   const appliedCiv = civilizations.find((civ) => civ.id === config.selectedCiv);
@@ -17,26 +18,6 @@ export default function CivilizationIndicator() {
 
   const isPreviewing = config.previewCiv && config.previewCiv !== config.selectedCiv;
 
-  // Count how many bonuses are affecting current army composition
-  const activeBonusCount =
-    appliedCiv && appliedCiv.id !== 'generic'
-      ? appliedCiv.bonuses.filter((bonus) => {
-          if (bonus.type !== 'cost') {
-            return false;
-          }
-          if (bonus.units === 'all') {
-            return Object.keys(composition).length > 0;
-          }
-
-          // Check if any units in composition are affected by this bonus
-          return Object.keys(composition).some(
-            (unitId) =>
-              bonus.units.includes(unitId) ||
-              bonus.units.some((bonusUnit) => unitId.includes(bonusUnit))
-          );
-        }).length
-      : 0;
-
   // Don't render if no civilization is selected
   if (!appliedCiv) {
     return null;
@@ -44,98 +25,69 @@ export default function CivilizationIndicator() {
 
   const isGeneric = appliedCiv.id === 'generic';
 
-  return (
-    <div
-      className={`rounded-lg shadow-lg p-4 mb-6 border-2 transition-all duration-300 ${
-        isGeneric
-          ? 'bg-gray-50 border-gray-300'
-          : 'bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-400'
-      }`}
-    >
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          {/* Civilization Icon/Indicator */}
-          <div className={`text-4xl ${isGeneric ? 'opacity-50' : ''}`}>
-            {isGeneric ? '⚔️' : '🏛️'}
-          </div>
+  // Only show indicator for generic civilization or preview mode
+  // For regular civilizations, the CivilizationBonuses component handles the display
+  if (!isGeneric && !isPreviewing) {
+    return null;
+  }
 
-          {/* Civilization Info */}
+  // Show generic civilization notice
+  if (isGeneric) {
+    return (
+      <div className="rounded-lg shadow-md p-4 mb-6 border border-gray-300 bg-gray-50 dark:bg-gray-800 dark:border-gray-600">
+        <div className="flex items-center gap-3">
+          <div className="text-3xl opacity-60">⚔️</div>
           <div>
-            <div className="flex items-center gap-2">
-              <h3 className={`text-xl font-bold ${isGeneric ? 'text-gray-700' : 'text-blue-900'}`}>
-                {appliedCiv.name}
-              </h3>
-              {!isGeneric && (
-                <span className="px-2 py-1 bg-blue-200 text-blue-800 text-xs font-semibold rounded-full">
-                  ACTIVE
-                </span>
-              )}
-              {isPreviewing && (
-                <span className="px-2 py-1 bg-amber-200 text-amber-800 text-xs font-semibold rounded-full animate-pulse">
-                  PREVIEWING: {previewCiv.name}
-                </span>
-              )}
-            </div>
-
-            <div className={`text-sm ${isGeneric ? 'text-gray-600' : 'text-blue-700'}`}>
-              <span className="font-medium">{appliedCiv.region}</span>
-              {!isGeneric && (
-                <>
-                  <span className="mx-2">•</span>
-                  <span>
-                    {appliedCiv.bonuses.length} total bonus
-                    {appliedCiv.bonuses.length !== 1 ? 'es' : ''}
-                  </span>
-                  {activeBonusCount > 0 && (
-                    <>
-                      <span className="mx-2">•</span>
-                      <span className="font-semibold text-green-600">
-                        {activeBonusCount} affecting current army
-                      </span>
-                    </>
-                  )}
-                </>
-              )}
-              {isGeneric && <span> • No bonuses applied</span>}
-            </div>
+            <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
+              No Civilization Selected
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Select a civilization to apply bonuses and see available units
+            </p>
           </div>
         </div>
-
-        {/* Quick Stats */}
-        {!isGeneric && (
-          <div className="hidden md:flex gap-4 text-sm">
-            <div className="text-center px-3 py-2 bg-white rounded-lg shadow-sm">
-              <div className="text-2xl">💰</div>
-              <div className="font-semibold text-blue-900">
-                {appliedCiv.bonuses.filter((b) => b.type === 'cost').length}
-              </div>
-              <div className="text-xs text-gray-600">Cost</div>
-            </div>
-            <div className="text-center px-3 py-2 bg-white rounded-lg shadow-sm">
-              <div className="text-2xl">⚔️</div>
-              <div className="font-semibold text-blue-900">
-                {appliedCiv.bonuses.filter((b) => b.type === 'stat').length}
-              </div>
-              <div className="text-xs text-gray-600">Stat</div>
-            </div>
-            <div className="text-center px-3 py-2 bg-white rounded-lg shadow-sm">
-              <div className="text-2xl">🌾</div>
-              <div className="font-semibold text-blue-900">
-                {appliedCiv.bonuses.filter((b) => b.type === 'economic').length}
-              </div>
-              <div className="text-xs text-gray-600">Economic</div>
-            </div>
-          </div>
-        )}
       </div>
+    );
+  }
 
-      {/* Preview notice */}
-      {isPreviewing && (
-        <div className="mt-3 p-2 bg-amber-100 border border-amber-300 rounded text-sm text-amber-800">
-          <strong>Preview Mode:</strong> You are previewing {previewCiv.name}. Click &quot;Apply
-          Civilization&quot; to activate bonuses.
+  // Show preview notice
+  if (isPreviewing && previewCiv) {
+    const previewIconUrl = getCivilizationIconUrl(previewCiv.id);
+
+    return (
+      <div className="rounded-lg shadow-md p-4 mb-6 border-2 border-amber-400 bg-amber-50 dark:bg-amber-900/20 dark:border-amber-600">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            {previewIconUrl ? (
+              <img
+                src={previewIconUrl}
+                alt={`${previewCiv.name} insignia`}
+                className="w-10 h-10 object-contain opacity-75"
+              />
+            ) : (
+              <div className="text-2xl">{FALLBACK_ICON}</div>
+            )}
+            <div>
+              <div className="flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-amber-900 dark:text-amber-100">
+                  Previewing: {previewCiv.name}
+                </h3>
+                <span className="px-2 py-0.5 bg-amber-200 dark:bg-amber-700 text-amber-800 dark:text-amber-200 text-xs font-semibold rounded-full animate-pulse">
+                  PREVIEW
+                </span>
+              </div>
+              <p className="text-sm text-amber-700 dark:text-amber-300">
+                Click &quot;Apply Civilization&quot; to activate these bonuses
+              </p>
+            </div>
+          </div>
+          <div className="text-sm text-amber-800 dark:text-amber-200">
+            <span className="font-medium">Current:</span> {appliedCiv.name}
+          </div>
         </div>
-      )}
-    </div>
-  );
+      </div>
+    );
+  }
+
+  return null;
 }

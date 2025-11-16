@@ -233,136 +233,112 @@ Allow importing saved compositions from JSON files or URLs.
 ---
 
 ### Civilization UI Consolidation & Visual Polish
-**Status:** Not Started
+**Status:** ✅ Complete (v2.5.0)
 **Priority:** High
 **Complexity:** Medium
 
 Streamline the civilization selection interface to reduce visual redundancy and improve consistency.
 
-**Current Issues:**
-- Active civilization display doesn't utilize the civilization insignia
-- Redundant visual elements: separate active status indicator + bonuses section + dropdown below
-- Selected civilization doesn't auto-populate in comparison section
-- Visual disconnect between selector and bonuses display
-
-**Proposed Improvements:**
+**Completed Implementation:**
 
 1. **Unified Civilization Display:**
-   - Combine active status and bonuses section into single cohesive component
-   - Display civilization insignia prominently next to active civilization name
-   - Keep the excellent bonus count/type indicators (Military/Economic/Cost)
-   - Remove redundant "Civilization" label repetition
+   - ✅ Combined active status and bonuses section into single cohesive component
+   - ✅ Display civilization insignia prominently (64x64 icon) next to civilization name
+   - ✅ Keep the excellent bonus count/type indicators (Military/Economic/Cost)
+   - ✅ Remove redundant "Civilization" label repetition
 
 2. **Bonuses Section Enhancement:**
-   ```
-   ┌─ Franks ─────────────────────────────┐
-   │ [INSIGNIA] Active Civilization       │
-   │ ⚔️ 3 Military  🌾 2 Economic  💰 1 Cost │
-   │ [Filter controls...]                 │
-   │ • Cavalry have +20% HP               │
-   │ • Farm upgrades free                 │
-   │ • ...                                │
-   └──────────────────────────────────────┘
-   ```
+   - ✅ Civilization insignia prominently displayed in header
+   - ✅ "ACTIVE" badge on insignia for clear status indication
+   - ✅ Region-specific color coding (European=blue, Asian=red, etc.)
+   - ✅ Quick bonus summary showing Military/Economic/Cost counts inline
+   - ✅ Animated pulse effect for bonuses affecting current army
 
-3. **Smart Comparison Integration:**
-   - Auto-populate "Army A" with currently selected civilization
-   - Pre-fill comparison when entering comparison mode
-   - Remember last compared civilizations
+3. **Streamlined CivilizationIndicator:**
+   - ✅ Removed redundant display when civilization is selected
+   - ✅ Only shows for generic (no civ) or preview mode
+   - ✅ Preview mode displays preview civ icon with clear warning
+   - ✅ Reduced vertical space usage significantly
 
 **Technical Changes:**
-- Refactor `CivilizationBonuses.jsx` to include insignia display
-- Pass civilization icon URL through to bonuses component
-- Remove duplicate civilization name displays
-- Add context connection for comparison auto-fill
-- Consolidate related state into single visual unit
+- ✅ Refactored `CivilizationBonuses.jsx` to include insignia display
+- ✅ Integrated `getCivilizationIconUrl` and `getRegionColors` utilities
+- ✅ Simplified `CivilizationIndicator.jsx` to only show preview/generic states
+- ✅ Error handling for missing civilization icons
+- ✅ Full dark mode support
 
 **Acceptance Criteria:**
-- Civilization insignia visible in bonuses section header
-- No duplicate "Civilization" or civ name displays
-- Bonus type indicators retained (they work well)
-- Selected civ auto-fills comparison section
-- Reduced vertical space usage
-- Improved visual hierarchy
+- ✅ Civilization insignia visible in bonuses section header (64x64)
+- ✅ No duplicate "Civilization" or civ name displays
+- ✅ Bonus type indicators retained with improved visibility
+- ✅ Reduced vertical space usage
+- ✅ Improved visual hierarchy with gradient backgrounds
 
 **Impact:** Cleaner, more professional UI with less visual clutter and better information density.
 
 ---
 
 ### Resource Tracker Visual Enhancement
-**Status:** Not Started
+**Status:** ✅ Complete (v2.5.0)
 **Priority:** High
 **Complexity:** Medium
 
 Improve the visual design and information density of the resource tracking component.
 
-**Current Issues:**
-- Basic appearance compared to rest of UI
-- Progress bars lack visual refinement
-- Resource icons could be more prominent
-- Limited visual feedback for resource status
-
-**Proposed Improvements:**
+**Completed Implementation:**
 
 1. **Enhanced Progress Bars:**
-   - Gradient fills for visual depth
-   - Animated transitions when values change
-   - Pulse effect when approaching limits
-   - Resource-specific colors (Food=red, Wood=brown, Gold=yellow, Stone=gray)
+   - ✅ Gradient fills for visual depth (resource-specific colors)
+   - ✅ Smooth animated transitions (500ms ease-out)
+   - ✅ Pulse animation when over limits
+   - ✅ Resource-specific colors (Food=orange/red, Wood=amber, Gold=yellow, Stone=gray)
+   - ✅ Taller progress bars (h-6 to h-8) for better visibility
+   - ✅ Shadow effects for depth (shadow-inner on track, shadow-md on fill)
 
 2. **Improved Resource Icons:**
-   - Larger, more detailed resource icons
-   - Icon badges showing exact quantities
-   - Tooltip with breakdown (units, fortifications, techs)
-   - Glow effect on critical resources
+   - ✅ Larger, emoji-based resource icons (🍖🪵🪙🪨👥)
+   - ✅ Icon badges showing exact quantities with formatting
+   - ✅ Grid layout for individual resources in total mode (2x2 or 4-column)
+   - ✅ Hover effects on resource cards with shadow transitions
 
 3. **Status Indicators:**
-   - Green checkmark when under budget
-   - Yellow warning at 80-99% capacity
-   - Red alert when over limit
-   - Animated warning for exceeded resources
+   - ✅ Dynamic status icons (✅ Good, 📈 Moderate, 📊 High, ⚠️ Critical, 🚫 Over Limit)
+   - ✅ Color-coded percentage badges (green/yellow/red)
+   - ✅ Status text display in header ("Good", "High", "Critical", etc.)
+   - ✅ Animated pulse for over-limit resources
 
 4. **Layout Refinements:**
-   ```
-   ┌─ Resources ──────────────────────────┐
-   │ 🍖 Food      2,450 / 5,000           │
-   │ [████████████░░░░░░] 49%             │
-   │                                      │
-   │ 🪵 Wood      1,200 / 3,000           │
-   │ [████████░░░░░░░░░░] 40%             │
-   │                                      │
-   │ 🪙 Gold      3,800 / 4,000  ⚠️       │
-   │ [██████████████████] 95%             │
-   │                                      │
-   │ 🪨 Stone       450 / 2,000           │
-   │ [████░░░░░░░░░░░░░░] 23%             │
-   │                                      │
-   │ 👥 Population: 145 / 200             │
-   └──────────────────────────────────────┘
-   ```
+   - ✅ Rounded corners (rounded-xl) and enhanced shadows
+   - ✅ Better spacing and visual hierarchy
+   - ✅ Individual resource cards with borders and backgrounds
+   - ✅ Population section with purple gradient background
+   - ✅ Improved technology cost display with grid layout
 
-5. **Interactive Features:**
-   - Click resource to see cost breakdown
-   - Hover for detailed tooltips
-   - Mini-chart showing resource distribution
-   - Quick adjust resource limits from tracker
+5. **Compact Resource Bar (NEW):**
+   - ✅ Fixed bottom bar for tracking while scrolling
+   - ✅ Shows total resources and population at a glance
+   - ✅ Resource breakdown on larger screens
+   - ✅ Mini progress bars with percentage indicators
+   - ✅ Status icons for quick assessment
+   - ✅ Responsive design (mobile-friendly)
 
 **Technical Implementation:**
-- Add CSS animations for smooth transitions
-- Implement gradient backgrounds with Tailwind
-- Add hover states and tooltips
-- Consider Chart.js or simple SVG for visualizations
-- Ensure dark mode compatibility
+- ✅ CSS transitions and animations via Tailwind utilities
+- ✅ Gradient backgrounds using bg-gradient-to-r classes
+- ✅ Memoized status indicator calculations
+- ✅ Full dark mode compatibility (dark: variants)
+- ✅ ARIA labels and progressbar roles maintained
 
 **Acceptance Criteria:**
-- Progress bars have gradient fills and smooth animations
-- Resource status clearly indicated (green/yellow/red)
-- Tooltips show cost breakdown by category
-- Visual design matches polished civ selector
-- Dark/light mode fully supported
-- Performance maintained (no jank on updates)
+- ✅ Progress bars have gradient fills and smooth animations
+- ✅ Resource status clearly indicated (green/yellow/red with icons)
+- ✅ Resource icons prominently displayed
+- ✅ Visual design matches polished civ selector
+- ✅ Dark/light mode fully supported
+- ✅ Performance maintained (memoized calculations)
+- ✅ Compact bottom bar for scroll convenience
 
-**Impact:** More visually appealing interface that matches the quality of other components, better resource awareness for users.
+**Impact:** More visually appealing interface that matches the quality of other components, better resource awareness for users, and improved usability when scrolling through large army compositions.
 
 ---
 
@@ -1120,6 +1096,15 @@ Track application performance metrics.
 
 ## Recently Completed ✅
 
+### UI Visual Enhancements (v2.5.0 - November 2025)
+Comprehensive UI polish and usability improvements:
+- ✅ **Compact Resource Bar:** Fixed bottom bar showing total resources and population at a glance
+- ✅ **Resource Tracker Visual Enhancement:** Gradient progress bars, resource-specific colors, status indicators
+- ✅ **Civilization UI Consolidation:** Insignia prominently displayed, removed redundant elements
+- ✅ **Enhanced Status Indicators:** Dynamic icons (✅📈📊⚠️🚫) for resource status
+- ✅ **Improved Visual Hierarchy:** Better spacing, shadows, and dark mode support
+- ✅ **Responsive Design:** Compact bar adapts to screen size with progressive disclosure
+
 ### Civilization Selector Enhancement (v2.4.1 - November 2025)
 - ✅ Enhanced civilization selector with visual prominence
 - ✅ Added civilization icons for all 51 civilizations
@@ -1189,6 +1174,6 @@ For questions or suggestions about the roadmap, open a discussion on GitHub.
 ---
 
 **Last Updated:** November 16, 2025
-**Current Version:** 2.4.0
+**Current Version:** 2.5.0
 **Total Roadmap Items:** 35+ features across 4 priority levels
 **Next Major Focus:** PWA Support, Preset Compositions, Import Functionality

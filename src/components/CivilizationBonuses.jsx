@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { useArmy } from '../context/ArmyContext';
 import { civilizations } from '../data/civilizations';
+import { getCivilizationIconUrl, FALLBACK_ICON, GENERIC_ICON, getRegionColors } from '../data/civilizationIcons';
 
 export default function CivilizationBonuses() {
   const { state } = useArmy();
@@ -11,12 +12,25 @@ export default function CivilizationBonuses() {
   const [showEconomic, setShowEconomic] = useState(true);
   const [showCost, setShowCost] = useState(true);
   const [activeOnly, setActiveOnly] = useState(false);
+  const [iconError, setIconError] = useState(false);
 
   // Get current civilization (use selectedCiv which is the applied one)
   const currentCiv = useMemo(
     () => civilizations.find((civ) => civ.id === config.selectedCiv),
     [config.selectedCiv]
   );
+
+  // Get civilization icon URL
+  const civIconUrl = useMemo(() => {
+    if (!currentCiv || currentCiv.id === 'generic') return null;
+    return getCivilizationIconUrl(currentCiv.id);
+  }, [currentCiv]);
+
+  // Get region colors for styling
+  const regionColors = useMemo(() => {
+    if (!currentCiv) return getRegionColors('None');
+    return getRegionColors(currentCiv.region);
+  }, [currentCiv]);
 
   // Pre-compute composition unit IDs as a Set for O(1) lookups
   const compositionUnitIds = useMemo(() => new Set(Object.keys(composition)), [composition]);
@@ -104,34 +118,77 @@ export default function CivilizationBonuses() {
   const hasActiveFilters = searchTerm || !showMilitary || !showEconomic || !showCost || activeOnly;
 
   return (
-    <div className="bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 rounded-lg shadow-md p-4 mb-6 border border-amber-200 dark:border-amber-700">
+    <div className="bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 rounded-xl shadow-lg p-5 mb-6 border-2 border-amber-300 dark:border-amber-700">
       <button
         className="flex items-center justify-between cursor-pointer w-full text-left"
         onClick={() => setIsExpanded(!isExpanded)}
         aria-expanded={isExpanded}
         aria-controls="civilization-bonuses-content"
       >
-        <div className="flex items-center gap-3">
-          <div className="text-2xl" role="img" aria-label="Civilization">
-            🏛️
+        <div className="flex items-center gap-4">
+          {/* Civilization Insignia */}
+          <div className="relative">
+            {civIconUrl && !iconError ? (
+              <img
+                src={civIconUrl}
+                alt={`${currentCiv.name} insignia`}
+                className="w-16 h-16 object-contain drop-shadow-lg"
+                onError={() => setIconError(true)}
+              />
+            ) : (
+              <div className="w-16 h-16 flex items-center justify-center text-4xl bg-amber-100 dark:bg-amber-800 rounded-lg shadow-inner">
+                {FALLBACK_ICON}
+              </div>
+            )}
+            <div className="absolute -bottom-1 -right-1 bg-green-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full shadow">
+              ACTIVE
+            </div>
           </div>
+
+          {/* Civilization Info */}
           <div>
-            <h3 className="text-lg font-bold text-amber-900 dark:text-amber-100">
-              {currentCiv.name} Bonuses
+            <h3 className="text-xl font-bold text-amber-900 dark:text-amber-100">
+              {currentCiv.name}
             </h3>
-            <p className="text-sm text-amber-700 dark:text-amber-300">
-              {currentCiv.region} • {currentCiv.bonuses.length} total bonus
-              {currentCiv.bonuses.length !== 1 ? 'es' : ''}
+            <div className="flex flex-wrap items-center gap-2 mt-1">
+              <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${regionColors.bg} ${regionColors.border} ${regionColors.text} border`}>
+                {currentCiv.region}
+              </span>
+              <span className="text-sm text-amber-700 dark:text-amber-300">
+                {currentCiv.bonuses.length} bonus{currentCiv.bonuses.length !== 1 ? 'es' : ''}
+              </span>
               {activeBonusCount > 0 && (
-                <span className="ml-2 px-2 py-0.5 bg-green-200 text-green-800 rounded-full font-semibold">
+                <span className="px-2 py-0.5 bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-200 rounded-full font-semibold text-xs animate-pulse">
                   {activeBonusCount} affecting army
                 </span>
               )}
-            </p>
+            </div>
+
+            {/* Quick Bonus Summary */}
+            <div className="flex gap-3 mt-2">
+              <div className="flex items-center gap-1 text-xs">
+                <span className="text-red-500" role="img" aria-hidden="true">⚔️</span>
+                <span className="font-medium text-gray-700 dark:text-gray-300">
+                  {allStatBonuses.length} Military
+                </span>
+              </div>
+              <div className="flex items-center gap-1 text-xs">
+                <span className="text-green-500" role="img" aria-hidden="true">🌾</span>
+                <span className="font-medium text-gray-700 dark:text-gray-300">
+                  {allEconomicBonuses.length} Economic
+                </span>
+              </div>
+              <div className="flex items-center gap-1 text-xs">
+                <span className="text-yellow-500" role="img" aria-hidden="true">💰</span>
+                <span className="font-medium text-gray-700 dark:text-gray-300">
+                  {allCostBonuses.length} Cost
+                </span>
+              </div>
+            </div>
           </div>
         </div>
         <span
-          className="text-amber-700 dark:text-amber-300 hover:text-amber-900 dark:hover:text-amber-100 transition-colors"
+          className="text-amber-700 dark:text-amber-300 hover:text-amber-900 dark:hover:text-amber-100 transition-colors text-xl"
           aria-hidden="true"
         >
           {isExpanded ? '▼' : '▶'}
