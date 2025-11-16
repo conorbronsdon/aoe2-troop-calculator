@@ -164,46 +164,69 @@ Convert the application into a Progressive Web App for offline functionality.
 ---
 
 ### Preset Army Compositions (Meta Builds)
-**Status:** Not Started
+**Status:** ✅ Complete (v2.9.0)
 **Priority:** High
 **Complexity:** Low
 
 Provide pre-configured army templates for common strategies.
 
-**Features:**
-- **Castle Age Timing Attacks:**
-  - Knights rush (10 Knights + 2 Monks)
-  - Crossbow push (25 Crossbowmen + 2 Siege)
-  - Eagle rush (15 Eagles)
-- **Imperial Age Compositions:**
-  - Paladin + Siege (15 Paladins + 3 Siege Onager)
-  - Arbalester + Halbs (40 Arbs + 20 Halbs)
-  - Heavy Camel + Siege (20 Camels + 4 Trebuchets)
-- **Civilization-Specific Builds:**
-  - Britons: Longbowmen deathball
-  - Franks: Paladin spam
-  - Mayans: Plumes + Eagles
-  - Mongols: Mangudai + Rams
-- **Beginner Templates:**
-  - Trash army (Spears + Skirms)
-  - Basic gold army
-  - Balanced composition
+**Completed Implementation:**
+
+1. **Preset Data System** (`src/data/presets.js`):
+   - ✅ 24 pre-configured army compositions across 4 categories
+   - ✅ Castle Age Rushes: Knight Rush, Crossbow Push, Eagle Rush, Camel Push, Monk Siege Push
+   - ✅ Imperial Age Compositions: Paladin + Siege, Arbalester + Halbs, Heavy Camel + Siege, Champion + Siege, Cav Archer + Hussar, Hand Cannon + Halbs
+   - ✅ Civilization-Specific Builds: Britons Longbow, Franks Paladin, Mayans Plumes + Eagles, Mongols Mangudai, Goths Infantry, Ethiopians Arbalester, Byzantines Trash, Teutons Slow Push
+   - ✅ Beginner Templates: Trash Army (no gold), Basic Gold Army, Balanced Composition, Defensive Turtle, Raiding Party
+   - ✅ Each preset includes recommended civilizations, descriptions, unit compositions, and config settings
+   - ✅ Helper functions: getPresetsByCategory, getPresetById, getPresetsForCiv
+
+2. **PresetSelector Component** (`src/components/PresetSelector.jsx`):
+   - ✅ Two-dropdown interface (Category → Build selection)
+   - ✅ Live preview showing unit composition, total cost, recommended civs
+   - ✅ "Load Preset" button to replace current composition
+   - ✅ "Merge with Current" button to add preset to existing army
+   - ✅ Resource-specific color coding (Food=red, Wood=amber, Gold=yellow)
+   - ✅ Quick stats footer (24 presets, 4 categories, 8 civ-specific builds)
+   - ✅ Full dark mode support
+   - ✅ Accessible UI with proper labels and ARIA attributes
+
+3. **Integration:**
+   - ✅ Integrated into main App.jsx between SaveLoadPanel and UnitSelection
+   - ✅ Uses existing IMPORT_COMPOSITION action for seamless state management
+   - ✅ Automatically applies civilization when preset specifies one
+   - ✅ Success/error messages for user feedback
+
+4. **Testing:**
+   - ✅ 33 data validation tests (unit ID verification, civ ID validation, category structure)
+   - ✅ 27 component tests (rendering, selection, preview, loading, accessibility)
+   - ✅ All 350 tests pass (60 new tests for preset functionality)
 
 **UI Design:**
 ```
-[Load Preset ▼]
-├── Castle Age Rushes
-│   ├── Knight Rush (Franks)
-│   ├── Crossbow Push (Britons)
-│   └── Eagle Rush (Aztecs)
-├── Imperial Compositions
-│   ├── Heavy Cavalry + Siege
-│   └── Ranged + Infantry
-└── Beginner Builds
-    └── Balanced Army
+┌─ Preset Army Compositions ─────────────────────┐
+│ Category: [Castle Age Rushes ▼]                │
+│ Build:    [Knight Rush ▼]                      │
+│                                                │
+│ ┌─ Preview ────────────────────────────────┐   │
+│ │ Knight Rush                              │   │
+│ │ Classic Castle Age aggression...         │   │
+│ │ Recommended for: Franks, Teutons...      │   │
+│ │                                          │   │
+│ │ Units (14 total):                        │   │
+│ │ • 10x Knight • 4x Light Cavalry          │   │
+│ │                                          │   │
+│ │ Total Cost: Food: 920  Gold: 750         │   │
+│ │ Age: Castle                              │   │
+│ └──────────────────────────────────────────┘   │
+│                                                │
+│ [Load Preset] [Merge with Current] [Clear]     │
+│                                                │
+│ 24 presets • 4 categories • 8 civ-specific    │
+└────────────────────────────────────────────────┘
 ```
 
-**Impact:** New players learn meta strategies, experienced players save time.
+**Impact:** New players learn meta strategies, experienced players save time setting up proven compositions.
 
 ---
 
@@ -1159,6 +1182,17 @@ Track application performance metrics.
 
 ## Recently Completed ✅
 
+### Preset Army Compositions (v2.9.0 - November 2025)
+Complete pre-configured meta builds for common strategies:
+- ✅ **24 Preset Compositions:** Castle Age Rushes, Imperial Compositions, Civ-Specific Builds, Beginner Templates
+- ✅ **PresetSelector Component:** Two-dropdown interface with live preview of units, costs, and recommendations
+- ✅ **Load/Merge Modes:** Replace current composition or merge preset with existing army
+- ✅ **Civilization Integration:** Presets auto-apply recommended civilization settings
+- ✅ **Comprehensive Testing:** 60 new tests (33 data validation + 27 component tests)
+- ✅ **Rich Metadata:** Each preset includes description, recommended civs, unit counts, total costs
+- ✅ **Popular Builds:** Knight Rush, Crossbow Push, Paladin Spam, Longbow Army, Trash Army, and more
+- ✅ **All 350 Tests Pass:** Comprehensive test coverage maintained
+
 ### Enhanced Unique Unit Documentation (v2.8.0 - November 2025)
 Comprehensive documentation for all unique units:
 - ✅ **Complete Stats Tables:** HP, Attack, Melee/Pierce Armor, Speed, Range for 90+ units
@@ -1271,6 +1305,6 @@ For questions or suggestions about the roadmap, open a discussion on GitHub.
 ---
 
 **Last Updated:** November 16, 2025
-**Current Version:** 2.7.0
+**Current Version:** 2.9.0
 **Total Roadmap Items:** 35+ features across 4 priority levels
-**Next Major Focus:** PWA Support, Preset Compositions, Unit Statistics Display
+**Next Major Focus:** PWA Support, Unit Statistics Display

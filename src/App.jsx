@@ -11,6 +11,7 @@ import UnitSelection from './components/UnitSelection';
 import FortificationSelection from './components/FortificationSelection';
 import ArmyCompositionSummary from './components/ArmyCompositionSummary';
 import SaveLoadPanel from './components/SaveLoadPanel';
+import PresetSelector from './components/PresetSelector';
 import SocialShareButtons from './components/SocialShareButtons';
 import BuyMeCoffee from './components/BuyMeCoffee';
 import CivilizationComparison from './components/CivilizationComparison';
@@ -107,6 +108,7 @@ function AppContent() {
       <CivilizationComparison />
       <ResourceTracker />
       <SaveLoadPanel />
+      <PresetSelector />
 
       {/* Conditionally show Units and/or Fortifications based on display mode */}
       {(config.displayMode === 'units' || config.displayMode === 'both') && <UnitSelection />}
