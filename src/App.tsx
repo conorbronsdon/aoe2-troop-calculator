@@ -18,6 +18,7 @@ import PresetSelector from './components/PresetSelector';
 import SocialShareButtons from './components/SocialShareButtons';
 import BuyMeCoffee from './components/BuyMeCoffee';
 import CombatAnalysis from './components/CombatAnalysis';
+import CivilizationComparison from './components/CivilizationComparison';
 import PWAInstallPrompt from './components/PWAInstallPrompt';
 import MobileSidebarSection from './components/MobileSidebarSection';
 import KeyboardShortcutsHelp from './components/KeyboardShortcutsHelp';
@@ -201,11 +202,11 @@ function AppContent(): JSX.Element {
       </header>
 
       {/* Main Two-Column Layout */}
-      <div className="container mx-auto px-4 py-6">
-        <div className="flex flex-col lg:flex-row gap-6" id="calculator">
+      <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-6">
+        <div className="flex flex-col lg:flex-row gap-4 sm:gap-6" id="calculator">
           {/* Left Sidebar - Configuration & Status */}
-          <aside className="lg:w-96 xl:w-[420px] flex-shrink-0">
-            <div className="lg:sticky lg:top-4 space-y-4 max-h-[calc(100vh-2rem)] lg:overflow-y-auto lg:pr-2">
+          <aside className="lg:w-80 xl:w-96 2xl:w-[420px] flex-shrink-0">
+            <div className="lg:sticky lg:top-4 space-y-3 sm:space-y-4 max-h-[calc(100vh-2rem)] lg:overflow-y-auto lg:pr-2 scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent">
               {/* Configuration Section - High priority, open by default on mobile */}
               <MobileSidebarSection
                 title={t('configuration.title')}
@@ -258,12 +259,25 @@ function AppContent(): JSX.Element {
                 </MobileSidebarSection>
               )}
 
+              {/* Civilization Comparison Section - Conditional */}
+              {config.showCivComparison && (
+                <MobileSidebarSection
+                  title={t('tools.comparison')}
+                  icon="⚖️"
+                  defaultOpen={false}
+                  priority="normal"
+                >
+                  <CivilizationComparison />
+                </MobileSidebarSection>
+              )}
+
               {/* Tools Section - saves, presets */}
               <MobileSidebarSection
                 title={t('tools.title')}
                 icon="🧰"
                 defaultOpen={false}
                 priority="low"
+                badge={savedCompositionsCount > 0 ? savedCompositionsCount : undefined}
               >
                 <div className="space-y-4">
                   {/* SaveLoadPanel appears above presets when compositions exist, below otherwise */}
@@ -280,8 +294,8 @@ function AppContent(): JSX.Element {
             {/* Resource Tracker at top of main content */}
             <ResourceTracker />
 
-            {/* Consolidated Combat Analysis Panel */}
-            <CombatAnalysis />
+            {/* Consolidated Combat Analysis Panel - Conditional */}
+            {config.showCombatAnalysis && <CombatAnalysis />}
 
             {/* Conditionally show Units and/or Fortifications based on display mode */}
             {(config.displayMode === 'units' || config.displayMode === 'both') && <UnitSelection />}

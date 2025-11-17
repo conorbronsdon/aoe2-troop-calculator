@@ -6,6 +6,7 @@ interface Props {
   children: ReactNode;
   defaultOpen?: boolean;
   priority?: 'high' | 'normal' | 'low';
+  badge?: number;
 }
 
 /**
@@ -18,7 +19,8 @@ const MobileSidebarSection: React.FC<Props> = ({
   icon,
   children,
   defaultOpen = false,
-  priority = 'normal'
+  priority = 'normal',
+  badge
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(defaultOpen);
 
@@ -43,6 +45,11 @@ const MobileSidebarSection: React.FC<Props> = ({
         <div className="flex items-center gap-2">
           {icon && <span className="text-lg">{icon}</span>}
           <span>{title}</span>
+          {badge !== undefined && badge > 0 && (
+            <span className="bg-white/20 text-xs font-bold px-2 py-0.5 rounded-full">
+              {badge}
+            </span>
+          )}
         </div>
         <svg
           className={`w-5 h-5 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
