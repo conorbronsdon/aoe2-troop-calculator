@@ -16,6 +16,7 @@ import SocialShareButtons from './components/SocialShareButtons';
 import BuyMeCoffee from './components/BuyMeCoffee';
 import CivilizationComparison from './components/CivilizationComparison';
 import ThemeToggle from './components/ThemeToggle';
+import ArmyCombatStats from './components/ArmyCombatStats';
 import { units } from './data/units';
 import { civilizations } from './data/civilizations';
 import { validateGameData } from './utils/validators';
@@ -121,6 +122,9 @@ function AppContent() {
           <main className="flex-1 min-w-0">
             {/* Resource Tracker at top of main content */}
             <ResourceTracker />
+
+            {/* Army Combat Stats Summary */}
+            <ArmyCombatStats />
 
             {/* Conditionally show Units and/or Fortifications based on display mode */}
             {(config.displayMode === 'units' || config.displayMode === 'both') && <UnitSelection />}
