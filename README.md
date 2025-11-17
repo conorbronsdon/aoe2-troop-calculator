@@ -189,6 +189,15 @@ Plan your armies • Calculate costs • Compare civilizations • Optimize reso
   - Filter by type: Military, Economic, Cost
   - Search bonuses by keyword
   - Show only active bonuses affecting current army
+- **Mobile-Optimized Navigation** (NEW in v2.11.0):
+  - Accordion-style collapsible sidebar sections on mobile
+  - Logical groupings: Configuration, Army Status, Technologies, Tools & Presets
+  - Smooth expand/collapse animations
+  - Desktop view remains unchanged
+- **Less Intrusive Support CTA** (NEW in v2.11.0):
+  - Floating button in corner instead of bottom banner
+  - Hover-to-expand interaction
+  - Dismissible per session
 
 ## 📖 How to Use
 
@@ -282,7 +291,9 @@ src/
 │   ├── FortificationCard.jsx      # Fortification cards
 │   ├── ImportModal.jsx            # Import composition modal
 │   ├── PresetSelector.jsx         # Meta build presets
-│   ├── PWAInstallPrompt.jsx       # NEW: PWA install prompt
+│   ├── PWAInstallPrompt.jsx       # PWA install prompt
+│   ├── MobileSidebarSection.jsx   # Mobile accordion sections
+│   ├── BuyMeCoffee.jsx            # Floating support CTA
 │   ├── TechnologyPanel.jsx        # Tech selection
 │   └── ...
 ├── context/            # State management
@@ -434,6 +445,11 @@ This section documents the sources of visual assets used in the calculator for e
   - Auto-update notifications
   - Service worker with Workbox
   - 18 new PWA tests
+- ✅ **UI Polish v2.11.0** (November 2025):
+  - Floating BuyMeCoffee button (less intrusive)
+  - Mobile sidebar accordion navigation
+  - Logical section grouping for mobile
+  - Smooth animations and transitions
 
 </details>
 
@@ -592,12 +608,12 @@ Found a bug or have a suggestion?
 
 ### 📊 Project Stats
 
-![Version](https://img.shields.io/badge/Version-2.10.0-brightgreen?style=flat)
+![Version](https://img.shields.io/badge/Version-2.11.0-brightgreen?style=flat)
 ![Last Updated](https://img.shields.io/badge/Last_Updated-November_2025-blue?style=flat)
 ![Status](https://img.shields.io/badge/Status-Production_Ready-success?style=flat)
 ![PWA](https://img.shields.io/badge/PWA-Offline_Ready-4F46E5?style=flat)
 
-**100+ Units • 90+ Unique Units • 51 Civilizations • 24 Meta Presets • 368 Tests • Offline Support**
+**100+ Units • 90+ Unique Units • 51 Civilizations • 24 Meta Presets • 368 Tests • Offline Support • Mobile Optimized**
 
 ---
 

@@ -1,6 +1,6 @@
 {
   "name": "aoe2-army-calculator",
-  "version": "2.10.0",
+  "version": "2.11.0",
   "type": "module",
   "description": "Age of Empires II Army Composition Calculator - Plan your armies with accurate resource tracking",
   "scripts": {

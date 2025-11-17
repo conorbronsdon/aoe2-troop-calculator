@@ -477,7 +477,7 @@ With 100+ units, browsing is cumbersome. Add search and filter functionality.
 ## 🎯 Medium Priority
 
 ### UI Polish & Usability Improvements
-**Status:** ✅ Partially Complete (v2.10.0)
+**Status:** ✅ Mostly Complete (v2.11.0)
 **Priority:** Medium
 **Complexity:** Low-Medium
 
@@ -511,19 +511,21 @@ A collection of UI improvements to enhance user experience and reduce visual clu
    - Consolidate social links into icon-only buttons
    - Reduce vertical footprint
 
-5. **BuyMeCoffee CTA Repositioning**
-   - Currently at bottom of main content after all units
-   - Options:
-     - Less intrusive floating button in corner
-     - Integrate into footer area
-     - Collapsible banner at top
+5. **BuyMeCoffee CTA Repositioning** ✅ Complete
+   - ✅ Converted to floating button in bottom-right corner
+   - ✅ Hover-to-expand interaction for less intrusion
+   - ✅ Dismissible per session (uses sessionStorage)
+   - ✅ Responsive positioning (adjusts for mobile vs desktop)
+   - ✅ ARIA labels for accessibility
 
-6. **Mobile Sidebar Navigation**
-   - Sidebar stacks vertically before main content on mobile
-   - Consider:
-     - Horizontal tabs for sidebar sections
-     - Accordion-style collapsible sections
-     - Bottom navigation for key sections
+6. **Mobile Sidebar Navigation** ✅ Complete
+   - ✅ Accordion-style collapsible sections for mobile
+   - ✅ Four logical groupings: Configuration, Army Status, Technologies, Tools & Presets
+   - ✅ Priority-based styling (high/normal/low)
+   - ✅ Configuration section open by default, others collapsed
+   - ✅ Smooth expand/collapse animations
+   - ✅ Desktop view remains unchanged (sections always visible)
+   - ✅ ARIA attributes for accessibility
 
 7. **Quick Stats Summary Bar**
    - Add compact summary showing: Total Units | Total Pop | Total Cost
@@ -1270,6 +1272,19 @@ Track application performance metrics.
 
 ## Recently Completed ✅
 
+### UI Polish - BuyMeCoffee CTA & Mobile Navigation (v2.11.0 - November 2025)
+Enhanced user experience with less intrusive CTA and improved mobile navigation:
+- ✅ **Floating BuyMeCoffee Button:** Repositioned from bottom-of-content to floating corner button
+- ✅ **Hover-to-Expand Interaction:** Button expands to show text on hover, collapses to icon-only
+- ✅ **Dismissible CTA:** Users can dismiss the button for the session
+- ✅ **Mobile Sidebar Accordion:** Collapsible sections for sidebar on mobile devices
+- ✅ **Logical Section Grouping:** Configuration, Army Status, Technologies, Tools & Presets
+- ✅ **Priority-Based Styling:** High-priority sections use distinct colors
+- ✅ **Smooth Animations:** CSS transitions for expand/collapse and fade-in effects
+- ✅ **Accessibility:** ARIA attributes, keyboard navigation, screen reader support
+- ✅ **Desktop Unchanged:** Sidebar sections remain always-visible on desktop
+- ✅ **Custom Tailwind Animation:** Added fade-in keyframe animation
+
 ### Progressive Web App (PWA) Support (v2.10.0 - November 2025)
 Complete offline functionality and installable app experience:
 - ✅ **Service Worker:** Auto-generated with Workbox, 251 precached assets
@@ -1411,6 +1426,6 @@ For questions or suggestions about the roadmap, open a discussion on GitHub.
 ---
 
 **Last Updated:** November 17, 2025
-**Current Version:** 2.10.0
+**Current Version:** 2.11.0
 **Total Roadmap Items:** 35+ features across 4 priority levels
 **Next Major Focus:** Unit Statistics Display UI, Team Bonus System
