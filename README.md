@@ -144,6 +144,37 @@ Plan your armies • Calculate costs • Compare civilizations • Optimize reso
 - **Tooltips**: Additional context on hover
 - **Strategic Planning**: Build balanced compositions by understanding counter relationships
 
+### 📱 Progressive Web App (NEW in v2.10.0)
+- **Install on Any Device**: Add to home screen on desktop, tablet, or mobile
+- **Full Offline Support**: Plan your armies without internet connection
+  - 251 precached assets for complete offline functionality
+  - Cache-first strategy for fast load times
+- **Auto Updates**: Get notified when new version is available
+- **Install Prompt**: Friendly install UI with "Not now" dismissal (7-day cooldown)
+- **Standalone Mode**: App runs like a native application
+- **Perfect for Gaming**: Plan armies during gaming sessions without internet
+
+### 🧪 Technology System (v2.4.0 - v2.7.0)
+- **Blacksmith Upgrades**: Fletching, Bodkin Arrow, Bracer, Forging, etc.
+- **University Technologies**: Ballistics, Chemistry, Siege Engineers
+- **Monastery Upgrades**: Redemption, Atonement, Sanctity
+- **Economy Upgrades**: Wheelbarrow, Hand Cart
+- **Unique Technologies**: 100+ civilization-specific unique techs
+  - Castle Age and Imperial Age unique techs for all 50 civs
+  - Tech cost tracking included in total resources
+  - Visual distinction with yellow styling and ⭐ icons
+
+### 📦 Preset Army Compositions (NEW in v2.9.0)
+- **24 Pre-configured Meta Builds**:
+  - Castle Age Rushes: Knight Rush, Crossbow Push, Eagle Rush
+  - Imperial Compositions: Paladin + Siege, Arbalester + Halbs
+  - Civilization-Specific: Britons Longbow, Franks Paladin, Mayans Plumes
+  - Beginner Templates: Trash Army, Balanced Composition, Defensive Turtle
+- **Two-Dropdown Interface**: Select category then build
+- **Live Preview**: See unit composition, total cost, recommended civs
+- **Load/Merge Modes**: Replace current army or add preset to existing composition
+- **Auto-Apply Civilization**: Presets can automatically set recommended civ
+
 ### 🎨 User Experience
 - **Official Unit Icons**: Real Age of Empires II unit icons from community sources
   - Automatic loading from Age of Empires wiki
@@ -231,10 +262,13 @@ npm run build
 | Technology | Purpose |
 |------------|---------|
 | **React 18** | UI framework with hooks and context |
-| **Vite** | Lightning-fast build tool |
+| **Vite 5** | Lightning-fast build tool |
 | **Tailwind CSS** | Utility-first styling |
 | **React Context API** | State management |
 | **Local Storage** | Composition persistence |
+| **vite-plugin-pwa** | Progressive Web App support |
+| **Workbox** | Service worker and caching |
+| **Vitest** | Fast unit testing framework |
 
 ### Project Structure
 ```
@@ -246,18 +280,24 @@ src/
 │   ├── UnitCard.jsx
 │   ├── FortificationSelection.jsx  # Fortification mode
 │   ├── FortificationCard.jsx      # Fortification cards
-│   ├── ImportModal.jsx            # NEW: Import composition modal
+│   ├── ImportModal.jsx            # Import composition modal
+│   ├── PresetSelector.jsx         # Meta build presets
+│   ├── PWAInstallPrompt.jsx       # NEW: PWA install prompt
+│   ├── TechnologyPanel.jsx        # Tech selection
 │   └── ...
 ├── context/            # State management
-│   ├── ArmyContext.jsx       # Updated: Import composition support
+│   ├── ArmyContext.jsx       # State with tech, presets, import support
 │   └── ThemeContext.jsx
 ├── services/          # Business logic services
-│   ├── import.service.js      # NEW: Import validation & parsing
+│   ├── import.service.js      # Import validation & parsing
 │   ├── export.service.js      # Export to CSV/JSON
 │   ├── share.service.js       # URL sharing
 │   └── storage.service.js     # LocalStorage management
 ├── data/              # Game data
 │   ├── civilizations.js         # 51 civs with bonuses
+│   ├── technologies.js          # Tech upgrades and effects
+│   ├── techTree.js              # Civ tech restrictions
+│   ├── presets.js               # 24 meta army compositions
 │   ├── fortifications.js        # Walls, towers, castles
 │   └── units/
 │       ├── infantry.js
@@ -269,7 +309,9 @@ src/
 │       └── other.js
 ├── utils/             # Helper functions
 │   ├── calculations.js          # Cost calculations
+│   ├── statCalculator.js        # Unit stat calculations (14K LOC)
 │   └── iconMappings.js          # Unit icon URL mappings
+├── main.jsx           # App entry point with SW registration
 └── App.jsx
 ```
 
@@ -287,15 +329,17 @@ npm run test:watch
 npm run test:coverage
 ```
 
-### Test Coverage (290 Tests)
+### Test Coverage (368 Tests)
 - **Unit Data** (59 tests): Validation for all 100+ units
-- **Component Tests** (134 tests): UnitCard, UnitFilter, ResourceCost, ThemeToggle, ErrorBoundary
+- **Component Tests** (170+ tests): UnitCard, UnitFilter, ResourceCost, ThemeToggle, ErrorBoundary, PresetSelector, PWAInstallPrompt
 - **Service Tests** (88 tests): Export, Storage, Share, Import services
 - **Utility Tests** (29 tests): Cost calculations with civilization bonuses
+- **Preset Tests** (60 tests): Data validation and component functionality
 - Unit filtering by civilization and age
 - Component rendering and user interaction tests
 - Error handling and edge cases
 - Import validation and sanitization tests
+- PWA functionality and install prompt tests
 
 ## 📊 Data Accuracy
 
@@ -374,31 +418,48 @@ This section documents the sources of visual assets used in the calculator for e
   - Full validation with error/warning messages
   - Data sanitization for security
   - Import history tracking (34 new tests)
+- ✅ **Unique Technologies v2.7.0** (November 2025):
+  - 100+ unique technologies for all 50 civilizations
+  - Castle Age and Imperial Age unique techs
+  - Tech effects apply to unit stats
+  - Visual distinction with yellow styling
+- ✅ **Preset Army Compositions v2.9.0** (November 2025):
+  - 24 pre-configured meta builds
+  - Live preview with unit counts and costs
+  - Load/Merge modes for flexibility
+  - 60 new tests for presets
+- ✅ **Progressive Web App v2.10.0** (November 2025):
+  - Full offline functionality (251 cached assets)
+  - Install prompt for desktop/mobile
+  - Auto-update notifications
+  - Service worker with Workbox
+  - 18 new PWA tests
 
 </details>
 
 <details>
 <summary><b>🔜 Next Steps</b></summary>
 
-### 1. Quick Filter Toggles
-- [ ] Hide Naval Units toggle for land-focused planning
-- [ ] Hide Monks toggle option
-- [ ] Quick presets for common filter combinations
+### 1. Unit Statistics Display UI
+- [ ] Add HP progress bars to unit cards
+- [ ] Unit comparison modal for side-by-side analysis
+- [ ] Enhanced tooltips with calculation breakdown
+- [ ] (Note: Stat calculation engine already complete)
 
-### 2. Unit Statistics Display
-- [ ] Calculate and display actual unit stats (HP, attack, armor)
-- [ ] Show stat comparisons between civilizations
-- [ ] Highlight which bonuses are active for current army
-
-### 3. Advanced Technology System
-- [ ] Include unique technologies (civ-specific techs)
-- [ ] Add more comprehensive technology effects
-- [ ] Expand stat display beyond base stats
-
-### 4. Team Bonus System
+### 2. Team Bonus System
 - [ ] Select allied civilizations for team games
 - [ ] Apply team bonus effects to calculations
 - [ ] Show which ally provides which bonus
+
+### 3. Keyboard Shortcuts
+- [ ] Quick navigation shortcuts (Ctrl+S save, Ctrl+/ search)
+- [ ] Help modal showing available shortcuts
+- [ ] Focus management for accessibility
+
+### 4. Undo/Redo System
+- [ ] History stack for composition changes
+- [ ] Keyboard shortcuts (Ctrl+Z, Ctrl+Shift+Z)
+- [ ] Enable experimentation without fear
 
 </details>
 
@@ -531,11 +592,12 @@ Found a bug or have a suggestion?
 
 ### 📊 Project Stats
 
-![Version](https://img.shields.io/badge/Version-2.8.0-brightgreen?style=flat)
+![Version](https://img.shields.io/badge/Version-2.10.0-brightgreen?style=flat)
 ![Last Updated](https://img.shields.io/badge/Last_Updated-November_2025-blue?style=flat)
 ![Status](https://img.shields.io/badge/Status-Production_Ready-success?style=flat)
+![PWA](https://img.shields.io/badge/PWA-Offline_Ready-4F46E5?style=flat)
 
-**100+ Units • 90+ Unique Units • 51 Civilizations • Complete Stats Documentation • 290 Tests**
+**100+ Units • 90+ Unique Units • 51 Civilizations • 24 Meta Presets • 368 Tests • Offline Support**
 
 ---
 

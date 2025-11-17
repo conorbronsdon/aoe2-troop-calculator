@@ -5,6 +5,75 @@ All notable changes to the Age of Empires II Army Composition Calculator will be
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.10.0] - 2025-11-17
+
+### Added
+- **Progressive Web App (PWA) Support**: Full offline functionality and installable app
+  - Service worker with Workbox for 251 precached assets
+  - Auto-update notifications when new version is available
+  - PWAInstallPrompt component with friendly install UI
+  - Dismissal persistence (7-day cooldown after "Not now")
+  - Automatic detection of installation status
+  - Slide-up animation for install prompt
+  - Cache-first strategy for Google Fonts
+  - Standalone display mode for native app experience
+  - vite-plugin-pwa integration with automatic SW generation
+
+- **Export Button Consolidation** (UI Polish):
+  - CSV and JSON export options consolidated into single dropdown menu
+  - Reduced visual clutter from 6 buttons to 4 buttons
+  - Click-outside handling to close dropdown
+  - Proper ARIA attributes (aria-expanded, aria-haspopup)
+
+### Changed
+- Updated vite.config.js with PWA plugin configuration
+- Added service worker registration in main.jsx
+- Removed manual manifest link (auto-injected by plugin)
+- Added TypeScript declarations for virtual modules
+- Tailwind config extended with slide-up animation
+- Fixed missing ACTION_TYPES import in ArmyCompositionSummary
+
+### Tests
+- Added 18 comprehensive PWAInstallPrompt component tests
+  - Rendering, interactions, dismissal persistence
+  - Accessibility, cleanup, event handling
+- Total test count: 368 tests (all passing)
+
+### Dependencies
+- Added vite-plugin-pwa (v1.1.0)
+- Added workbox-window (v7.3.0)
+
+### Documentation
+- Updated ROADMAP.md: PWA Support marked complete
+- Updated ROADMAP.md: Export button consolidation marked complete
+- Version bumped to 2.10.0
+
+---
+
+## [2.9.0] - 2025-11-16
+
+### Added
+- **Preset Army Compositions**: 24 pre-configured meta builds
+  - Castle Age Rushes: Knight Rush, Crossbow Push, Eagle Rush, Camel Push, Monk Siege Push
+  - Imperial Compositions: Paladin + Siege, Arbalester + Halbs, Heavy Camel + Siege, Cav Archer + Hussar
+  - Civilization-Specific: Britons Longbow, Franks Paladin, Mayans Plumes, Mongols Mangudai, Goths Infantry
+  - Beginner Templates: Trash Army, Basic Gold Army, Balanced Composition, Defensive Turtle, Raiding Party
+  - New `PresetSelector` component with two-dropdown interface
+  - Live preview showing unit composition, total cost, recommended civs
+  - Load/Merge modes for flexible preset application
+  - Auto-apply civilization settings from presets
+  - Helper functions: getPresetsByCategory, getPresetById, getPresetsForCiv
+
+### Tests
+- Added 60 new tests (33 data validation + 27 component tests)
+- Total test count: 350 tests (all passing)
+
+### Documentation
+- Updated ROADMAP.md: Preset Army Compositions marked complete
+- Version bumped to 2.9.0
+
+---
+
 ## [2.8.0] - 2025-11-16
 
 ### Added

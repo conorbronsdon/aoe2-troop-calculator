@@ -9,6 +9,10 @@ Comprehensive guide to all features in the AoE2 Army Calculator.
 4. [Army Planning](#army-planning)
 5. [Composition Management](#composition-management)
 6. [Comparison Mode](#comparison-mode)
+7. [Progressive Web App (PWA)](#progressive-web-app-pwa---v2100)
+8. [Technology System](#technology-system---v240-to-v270)
+9. [Preset Army Compositions](#preset-army-compositions---v290)
+10. [Limitations & Known Issues](#limitations--known-issues)
 
 ---
 
@@ -578,23 +582,129 @@ Future shortcuts planned:
 
 ---
 
+## Progressive Web App (PWA) - v2.10.0
+
+### Install & Offline Support
+
+The app is now a full Progressive Web App:
+
+1. **Installation**:
+   - Click "Install App" when prompted
+   - Or use browser's "Add to Home Screen"
+   - Works on desktop, tablet, and mobile
+
+2. **Offline Functionality**:
+   - 251 precached assets for complete offline use
+   - Plan armies without internet connection
+   - Perfect for gaming sessions
+   - Cache-first strategy for fast loads
+
+3. **Auto Updates**:
+   - Notified when new version available
+   - One-click update
+   - Service worker handles caching
+
+4. **Install Prompt**:
+   - Friendly UI with "Install App" button
+   - "Not now" dismisses for 7 days
+   - Automatic detection of installation status
+
+---
+
+## Technology System - v2.4.0 to v2.7.0
+
+### Upgrades & Technologies
+
+Full technology support with stat calculations:
+
+1. **Blacksmith Upgrades**:
+   - Fletching, Bodkin Arrow, Bracer (archer attack)
+   - Forging, Iron Casting, Blast Furnace (melee attack)
+   - Padded Archer Armor, Leather Archer Armor, Ring Archer Armor
+   - Scale Mail Armor, Chain Mail Armor, Plate Mail Armor
+
+2. **University Technologies**:
+   - Ballistics, Chemistry, Siege Engineers
+   - Masonry, Architecture, Heated Shot
+
+3. **Monastery Upgrades**:
+   - Redemption, Atonement, Sanctity
+   - Fervor, Faith, Illumination
+
+4. **Economic Upgrades**:
+   - Wheelbarrow, Hand Cart
+   - Double-Bit Axe, Bow Saw, Two-Man Saw
+
+5. **Unique Technologies** (100+ techs):
+   - Castle Age unique tech for each civ
+   - Imperial Age unique tech for each civ
+   - Yellow styling with ⭐ icons
+   - Tech cost tracking included
+
+---
+
+## Preset Army Compositions - v2.9.0
+
+### Meta Builds
+
+24 pre-configured army compositions:
+
+1. **Castle Age Rushes**:
+   - Knight Rush (10 Knights + 4 Light Cav)
+   - Crossbow Push (20 Crossbows + 4 Spears)
+   - Eagle Rush (15 Eagle Warriors)
+   - Camel Push (8 Camels + 4 Light Cav)
+   - Monk Siege Push (5 Monks + 2 Mangonels)
+
+2. **Imperial Compositions**:
+   - Paladin + Siege (15 Paladins + siege support)
+   - Arbalester + Halbs (30 Arbs + 15 Halbs)
+   - Heavy Camel + Siege (12 Heavy Camels)
+   - Cav Archer + Hussar (18 Heavy CA + Hussars)
+
+3. **Civilization-Specific**:
+   - Britons Longbow Army
+   - Franks Paladin Spam
+   - Mayans Plumes + Eagles
+   - Mongols Mangudai Rush
+   - Goths Infantry Flood
+
+4. **Beginner Templates**:
+   - Trash Army (no gold units)
+   - Basic Gold Army
+   - Balanced Composition
+   - Defensive Turtle
+   - Raiding Party
+
+### Using Presets
+
+1. Select category from dropdown
+2. Choose specific build
+3. Preview shows units, costs, recommended civs
+4. Click "Load Preset" to replace current
+5. Or "Merge with Current" to add
+
+---
+
 ## Limitations & Known Issues
 
 ### Current Limitations
 
-1. **Stat Bonuses**:
-   - HP, attack, armor not calculated or displayed
-   - Shown for reference only in bonus panel
-   - Coming in future update
+1. **Unit Stats Display**:
+   - Stat calculation engine complete (14K LOC)
+   - Visual HP bars not yet implemented
+   - Side-by-side comparison modal pending
+   - Rich tooltips with breakdowns pending
 
-2. **Upgrades**:
-   - No technology/upgrade system yet
-   - All units shown at base stats
-   - Blacksmith upgrades not implemented
+2. **Team Bonuses**:
+   - Team bonus data exists in civ data
+   - UI for selecting allies not implemented
+   - Team bonus calculations not applied
 
-3. **Team Bonuses**:
-   - Not all civilizations have team bonuses documented
-   - Being completed incrementally
+3. **Battle Simulation**:
+   - No combat outcome predictions
+   - Requires complex micro/positioning calculations
+   - Lower priority feature
 
 ### Reporting Issues
 
@@ -607,4 +717,4 @@ Found a bug? Please report:
 ---
 
 **Last Updated**: November 2025
-**Version**: 2.3.0
+**Version**: 2.10.0
