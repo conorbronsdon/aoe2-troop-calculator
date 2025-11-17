@@ -25,6 +25,9 @@ export default [
         ...globals.browser,
         ...globals.es2021,
         ...globals.node,
+        React: 'readonly',
+        JSX: 'readonly',
+        NodeJS: 'readonly',
       },
       parserOptions: {
         ecmaFeatures: {
@@ -66,7 +69,7 @@ export default [
       'no-console': [
         'warn',
         {
-          allow: ['warn', 'error'],
+          allow: ['warn', 'error', 'info', 'debug'],
         },
       ],
       'no-debugger': 'error',
@@ -90,10 +93,10 @@ export default [
 
       // Code quality
       eqeqeq: ['error', 'always'],
-      curly: ['error', 'all'],
+      curly: ['warn', 'multi-line', 'consistent'],
       'prefer-const': 'warn',
       'no-var': 'error',
-      'arrow-body-style': ['warn', 'as-needed'],
+      'arrow-body-style': 'off',
       'object-shorthand': 'warn',
 
       // Spacing and formatting

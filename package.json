@@ -1,6 +1,6 @@
 {
   "name": "aoe2-army-calculator",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "type": "module",
   "description": "Age of Empires II Army Composition Calculator - Plan your armies with accurate resource tracking",
   "scripts": {
@@ -11,8 +11,8 @@
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
     "type-check": "tsc --noEmit",
-    "lint": "ESLINT_USE_FLAT_CONFIG=true eslint src/ --ext .ts,.tsx",
-    "lint:fix": "ESLINT_USE_FLAT_CONFIG=true eslint src/ --ext .ts,.tsx --fix",
+    "lint": "ESLINT_USE_FLAT_CONFIG=true eslint src/",
+    "lint:fix": "ESLINT_USE_FLAT_CONFIG=true eslint src/ --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,json,css}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,json,css}\"",
     "check": "npm run type-check && npm run lint && npm run format:check && npm test -- --run"
