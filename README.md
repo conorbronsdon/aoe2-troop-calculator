@@ -198,6 +198,28 @@ Plan your armies • Calculate costs • Compare civilizations • Optimize reso
   - Floating button in corner instead of bottom banner
   - Hover-to-expand interaction
   - Dismissible per session
+- **Keyboard Shortcuts** (NEW in v2.13.0):
+  - `Ctrl+S` - Quick save composition
+  - `Ctrl+Z` / `Ctrl+Shift+Z` - Undo/Redo actions
+  - `Ctrl+E` - Export to JSON
+  - `Ctrl+/` - Focus search bar
+  - `Ctrl+D` - Toggle dark mode
+  - `?` - Show keyboard shortcuts help
+- **Undo/Redo System** (NEW in v2.13.0):
+  - 50-action history stack
+  - Visual toolbar buttons in header
+  - Tracks composition, config, and tech changes
+  - Prevents accidental data loss
+- **Army Composition Analysis** (NEW in v2.13.0):
+  - Vulnerability detection (what counters your army)
+  - Strength analysis (what your army counters)
+  - Melee/Ranged/Siege balance indicators
+  - Economy metrics (gold vs trash units)
+  - Intelligent suggestions for improving composition
+- **Global Toast Notifications** (NEW in v2.13.0):
+  - Centralized notification system
+  - Success, warning, info, error types
+  - Auto-dismiss with accessibility support
 
 ## 📖 How to Use
 
@@ -457,6 +479,14 @@ This section documents the sources of visual assets used in the calculator for e
   - Visual indicators for tech-modified stats (green highlights)
   - Toggle to show/hide combat stats on unit cards
   - Consolidated combat panels with expandable sections
+- ✅ **Keyboard Shortcuts, Undo/Redo & Army Analysis v2.13.0** (November 2025):
+  - 10+ keyboard shortcuts (Ctrl+S save, Ctrl+Z undo, ? help, etc.)
+  - Undo/Redo system with 50-action history stack
+  - Army composition analysis with vulnerability/strength detection
+  - Global toast notification system
+  - Platform-aware key formatting (Mac/Windows)
+  - Architecture improvements (ToastContext, useKeyboardShortcuts hook)
+  - All 372 tests pass
 
 </details>
 
