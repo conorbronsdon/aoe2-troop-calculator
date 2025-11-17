@@ -507,6 +507,14 @@ Comprehensive guides and references for the project:
 | **[ROADMAP.md](ROADMAP.md)** | Future development plans and completed milestones |
 | **[CHANGELOG.md](CHANGELOG.md)** | Version history and release notes |
 
+### 🔬 Research & Strategic Planning (NEW)
+
+| Document | Description |
+|----------|-------------|
+| **[AOE2_RESOURCES.md](AOE2_RESOURCES.md)** | Comprehensive guide to 100+ AoE2 community tools, APIs, websites, and resources |
+| **[RESEARCH_OPPORTUNITIES.md](RESEARCH_OPPORTUNITIES.md)** | Ecosystem analysis, gap identification, and strategic roadmap for project expansion |
+| **[PRIORITY_FEATURES.md](PRIORITY_FEATURES.md)** | Prioritized list of features with implementation guides and ROI analysis |
+
 ## 🐛 Support & Feedback
 
 Found a bug or have a suggestion?
