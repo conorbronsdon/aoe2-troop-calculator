@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { LIMITS } from '../constants';
 import ResourceCost from './ResourceCost';
+import FortificationIcon from './FortificationIcon';
 
 /**
  * FortificationCard Component
@@ -32,29 +33,16 @@ export default function FortificationCard({ fortification }) {
     });
   };
 
-  const getCategoryIcon = (category) => {
-    switch (category) {
-      case 'Walls':
-        return { icon: '🧱', label: 'Wall' };
-      case 'Towers':
-        return { icon: '🗼', label: 'Tower' };
-      case 'Castles':
-        return { icon: '🏰', label: 'Castle' };
-      default:
-        return { icon: '🏗️', label: 'Building' };
-    }
-  };
-
-  const { icon, label } = getCategoryIcon(fortification.category);
-
   return (
     <div className="border border-gray-200 dark:border-gray-600 rounded-lg p-3 hover:shadow-md transition-all bg-white dark:bg-gray-700/50">
       <div className="flex justify-between items-start mb-2">
         <div className="flex-1">
           <div className="font-semibold text-sm flex items-center gap-2 text-gray-900 dark:text-gray-100">
-            <span className="text-2xl" role="img" aria-label={label}>
-              {icon}
-            </span>
+            <FortificationIcon
+              fortificationId={fortification.id}
+              category={fortification.category}
+              size="xl"
+            />
             <span>{fortification.name}</span>
           </div>
           <div className="text-xs text-gray-500 dark:text-gray-400 capitalize">{fortification.age} Age</div>

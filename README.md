@@ -535,6 +535,10 @@ This section documents the sources of visual assets used in the calculator for e
 - [ ] Italian language support
 - [ ] Polish language support
 - [ ] Simplified Chinese support
+- [ ] **Unit & Civilization Name Translations** (100+ units, 51 civs)
+  - Currently unit names remain in English for all languages
+  - Would require extensive data file refactoring
+  - High effort but complete localization experience
 
 ### 2. Enhanced Team Features
 - [ ] Team game presets (2v2, 3v3, 4v4 compositions)
