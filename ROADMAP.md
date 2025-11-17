@@ -458,6 +458,75 @@ With 100+ units, browsing is cumbersome. Add search and filter functionality.
 
 ## 🎯 Medium Priority
 
+### UI Polish & Usability Improvements
+**Status:** In Progress
+**Priority:** Medium
+**Complexity:** Low-Medium
+
+A collection of UI improvements to enhance user experience and reduce visual clutter.
+
+**Identified Improvements:**
+
+1. **ArmyCompositionSummary Action Button Consolidation** ✅ In Progress
+   - Currently has 6 buttons (Save, Import, Share, CSV, JSON, Reset) in a row
+   - Group CSV/JSON export actions into a dropdown menu
+   - Reduces visual clutter while maintaining functionality
+   - Expected completion: Current sprint
+
+2. **ResourceTracker Visibility Enhancement**
+   - Currently at top of main content, users must scroll past it
+   - Options:
+     - Make it collapsible (similar to CivilizationBonuses)
+     - Add a sticky mini-version that floats when scrolling
+     - Already have CompactResourceBar but could enhance integration
+
+3. **UnitFilter Space Optimization**
+   - Shows all filter options expanded by default
+   - Consider:
+     - Start collapsed with "Show Filters" toggle
+     - More compact horizontal layout with dropdowns
+     - Remember collapsed state in localStorage
+
+4. **Footer Consolidation**
+   - Footer has multiple links spread across vertical space
+   - Consolidate social links into icon-only buttons
+   - Reduce vertical footprint
+
+5. **BuyMeCoffee CTA Repositioning**
+   - Currently at bottom of main content after all units
+   - Options:
+     - Less intrusive floating button in corner
+     - Integrate into footer area
+     - Collapsible banner at top
+
+6. **Mobile Sidebar Navigation**
+   - Sidebar stacks vertically before main content on mobile
+   - Consider:
+     - Horizontal tabs for sidebar sections
+     - Accordion-style collapsible sections
+     - Bottom navigation for key sections
+
+7. **Quick Stats Summary Bar**
+   - Add compact summary showing: Total Units | Total Pop | Total Cost
+   - Visible without scrolling
+   - Could integrate with existing CompactResourceBar
+
+8. **Unit Card Grid Density**
+   - Current: `lg:grid-cols-3 xl:grid-cols-4`
+   - Consider making cards slightly more compact to fit more per row
+   - Balance between information density and readability
+
+**Acceptance Criteria:**
+- Reduced visual clutter in ArmyCompositionSummary (fewer buttons visible at once)
+- Maintained or improved accessibility
+- All features remain easily discoverable
+- Consistent styling across components
+- Dark mode support maintained
+
+**Impact:** Cleaner UI with better information density, improved user workflow efficiency.
+
+---
+
 ### Enhanced Unique Unit Documentation
 **Status:** ✅ Complete (v2.8.0)
 **Priority:** Medium

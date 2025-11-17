@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { getUnitById } from '../data/units';
 import { calculateUnitCost } from '../utils/calculations';
@@ -19,6 +19,25 @@ export default function ArmyCompositionSummary() {
   const [showSaveDialog, setShowSaveDialog] = useState(false);
   const [saveName, setSaveName] = useState('');
   const [saveMessage, setSaveMessage] = useState('');
+  const [showExportMenu, setShowExportMenu] = useState(false);
+  const exportMenuRef = useRef(null);
+
+  // Close export menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (exportMenuRef.current && !exportMenuRef.current.contains(event.target)) {
+        setShowExportMenu(false);
+      }
+    };
+
+    if (showExportMenu) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showExportMenu]);
 
   const resetComposition = () => {
     dispatch({ type: ACTION_TYPES.RESET_COMPOSITION });
@@ -63,7 +82,8 @@ export default function ArmyCompositionSummary() {
   const handleExportCSV = () => {
     const csv = ExportService.toCSV(composition, config);
     ExportService.downloadCSV(csv);
-    setExportMessage('✓ Downloaded!');
+    setExportMessage('✓ CSV Downloaded!');
+    setShowExportMenu(false);
     setTimeout(() => setExportMessage(''), 2000);
   };
 
@@ -71,6 +91,7 @@ export default function ArmyCompositionSummary() {
     const csv = ExportService.toCSV(composition, config);
     const success = await ExportService.copyToClipboard(csv);
     setExportMessage(success ? '✓ Copied to clipboard!' : '✗ Copy failed');
+    setShowExportMenu(false);
     setTimeout(() => setExportMessage(''), 2000);
   };
 
@@ -78,6 +99,7 @@ export default function ArmyCompositionSummary() {
     const json = ExportService.toJSON(composition, config);
     ExportService.downloadJSON(json);
     setExportMessage('✓ JSON Downloaded!');
+    setShowExportMenu(false);
     setTimeout(() => setExportMessage(''), 2000);
   };
 
@@ -157,23 +179,35 @@ export default function ArmyCompositionSummary() {
             >
               📋 Share
             </button>
-            <div className="relative">
+            <div className="relative" ref={exportMenuRef}>
               <button
-                onClick={handleExportCSV}
-                className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-4 py-2 rounded text-sm transition-colors"
-                title="Download as CSV"
+                onClick={() => setShowExportMenu(!showExportMenu)}
+                className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-4 py-2 rounded text-sm transition-colors flex items-center gap-1"
+                title="Export composition"
+                aria-expanded={showExportMenu}
+                aria-haspopup="true"
               >
-                📥 CSV
+                📥 Export
+                <span className="text-xs">{showExportMenu ? '▲' : '▼'}</span>
               </button>
-            </div>
-            <div className="relative">
-              <button
-                onClick={handleExportJSON}
-                className="bg-purple-500 hover:bg-purple-600 dark:bg-purple-600 dark:hover:bg-purple-700 text-white px-4 py-2 rounded text-sm transition-colors"
-                title="Download as JSON"
-              >
-                📥 JSON
-              </button>
+              {showExportMenu && (
+                <div className="absolute right-0 mt-1 w-40 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-600 z-10 overflow-hidden">
+                  <button
+                    onClick={handleExportCSV}
+                    className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center gap-2"
+                  >
+                    <span className="text-green-600 dark:text-green-400">📄</span>
+                    Download CSV
+                  </button>
+                  <button
+                    onClick={handleExportJSON}
+                    className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center gap-2"
+                  >
+                    <span className="text-purple-600 dark:text-purple-400">📋</span>
+                    Download JSON
+                  </button>
+                </div>
+              )}
             </div>
             <button
               onClick={resetComposition}
