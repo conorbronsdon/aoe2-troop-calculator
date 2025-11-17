@@ -2,12 +2,24 @@ import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { SEARCH_DEBOUNCE_MS } from '../constants';
 
+const STORAGE_KEY = 'aoe2-unit-filter-expanded';
+
 export default function UnitFilter({ onFilterChange }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedCostType, setSelectedCostType] = useState('all');
   const [selectedAgeFilter, setSelectedAgeFilter] = useState('all');
   const [hideNaval, setHideNaval] = useState(false);
+
+  // Collapsible state - start collapsed by default
+  const [isExpanded, setIsExpanded] = useState(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      return saved !== null ? JSON.parse(saved) : false; // Start collapsed
+    } catch {
+      return false;
+    }
+  });
 
   // Debounce timer ref for search input
   const searchDebounceRef = useRef(null);
@@ -36,6 +48,15 @@ export default function UnitFilter({ onFilterChange }) {
     },
     []
   );
+
+  // Persist expanded state to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(isExpanded));
+    } catch {
+      // Ignore localStorage errors
+    }
+  }, [isExpanded]);
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
@@ -113,22 +134,61 @@ export default function UnitFilter({ onFilterChange }) {
     selectedAgeFilter !== 'all' ||
     hideNaval;
 
+  // Count active filters for display
+  const activeFilterCount = [
+    searchTerm ? 1 : 0,
+    selectedCategories.length,
+    selectedCostType !== 'all' ? 1 : 0,
+    selectedAgeFilter !== 'all' ? 1 : 0,
+    hideNaval ? 1 : 0,
+  ].reduce((a, b) => a + b, 0);
+
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 mb-4 transition-colors duration-300">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200">Filter Units</h3>
-        {hasActiveFilters && (
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-2">
+          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200">Filter Units</h3>
+          {activeFilterCount > 0 && (
+            <span className="bg-blue-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+              {activeFilterCount}
+            </span>
+          )}
+        </div>
+        <div className="flex items-center gap-2">
+          {hasActiveFilters && (
+            <button
+              onClick={clearFilters}
+              className="text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline"
+            >
+              Clear
+            </button>
+          )}
           <button
-            onClick={clearFilters}
-            className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
+            aria-expanded={isExpanded}
+            aria-controls="unit-filter-content"
           >
-            Clear All Filters
+            {isExpanded ? '▼ Collapse' : '► Expand'}
           </button>
-        )}
+        </div>
       </div>
 
-      {/* Search Bar */}
-      <div className="mb-4">
+      {/* Collapsed Summary */}
+      {!isExpanded && hasActiveFilters && (
+        <div className="text-xs text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-700/50 rounded p-2">
+          {searchTerm && <span className="mr-2">🔍 &quot;{searchTerm}&quot;</span>}
+          {selectedCategories.length > 0 && <span className="mr-2">📁 {selectedCategories.join(', ')}</span>}
+          {selectedCostType !== 'all' && <span className="mr-2">💰 {costTypes.find(t => t.id === selectedCostType)?.label}</span>}
+          {selectedAgeFilter !== 'all' && <span className="mr-2">⏰ {ageFilters.find(a => a.id === selectedAgeFilter)?.label}</span>}
+          {hideNaval && <span>🚫 Naval hidden</span>}
+        </div>
+      )}
+
+      {/* Expanded Content */}
+      <div id="unit-filter-content" className={isExpanded ? 'mt-4' : 'hidden'}>
+        {/* Search Bar */}
+        <div className="mb-4">
         <div className="relative">
           <input
             type="text"
@@ -207,6 +267,7 @@ export default function UnitFilter({ onFilterChange }) {
             ))}
           </select>
         </div>
+      </div>
       </div>
     </div>
   );

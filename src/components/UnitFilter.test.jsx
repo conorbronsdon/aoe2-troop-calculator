@@ -13,14 +13,55 @@ vi.mock('../constants', () => ({
 describe('UnitFilter', () => {
   const mockOnFilterChange = vi.fn();
 
+  // Helper to expand the filter (starts collapsed by default)
+  const expandFilter = () => {
+    fireEvent.click(screen.getByText('► Expand'));
+  };
+
   beforeEach(() => {
     vi.clearAllMocks();
     vi.useFakeTimers();
+    // Clear localStorage to ensure consistent test state
+    localStorage.clear();
   });
 
   afterEach(() => {
     cleanup();
     vi.useRealTimers();
+  });
+
+  describe('Collapsible behavior', () => {
+    it('should start collapsed by default', () => {
+      render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expect(screen.getByText('► Expand')).toBeInTheDocument();
+      // The input exists but is hidden (in collapsed state)
+      const filterContent = document.getElementById('unit-filter-content');
+      expect(filterContent).toHaveClass('hidden');
+    });
+
+    it('should expand when expand button is clicked', () => {
+      render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
+      expect(screen.getByText('▼ Collapse')).toBeInTheDocument();
+      expect(screen.getByPlaceholderText('Search units by name...')).toBeInTheDocument();
+    });
+
+    it('should show active filter count badge', () => {
+      render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
+      fireEvent.click(screen.getByText('Infantry'));
+      // Should show badge with count 1
+      expect(screen.getByText('1')).toBeInTheDocument();
+    });
+
+    it('should show collapsed summary with active filters', () => {
+      render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
+      fireEvent.click(screen.getByText('Infantry'));
+      fireEvent.click(screen.getByText('▼ Collapse'));
+      // Should show summary of active filters (check for the summary icon prefix)
+      expect(screen.getByText(/📁.*Infantry/)).toBeInTheDocument();
+    });
   });
 
   describe('Basic rendering', () => {
@@ -29,13 +70,15 @@ describe('UnitFilter', () => {
       expect(screen.getByText('Filter Units')).toBeInTheDocument();
     });
 
-    it('should render search input', () => {
+    it('should render search input when expanded', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
       expect(screen.getByPlaceholderText('Search units by name...')).toBeInTheDocument();
     });
 
-    it('should render category buttons', () => {
+    it('should render category buttons when expanded', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
       expect(screen.getByText('Infantry')).toBeInTheDocument();
       expect(screen.getByText('Cavalry')).toBeInTheDocument();
       expect(screen.getByText('Archer')).toBeInTheDocument();
@@ -45,13 +88,15 @@ describe('UnitFilter', () => {
       expect(screen.getByText('Other')).toBeInTheDocument();
     });
 
-    it('should render hide naval checkbox', () => {
+    it('should render hide naval checkbox when expanded', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
       expect(screen.getByText('Hide Naval Units')).toBeInTheDocument();
     });
 
-    it('should render cost type dropdown with all options', () => {
+    it('should render cost type dropdown with all options when expanded', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
       expect(screen.getByText('Cost Type')).toBeInTheDocument();
       expect(screen.getByText('All Costs')).toBeInTheDocument();
       expect(screen.getByText('Trash Units (No Gold)')).toBeInTheDocument();
@@ -59,8 +104,9 @@ describe('UnitFilter', () => {
       expect(screen.getByText('Low Cost (<100 total)')).toBeInTheDocument();
     });
 
-    it('should render age filter dropdown with all options', () => {
+    it('should render age filter dropdown with all options when expanded', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
       expect(screen.getByText('Age')).toBeInTheDocument();
       expect(screen.getByText('All Ages')).toBeInTheDocument();
       expect(screen.getByText('Dark Age')).toBeInTheDocument();
@@ -71,13 +117,14 @@ describe('UnitFilter', () => {
 
     it('should not show clear filters button initially', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
-      expect(screen.queryByText('Clear All Filters')).not.toBeInTheDocument();
+      expect(screen.queryByText('Clear')).not.toBeInTheDocument();
     });
   });
 
   describe('Search input', () => {
     it('should update search term on input', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
       const input = screen.getByPlaceholderText('Search units by name...');
 
       fireEvent.change(input, { target: { value: 'archer' } });
@@ -87,6 +134,7 @@ describe('UnitFilter', () => {
 
     it('should debounce search filter changes', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
       const input = screen.getByPlaceholderText('Search units by name...');
 
       fireEvent.change(input, { target: { value: 'archer' } });
@@ -106,17 +154,19 @@ describe('UnitFilter', () => {
 
     it('should show clear filters button when search is active', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
       const input = screen.getByPlaceholderText('Search units by name...');
 
       fireEvent.change(input, { target: { value: 'knight' } });
 
-      expect(screen.getByText('Clear All Filters')).toBeInTheDocument();
+      expect(screen.getByText('Clear')).toBeInTheDocument();
     });
   });
 
   describe('Category selection', () => {
     it('should toggle category when clicked', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
       const infantryButton = screen.getByText('Infantry');
 
       fireEvent.click(infantryButton);
@@ -128,6 +178,7 @@ describe('UnitFilter', () => {
 
     it('should allow multiple categories', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
 
       fireEvent.click(screen.getByText('Infantry'));
       fireEvent.click(screen.getByText('Cavalry'));
@@ -139,6 +190,7 @@ describe('UnitFilter', () => {
 
     it('should remove category when clicked again', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
 
       fireEvent.click(screen.getByText('Infantry'));
       fireEvent.click(screen.getByText('Infantry'));
@@ -150,14 +202,16 @@ describe('UnitFilter', () => {
 
     it('should show clear filters button when category is selected', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
 
       fireEvent.click(screen.getByText('Archer'));
 
-      expect(screen.getByText('Clear All Filters')).toBeInTheDocument();
+      expect(screen.getByText('Clear')).toBeInTheDocument();
     });
 
     it('should apply selected styling to active categories', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
       const infantryButton = screen.getByText('Infantry');
 
       expect(infantryButton).toHaveClass('bg-gray-200');
@@ -171,6 +225,7 @@ describe('UnitFilter', () => {
   describe('Cost type filter', () => {
     it('should update cost type on selection', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
       const costTypeSelect = screen.getAllByRole('combobox')[0];
 
       fireEvent.change(costTypeSelect, { target: { value: 'trash' } });
@@ -182,17 +237,19 @@ describe('UnitFilter', () => {
 
     it('should show clear filters button when cost type is not all', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
       const costTypeSelect = screen.getAllByRole('combobox')[0];
 
       fireEvent.change(costTypeSelect, { target: { value: 'gold' } });
 
-      expect(screen.getByText('Clear All Filters')).toBeInTheDocument();
+      expect(screen.getByText('Clear')).toBeInTheDocument();
     });
   });
 
   describe('Age filter', () => {
     it('should update age filter on selection', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
       const ageSelect = screen.getAllByRole('combobox')[1];
 
       fireEvent.change(ageSelect, { target: { value: 'castle' } });
@@ -204,17 +261,19 @@ describe('UnitFilter', () => {
 
     it('should show clear filters button when age is not all', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
       const ageSelect = screen.getAllByRole('combobox')[1];
 
       fireEvent.change(ageSelect, { target: { value: 'imperial' } });
 
-      expect(screen.getByText('Clear All Filters')).toBeInTheDocument();
+      expect(screen.getByText('Clear')).toBeInTheDocument();
     });
   });
 
   describe('Hide naval checkbox', () => {
     it('should toggle hide naval on click', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
       const checkbox = screen.getByRole('checkbox');
 
       fireEvent.click(checkbox);
@@ -224,24 +283,26 @@ describe('UnitFilter', () => {
 
     it('should show clear filters button when hide naval is checked', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
       const checkbox = screen.getByRole('checkbox');
 
       fireEvent.click(checkbox);
 
-      expect(screen.getByText('Clear All Filters')).toBeInTheDocument();
+      expect(screen.getByText('Clear')).toBeInTheDocument();
     });
   });
 
   describe('Clear filters', () => {
     it('should clear all filters when clicked', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
 
       // Apply some filters
       fireEvent.click(screen.getByText('Infantry'));
       mockOnFilterChange.mockClear();
 
       // Click clear
-      fireEvent.click(screen.getByText('Clear All Filters'));
+      fireEvent.click(screen.getByText('Clear'));
 
       expect(mockOnFilterChange).toHaveBeenCalledWith({
         searchTerm: '',
@@ -254,6 +315,7 @@ describe('UnitFilter', () => {
 
     it('should reset all form inputs', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
       const searchInput = screen.getByPlaceholderText('Search units by name...');
       const checkbox = screen.getByRole('checkbox');
 
@@ -263,7 +325,7 @@ describe('UnitFilter', () => {
       fireEvent.click(screen.getByText('Cavalry'));
 
       // Clear
-      fireEvent.click(screen.getByText('Clear All Filters'));
+      fireEvent.click(screen.getByText('Clear'));
 
       // Verify resets
       expect(searchInput).toHaveValue('');
@@ -273,17 +335,19 @@ describe('UnitFilter', () => {
 
     it('should hide clear button after clearing', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
 
       fireEvent.click(screen.getByText('Infantry'));
-      fireEvent.click(screen.getByText('Clear All Filters'));
+      fireEvent.click(screen.getByText('Clear'));
 
-      expect(screen.queryByText('Clear All Filters')).not.toBeInTheDocument();
+      expect(screen.queryByText('Clear')).not.toBeInTheDocument();
     });
   });
 
   describe('Combined filters', () => {
     it('should maintain other filters when changing one', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
+      expandFilter();
 
       // Set up initial category
       fireEvent.click(screen.getByText('Infantry'));

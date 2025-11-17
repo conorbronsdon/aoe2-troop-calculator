@@ -97,9 +97,7 @@ export default function PresetSelector() {
     setTimeout(() => setMessage(''), 3000);
   };
 
-  const calculateTotalUnits = (composition) => {
-    return Object.values(composition).reduce((sum, qty) => sum + qty, 0);
-  };
+  const calculateTotalUnits = (composition) => Object.values(composition).reduce((sum, qty) => sum + qty, 0);
 
   const calculateTotalCost = (composition) => {
     const totals = { food: 0, wood: 0, gold: 0, stone: 0 };

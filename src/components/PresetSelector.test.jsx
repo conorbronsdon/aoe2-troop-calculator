@@ -5,9 +5,7 @@ import { ArmyProvider } from '../context/ArmyContext';
 import { presets, presetCategories } from '../data/presets';
 
 // Wrapper component for testing
-const renderWithProvider = (component) => {
-  return render(<ArmyProvider>{component}</ArmyProvider>);
-};
+const renderWithProvider = (component) => render(<ArmyProvider>{component}</ArmyProvider>);
 
 describe('PresetSelector', () => {
   beforeEach(() => {

@@ -450,18 +450,14 @@ export const presets = [
  * @param {string} categoryId - Category identifier
  * @returns {Array} Array of presets in that category
  */
-export const getPresetsByCategory = (categoryId) => {
-  return presets.filter((preset) => preset.category === categoryId);
-};
+export const getPresetsByCategory = (categoryId) => presets.filter((preset) => preset.category === categoryId);
 
 /**
  * Get a preset by ID
  * @param {string} presetId - Preset identifier
  * @returns {Object|undefined} Preset data or undefined if not found
  */
-export const getPresetById = (presetId) => {
-  return presets.find((preset) => preset.id === presetId);
-};
+export const getPresetById = (presetId) => presets.find((preset) => preset.id === presetId);
 
 /**
  * Get presets recommended for a specific civilization

@@ -17,6 +17,7 @@ import BuyMeCoffee from './components/BuyMeCoffee';
 import CivilizationComparison from './components/CivilizationComparison';
 import ThemeToggle from './components/ThemeToggle';
 import ArmyCombatStats from './components/ArmyCombatStats';
+import CombatSimulator from './components/CombatSimulator';
 import PWAInstallPrompt from './components/PWAInstallPrompt';
 import MobileSidebarSection from './components/MobileSidebarSection';
 import { units } from './data/units';
@@ -148,6 +149,7 @@ function AppContent() {
 
             {/* Army Combat Stats Summary */}
             <ArmyCombatStats />
+            <CombatSimulator />
 
             {/* Conditionally show Units and/or Fortifications based on display mode */}
             {(config.displayMode === 'units' || config.displayMode === 'both') && <UnitSelection />}
@@ -159,10 +161,10 @@ function AppContent() {
       </div>
 
       {/* Footer */}
-      <footer className="mt-12 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
-        <div className="container mx-auto px-4 py-6">
-          <div className="text-center mb-4">
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+      <footer className="mt-8 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="text-xs text-gray-600 dark:text-gray-400">
               Created by{' '}
               <a
                 href="https://conorbronsdon.com/"
@@ -172,48 +174,50 @@ function AppContent() {
               >
                 Conor Bronsdon
               </a>
-            </p>
-            <div className="flex justify-center items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
+              {' '}| Age of Empires II © Microsoft
+            </div>
+            <div className="flex items-center gap-3">
               <a
                 href="https://github.com/conorbronsdon/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors text-lg"
+                title="GitHub"
+                aria-label="GitHub"
               >
-                GitHub
+                <span role="img" aria-hidden="true">💻</span>
               </a>
-              <span className="text-gray-300 dark:text-gray-600">•</span>
               <a
                 href="https://x.com/ConorBronsdon"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors text-lg"
+                title="Twitter/X"
+                aria-label="Twitter/X"
               >
-                Twitter
+                <span role="img" aria-hidden="true">🐦</span>
               </a>
-              <span className="text-gray-300 dark:text-gray-600">•</span>
               <a
                 href="https://www.linkedin.com/in/conorbronsdon/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors text-lg"
+                title="LinkedIn"
+                aria-label="LinkedIn"
               >
-                LinkedIn
+                <span role="img" aria-hidden="true">💼</span>
               </a>
-              <span className="text-gray-300 dark:text-gray-600">•</span>
               <a
                 href="https://conorbronsdon.substack.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors text-lg"
+                title="Substack"
+                aria-label="Substack"
               >
-                Substack
+                <span role="img" aria-hidden="true">📰</span>
               </a>
             </div>
-          </div>
-          <div className="text-center text-sm text-gray-500 dark:text-gray-400">
-            <p>Age of Empires II © Microsoft Corporation</p>
-            <p className="mt-1">Built for AoE2 players | Inspired by pro player strategies</p>
           </div>
         </div>
       </footer>

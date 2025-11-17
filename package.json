@@ -1,6 +1,6 @@
 {
   "name": "aoe2-army-calculator",
-  "version": "2.11.0",
+  "version": "2.12.0",
   "type": "module",
   "description": "Age of Empires II Army Composition Calculator - Plan your armies with accurate resource tracking",
   "scripts": {
@@ -10,8 +10,8 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
-    "lint": "eslint src --ext .js,.jsx",
-    "lint:fix": "eslint src --ext .js,.jsx --fix",
+    "lint": "ESLINT_USE_FLAT_CONFIG=true eslint src/",
+    "lint:fix": "ESLINT_USE_FLAT_CONFIG=true eslint src/ --fix",
     "format": "prettier --write \"src/**/*.{js,jsx,json,css}\"",
     "format:check": "prettier --check \"src/**/*.{js,jsx,json,css}\"",
     "check": "npm run lint && npm run format:check && npm test -- --run"
@@ -23,6 +23,7 @@
     "react-icons": "^5.5.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^14.1.2",
     "@types/react": "^18.2.43",
@@ -32,6 +33,7 @@
     "eslint": "^8.56.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "globals": "^16.5.0",
     "jsdom": "^27.2.0",
     "postcss": "^8.4.32",
     "prettier": "^3.2.5",

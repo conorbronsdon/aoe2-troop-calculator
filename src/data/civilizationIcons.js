@@ -124,6 +124,4 @@ export const REGION_COLORS = {
  * @param {string} region - The region name
  * @returns {object} Tailwind color classes
  */
-export const getRegionColors = (region) => {
-  return REGION_COLORS[region] || REGION_COLORS.None;
-};
+export const getRegionColors = (region) => REGION_COLORS[region] || REGION_COLORS.None;

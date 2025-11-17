@@ -321,7 +321,7 @@ export const ImportService = {
    * @returns {Object} Sanitized data
    */
   sanitizeData(data) {
-    if (!data) return data;
+    if (!data) {return data;}
 
     const { composition, config } = data;
 

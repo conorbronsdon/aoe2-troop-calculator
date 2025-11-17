@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useArmy } from '../context/ArmyContext';
 import {
   calculateCombinedTotals,
@@ -9,6 +9,8 @@ import { fortifications } from '../data/fortifications';
 import { calculateTechCost } from '../data/technologies';
 import { RESOURCES, RESOURCE_DISPLAY_NAMES } from '../constants';
 import ResourceIcon from './ResourceIcon';
+
+const STORAGE_KEY = 'aoe2-resource-tracker-expanded';
 
 const RESOURCE_GRADIENT_COLORS = {
   food: 'from-orange-400 to-red-500',
@@ -37,6 +39,25 @@ const getStatusIndicator = (percentage, isOverLimit) => {
 export default function ResourceTracker() {
   const { state } = useArmy();
   const { composition, fortificationComposition, config, researchedTechs } = state;
+
+  // Collapsible state with localStorage persistence
+  const [isExpanded, setIsExpanded] = useState(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      return saved !== null ? JSON.parse(saved) : true;
+    } catch {
+      return true;
+    }
+  });
+
+  // Persist expanded state to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(isExpanded));
+    } catch {
+      // Ignore localStorage errors
+    }
+  }, [isExpanded]);
 
   // Memoize expensive calculations to prevent unnecessary recalculation
   const { totalCost, totalPopulation } = useMemo(
@@ -133,11 +154,39 @@ export default function ResourceTracker() {
           <span role="img" aria-label="Resources">💎</span>
           Resources
         </h2>
-        <span className={`text-xs ${totalResourceStatus.color}`}>{totalResourceStatus.icon} {totalResourceStatus.text}</span>
+        <div className="flex items-center gap-2">
+          <span className={`text-xs ${totalResourceStatus.color}`}>{totalResourceStatus.icon} {totalResourceStatus.text}</span>
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
+            aria-expanded={isExpanded}
+            aria-controls="resource-tracker-content"
+          >
+            {isExpanded ? '▼ Collapse' : '► Expand'}
+          </button>
+        </div>
       </div>
 
-      {/* Total Resource Mode Display */}
-      {config.resourceLimitMode === 'total' && (
+      {/* Collapsed Summary - Show quick stats when collapsed */}
+      {!isExpanded && (
+        <div className="grid grid-cols-2 gap-2 text-xs">
+          <div className="flex justify-between items-center bg-gray-50 dark:bg-gray-700/50 rounded p-2">
+            <span className="text-gray-600 dark:text-gray-400">Total Cost:</span>
+            <span className="font-bold text-gray-900 dark:text-white">{totalResourcesUsed.toLocaleString()}</span>
+          </div>
+          <div className="flex justify-between items-center bg-purple-50 dark:bg-purple-900/30 rounded p-2">
+            <span className="text-gray-600 dark:text-gray-400">Population:</span>
+            <span className={`font-bold ${totalPopulation > config.populationCap ? 'text-red-600 dark:text-red-400' : 'text-gray-900 dark:text-white'}`}>
+              {totalPopulation}/{config.populationCap}
+            </span>
+          </div>
+        </div>
+      )}
+
+      {/* Expanded Content */}
+      <div id="resource-tracker-content" className={isExpanded ? '' : 'hidden'}>
+        {/* Total Resource Mode Display */}
+        {config.resourceLimitMode === 'total' && (
         <div className="mb-3">
           <div className="flex justify-between items-center text-xs mb-1">
             <span className="font-medium text-gray-700 dark:text-gray-300" id="total-resources-label">
@@ -290,47 +339,48 @@ export default function ResourceTracker() {
         </div>
       )}
 
-      {/* Population */}
-      <div className="bg-purple-50 dark:bg-purple-900/20 p-2 rounded border border-purple-200 dark:border-purple-700">
-        <div className="flex justify-between items-center text-xs mb-1">
-          <span className="font-medium text-gray-700 dark:text-gray-300 flex items-center gap-1" id="population-label">
-            <span role="img" aria-label="Population">👥</span>
-            Population
-          </span>
-          <div className="flex items-center gap-1">
-            <span
-              className={`font-bold ${
-                totalPopulation > config.populationCap ? 'text-red-600 dark:text-red-400' : 'text-gray-900 dark:text-white'
-              }`}
-              aria-live="polite"
-            >
-              {totalPopulation}
+        {/* Population */}
+        <div className="bg-purple-50 dark:bg-purple-900/20 p-2 rounded border border-purple-200 dark:border-purple-700">
+          <div className="flex justify-between items-center text-xs mb-1">
+            <span className="font-medium text-gray-700 dark:text-gray-300 flex items-center gap-1" id="population-label">
+              <span role="img" aria-label="Population">👥</span>
+              Population
             </span>
-            <span className="text-gray-400">/</span>
-            <span className="text-gray-600 dark:text-gray-300">{config.populationCap}</span>
-            <span className="text-xs font-medium bg-purple-100 dark:bg-purple-800/50 px-1.5 py-0.5 rounded ml-1">
-              {populationPercentage.toFixed(0)}%
-            </span>
+            <div className="flex items-center gap-1">
+              <span
+                className={`font-bold ${
+                  totalPopulation > config.populationCap ? 'text-red-600 dark:text-red-400' : 'text-gray-900 dark:text-white'
+                }`}
+                aria-live="polite"
+              >
+                {totalPopulation}
+              </span>
+              <span className="text-gray-400">/</span>
+              <span className="text-gray-600 dark:text-gray-300">{config.populationCap}</span>
+              <span className="text-xs font-medium bg-purple-100 dark:bg-purple-800/50 px-1.5 py-0.5 rounded ml-1">
+                {populationPercentage.toFixed(0)}%
+              </span>
+            </div>
           </div>
-        </div>
-        <div
-          className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5 overflow-hidden"
-          role="progressbar"
-          aria-labelledby="population-label"
-          aria-valuenow={Math.min(100, populationPercentage)}
-          aria-valuemin="0"
-          aria-valuemax="100"
-        >
           <div
-            className={`h-full bg-gradient-to-r ${
-              totalPopulation > config.populationCap
-                ? 'from-red-500 to-red-600'
-                : populationPercentage >= 80
-                  ? 'from-purple-400 to-indigo-500'
-                  : 'from-purple-400 to-purple-600'
-            } transition-all duration-300 rounded-full`}
-            style={{ width: `${Math.min(100, populationPercentage)}%` }}
-          />
+            className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5 overflow-hidden"
+            role="progressbar"
+            aria-labelledby="population-label"
+            aria-valuenow={Math.min(100, populationPercentage)}
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            <div
+              className={`h-full bg-gradient-to-r ${
+                totalPopulation > config.populationCap
+                  ? 'from-red-500 to-red-600'
+                  : populationPercentage >= 80
+                    ? 'from-purple-400 to-indigo-500'
+                    : 'from-purple-400 to-purple-600'
+              } transition-all duration-300 rounded-full`}
+              style={{ width: `${Math.min(100, populationPercentage)}%` }}
+            />
+          </div>
         </div>
       </div>
     </div>
