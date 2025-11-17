@@ -66,8 +66,8 @@ export default function CivilizationSelector({
 
   // Sort regions: Generic first, then alphabetically
   const sortedRegions = Object.keys(groupedCivs).sort((a, b) => {
-    if (a === 'None') return -1;
-    if (b === 'None') return 1;
+    if (a === 'None') {return -1;}
+    if (b === 'None') {return 1;}
     return a.localeCompare(b);
   });
 

@@ -96,9 +96,9 @@ export default function CompactResourceBar() {
 
   // Get status indicator
   const getStatusIcon = (percentage, isOver) => {
-    if (isOver) return '🚫';
-    if (percentage >= 95) return '⚠️';
-    if (percentage >= 80) return '📊';
+    if (isOver) {return '🚫';}
+    if (percentage >= 95) {return '⚠️';}
+    if (percentage >= 80) {return '📊';}
     return '✅';
   };
 

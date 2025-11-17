@@ -31,8 +31,8 @@ export default function ArmyCombatStats() {
 
     let totalRangeSum = 0;
     let rangedCount = 0;
-    let armorSumBase = { melee: 0, pierce: 0 };
-    let armorSumMod = { melee: 0, pierce: 0 };
+    const armorSumBase = { melee: 0, pierce: 0 };
+    const armorSumMod = { melee: 0, pierce: 0 };
 
     unitEntries.forEach(([unitId, quantity]) => {
       const unit = getUnitById(unitId);

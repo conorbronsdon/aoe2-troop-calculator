@@ -108,27 +108,42 @@ Add support for Age of Empires II technologies and upgrades:
 ## ⭐ High Priority
 
 ### Calculate and Display Unit Statistics
-**Status:** ✅ Partially Complete (v2.4.0)
+**Status:** ✅ Complete (v2.12.0)
 **Priority:** High
 **Complexity:** Medium
 
 Unit statistics calculation system with technology bonuses.
 
-**What's Implemented:**
+**Completed Implementation:**
 - ✅ Calculate base stats + civilization bonuses via `statCalculator.js`
 - ✅ Technology effects applied to unit stats
 - ✅ Stat calculation engine (14.4K LOC comprehensive system)
-- ⏳ Display modified stats on unit cards (UI enhancement needed)
-- ⏳ Show stat comparisons between civilizations
-- ⏳ Highlight which bonuses are active for current army composition
-- ⏳ Add tooltips explaining stat calculations
+- ✅ Display modified stats on unit cards (HP, Attack, Armor, Range, Speed)
+- ✅ Army-level aggregate stats via ArmyCombatStats component
+- ✅ Show which bonuses are active for current army composition
+- ✅ Unit breakdown with individual stat contributions
+- ✅ Visual indicators for tech-modified stats (✨ icons, green highlights)
 
-**Impact:** Users can see actual combat effectiveness, not just costs.
+**UI Components:**
+1. **UnitCard.jsx** - Individual unit stats display:
+   - HP, Attack, Melee/Pierce Armor, Range, Speed
+   - Base vs modified stats comparison
+   - Tech bonus indicators
 
-**Next Steps:**
-- Add visual stat display on UnitCards (HP bar, attack/armor icons)
-- Implement stat comparison modal for side-by-side unit analysis
-- Add tooltips showing calculation breakdown
+2. **ArmyCombatStats.jsx** - Army aggregate stats:
+   - Total HP, Total Attack, Average Armor
+   - Melee/Ranged unit composition breakdown
+   - Per-unit stat breakdown with tech modifications
+   - Active technology count and summary
+
+**Impact:** Users can see actual combat effectiveness with all tech bonuses applied, not just costs.
+
+**Acceptance Criteria:**
+- ✅ Unit stats display on individual unit cards
+- ✅ Army-wide stat aggregation
+- ✅ Technology bonuses clearly shown
+- ✅ Base vs modified stat comparison
+- ✅ Visual indicators for enhanced stats
 
 ---
 
@@ -882,28 +897,40 @@ Difficulty: Beginner-Friendly
 ## 💡 Future Considerations
 
 ### Battle Simulator
-**Status:** Not Started
+**Status:** ✅ Basic Version Complete (v2.12.0)
 **Priority:** Low
 **Complexity:** Very High
 
 Calculate expected outcomes of army vs army matchups.
 
-**What It Would Do:**
-- Input: Two army compositions
-- Output: Predicted winner, casualties, cost-effectiveness
-- Factors: Unit counters, stats, micro potential, formation
-- Visualization: Animated battle timeline
+**Completed (v2.12.0):**
+- ✅ Two army compositions comparison
+- ✅ Predicted winner with confidence levels
+- ✅ Cost-effectiveness and pop-efficiency metrics
+- ✅ DPS and Time to Kill calculations
+- ✅ Basic armor penetration formula
+- ✅ Interactive enemy army builder
 
-**Why Low Priority:**
-- Extremely complex to implement accurately
-- AoE2 combat involves micro, positioning, terrain
-- Risk of oversimplification or inaccuracy
-- Many existing tools for this (aoe2calc, etc.)
+**Future Enhancements:**
+- ⏳ Unit counter bonuses (pike vs cavalry, etc.)
+- ⏳ Reload time data for accurate DPS
+- ⏳ Formation and positioning effects
+- ⏳ Micro potential estimation
+- ⏳ Animated battle visualization
+- ⏳ Multiple engagement scenarios
 
-**If Implemented:**
-- Partner with existing battle calculators
-- Use official game data from DE
-- Disclaimer about simulation limitations
+**Current Limitations:**
+- No bonus damage (pike vs cavalry not modeled)
+- Simplified reload times (category-based)
+- No formation or terrain effects
+- No micro consideration
+- Disclaimer included in UI
+
+**Why Basic is Sufficient:**
+- Provides useful quick comparisons
+- Foundation for future enhancements
+- Community can provide feedback
+- Clear limitations disclosed to users
 
 ---
 
@@ -1107,19 +1134,36 @@ Special features for tournament organizers.
 ## ⚠️ Technical Debt & Security
 
 ### Dependency Updates
-**Status:** Needs Attention
+**Status:** ⚠️ Partially Addressed (v2.12.0)
 **Priority:** Medium
-**Complexity:** Low
+**Complexity:** Low-High
 
 Current security vulnerabilities and outdated dependencies:
-- 4 moderate severity vulnerabilities in esbuild/vite
+- 4 moderate severity vulnerabilities in esbuild/vite (dev dependencies only)
 - ESLint 8.x deprecated (upgrade to ESLint 9.x)
 - Several deprecated npm packages (rimraf, inflight, glob)
 
-**Required Actions:**
-- Run `npm audit fix --force` (may introduce breaking changes)
-- Test thoroughly after updates
-- Update ESLint configuration for v9 compatibility
+**Analysis (November 2025):**
+- esbuild vulnerabilities only affect development server, not production code
+- Fixing requires major Vite upgrade (5.x → 7.x) which is a breaking change
+- vite-plugin-pwa and vitest compatibility needs verification for Vite 7.x
+- Recommendation: Plan Vite 7.x migration as separate effort when ecosystem stabilizes
+
+**Completed Actions:**
+- ✅ ESLint 9.x migration completed (flat config format)
+- ✅ Updated eslint.config.js to modern flat config
+- ✅ All linting rules preserved
+
+**Deferred Actions:**
+- ⏳ Vite 7.x upgrade (breaking change, requires thorough testing)
+- ⏳ Vitest upgrade to match Vite 7.x compatibility
+- ⏳ vite-plugin-pwa compatibility verification
+
+**Required for Future Vite Upgrade:**
+- Backup current working configuration
+- Test build process thoroughly
+- Verify PWA functionality after upgrade
+- Check all asset paths and imports
 
 ---
 
@@ -1271,6 +1315,39 @@ Track application performance metrics.
 ---
 
 ## Recently Completed ✅
+
+### Basic Combat Outcome Calculator (v2.12.0 - November 2025)
+Complete army vs army combat simulation:
+- ✅ **Combat Service Engine:** DPS calculations with armor penetration
+- ✅ **Time to Kill Estimation:** Predicts combat duration based on HP/DPS
+- ✅ **Winner Prediction:** Confidence levels (decisive, moderate, slight, draw)
+- ✅ **Cost Efficiency Analysis:** Resource efficiency per DPS
+- ✅ **Population Efficiency:** Pop-space effectiveness comparison
+- ✅ **Combat Simulator UI:** Interactive enemy army builder
+- ✅ **Quick Unit Selection:** Common units dropdown for fast testing
+- ✅ **Real-time Results:** Instant calculation as armies are modified
+- ✅ **Detailed Stats Comparison:** Side-by-side HP, DPS, Time to Kill, Cost
+- ✅ **Quick Analysis:** Text summary of combat advantages
+- ✅ **Collapsible Interface:** Beta feature starts collapsed
+
+### UI Polish & Technical Debt (v2.12.0 - November 2025)
+Comprehensive improvements to user experience and code quality:
+- ✅ **ResourceTracker Collapsible:** Collapse/expand with localStorage persistence
+- ✅ **UnitFilter Space Optimization:** Starts collapsed, shows active filter count badge
+- ✅ **Footer Consolidation:** Icon-only social links, reduced vertical footprint
+- ✅ **ESLint 9.x Migration:** Flat config format (eslint.config.js)
+- ✅ **Auto-fixed Linting Issues:** 10 errors resolved, 19 warnings remaining
+- ✅ **Documented Vite 7.x Upgrade Path:** Deferred major version upgrade
+
+### Unit Combat Stats Display Complete (v2.12.0 - November 2025)
+Full unit statistics visualization with technology bonuses:
+- ✅ **UnitCard Stats Display:** HP, Attack, Armor, Range, Speed with tech modifications
+- ✅ **ArmyCombatStats Component:** Army-wide aggregate stats (Total HP, Attack, Avg Armor)
+- ✅ **Unit Breakdown:** Per-unit stat contributions with tech bonus indicators (✨)
+- ✅ **Base vs Modified:** Clear comparison showing upgrade benefits
+- ✅ **Melee/Ranged Composition:** Visual breakdown of army composition type
+- ✅ **Active Technology Summary:** Shows count and effects of researched techs
+- ✅ **formatStatValue Utility:** Consistent stat formatting across components
 
 ### UI Polish - BuyMeCoffee CTA & Mobile Navigation (v2.11.0 - November 2025)
 Enhanced user experience with less intrusive CTA and improved mobile navigation:
@@ -1426,6 +1503,6 @@ For questions or suggestions about the roadmap, open a discussion on GitHub.
 ---
 
 **Last Updated:** November 17, 2025
-**Current Version:** 2.11.0
+**Current Version:** 2.12.0
 **Total Roadmap Items:** 35+ features across 4 priority levels
-**Next Major Focus:** Unit Statistics Display UI, Team Bonus System
+**Next Major Focus:** Basic Combat Outcome Calculator, UI Polish & Technical Debt

@@ -22,13 +22,13 @@ export default function CivilizationBonuses() {
 
   // Get civilization icon URL
   const civIconUrl = useMemo(() => {
-    if (!currentCiv || currentCiv.id === 'generic') return null;
+    if (!currentCiv || currentCiv.id === 'generic') {return null;}
     return getCivilizationIconUrl(currentCiv.id);
   }, [currentCiv]);
 
   // Get region colors for styling
   const regionColors = useMemo(() => {
-    if (!currentCiv) return getRegionColors('None');
+    if (!currentCiv) {return getRegionColors('None');}
     return getRegionColors(currentCiv.region);
   }, [currentCiv]);
 
