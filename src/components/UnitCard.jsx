@@ -110,8 +110,8 @@ export default function UnitCard({ unit }) {
         </span>
       </div>
 
-      {/* Compact Stats Bar - Always visible */}
-      {unitStats && (
+      {/* Compact Stats Bar - Conditionally visible based on config */}
+      {config.showUnitCardStats && unitStats && (
         <div className="flex items-center gap-2 mb-2 text-xs bg-gray-100 dark:bg-gray-700/70 rounded px-2 py-1.5">
           <span
             className={`flex items-center gap-0.5 ${
