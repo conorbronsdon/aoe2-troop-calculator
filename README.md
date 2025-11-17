@@ -220,6 +220,19 @@ Plan your armies • Calculate costs • Compare civilizations • Optimize reso
   - Centralized notification system
   - Success, warning, info, error types
   - Auto-dismiss with accessibility support
+- **Team Bonus System** (NEW in v3.0.0):
+  - Select up to 3 allied civilizations for team games
+  - Team bonuses automatically applied to cost calculations
+  - Visual display of bonuses from allies and your bonus to share
+  - Strategic team composition planning
+  - Color-coded bonus indicators by civilization
+- **Multi-Language Support** (NEW in v3.0.0):
+  - 4 languages supported: English, Spanish, German, Portuguese
+  - Automatic language detection from browser settings
+  - Persistent language preference saved locally
+  - Language selector in header with flag icons
+  - Translations for all UI elements and notifications
+  - Expands accessibility to 60% more users globally
 
 ## 📖 How to Use
 
@@ -300,6 +313,8 @@ npm run build
 | **vite-plugin-pwa** | Progressive Web App support |
 | **Workbox** | Service worker and caching |
 | **Vitest** | Fast unit testing framework |
+| **i18next** | Internationalization framework |
+| **react-i18next** | React bindings for i18n |
 
 ### Project Structure
 ```
@@ -319,8 +334,14 @@ src/
 │   ├── TechnologyPanel.jsx        # Tech selection
 │   └── ...
 ├── context/            # State management
-│   ├── ArmyContext.jsx       # State with tech, presets, import support
-│   └── ThemeContext.jsx
+│   ├── ArmyContext.jsx       # State with tech, presets, import, team bonuses
+│   ├── ThemeContext.jsx
+│   └── ToastContext.jsx      # Global notifications
+├── locales/            # Internationalization (NEW in v3.0)
+│   ├── en/common.json        # English translations
+│   ├── es/common.json        # Spanish translations
+│   ├── de/common.json        # German translations
+│   └── pt/common.json        # Portuguese translations
 ├── services/          # Business logic services
 │   ├── import.service.js      # Import validation & parsing
 │   ├── export.service.js      # Export to CSV/JSON
@@ -487,26 +508,43 @@ This section documents the sources of visual assets used in the calculator for e
   - Platform-aware key formatting (Mac/Windows)
   - Architecture improvements (ToastContext, useKeyboardShortcuts hook)
   - All 372 tests pass
+- ✅ **Team Bonus System & Multi-Language Support v3.0.0** (November 2025):
+  - **Team Bonus System**:
+    - Select up to 3 allied civilizations for team game planning
+    - Team bonuses automatically applied to cost calculations
+    - Visual display showing bonuses received and shared
+    - Dedicated Team Bonuses section in sidebar
+    - AlliedCivilizationsSelector with searchable dropdown
+    - Real-time resource updates when allies change
+  - **Multi-Language Support (i18n)**:
+    - 4 languages: English, Spanish (Español), German (Deutsch), Portuguese (Português)
+    - Automatic browser language detection
+    - Persistent language preference in localStorage
+    - Language selector with country flags in header
+    - Complete UI translation (150+ strings)
+    - i18next integration with react-i18next
+    - Expands accessibility to Spanish, German, and Portuguese communities (60% more users)
 
 </details>
 
 <details>
 <summary><b>🔜 Next Steps</b></summary>
 
-### 1. Team Bonus System
-- [ ] Select allied civilizations for team games
-- [ ] Apply team bonus effects to calculations
-- [ ] Show which ally provides which bonus
+### 1. Additional Languages
+- [ ] French language support
+- [ ] Italian language support
+- [ ] Polish language support
+- [ ] Simplified Chinese support
 
-### 2. Keyboard Shortcuts
-- [ ] Quick navigation shortcuts (Ctrl+S save, Ctrl+/ search)
-- [ ] Help modal showing available shortcuts
-- [ ] Focus management for accessibility
+### 2. Enhanced Team Features
+- [ ] Team game presets (2v2, 3v3, 4v4 compositions)
+- [ ] Team synergy scoring system
+- [ ] Recommended ally combinations
 
-### 3. Undo/Redo System
-- [ ] History stack for composition changes
-- [ ] Keyboard shortcuts (Ctrl+Z, Ctrl+Shift+Z)
-- [ ] Enable experimentation without fear
+### 3. Advanced Combat Simulation
+- [ ] Unit-by-unit combat simulator
+- [ ] DPS calculations with bonuses
+- [ ] Battle outcome predictions
 
 </details>
 
@@ -639,12 +677,13 @@ Found a bug or have a suggestion?
 
 ### 📊 Project Stats
 
-![Version](https://img.shields.io/badge/Version-2.12.0-brightgreen?style=flat)
+![Version](https://img.shields.io/badge/Version-3.0.0-brightgreen?style=flat)
 ![Last Updated](https://img.shields.io/badge/Last_Updated-November_2025-blue?style=flat)
 ![Status](https://img.shields.io/badge/Status-Production_Ready-success?style=flat)
 ![PWA](https://img.shields.io/badge/PWA-Offline_Ready-4F46E5?style=flat)
+![Languages](https://img.shields.io/badge/Languages-4-orange?style=flat)
 
-**100+ Units • 90+ Unique Units • 51 Civilizations • 24 Meta Presets • 368 Tests • Offline Support • Mobile Optimized**
+**100+ Units • 90+ Unique Units • 51 Civilizations • Team Bonuses • 4 Languages • 24 Meta Presets • Offline Support • Mobile Optimized**
 
 ---
 

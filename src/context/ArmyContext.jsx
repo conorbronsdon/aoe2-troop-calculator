@@ -17,6 +17,7 @@ const initialState = {
     selectedAge: 'imperial',
     selectedCiv: 'generic', // The applied civilization (affects calculations)
     previewCiv: 'generic', // The civilization being previewed in the dropdown
+    alliedCivs: [], // Array of allied civilization IDs for team bonuses (max 3)
     displayMode: 'units', // Display mode: 'units', 'both', or 'fortifications'
     showTechPanel: false, // Whether to show the technology panel (default hidden)
     showUnitCardStats: false, // Whether to show combat stats on individual unit cards (default hidden)
@@ -53,6 +54,8 @@ export const ACTION_TYPES = {
   // Undo/Redo actions
   UNDO: 'UNDO',
   REDO: 'REDO',
+  // Team bonus actions
+  SET_ALLIED_CIVS: 'SET_ALLIED_CIVS',
   // Deprecated - kept for backwards compatibility
   TOGGLE_FORTIFICATION_MODE: 'TOGGLE_FORTIFICATION_MODE',
 };
@@ -272,6 +275,20 @@ function armyReducer(state, action) {
         ...state,
         composition: newComposition,
         config: newConfig,
+      };
+    }
+
+    case ACTION_TYPES.SET_ALLIED_CIVS: {
+      // Ensure we don't have more than 3 allies and no duplicates
+      const alliedCivs = [...new Set(action.civIds || [])].slice(0, 3);
+      // Filter out the selected civ if it's in the allies list
+      const filteredAllies = alliedCivs.filter((civId) => civId !== state.config.selectedCiv);
+      return {
+        ...state,
+        config: {
+          ...state.config,
+          alliedCivs: filteredAllies,
+        },
       };
     }
 

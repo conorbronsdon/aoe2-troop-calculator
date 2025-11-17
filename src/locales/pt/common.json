@@ -1,0 +1,162 @@
+{
+  "app": {
+    "title": "Age of Empires II Definitive Edition: Calculadora de Composição de Exército + Tropas",
+    "subtitle": "100+ unidades · 51 civilizações · Bônus precisos · Rastreamento de recursos · Exércitos salvos",
+    "enjoyingCalculator": "Gostando da calculadora?",
+    "copyright": "Age of Empires II © Microsoft",
+    "createdBy": "Criado por"
+  },
+  "header": {
+    "undo": "Desfazer",
+    "redo": "Refazer",
+    "keyboardShortcuts": "Atalhos de Teclado",
+    "github": "GitHub"
+  },
+  "configuration": {
+    "title": "Configuração",
+    "civilization": "Civilização",
+    "alliedCivilizations": "Civilizações Aliadas",
+    "teamBonuses": "Bônus de Equipe",
+    "selectAllies": "Selecione até 3 aliados para bônus de equipe",
+    "noAlliesSelected": "Nenhum aliado selecionado",
+    "age": "Era",
+    "popCap": "Limite de População",
+    "displayMode": "Modo de Exibição",
+    "resourceMode": "Modo de Recursos",
+    "total": "Total",
+    "individual": "Individual",
+    "totalResourceLimit": "Limite Total de Recursos",
+    "resourceLimits": "Limites de Recursos",
+    "technologyPanel": "Painel de Tecnologia",
+    "showUnitCardStats": "Mostrar Estatísticas das Unidades"
+  },
+  "ages": {
+    "dark": "Trevas",
+    "feudal": "Feudal",
+    "castle": "Castelo",
+    "imperial": "Imperial"
+  },
+  "displayModes": {
+    "units": "Apenas Unidades",
+    "both": "Unidades e Fortificações",
+    "fortifications": "Apenas Fortificações"
+  },
+  "resources": {
+    "food": "Comida",
+    "wood": "Madeira",
+    "gold": "Ouro",
+    "stone": "Pedra",
+    "total": "Total",
+    "population": "População"
+  },
+  "bonuses": {
+    "title": "Bônus de Civilização",
+    "costBonuses": "Bônus de Custo",
+    "statBonuses": "Bônus de Estatísticas",
+    "economicBonuses": "Bônus Econômicos",
+    "teamBonus": "Bônus de Equipe",
+    "active": "ATIVO",
+    "filterByType": "Filtrar por tipo",
+    "all": "Todos",
+    "cost": "Custo",
+    "stat": "Estatística",
+    "economic": "Econômico",
+    "searchBonuses": "Buscar bônus...",
+    "noBonusesFound": "Nenhum bônus encontrado"
+  },
+  "units": {
+    "title": "Seleção de Unidades",
+    "searchPlaceholder": "Buscar unidades por nome ou categoria...",
+    "noUnitsFound": "Nenhuma unidade encontrada",
+    "filterByCategory": "Filtrar por categoria",
+    "allCategories": "Todas as Categorias",
+    "categories": {
+      "Infantry": "Infantaria",
+      "Cavalry": "Cavalaria",
+      "Archer": "Arqueiros",
+      "Siege": "Cerco",
+      "Naval": "Naval",
+      "Monk": "Monge",
+      "Unique": "Única",
+      "Other": "Outros"
+    }
+  },
+  "army": {
+    "title": "Status do Exército",
+    "summary": "Resumo da Composição do Exército",
+    "analysis": "Análise da Composição do Exército",
+    "noUnits": "Nenhuma unidade adicionada ainda",
+    "totalUnits": "Total de Unidades",
+    "categoryBreakdown": "Detalhamento por Categoria",
+    "combatAnalysis": "Análise de Combate"
+  },
+  "tools": {
+    "title": "Ferramentas e Predefinições",
+    "comparison": "Comparação de Civilizações",
+    "presets": "Predefinições",
+    "saveLoad": "Salvar/Carregar"
+  },
+  "actions": {
+    "apply": "Aplicar",
+    "clear": "Limpar",
+    "save": "Salvar",
+    "load": "Carregar",
+    "export": "Exportar",
+    "import": "Importar",
+    "delete": "Excluir",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "addUnit": "Adicionar Unidade",
+    "removeUnit": "Remover Unidade",
+    "reset": "Redefinir"
+  },
+  "notifications": {
+    "undone": "Desfeito",
+    "redone": "Refeito",
+    "saved": "Salvo",
+    "exported": "Exportado para JSON",
+    "compositionCleared": "Composição limpa",
+    "searchFocused": "Busca focada",
+    "themeToggled": "Tema alterado",
+    "noUnitsToSave": "Nenhuma unidade para salvar",
+    "noUnitsToExport": "Nenhuma unidade para exportar",
+    "teamBonusApplied": "Bônus de equipe aplicado",
+    "alliesUpdated": "Civilizações aliadas atualizadas"
+  },
+  "teamBonuses": {
+    "title": "Bônus de Equipe",
+    "fromAllies": "De Civilizações Aliadas",
+    "yourBonus": "Seu Bônus de Equipe (compartilhado com aliados)",
+    "noTeamBonus": "Sem bônus de equipe",
+    "combinedBonuses": "Bônus de Equipe Combinados",
+    "selectAllies": "Selecione aliados para ver bônus de equipe"
+  },
+  "language": {
+    "title": "Idioma",
+    "select": "Selecionar Idioma"
+  },
+  "fortifications": {
+    "title": "Fortificações",
+    "walls": "Muros",
+    "towers": "Torres",
+    "castles": "Castelos"
+  },
+  "technologies": {
+    "title": "Tecnologias",
+    "researched": "Pesquisadas",
+    "available": "Disponíveis",
+    "requirements": "Requisitos"
+  },
+  "shortcuts": {
+    "title": "Atalhos de Teclado",
+    "undoAction": "Desfazer",
+    "redoAction": "Refazer",
+    "saveComposition": "Salvamento Rápido",
+    "exportJson": "Exportar JSON",
+    "clearComposition": "Limpar Tudo",
+    "focusSearch": "Focar na Busca",
+    "toggleDarkMode": "Alternar Modo Escuro",
+    "showHelp": "Mostrar Ajuda",
+    "close": "Fechar"
+  }
+}

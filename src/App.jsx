@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ArmyProvider, useArmy, ACTION_TYPES } from './context/ArmyContext';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { ToastProvider, ToastContainer, useToast, TOAST_TYPES } from './context/ToastContext';
@@ -22,6 +23,9 @@ import CombatAnalysis from './components/CombatAnalysis';
 import PWAInstallPrompt from './components/PWAInstallPrompt';
 import MobileSidebarSection from './components/MobileSidebarSection';
 import KeyboardShortcutsHelp from './components/KeyboardShortcutsHelp';
+import AlliedCivilizationsSelector from './components/AlliedCivilizationsSelector';
+import TeamBonusDisplay from './components/TeamBonusDisplay';
+import LanguageSelector from './components/LanguageSelector';
 import { units } from './data/units';
 import { civilizations } from './data/civilizations';
 import { validateGameData } from './utils/validators';
@@ -34,8 +38,10 @@ import { analyticsConfig } from './config/analytics.config';
 import { FaGithub, FaStar, FaUndo, FaRedo, FaKeyboard } from 'react-icons/fa';
 import { useSavedCompositions } from './hooks/useSavedCompositions';
 import { useKeyboardShortcuts, KEYBOARD_SHORTCUTS } from './hooks/useKeyboardShortcuts';
+import './i18n'; // Initialize i18n
 
 function AppContent() {
+  const { t } = useTranslation();
   const { state, dispatch, canUndo, canRedo } = useArmy();
   const { config, composition } = state;
   const { count: savedCompositionsCount } = useSavedCompositions();
@@ -48,57 +54,57 @@ function AppContent() {
   const handleUndo = useCallback(() => {
     if (canUndo) {
       dispatch({ type: ACTION_TYPES.UNDO });
-      showToast('Undone', TOAST_TYPES.INFO, 2000);
+      showToast(t('notifications.undone'), TOAST_TYPES.INFO, 2000);
     }
-  }, [dispatch, canUndo, showToast]);
+  }, [dispatch, canUndo, showToast, t]);
 
   const handleRedo = useCallback(() => {
     if (canRedo) {
       dispatch({ type: ACTION_TYPES.REDO });
-      showToast('Redone', TOAST_TYPES.INFO, 2000);
+      showToast(t('notifications.redone'), TOAST_TYPES.INFO, 2000);
     }
-  }, [dispatch, canRedo, showToast]);
+  }, [dispatch, canRedo, showToast, t]);
 
   const handleSave = useCallback(() => {
     const unitCount = Object.keys(composition).length;
     if (unitCount === 0) {
-      showToast('No units to save', TOAST_TYPES.WARNING, 2000);
+      showToast(t('notifications.noUnitsToSave'), TOAST_TYPES.WARNING, 2000);
       return;
     }
     const name = `Army ${new Date().toLocaleString()}`;
     StorageService.save(name, composition, config);
-    showToast(`Saved: ${name}`, TOAST_TYPES.SUCCESS, 2000);
+    showToast(`${t('notifications.saved')}: ${name}`, TOAST_TYPES.SUCCESS, 2000);
     window.dispatchEvent(new Event('savedCompositionsUpdated'));
-  }, [composition, config, showToast]);
+  }, [composition, config, showToast, t]);
 
   const handleExportJson = useCallback(() => {
     const unitCount = Object.keys(composition).length;
     if (unitCount === 0) {
-      showToast('No units to export', TOAST_TYPES.WARNING, 2000);
+      showToast(t('notifications.noUnitsToExport'), TOAST_TYPES.WARNING, 2000);
       return;
     }
     ExportService.downloadJSON(composition, config);
-    showToast('Exported to JSON', TOAST_TYPES.SUCCESS, 2000);
-  }, [composition, config, showToast]);
+    showToast(t('notifications.exported'), TOAST_TYPES.SUCCESS, 2000);
+  }, [composition, config, showToast, t]);
 
   const handleClearComposition = useCallback(() => {
     dispatch({ type: ACTION_TYPES.RESET_COMPOSITION });
-    showToast('Composition cleared', TOAST_TYPES.INFO, 2000);
-  }, [dispatch, showToast]);
+    showToast(t('notifications.compositionCleared'), TOAST_TYPES.INFO, 2000);
+  }, [dispatch, showToast, t]);
 
   const handleFocusSearch = useCallback(() => {
     // Focus the unit search input
     const searchInput = document.querySelector('[data-search-input="unit-filter"]');
     if (searchInput) {
       searchInput.focus();
-      showToast('Search focused', TOAST_TYPES.INFO, 1500);
+      showToast(t('notifications.searchFocused'), TOAST_TYPES.INFO, 1500);
     }
-  }, [showToast]);
+  }, [showToast, t]);
 
   const handleToggleDarkMode = useCallback(() => {
     toggleTheme();
-    showToast('Theme toggled', TOAST_TYPES.INFO, 1500);
-  }, [toggleTheme, showToast]);
+    showToast(t('notifications.themeToggled'), TOAST_TYPES.INFO, 1500);
+  }, [toggleTheme, showToast, t]);
 
   const handleShowHelp = useCallback(() => {
     setShowShortcutsHelp(true);
@@ -205,9 +211,10 @@ function AppContent() {
                 </button>
               </div>
               <ThemeToggle />
+              <LanguageSelector />
               <div className="flex flex-col items-end gap-1">
                 <span className="text-xs text-blue-100 dark:text-gray-300 hidden sm:inline">
-                  Enjoying the calculator?
+                  {t('app.enjoyingCalculator')}
                 </span>
                 <div className="flex items-center gap-2">
                   <a
@@ -217,7 +224,7 @@ function AppContent() {
                     className="flex items-center gap-2 text-sm bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors"
                   >
                     <FaGithub className="w-4 h-4" />
-                    <span className="hidden sm:inline">GitHub</span>
+                    <span className="hidden sm:inline">{t('header.github')}</span>
                     <FaStar className="w-3 h-3 text-yellow-300" />
                   </a>
                   <SocialShareButtons />
@@ -235,12 +242,20 @@ function AppContent() {
           <aside className="lg:w-96 xl:w-[420px] flex-shrink-0">
             <div className="lg:sticky lg:top-4 space-y-4 max-h-[calc(100vh-2rem)] lg:overflow-y-auto lg:pr-2">
               {/* Configuration Section - High priority, open by default on mobile */}
-              <MobileSidebarSection title="Configuration" icon="⚙️" defaultOpen={true} priority="high">
+              <MobileSidebarSection title={t('configuration.title')} icon="⚙️" defaultOpen={true} priority="high">
                 <ConfigurationPanel />
               </MobileSidebarSection>
 
+              {/* Team Bonuses Section - New for v3.0 */}
+              <MobileSidebarSection title={t('teamBonuses.title')} icon="🤝" defaultOpen={false} priority="normal">
+                <div className="space-y-4">
+                  <AlliedCivilizationsSelector />
+                  <TeamBonusDisplay />
+                </div>
+              </MobileSidebarSection>
+
               {/* Army Status Section - Shows current army state */}
-              <MobileSidebarSection title="Army Status" icon="🛡️" defaultOpen={false} priority="normal">
+              <MobileSidebarSection title={t('army.title')} icon="🛡️" defaultOpen={false} priority="normal">
                 <div className="space-y-4">
                   <CivilizationIndicator />
                   <ArmyCompositionSummary />
@@ -251,13 +266,13 @@ function AppContent() {
 
               {/* Technologies Section - Conditional */}
               {config.showTechPanel && (
-                <MobileSidebarSection title="Technologies" icon="🔬" defaultOpen={false} priority="normal">
+                <MobileSidebarSection title={t('technologies.title')} icon="🔬" defaultOpen={false} priority="normal">
                   <TechnologyPanel />
                 </MobileSidebarSection>
               )}
 
               {/* Tools Section - Comparison, saves, presets */}
-              <MobileSidebarSection title="Tools & Presets" icon="🧰" defaultOpen={false} priority="low">
+              <MobileSidebarSection title={t('tools.title')} icon="🧰" defaultOpen={false} priority="low">
                 <div className="space-y-4">
                   <CivilizationComparison />
                   {/* SaveLoadPanel appears above presets when compositions exist, below otherwise */}
