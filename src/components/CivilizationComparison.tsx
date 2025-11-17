@@ -1,6 +1,7 @@
 import { useState, ChangeEvent } from 'react';
 import { civilizations } from '../data/civilizations';
 import { Civilization } from '../types';
+import { getTranslatedCivName } from '../utils/translationHelpers';
 
 /**
  * Civilization Comparison Component
@@ -47,7 +48,7 @@ const CivilizationComparison = (): JSX.Element => {
             .filter((civ) => !selectedCivs.includes(civ.id))
             .map((civ) => (
               <option key={civ.id} value={civ.id}>
-                {civ.name} ({civ.region})
+                {getTranslatedCivName(civ.id)} ({civ.region})
               </option>
             ))}
         </select>
@@ -65,13 +66,13 @@ const CivilizationComparison = (): JSX.Element => {
                   {/* Header */}
                   <div className="flex justify-between items-start mb-3">
                     <div>
-                      <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100">{civ.name}</h3>
+                      <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100">{getTranslatedCivName(civ.id)}</h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400">{civ.region}</p>
                     </div>
                     <button
                       onClick={() => handleRemoveCiv(civId)}
                       className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 font-bold"
-                      aria-label={`Remove ${civ.name}`}
+                      aria-label={`Remove ${getTranslatedCivName(civ.id)}`}
                     >
                       ×
                     </button>

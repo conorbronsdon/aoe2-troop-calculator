@@ -1,6 +1,7 @@
 import { useArmy } from '../context/ArmyContext';
 import { civilizations } from '../data/civilizations';
 import { getCivilizationIconUrl, FALLBACK_ICON } from '../data/civilizationIcons';
+import { getTranslatedCivName } from '../utils/translationHelpers';
 
 /**
  * Minimal indicator showing only preview state or generic civilization notice
@@ -41,7 +42,7 @@ export default function CivilizationIndicator(): JSX.Element | null {
             {previewIconUrl ? (
               <img
                 src={previewIconUrl}
-                alt={`${previewCiv.name} insignia`}
+                alt={`${getTranslatedCivName(previewCiv.id)} insignia`}
                 className="w-10 h-10 object-contain opacity-75"
               />
             ) : (
@@ -50,7 +51,7 @@ export default function CivilizationIndicator(): JSX.Element | null {
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="text-lg font-semibold text-amber-900 dark:text-amber-100">
-                  Previewing: {previewCiv.name}
+                  Previewing: {getTranslatedCivName(previewCiv.id)}
                 </h3>
                 <span className="px-2 py-0.5 bg-amber-200 dark:bg-amber-700 text-amber-800 dark:text-amber-200 text-xs font-semibold rounded-full animate-pulse">
                   PREVIEW
@@ -62,7 +63,7 @@ export default function CivilizationIndicator(): JSX.Element | null {
             </div>
           </div>
           <div className="text-sm text-amber-800 dark:text-amber-200">
-            <span className="font-medium">Current:</span> {appliedCiv.name}
+            <span className="font-medium">Current:</span> {getTranslatedCivName(appliedCiv.id)}
           </div>
         </div>
       </div>

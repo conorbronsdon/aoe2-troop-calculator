@@ -2,23 +2,21 @@ import { useState, ChangeEvent } from 'react';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { presets, presetCategories, getPresetsByCategory, getPresetById } from '../data/presets';
 import { units } from '../data/units';
-import { civilizations } from '../data/civilizations';
 import { FaLayerGroup, FaInfoCircle } from 'react-icons/fa';
+import { getTranslatedUnitName, getTranslatedCivName } from '../utils/translationHelpers';
 
 /**
  * Get unit name by ID
  */
 const getUnitName = (unitId: string): string => {
-  const unit = units.find((u) => u.id === unitId);
-  return unit ? unit.name : unitId;
+  return getTranslatedUnitName(unitId);
 };
 
 /**
  * Get civilization name by ID
  */
 const getCivName = (civId: string): string => {
-  const civ = civilizations.find((c) => c.id === civId);
-  return civ ? civ.name : civId;
+  return getTranslatedCivName(civId);
 };
 
 interface TotalCost {

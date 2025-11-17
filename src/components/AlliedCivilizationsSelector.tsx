@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { civilizations, getCivilizationById } from '../data/civilizations';
 import { FaUsers, FaTimes, FaPlus } from 'react-icons/fa';
+import { getTranslatedCivName } from '../utils/translationHelpers';
 
 export default function AlliedCivilizationsSelector(): JSX.Element {
   const { t } = useTranslation();
@@ -19,7 +20,7 @@ export default function AlliedCivilizationsSelector(): JSX.Element {
   );
 
   const filteredCivs = availableCivs.filter((civ) =>
-    civ.name.toLowerCase().includes(searchTerm.toLowerCase())
+    getTranslatedCivName(civ.id).toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleAddAlly = (civId: string): void => {
@@ -67,12 +68,12 @@ export default function AlliedCivilizationsSelector(): JSX.Element {
                 className="flex items-center justify-between bg-white dark:bg-gray-700 rounded px-2 py-1.5 shadow-sm"
               >
                 <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
-                  {civ?.name || civId}
+                  {civ ? getTranslatedCivName(civ.id) : civId}
                 </span>
                 <button
                   onClick={() => handleRemoveAlly(civId)}
                   className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 p-1 rounded hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors"
-                  aria-label={`Remove ${civ?.name || civId}`}
+                  aria-label={`Remove ${civ ? getTranslatedCivName(civ.id) : civId}`}
                 >
                   <FaTimes className="w-3 h-3" />
                 </button>
@@ -117,7 +118,7 @@ export default function AlliedCivilizationsSelector(): JSX.Element {
                       onClick={() => handleAddAlly(civ.id)}
                       className="w-full text-left px-3 py-2 text-sm hover:bg-purple-50 dark:hover:bg-purple-900/30 text-gray-700 dark:text-gray-300 transition-colors flex items-center justify-between"
                     >
-                      <span>{civ.name}</span>
+                      <span>{getTranslatedCivName(civ.id)}</span>
                       <span className="text-xs text-gray-400 dark:text-gray-500">{civ.region}</span>
                     </button>
                   ))

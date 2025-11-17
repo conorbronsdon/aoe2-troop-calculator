@@ -7,6 +7,7 @@ import {
   getRegionColors,
 } from '../data/civilizationIcons';
 import { Civilization } from '../types';
+import { getTranslatedCivName } from '../utils/translationHelpers';
 
 interface CivilizationSelectorProps {
   selectedCivId: string;
@@ -66,7 +67,7 @@ export default function CivilizationSelector({
   const filteredCivs = civilizations.filter((civ) => {
     const term = searchTerm.toLowerCase();
     return (
-      civ.name.toLowerCase().includes(term) || civ.region.toLowerCase().includes(term)
+      getTranslatedCivName(civ.id).toLowerCase().includes(term) || civ.region.toLowerCase().includes(term)
     );
   });
 
@@ -119,7 +120,7 @@ export default function CivilizationSelector({
     return (
       <img
         src={iconUrl}
-        alt={`${civ.name} emblem`}
+        alt={`${getTranslatedCivName(civ.id)} emblem`}
         className={`${size} object-contain rounded`}
         onError={() => handleImageError(civ.id)}
         loading="lazy"
@@ -146,7 +147,7 @@ export default function CivilizationSelector({
         {currentCiv && renderCivIcon(currentCiv, 'w-10 h-10')}
 
         <div className="flex-1 text-left">
-          <div className="font-semibold text-gray-900 dark:text-gray-100">{currentCiv?.name || 'Select...'}</div>
+          <div className="font-semibold text-gray-900 dark:text-gray-100">{currentCiv ? getTranslatedCivName(currentCiv.id) : 'Select...'}</div>
           {currentCiv?.region && currentCiv.region !== 'None' && (
             <div className="text-xs text-gray-500 dark:text-gray-400">{currentCiv.region}</div>
           )}
@@ -218,7 +219,7 @@ export default function CivilizationSelector({
                       {renderCivIcon(civ)}
 
                       <div className="flex-1">
-                        <div className="font-medium text-gray-900 dark:text-gray-100">{civ.name}</div>
+                        <div className="font-medium text-gray-900 dark:text-gray-100">{getTranslatedCivName(civ.id)}</div>
                         {civ.bonuses && civ.bonuses.length > 0 && (
                           <div className="text-xs text-gray-500 dark:text-gray-400">
                             {civ.bonuses.length} bonus{civ.bonuses.length !== 1 ? 'es' : ''}
@@ -257,13 +258,13 @@ export default function CivilizationSelector({
           `}
           title={
             isPreviewing
-              ? `Apply ${currentCiv?.name} bonuses to your army`
+              ? `Apply ${currentCiv ? getTranslatedCivName(currentCiv.id) : ''} bonuses to your army`
               : 'Select a different civilization to apply'
           }
         >
           {isPreviewing ? (
             <span className="flex items-center justify-center gap-2">
-              <span>Apply {currentCiv?.name}</span>
+              <span>Apply {currentCiv ? getTranslatedCivName(currentCiv.id) : ''}</span>
               <span className="text-sm">→</span>
             </span>
           ) : (
@@ -278,7 +279,7 @@ export default function CivilizationSelector({
           <p className="text-amber-800 dark:text-amber-200 font-medium flex items-center gap-2">
             <span className="animate-pulse">⚠️</span>
             <span>
-              Previewing <strong>{currentCiv?.name}</strong>
+              Previewing <strong>{currentCiv ? getTranslatedCivName(currentCiv.id) : ''}</strong>
             </span>
           </p>
           <p className="text-sm text-amber-700 dark:text-amber-300 mt-1">
@@ -291,7 +292,7 @@ export default function CivilizationSelector({
         <div className="mt-3 p-3 bg-green-50 dark:bg-green-900/30 border border-green-300 dark:border-green-600 rounded-lg">
           <p className="text-green-800 dark:text-green-200 font-medium flex items-center gap-2">
             <span>✓</span>
-            <strong>{appliedCiv.name}</strong> bonuses are active
+            <strong>{getTranslatedCivName(appliedCiv.id)}</strong> bonuses are active
           </p>
         </div>
       )}

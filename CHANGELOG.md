@@ -5,6 +5,39 @@ All notable changes to the Age of Empires II Army Composition Calculator will be
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.2.0] - 2025-11-17
+
+### Added
+- **Unit and Civilization Name Translations**: Complete translation of game entities
+  - 164+ unit names translated across 8 languages
+  - 51 civilization names translated across 8 languages
+  - All unique unit names localized
+  - Generic unit names fully translated
+  - Elite unit variants properly translated
+  - Translation helper utilities (getTranslatedUnitName, getTranslatedCivName)
+
+### Changed
+- All 12+ components updated to use translated names
+  - UnitCard: Unit names now displayed in selected language
+  - CivilizationSelector: Civilization names localized
+  - UnitSelection: Search now works with translated names
+  - CombatSimulator: Unit names in combat analysis
+  - PresetSelector: Preset army unit names translated
+  - AlliedCivilizationsSelector: Allied civ names localized
+  - And 6 more components updated
+- Search functionality enhanced to work with translated content
+- Accessibility: All aria-labels now use translated names
+- Enhanced i18n infrastructure with translation utilities
+
+### Technical
+- Created src/utils/translationHelpers.ts
+- Added unitNames section to all 8 translation files (1,312+ translation keys added)
+- Added civilizationNames section to all 8 translation files (408+ translation keys added)
+- Total new translation keys: 1,720+ across 8 languages (13,760 total translations)
+- PWA precache assets: 263 (includes all translation files)
+
+---
+
 ## [3.1.0] - 2025-11-17
 
 ### Added

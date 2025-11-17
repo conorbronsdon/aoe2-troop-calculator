@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { useArmy } from '../context/ArmyContext';
 import { getUnitById } from '../data/units';
 import { calculateUnitStats } from '../utils/statCalculator';
+import { getTranslatedUnitName } from '../utils/translationHelpers';
 
 interface ArmyCombatStatsProps {
   embedded?: boolean;
@@ -131,7 +132,7 @@ export default function ArmyCombatStats({ embedded = false }: ArmyCombatStatsPro
       // Store breakdown for tooltip
       stats.unitBreakdown.push({
         unitId,
-        unitName: unit.name,
+        unitName: getTranslatedUnitName(unit.id),
         quantity,
         baseStats: base,
         modifiedStats: modified,
