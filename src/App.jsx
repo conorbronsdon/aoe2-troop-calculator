@@ -24,10 +24,12 @@ import { ShareService } from './services/share.service';
 import { initializeAnalytics } from './utils/analytics';
 import { analyticsConfig } from './config/analytics.config';
 import { FaGithub, FaStar } from 'react-icons/fa';
+import { useSavedCompositions } from './hooks/useSavedCompositions';
 
 function AppContent() {
   const { state, dispatch } = useArmy();
   const { config } = state;
+  const { count: savedCompositionsCount } = useSavedCompositions();
 
   useEffect(() => {
     // Initialize analytics
@@ -64,26 +66,33 @@ function AppContent() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
             <div>
-              <h1 className="text-2xl lg:text-3xl font-bold">
-                AoE2 Army Calculator
+              <h1 className="text-xl lg:text-2xl font-bold">
+                Age of Empires II Definitive Edition: Army + Troop Composition Calculator
               </h1>
               <p className="text-sm text-blue-100 dark:text-gray-300">
-                100+ units · 51 civilizations · Accurate bonuses
+                100+ units · 51 civilizations · Accurate bonuses · Resource tracking · Saved army presets
               </p>
             </div>
             <div className="flex items-center gap-3">
               <ThemeToggle />
-              <a
-                href="https://github.com/conorbronsdon/aoe2-troop-calculator"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors"
-              >
-                <FaGithub className="w-4 h-4" />
-                <span className="hidden sm:inline">GitHub</span>
-                <FaStar className="w-3 h-3 text-yellow-300" />
-              </a>
-              <SocialShareButtons />
+              <div className="flex flex-col items-end gap-1">
+                <span className="text-xs text-blue-100 dark:text-gray-300 hidden sm:inline">
+                  Enjoying the calculator?
+                </span>
+                <div className="flex items-center gap-2">
+                  <a
+                    href="https://github.com/conorbronsdon/aoe2-troop-calculator"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors"
+                  >
+                    <FaGithub className="w-4 h-4" />
+                    <span className="hidden sm:inline">GitHub</span>
+                    <FaStar className="w-3 h-3 text-yellow-300" />
+                  </a>
+                  <SocialShareButtons />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -101,7 +110,10 @@ function AppContent() {
               <CivilizationBonuses />
               {config.showTechPanel && <TechnologyPanel />}
               <CivilizationComparison />
+              {/* SaveLoadPanel appears above presets when compositions exist, below otherwise */}
+              {savedCompositionsCount > 0 && <SaveLoadPanel hideSaveButton={true} />}
               <PresetSelector />
+              {savedCompositionsCount === 0 && <SaveLoadPanel hideSaveButton={true} />}
             </div>
           </aside>
 
@@ -118,11 +130,6 @@ function AppContent() {
 
             {/* Buy Me a Coffee CTA */}
             <BuyMeCoffee />
-
-            {/* Saved Compositions */}
-            <div id="saved-compositions" className="mt-6">
-              <SaveLoadPanel />
-            </div>
           </main>
         </div>
       </div>

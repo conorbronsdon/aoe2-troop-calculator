@@ -74,13 +74,13 @@ export default function UnitCard({ unit }) {
 
   return (
     <div
-      className={`border rounded-lg p-3 hover:shadow-md transition-all ${
-        hasBonuses ? 'border-blue-300 bg-blue-50/30' : ''
+      className={`border rounded-lg p-3 hover:shadow-md transition-all bg-white dark:bg-gray-800 ${
+        hasBonuses ? 'border-blue-300 dark:border-blue-600 bg-blue-50/30 dark:bg-blue-900/20' : 'border-gray-200 dark:border-gray-600'
       }`}
     >
       <div className="flex justify-between items-start mb-2">
         <div className="flex-1">
-          <div className="font-semibold text-sm flex items-center gap-2">
+          <div className="font-semibold text-sm flex items-center gap-2 text-gray-900 dark:text-gray-100">
             <UnitIcon unitId={unit.id} category={unit.category} size="lg" />
             <span>{unit.name}</span>
             {hasBonuses && (
@@ -92,7 +92,7 @@ export default function UnitCard({ unit }) {
               </span>
             )}
           </div>
-          <div className="text-xs text-gray-500 capitalize">{unit.age} Age</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400 capitalize">{unit.age} Age</div>
           {hasBonuses && showDiscount && (
             <div className="text-xs text-blue-600 font-semibold mt-1">
               <span role="img" aria-label="Discount">
@@ -103,7 +103,7 @@ export default function UnitCard({ unit }) {
           )}
         </div>
         <span
-          className="text-xs bg-gray-200 px-2 py-1 rounded"
+          className="text-xs bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 px-2 py-1 rounded"
           aria-label={`Population cost: ${unit.population}`}
         >
           Pop: {unit.population}
@@ -311,7 +311,7 @@ export default function UnitCard({ unit }) {
         <div className="mb-3 border-t pt-2">
           <button
             onClick={() => setShowCounters(!showCounters)}
-            className="text-xs text-gray-600 hover:text-gray-800 font-medium flex items-center gap-1 w-full"
+            className="text-xs text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 font-medium flex items-center gap-1 w-full"
           >
             <span>{showCounters ? '▼' : '►'}</span>
             <span>Counters & Weaknesses</span>
@@ -321,14 +321,14 @@ export default function UnitCard({ unit }) {
             <div className="mt-2 space-y-2">
               {unit.counters && unit.counters.length > 0 && (
                 <div>
-                  <div className="text-xs font-semibold text-green-700 mb-1">
+                  <div className="text-xs font-semibold text-green-700 dark:text-green-400 mb-1">
                     ✅ Strong Against:
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {unit.counters.map((counterId) => (
                       <span
                         key={counterId}
-                        className="inline-block text-xs px-2 py-0.5 bg-green-100 text-green-800 rounded-full border border-green-300"
+                        className="inline-block text-xs px-2 py-0.5 bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-200 rounded-full border border-green-300 dark:border-green-700"
                         title={`Effective against ${getUnitName(counterId)}`}
                       >
                         {getUnitName(counterId)}
@@ -340,12 +340,12 @@ export default function UnitCard({ unit }) {
 
               {unit.weakTo && unit.weakTo.length > 0 && (
                 <div>
-                  <div className="text-xs font-semibold text-red-700 mb-1">⚠️ Weak To:</div>
+                  <div className="text-xs font-semibold text-red-700 dark:text-red-400 mb-1">⚠️ Weak To:</div>
                   <div className="flex flex-wrap gap-1">
                     {unit.weakTo.map((weakId) => (
                       <span
                         key={weakId}
-                        className="inline-block text-xs px-2 py-0.5 bg-red-100 text-red-800 rounded-full border border-red-300"
+                        className="inline-block text-xs px-2 py-0.5 bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-200 rounded-full border border-red-300 dark:border-red-700"
                         title={`Vulnerable to ${getUnitName(weakId)}`}
                       >
                         {getUnitName(weakId)}
@@ -362,7 +362,7 @@ export default function UnitCard({ unit }) {
       <div className="flex items-center space-x-2">
         <button
           onClick={removeUnit}
-          className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-sm"
+          className="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white px-2 py-1 rounded text-sm"
           aria-label={`Remove one ${unit.name}`}
         >
           -
@@ -371,14 +371,14 @@ export default function UnitCard({ unit }) {
           type="number"
           min="0"
           max={LIMITS.MAX_UNIT_QUANTITY}
-          className="flex-1 border rounded px-2 py-1 text-sm text-center"
+          className="flex-1 border border-gray-300 dark:border-gray-600 rounded px-2 py-1 text-sm text-center bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           value={quantity}
           onChange={(e) => setQuantity(e.target.value)}
           aria-label={`Quantity of ${unit.name}`}
         />
         <button
           onClick={addUnit}
-          className="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded text-sm"
+          className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-2 py-1 rounded text-sm"
           aria-label={`Add one ${unit.name}`}
         >
           +

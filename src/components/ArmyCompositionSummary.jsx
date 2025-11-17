@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { getUnitById } from '../data/units';
 import { calculateUnitCost } from '../utils/calculations';
@@ -16,9 +16,47 @@ export default function ArmyCompositionSummary() {
   const [exportMessage, setExportMessage] = useState('');
   const [importMessage, setImportMessage] = useState('');
   const [isImportModalOpen, setIsImportModalOpen] = useState(false);
+  const [showSaveDialog, setShowSaveDialog] = useState(false);
+  const [saveName, setSaveName] = useState('');
+  const [saveMessage, setSaveMessage] = useState('');
+  const [showExportMenu, setShowExportMenu] = useState(false);
+  const exportMenuRef = useRef(null);
+
+  // Close export menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (exportMenuRef.current && !exportMenuRef.current.contains(event.target)) {
+        setShowExportMenu(false);
+      }
+    };
+
+    if (showExportMenu) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showExportMenu]);
 
   const resetComposition = () => {
     dispatch({ type: ACTION_TYPES.RESET_COMPOSITION });
+  };
+
+  const handleSaveComposition = () => {
+    if (!saveName.trim()) {
+      setSaveMessage('Please enter a name');
+      setTimeout(() => setSaveMessage(''), 2000);
+      return;
+    }
+
+    StorageService.save(saveName.trim(), composition, config);
+    setSaveName('');
+    setShowSaveDialog(false);
+    setSaveMessage('✓ Saved!');
+    setTimeout(() => setSaveMessage(''), 2000);
+    // Dispatch custom event to notify other components
+    window.dispatchEvent(new Event('savedCompositionsUpdated'));
   };
 
   const handleImport = (data, mode, source, filename = null) => {
@@ -44,7 +82,8 @@ export default function ArmyCompositionSummary() {
   const handleExportCSV = () => {
     const csv = ExportService.toCSV(composition, config);
     ExportService.downloadCSV(csv);
-    setExportMessage('✓ Downloaded!');
+    setExportMessage('✓ CSV Downloaded!');
+    setShowExportMenu(false);
     setTimeout(() => setExportMessage(''), 2000);
   };
 
@@ -52,6 +91,7 @@ export default function ArmyCompositionSummary() {
     const csv = ExportService.toCSV(composition, config);
     const success = await ExportService.copyToClipboard(csv);
     setExportMessage(success ? '✓ Copied to clipboard!' : '✗ Copy failed');
+    setShowExportMenu(false);
     setTimeout(() => setExportMessage(''), 2000);
   };
 
@@ -59,6 +99,7 @@ export default function ArmyCompositionSummary() {
     const json = ExportService.toJSON(composition, config);
     ExportService.downloadJSON(json);
     setExportMessage('✓ JSON Downloaded!');
+    setShowExportMenu(false);
     setTimeout(() => setExportMessage(''), 2000);
   };
 
@@ -118,6 +159,13 @@ export default function ArmyCompositionSummary() {
           <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-200">Army Composition</h2>
           <div className="flex gap-2 flex-wrap">
             <button
+              onClick={() => setShowSaveDialog(!showSaveDialog)}
+              className="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-colors"
+              title="Save current composition"
+            >
+              💾 Save Current
+            </button>
+            <button
               onClick={() => setIsImportModalOpen(true)}
               className="bg-indigo-500 hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white px-4 py-2 rounded text-sm transition-colors"
               title="Import composition from file or URL"
@@ -126,28 +174,40 @@ export default function ArmyCompositionSummary() {
             </button>
             <button
               onClick={handleShare}
-              className="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-colors"
+              className="bg-cyan-500 hover:bg-cyan-600 dark:bg-cyan-600 dark:hover:bg-cyan-700 text-white px-4 py-2 rounded text-sm transition-colors"
               title="Copy shareable link"
             >
               📋 Share
             </button>
-            <div className="relative">
+            <div className="relative" ref={exportMenuRef}>
               <button
-                onClick={handleExportCSV}
-                className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-4 py-2 rounded text-sm transition-colors"
-                title="Download as CSV"
+                onClick={() => setShowExportMenu(!showExportMenu)}
+                className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-4 py-2 rounded text-sm transition-colors flex items-center gap-1"
+                title="Export composition"
+                aria-expanded={showExportMenu}
+                aria-haspopup="true"
               >
-                📥 CSV
+                📥 Export
+                <span className="text-xs">{showExportMenu ? '▲' : '▼'}</span>
               </button>
-            </div>
-            <div className="relative">
-              <button
-                onClick={handleExportJSON}
-                className="bg-purple-500 hover:bg-purple-600 dark:bg-purple-600 dark:hover:bg-purple-700 text-white px-4 py-2 rounded text-sm transition-colors"
-                title="Download as JSON"
-              >
-                📥 JSON
-              </button>
+              {showExportMenu && (
+                <div className="absolute right-0 mt-1 w-40 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-600 z-10 overflow-hidden">
+                  <button
+                    onClick={handleExportCSV}
+                    className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center gap-2"
+                  >
+                    <span className="text-green-600 dark:text-green-400">📄</span>
+                    Download CSV
+                  </button>
+                  <button
+                    onClick={handleExportJSON}
+                    className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center gap-2"
+                  >
+                    <span className="text-purple-600 dark:text-purple-400">📋</span>
+                    Download JSON
+                  </button>
+                </div>
+              )}
             </div>
             <button
               onClick={resetComposition}
@@ -159,11 +219,45 @@ export default function ArmyCompositionSummary() {
         </div>
 
         {/* Status messages */}
-        {(shareMessage || exportMessage || importMessage) && (
+        {(shareMessage || exportMessage || importMessage || saveMessage) && (
           <div className="mb-4 text-sm text-center">
             {shareMessage && <span className="text-blue-600 dark:text-blue-400 mr-4">{shareMessage}</span>}
             {exportMessage && <span className="text-green-600 dark:text-green-400 mr-4">{exportMessage}</span>}
-            {importMessage && <span className="text-indigo-600 dark:text-indigo-400">{importMessage}</span>}
+            {importMessage && <span className="text-indigo-600 dark:text-indigo-400 mr-4">{importMessage}</span>}
+            {saveMessage && <span className="text-green-600 dark:text-green-400">{saveMessage}</span>}
+          </div>
+        )}
+
+        {/* Save Dialog */}
+        {showSaveDialog && (
+          <div className="mb-4 p-4 border border-gray-200 dark:border-gray-600 rounded bg-gray-50 dark:bg-gray-700">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Composition Name</label>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={saveName}
+                onChange={(e) => setSaveName(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSaveComposition()}
+                placeholder="e.g., Knight Rush Build"
+                className="flex-1 border border-gray-300 dark:border-gray-600 rounded px-3 py-2 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                autoFocus
+              />
+              <button
+                onClick={handleSaveComposition}
+                className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-4 py-2 rounded text-sm transition-colors"
+              >
+                Save
+              </button>
+              <button
+                onClick={() => {
+                  setShowSaveDialog(false);
+                  setSaveName('');
+                }}
+                className="bg-gray-400 hover:bg-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500 text-white px-4 py-2 rounded text-sm transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         )}
 
