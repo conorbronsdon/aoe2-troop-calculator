@@ -1,25 +1,68 @@
+import { useState, useEffect } from 'react';
 import { trackDonationClick } from '../utils/analytics';
 
 /**
  * Buy Me a Coffee CTA Component
- * Displays a call-to-action button linking to Buy Me a Coffee page
+ * Displays a floating button in the corner that expands on hover
+ * Less intrusive than the previous centered CTA at the bottom
  */
 const BuyMeCoffee = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isDismissed, setIsDismissed] = useState(false);
+
+  // Check if user has dismissed the button this session
+  useEffect(() => {
+    const dismissed = sessionStorage.getItem('bmc_dismissed');
+    if (dismissed) {
+      setIsDismissed(true);
+    }
+  }, []);
+
   const handleClick = () => {
     trackDonationClick();
   };
 
+  const handleDismiss = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDismissed(true);
+    sessionStorage.setItem('bmc_dismissed', 'true');
+  };
+
+  if (isDismissed) {
+    return null;
+  }
+
   return (
-    <div className="mt-6 mb-4 text-center">
+    <div
+      className="fixed bottom-20 right-4 z-40 lg:bottom-6 lg:right-6"
+      onMouseEnter={() => setIsExpanded(true)}
+      onMouseLeave={() => setIsExpanded(false)}
+    >
+      {/* Dismiss button */}
+      <button
+        onClick={handleDismiss}
+        className="absolute -top-2 -right-2 w-6 h-6 bg-gray-600 hover:bg-gray-700 text-white rounded-full flex items-center justify-center text-xs shadow-lg transition-opacity duration-200 opacity-0 group-hover:opacity-100"
+        style={{ opacity: isExpanded ? 1 : 0 }}
+        aria-label="Dismiss Buy Me a Coffee button"
+      >
+        ✕
+      </button>
+
       <a
         href="https://buymeacoffee.com/conorbronsdon"
         target="_blank"
         rel="noopener noreferrer"
         onClick={handleClick}
-        className="inline-flex items-center gap-2 bg-[#FFDD00] hover:bg-[#ffed4e] text-gray-800 font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl"
+        className={`
+          flex items-center gap-2 bg-[#FFDD00] hover:bg-[#ffed4e] text-gray-800 font-semibold
+          rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105
+          ${isExpanded ? 'py-3 px-5' : 'p-4'}
+        `}
+        aria-label="Buy me a coffee to support development"
       >
         <svg
-          className="w-6 h-6"
+          className="w-6 h-6 flex-shrink-0"
           viewBox="0 0 884 1279"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -76,9 +119,12 @@ const BuyMeCoffee = () => {
             fill="#0D0C22"
           />
         </svg>
-        <span>Like this calculator? Buy me a coffee!</span>
+        {isExpanded && (
+          <span className="whitespace-nowrap animate-fade-in">
+            Support this tool!
+          </span>
+        )}
       </a>
-      <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Support the development of this tool</p>
     </div>
   );
 };

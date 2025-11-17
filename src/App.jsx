@@ -18,6 +18,7 @@ import CivilizationComparison from './components/CivilizationComparison';
 import ThemeToggle from './components/ThemeToggle';
 import ArmyCombatStats from './components/ArmyCombatStats';
 import PWAInstallPrompt from './components/PWAInstallPrompt';
+import MobileSidebarSection from './components/MobileSidebarSection';
 import { units } from './data/units';
 import { civilizations } from './data/civilizations';
 import { validateGameData } from './utils/validators';
@@ -106,16 +107,37 @@ function AppContent() {
           {/* Left Sidebar - Configuration & Status */}
           <aside className="lg:w-96 xl:w-[420px] flex-shrink-0">
             <div className="lg:sticky lg:top-4 space-y-4 max-h-[calc(100vh-2rem)] lg:overflow-y-auto lg:pr-2">
-              <ConfigurationPanel />
-              <CivilizationIndicator />
-              <ArmyCompositionSummary />
-              <CivilizationBonuses />
-              {config.showTechPanel && <TechnologyPanel />}
-              <CivilizationComparison />
-              {/* SaveLoadPanel appears above presets when compositions exist, below otherwise */}
-              {savedCompositionsCount > 0 && <SaveLoadPanel hideSaveButton={true} />}
-              <PresetSelector />
-              {savedCompositionsCount === 0 && <SaveLoadPanel hideSaveButton={true} />}
+              {/* Configuration Section - High priority, open by default on mobile */}
+              <MobileSidebarSection title="Configuration" icon="⚙️" defaultOpen={true} priority="high">
+                <ConfigurationPanel />
+              </MobileSidebarSection>
+
+              {/* Army Status Section - Shows current army state */}
+              <MobileSidebarSection title="Army Status" icon="🛡️" defaultOpen={false} priority="normal">
+                <div className="space-y-4">
+                  <CivilizationIndicator />
+                  <ArmyCompositionSummary />
+                  <CivilizationBonuses />
+                </div>
+              </MobileSidebarSection>
+
+              {/* Technologies Section - Conditional */}
+              {config.showTechPanel && (
+                <MobileSidebarSection title="Technologies" icon="🔬" defaultOpen={false} priority="normal">
+                  <TechnologyPanel />
+                </MobileSidebarSection>
+              )}
+
+              {/* Tools Section - Comparison, saves, presets */}
+              <MobileSidebarSection title="Tools & Presets" icon="🧰" defaultOpen={false} priority="low">
+                <div className="space-y-4">
+                  <CivilizationComparison />
+                  {/* SaveLoadPanel appears above presets when compositions exist, below otherwise */}
+                  {savedCompositionsCount > 0 && <SaveLoadPanel hideSaveButton={true} />}
+                  <PresetSelector />
+                  {savedCompositionsCount === 0 && <SaveLoadPanel hideSaveButton={true} />}
+                </div>
+              </MobileSidebarSection>
             </div>
           </aside>
 
@@ -132,9 +154,6 @@ function AppContent() {
             {(config.displayMode === 'fortifications' || config.displayMode === 'both') && (
               <FortificationSelection />
             )}
-
-            {/* Buy Me a Coffee CTA */}
-            <BuyMeCoffee />
           </main>
         </div>
       </div>
@@ -201,6 +220,9 @@ function AppContent() {
 
       {/* PWA Install Prompt */}
       <PWAInstallPrompt />
+
+      {/* Floating Buy Me a Coffee button */}
+      <BuyMeCoffee />
     </div>
   );
 }
