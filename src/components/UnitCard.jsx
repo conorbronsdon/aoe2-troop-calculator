@@ -110,6 +110,68 @@ export default function UnitCard({ unit }) {
         </span>
       </div>
 
+      {/* Compact Stats Bar - Always visible */}
+      {unitStats && (
+        <div className="flex items-center gap-2 mb-2 text-xs bg-gray-100 dark:bg-gray-700/70 rounded px-2 py-1.5">
+          <span
+            className={`flex items-center gap-0.5 ${
+              unitStats.modified.hp !== unitStats.base.hp
+                ? 'text-green-600 dark:text-green-400 font-semibold'
+                : 'text-gray-600 dark:text-gray-400'
+            }`}
+            title={`HP: ${unitStats.base.hp}${unitStats.modified.hp !== unitStats.base.hp ? ` → ${unitStats.modified.hp}` : ''}`}
+          >
+            ❤️ {Math.round(unitStats.modified.hp)}
+          </span>
+          <span
+            className={`flex items-center gap-0.5 ${
+              unitStats.modified.attack !== unitStats.base.attack
+                ? 'text-green-600 dark:text-green-400 font-semibold'
+                : 'text-gray-600 dark:text-gray-400'
+            }`}
+            title={`Attack: ${unitStats.base.attack}${unitStats.modified.attack !== unitStats.base.attack ? ` → ${unitStats.modified.attack}` : ''}`}
+          >
+            ⚔️ {unitStats.modified.attack}
+          </span>
+          <span
+            className={`flex items-center gap-0.5 ${
+              unitStats.modified.meleeArmor !== unitStats.base.meleeArmor ||
+              unitStats.modified.pierceArmor !== unitStats.base.pierceArmor
+                ? 'text-green-600 dark:text-green-400 font-semibold'
+                : 'text-gray-600 dark:text-gray-400'
+            }`}
+            title={`Armor (Melee/Pierce): ${unitStats.base.meleeArmor}/${unitStats.base.pierceArmor}${
+              unitStats.modified.meleeArmor !== unitStats.base.meleeArmor ||
+              unitStats.modified.pierceArmor !== unitStats.base.pierceArmor
+                ? ` → ${unitStats.modified.meleeArmor}/${unitStats.modified.pierceArmor}`
+                : ''
+            }`}
+          >
+            🛡️ {unitStats.modified.meleeArmor}/{unitStats.modified.pierceArmor}
+          </span>
+          {unitStats.base.range > 0 && (
+            <span
+              className={`flex items-center gap-0.5 ${
+                unitStats.modified.range !== unitStats.base.range
+                  ? 'text-green-600 dark:text-green-400 font-semibold'
+                  : 'text-gray-600 dark:text-gray-400'
+              }`}
+              title={`Range: ${unitStats.base.range}${unitStats.modified.range !== unitStats.base.range ? ` → ${unitStats.modified.range}` : ''}`}
+            >
+              🎯 {unitStats.modified.range}
+            </span>
+          )}
+          {hasStatsChanged && (
+            <span
+              className="ml-auto text-green-600 dark:text-green-400 font-bold"
+              title="Stats modified by technologies or civilization bonuses"
+            >
+              ✨
+            </span>
+          )}
+        </div>
+      )}
+
       <div className="mb-3">
         <ResourceCost cost={adjustedCost} baseCost={baseCost} showDiscount={showDiscount} />
       </div>
