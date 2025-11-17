@@ -1,0 +1,260 @@
+{
+  "app": {
+    "title": "Age of Empires II Definitive Edition: Calcolatore di Composizione Esercito + Truppe",
+    "subtitle": "100+ unità · 51 civiltà · Bonus precisi · Tracciamento risorse · Eserciti salvati",
+    "enjoyingCalculator": "Ti piace la calcolatrice?",
+    "copyright": "Age of Empires II © Microsoft",
+    "createdBy": "Creato da"
+  },
+  "header": {
+    "undo": "Annulla",
+    "redo": "Ripristina",
+    "keyboardShortcuts": "Scorciatoie da Tastiera",
+    "github": "GitHub"
+  },
+  "configuration": {
+    "title": "Configurazione",
+    "civilization": "Civiltà",
+    "alliedCivilizations": "Civiltà Alleate",
+    "teamBonuses": "Bonus di Squadra",
+    "selectAllies": "Seleziona fino a 3 alleati per i bonus di squadra",
+    "noAlliesSelected": "Nessun alleato selezionato",
+    "age": "Era",
+    "popCap": "Limite Popolazione",
+    "displayMode": "Modalità di Visualizzazione",
+    "resourceMode": "Modalità Risorse",
+    "total": "Totale",
+    "individual": "Individuale",
+    "totalResourceLimit": "Limite Totale Risorse",
+    "resourceLimits": "Limiti Risorse",
+    "technologyPanel": "Pannello Tecnologia",
+    "showUnitCardStats": "Mostra Statistiche Unità",
+    "civComparison": "Confronto Civiltà",
+    "combatAnalysis": "Analisi di Combattimento"
+  },
+  "ages": {
+    "dark": "Buia",
+    "feudal": "Feudale",
+    "castle": "Castello",
+    "imperial": "Imperiale"
+  },
+  "displayModes": {
+    "units": "Solo Unità",
+    "both": "Unità e Fortificazioni",
+    "fortifications": "Solo Fortificazioni"
+  },
+  "resources": {
+    "food": "Cibo",
+    "wood": "Legno",
+    "gold": "Oro",
+    "stone": "Pietra",
+    "total": "Totale",
+    "population": "Popolazione"
+  },
+  "bonuses": {
+    "title": "Bonus di Civiltà",
+    "costBonuses": "Bonus di Costo",
+    "statBonuses": "Bonus di Statistiche",
+    "economicBonuses": "Bonus Economici",
+    "teamBonus": "Bonus di Squadra",
+    "active": "ATTIVO",
+    "filterByType": "Filtra per tipo",
+    "all": "Tutti",
+    "cost": "Costo",
+    "stat": "Statistica",
+    "economic": "Economico",
+    "searchBonuses": "Cerca bonus...",
+    "noBonusesFound": "Nessun bonus trovato"
+  },
+  "units": {
+    "title": "Selezione Unità",
+    "searchPlaceholder": "Cerca unità per nome o categoria...",
+    "noUnitsFound": "Nessuna unità trovata",
+    "filterByCategory": "Filtra per categoria",
+    "allCategories": "Tutte le Categorie",
+    "categories": {
+      "Infantry": "Fanteria",
+      "Cavalry": "Cavalleria",
+      "Archer": "Arcieri",
+      "Siege": "Assedio",
+      "Naval": "Navale",
+      "Monk": "Monaco",
+      "Unique": "Unica",
+      "Other": "Altro"
+    }
+  },
+  "army": {
+    "title": "Stato Esercito",
+    "summary": "Riepilogo Composizione Esercito",
+    "analysis": "Analisi Composizione Esercito",
+    "noUnits": "Nessuna unità aggiunta",
+    "totalUnits": "Unità Totali",
+    "categoryBreakdown": "Ripartizione per Categoria",
+    "combatAnalysis": "Analisi di Combattimento"
+  },
+  "tools": {
+    "title": "Strumenti e Preset",
+    "comparison": "Confronto Civiltà",
+    "presets": "Preset",
+    "saveLoad": "Salva/Carica"
+  },
+  "actions": {
+    "apply": "Applica",
+    "clear": "Cancella",
+    "save": "Salva",
+    "load": "Carica",
+    "export": "Esporta",
+    "import": "Importa",
+    "delete": "Elimina",
+    "cancel": "Annulla",
+    "confirm": "Conferma",
+    "addUnit": "Aggiungi Unità",
+    "removeUnit": "Rimuovi Unità",
+    "reset": "Reimposta"
+  },
+  "notifications": {
+    "undone": "Annullato",
+    "redone": "Ripristinato",
+    "saved": "Salvato",
+    "exported": "Esportato in JSON",
+    "compositionCleared": "Composizione cancellata",
+    "searchFocused": "Ricerca attivata",
+    "themeToggled": "Tema cambiato",
+    "noUnitsToSave": "Nessuna unità da salvare",
+    "noUnitsToExport": "Nessuna unità da esportare",
+    "teamBonusApplied": "Bonus di squadra applicato",
+    "alliesUpdated": "Civiltà alleate aggiornate"
+  },
+  "teamBonuses": {
+    "title": "Bonus di Squadra",
+    "fromAllies": "Dalle Civiltà Alleate",
+    "yourBonus": "Il Tuo Bonus di Squadra (condiviso con gli alleati)",
+    "noTeamBonus": "Nessun bonus di squadra",
+    "combinedBonuses": "Bonus di Squadra Combinati",
+    "selectAllies": "Seleziona alleati per vedere i bonus di squadra"
+  },
+  "language": {
+    "title": "Lingua",
+    "select": "Seleziona Lingua"
+  },
+  "fortifications": {
+    "title": "Fortificazioni",
+    "walls": "Mura",
+    "towers": "Torri",
+    "castles": "Castelli"
+  },
+  "technologies": {
+    "title": "Tecnologie",
+    "researched": "Ricercate",
+    "available": "Disponibili",
+    "requirements": "Requisiti"
+  },
+  "shortcuts": {
+    "title": "Scorciatoie da Tastiera",
+    "undoAction": "Annulla",
+    "redoAction": "Ripristina",
+    "saveComposition": "Salvataggio Rapido",
+    "exportJson": "Esporta JSON",
+    "clearComposition": "Cancella Tutto",
+    "focusSearch": "Attiva Ricerca",
+    "toggleDarkMode": "Attiva/Disattiva Modalità Scura",
+    "showHelp": "Mostra Aiuto",
+    "close": "Chiudi"
+  },
+  "accessibility": {
+    "discount": "Sconto",
+    "hitPoints": "Punti Vita",
+    "attack": "Attacco",
+    "range": "Gittata",
+    "dismissInstallPrompt": "Ignora richiesta di installazione",
+    "closeHelp": "Chiudi aiuto scorciatoie da tastiera",
+    "toggleTheme": "Cambia tema",
+    "searchBonuses": "Cerca bonus",
+    "search": "Ricerca",
+    "bonusTypeFilters": "Filtri tipo di bonus",
+    "toggleMilitaryBonuses": "Attiva/disattiva bonus militari",
+    "toggleEconomicBonuses": "Attiva/disattiva bonus economici",
+    "toggleCostBonuses": "Attiva/disattiva bonus di costo",
+    "showOnlyActive": "Mostra solo bonus attivi",
+    "compactResourceTracker": "Tracciatore Risorse Compatto",
+    "undoLastAction": "Annulla ultima azione",
+    "redoLastAction": "Ripristina ultima azione",
+    "showKeyboardShortcuts": "Mostra scorciatoie da tastiera",
+    "resources": "Risorse",
+    "resourceUsage": "Utilizzo risorse",
+    "populationUsage": "Utilizzo popolazione",
+    "population": "Popolazione",
+    "combat": "combattimento",
+    "analysis": "Analisi",
+    "warning": "Avviso",
+    "strength": "Forza",
+    "balance": "Equilibrio",
+    "economy": "Economia",
+    "suggestions": "Suggerimenti",
+    "selectGameAge": "Seleziona era di gioco",
+    "selectDisplayMode": "Seleziona modalità di visualizzazione",
+    "gear": "ingranaggio",
+    "stats": "statistiche",
+    "team": "squadra",
+    "comparison": "confronto",
+    "meleeUnits": "Unità da mischia",
+    "rangedUnits": "Unità a distanza",
+    "technology": "tecnologia",
+    "searchTechnologies": "Cerca tecnologie",
+    "unique": "unica",
+    "copyLink": "Copia link",
+    "error": "Errore",
+    "tryToRecover": "Prova a recuperare dall'errore",
+    "reloadPage": "Ricarica la pagina",
+    "dismissCoffeeButton": "Ignora pulsante Buy Me a Coffee",
+    "supportDevelopment": "Offrimi un caffè per supportare lo sviluppo",
+    "closeModal": "Chiudi",
+    "resourceTracker": "Tracciatore Risorse"
+  },
+  "tooltips": {
+    "statsModified": "Statistiche modificate da tecnologie o bonus di civiltà",
+    "importComposition": "Importa composizione da file o URL",
+    "saveComposition": "Salva composizione attuale",
+    "copyShareableLink": "Copia link condivisibile",
+    "exportComposition": "Esporta composizione",
+    "undoShortcut": "Annulla (Ctrl+Z)",
+    "redoShortcut": "Ripristina (Ctrl+Shift+Z)",
+    "keyboardShortcutsShortcut": "Scorciatoie da Tastiera (?)",
+    "jumpToArmyCompositions": "Vai alle Composizioni Esercito",
+    "starOnGithub": "Metti una stella su GitHub",
+    "food": "Cibo",
+    "wood": "Legno",
+    "gold": "Oro",
+    "stone": "Pietra"
+  },
+  "labels": {
+    "population": "Popolazione",
+    "food": "Cibo",
+    "wood": "Legno",
+    "gold": "Oro",
+    "stone": "Pietra",
+    "pop": "Pop",
+    "current": "Attuale",
+    "noBonuses": "Nessun bonus",
+    "analysis": "Analisi",
+    "vulnerabilities": "Vulnerabilità",
+    "strengths": "Punti di Forza",
+    "compositionBalance": "Equilibrio della Composizione",
+    "suggestions": "Suggerimenti"
+  },
+  "notes": {
+    "costBonusesApplied": "I bonus di costo sono applicati automaticamente ai calcoli delle unità.",
+    "selectCivilizationImportant": "Seleziona e applica una civiltà sopra per sbloccare le unità uniche"
+  },
+  "pwa": {
+    "installTitle": "Installa App",
+    "installDescription": "Installa questa app sul tuo dispositivo per la migliore esperienza",
+    "installButton": "Installa",
+    "notNowButton": "Non ora"
+  },
+  "errors": {
+    "title": "Qualcosa è andato storto",
+    "tryAgain": "Riprova",
+    "reloadPage": "Ricarica Pagina"
+  }
+}

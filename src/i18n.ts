@@ -7,6 +7,10 @@ import enCommon from './locales/en/common.json';
 import esCommon from './locales/es/common.json';
 import deCommon from './locales/de/common.json';
 import ptCommon from './locales/pt/common.json';
+import frCommon from './locales/fr/common.json';
+import itCommon from './locales/it/common.json';
+import plCommon from './locales/pl/common.json';
+import zhCommon from './locales/zh/common.json';
 
 export interface SupportedLanguage {
   code: string;
@@ -19,6 +23,10 @@ export const SUPPORTED_LANGUAGES: SupportedLanguage[] = [
   { code: 'es', name: 'Español', flag: '🇪🇸' },
   { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
   { code: 'pt', name: 'Português', flag: '🇧🇷' },
+  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'it', name: 'Italiano', flag: '🇮🇹' },
+  { code: 'pl', name: 'Polski', flag: '🇵🇱' },
+  { code: 'zh', name: '简体中文', flag: '🇨🇳' },
 ];
 
 interface TranslationResources {
@@ -32,6 +40,10 @@ const resources: TranslationResources = {
   es: { translation: esCommon },
   de: { translation: deCommon },
   pt: { translation: ptCommon },
+  fr: { translation: frCommon },
+  it: { translation: itCommon },
+  pl: { translation: plCommon },
+  zh: { translation: zhCommon },
 };
 
 i18n
