@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { ArmyProvider, useArmy, ACTION_TYPES } from './context/ArmyContext';
-import { ThemeProvider } from './context/ThemeContext';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
+import { ToastProvider, ToastContainer, useToast, TOAST_TYPES } from './context/ToastContext';
 import ErrorBoundary from './components/ErrorBoundary';
 import ConfigurationPanel from './components/ConfigurationPanel';
 import CivilizationIndicator from './components/CivilizationIndicator';
@@ -10,6 +11,7 @@ import ResourceTracker from './components/ResourceTracker';
 import UnitSelection from './components/UnitSelection';
 import FortificationSelection from './components/FortificationSelection';
 import ArmyCompositionSummary from './components/ArmyCompositionSummary';
+import ArmyCompositionAnalysis from './components/ArmyCompositionAnalysis';
 import SaveLoadPanel from './components/SaveLoadPanel';
 import PresetSelector from './components/PresetSelector';
 import SocialShareButtons from './components/SocialShareButtons';
@@ -19,20 +21,108 @@ import ThemeToggle from './components/ThemeToggle';
 import CombatAnalysis from './components/CombatAnalysis';
 import PWAInstallPrompt from './components/PWAInstallPrompt';
 import MobileSidebarSection from './components/MobileSidebarSection';
+import KeyboardShortcutsHelp from './components/KeyboardShortcutsHelp';
 import { units } from './data/units';
 import { civilizations } from './data/civilizations';
 import { validateGameData } from './utils/validators';
 import { logger } from './utils/errorHandler';
 import { ShareService } from './services/share.service';
+import { ExportService } from './services/export.service';
+import { StorageService } from './services/storage.service';
 import { initializeAnalytics } from './utils/analytics';
 import { analyticsConfig } from './config/analytics.config';
-import { FaGithub, FaStar } from 'react-icons/fa';
+import { FaGithub, FaStar, FaUndo, FaRedo, FaKeyboard } from 'react-icons/fa';
 import { useSavedCompositions } from './hooks/useSavedCompositions';
+import { useKeyboardShortcuts, KEYBOARD_SHORTCUTS } from './hooks/useKeyboardShortcuts';
 
 function AppContent() {
-  const { state, dispatch } = useArmy();
-  const { config } = state;
+  const { state, dispatch, canUndo, canRedo } = useArmy();
+  const { config, composition } = state;
   const { count: savedCompositionsCount } = useSavedCompositions();
+  const { showToast } = useToast();
+  const { toggleTheme } = useTheme();
+  const [showShortcutsHelp, setShowShortcutsHelp] = useState(false);
+  const searchInputRef = useRef(null);
+
+  // Keyboard shortcuts handlers
+  const handleUndo = useCallback(() => {
+    if (canUndo) {
+      dispatch({ type: ACTION_TYPES.UNDO });
+      showToast('Undone', TOAST_TYPES.INFO, 2000);
+    }
+  }, [dispatch, canUndo, showToast]);
+
+  const handleRedo = useCallback(() => {
+    if (canRedo) {
+      dispatch({ type: ACTION_TYPES.REDO });
+      showToast('Redone', TOAST_TYPES.INFO, 2000);
+    }
+  }, [dispatch, canRedo, showToast]);
+
+  const handleSave = useCallback(() => {
+    const unitCount = Object.keys(composition).length;
+    if (unitCount === 0) {
+      showToast('No units to save', TOAST_TYPES.WARNING, 2000);
+      return;
+    }
+    const name = `Army ${new Date().toLocaleString()}`;
+    StorageService.save(name, composition, config);
+    showToast(`Saved: ${name}`, TOAST_TYPES.SUCCESS, 2000);
+    window.dispatchEvent(new Event('savedCompositionsUpdated'));
+  }, [composition, config, showToast]);
+
+  const handleExportJson = useCallback(() => {
+    const unitCount = Object.keys(composition).length;
+    if (unitCount === 0) {
+      showToast('No units to export', TOAST_TYPES.WARNING, 2000);
+      return;
+    }
+    ExportService.downloadJSON(composition, config);
+    showToast('Exported to JSON', TOAST_TYPES.SUCCESS, 2000);
+  }, [composition, config, showToast]);
+
+  const handleClearComposition = useCallback(() => {
+    dispatch({ type: ACTION_TYPES.RESET_COMPOSITION });
+    showToast('Composition cleared', TOAST_TYPES.INFO, 2000);
+  }, [dispatch, showToast]);
+
+  const handleFocusSearch = useCallback(() => {
+    // Focus the unit search input
+    const searchInput = document.querySelector('[data-search-input="unit-filter"]');
+    if (searchInput) {
+      searchInput.focus();
+      showToast('Search focused', TOAST_TYPES.INFO, 1500);
+    }
+  }, [showToast]);
+
+  const handleToggleDarkMode = useCallback(() => {
+    toggleTheme();
+    showToast('Theme toggled', TOAST_TYPES.INFO, 1500);
+  }, [toggleTheme, showToast]);
+
+  const handleShowHelp = useCallback(() => {
+    setShowShortcutsHelp(true);
+  }, []);
+
+  const handleEsc = useCallback(() => {
+    if (showShortcutsHelp) {
+      setShowShortcutsHelp(false);
+    }
+  }, [showShortcutsHelp]);
+
+  // Register keyboard shortcuts
+  useKeyboardShortcuts({
+    [KEYBOARD_SHORTCUTS.UNDO]: handleUndo,
+    [KEYBOARD_SHORTCUTS.REDO]: handleRedo,
+    [KEYBOARD_SHORTCUTS.REDO_ALT]: handleRedo,
+    [KEYBOARD_SHORTCUTS.SAVE]: handleSave,
+    [KEYBOARD_SHORTCUTS.EXPORT_JSON]: handleExportJson,
+    [KEYBOARD_SHORTCUTS.CLEAR]: handleClearComposition,
+    [KEYBOARD_SHORTCUTS.FOCUS_SEARCH]: handleFocusSearch,
+    [KEYBOARD_SHORTCUTS.TOGGLE_DARK_MODE]: handleToggleDarkMode,
+    [KEYBOARD_SHORTCUTS.HELP]: handleShowHelp,
+    [KEYBOARD_SHORTCUTS.ESC]: handleEsc,
+  });
 
   useEffect(() => {
     // Initialize analytics
@@ -77,6 +167,43 @@ function AppContent() {
               </p>
             </div>
             <div className="flex items-center gap-3">
+              {/* Undo/Redo Buttons */}
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={handleUndo}
+                  disabled={!canUndo}
+                  className={`p-2 rounded-lg transition-colors ${
+                    canUndo
+                      ? 'bg-white/10 hover:bg-white/20 text-white'
+                      : 'bg-white/5 text-white/30 cursor-not-allowed'
+                  }`}
+                  title="Undo (Ctrl+Z)"
+                  aria-label="Undo last action"
+                >
+                  <FaUndo className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={handleRedo}
+                  disabled={!canRedo}
+                  className={`p-2 rounded-lg transition-colors ${
+                    canRedo
+                      ? 'bg-white/10 hover:bg-white/20 text-white'
+                      : 'bg-white/5 text-white/30 cursor-not-allowed'
+                  }`}
+                  title="Redo (Ctrl+Shift+Z)"
+                  aria-label="Redo last action"
+                >
+                  <FaRedo className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={handleShowHelp}
+                  className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
+                  title="Keyboard Shortcuts (?)"
+                  aria-label="Show keyboard shortcuts"
+                >
+                  <FaKeyboard className="w-4 h-4" />
+                </button>
+              </div>
               <ThemeToggle />
               <div className="flex flex-col items-end gap-1">
                 <span className="text-xs text-blue-100 dark:text-gray-300 hidden sm:inline">
@@ -117,6 +244,7 @@ function AppContent() {
                 <div className="space-y-4">
                   <CivilizationIndicator />
                   <ArmyCompositionSummary />
+                  <ArmyCompositionAnalysis />
                   <CivilizationBonuses />
                 </div>
               </MobileSidebarSection>
@@ -223,6 +351,15 @@ function AppContent() {
 
       {/* Floating Buy Me a Coffee button */}
       <BuyMeCoffee />
+
+      {/* Keyboard Shortcuts Help Modal */}
+      <KeyboardShortcutsHelp
+        isOpen={showShortcutsHelp}
+        onClose={() => setShowShortcutsHelp(false)}
+      />
+
+      {/* Toast Notifications */}
+      <ToastContainer />
     </div>
   );
 }
@@ -232,7 +369,9 @@ function App() {
     <ErrorBoundary>
       <ThemeProvider>
         <ArmyProvider>
-          <AppContent />
+          <ToastProvider>
+            <AppContent />
+          </ToastProvider>
         </ArmyProvider>
       </ThemeProvider>
     </ErrorBoundary>
