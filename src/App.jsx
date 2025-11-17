@@ -160,11 +160,14 @@ function AppContent() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="mt-12 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
-        <div className="container mx-auto px-4 py-6">
-          <div className="text-center mb-4">
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+      {/* Spacer for fixed footer */}
+      <div className="h-24" />
+
+      {/* Footer - Fixed at bottom */}
+      <footer className="fixed bottom-0 left-0 right-0 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg z-40">
+        <div className="container mx-auto px-4 py-3">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
+            <p className="text-xs text-gray-600 dark:text-gray-400">
               Created by{' '}
               <a
                 href="https://conorbronsdon.com/"
@@ -174,8 +177,9 @@ function AppContent() {
               >
                 Conor Bronsdon
               </a>
+              {' '}• Age of Empires II © Microsoft
             </p>
-            <div className="flex justify-center items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
+            <div className="flex items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
               <a
                 href="https://github.com/conorbronsdon/"
                 target="_blank"
@@ -212,10 +216,6 @@ function AppContent() {
                 Substack
               </a>
             </div>
-          </div>
-          <div className="text-center text-sm text-gray-500 dark:text-gray-400">
-            <p>Age of Empires II © Microsoft Corporation</p>
-            <p className="mt-1">Built for AoE2 players | Inspired by pro player strategies</p>
           </div>
         </div>
       </footer>
