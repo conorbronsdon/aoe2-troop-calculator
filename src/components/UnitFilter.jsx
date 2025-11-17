@@ -174,50 +174,9 @@ export default function UnitFilter({ onFilterChange }) {
         </div>
       </div>
 
-      {/* Collapsed Summary */}
-      {!isExpanded && hasActiveFilters && (
-        <div className="text-xs text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-700/50 rounded p-2">
-          {searchTerm && <span className="mr-2">🔍 &quot;{searchTerm}&quot;</span>}
-          {selectedCategories.length > 0 && <span className="mr-2">📁 {selectedCategories.join(', ')}</span>}
-          {selectedCostType !== 'all' && <span className="mr-2">💰 {costTypes.find(t => t.id === selectedCostType)?.label}</span>}
-          {selectedAgeFilter !== 'all' && <span className="mr-2">⏰ {ageFilters.find(a => a.id === selectedAgeFilter)?.label}</span>}
-          {hideNaval && <span>🚫 Naval hidden</span>}
-        </div>
-      )}
-
-      {/* Expanded Content */}
-      <div id="unit-filter-content" className={isExpanded ? 'mt-4' : 'hidden'}>
-        {/* Search Bar */}
-        <div className="mb-4">
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="Search units by name..."
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-          />
-          <span className="absolute right-3 top-2.5 text-gray-400">🔍</span>
-        </div>
-      </div>
-
-      {/* Quick Toggles */}
-      <div className="mb-4">
-        <label className="inline-flex items-center cursor-pointer">
-          <input
-            type="checkbox"
-            checked={hideNaval}
-            onChange={handleHideNavalChange}
-            className="form-checkbox h-5 w-5 text-blue-600 rounded border-gray-300 dark:border-gray-600 focus:ring-blue-500"
-          />
-          <span className="ml-2 text-sm font-medium text-gray-700 dark:text-gray-300">Hide Naval Units</span>
-        </label>
-      </div>
-
-      {/* Category Filters */}
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Categories</label>
-        <div className="flex flex-wrap gap-2">
+      {/* Always Visible: Categories and Hide Naval on same line */}
+      <div className="mt-3">
+        <div className="flex flex-wrap items-center gap-2">
           {categories.map((category) => (
             <button
               key={category}
@@ -231,43 +190,77 @@ export default function UnitFilter({ onFilterChange }) {
               {category}
             </button>
           ))}
+          <label className="inline-flex items-center cursor-pointer ml-2">
+            <input
+              type="checkbox"
+              checked={hideNaval}
+              onChange={handleHideNavalChange}
+              className="form-checkbox h-4 w-4 text-blue-600 rounded border-gray-300 dark:border-gray-600 focus:ring-blue-500"
+            />
+            <span className="ml-1.5 text-sm font-medium text-gray-700 dark:text-gray-300">Hide Naval</span>
+          </label>
         </div>
       </div>
 
-      {/* Cost Type and Age Filters - Side by Side */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* Cost Type Filter */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Cost Type</label>
-          <select
-            value={selectedCostType}
-            onChange={(e) => handleCostTypeChange(e.target.value)}
-            className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-          >
-            {costTypes.map((type) => (
-              <option key={type.id} value={type.id}>
-                {type.label}
-              </option>
-            ))}
-          </select>
+      {/* Collapsed Summary - only show search/cost/age info */}
+      {!isExpanded && (searchTerm || selectedCostType !== 'all' || selectedAgeFilter !== 'all') && (
+        <div className="text-xs text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-700/50 rounded p-2 mt-2">
+          {searchTerm && <span className="mr-2">🔍 &quot;{searchTerm}&quot;</span>}
+          {selectedCostType !== 'all' && <span className="mr-2">💰 {costTypes.find(t => t.id === selectedCostType)?.label}</span>}
+          {selectedAgeFilter !== 'all' && <span className="mr-2">⏰ {ageFilters.find(a => a.id === selectedAgeFilter)?.label}</span>}
+        </div>
+      )}
+
+      {/* Expanded Content - Search, Cost Type, Age filters */}
+      <div id="unit-filter-content" className={isExpanded ? 'mt-4' : 'hidden'}>
+        {/* Search Bar */}
+        <div className="mb-4">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search units by name..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+            />
+            <span className="absolute right-3 top-2.5 text-gray-400">🔍</span>
+          </div>
         </div>
 
-        {/* Age Filter */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Age</label>
-          <select
-            value={selectedAgeFilter}
-            onChange={(e) => handleAgeFilterChange(e.target.value)}
-            className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-          >
-            {ageFilters.map((age) => (
-              <option key={age.id} value={age.id}>
-                {age.label}
-              </option>
-            ))}
-          </select>
+        {/* Cost Type and Age Filters - Side by Side */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Cost Type Filter */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Cost Type</label>
+            <select
+              value={selectedCostType}
+              onChange={(e) => handleCostTypeChange(e.target.value)}
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+            >
+              {costTypes.map((type) => (
+                <option key={type.id} value={type.id}>
+                  {type.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Age Filter */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Age</label>
+            <select
+              value={selectedAgeFilter}
+              onChange={(e) => handleAgeFilterChange(e.target.value)}
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+            >
+              {ageFilters.map((age) => (
+                <option key={age.id} value={age.id}>
+                  {age.label}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   );
