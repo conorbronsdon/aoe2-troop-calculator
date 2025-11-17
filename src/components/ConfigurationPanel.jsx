@@ -220,6 +220,22 @@ export default function ConfigurationPanel() {
             </span>
           </label>
         </div>
+
+        {/* Unit Card Stats Toggle */}
+        <div>
+          <label className="flex items-center cursor-pointer p-2 rounded border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-gray-900 dark:text-gray-100 text-sm">
+            <input
+              type="checkbox"
+              checked={config.showUnitCardStats || false}
+              onChange={(e) => updateConfig({ showUnitCardStats: e.target.checked })}
+              className="mr-2 rounded text-indigo-600 focus:ring-indigo-500"
+            />
+            <span className="flex items-center gap-1.5">
+              <span role="img" aria-label="stats">📊</span>
+              <span className="font-medium">Show Unit Card Stats</span>
+            </span>
+          </label>
+        </div>
       </div>
     </div>
   );

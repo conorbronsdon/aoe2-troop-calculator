@@ -19,6 +19,7 @@ const initialState = {
     previewCiv: 'generic', // The civilization being previewed in the dropdown
     displayMode: 'units', // Display mode: 'units', 'both', or 'fortifications'
     showTechPanel: false, // Whether to show the technology panel (default hidden)
+    showUnitCardStats: false, // Whether to show combat stats on individual unit cards (default hidden)
   },
   savedCompositions: [],
   comparisonMode: false,
