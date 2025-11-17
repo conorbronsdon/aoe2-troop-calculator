@@ -1,4 +1,5 @@
 import { useMemo, useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useArmy } from '../context/ArmyContext';
 import {
   calculateCombinedTotals,
@@ -37,6 +38,7 @@ const getStatusIndicator = (percentage, isOverLimit) => {
 };
 
 export default function ResourceTracker() {
+  const { t } = useTranslation();
   const { state } = useArmy();
   const { composition, fortificationComposition, config, researchedTechs } = state;
 

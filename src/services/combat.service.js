@@ -25,6 +25,142 @@ const ATTACK_TYPE = {
   ranged: 'ranged',
 };
 
+// Bonus damage tables for unit counters
+// Format: { attackerUnitId: { defenderUnitId: bonusDamage } }
+// These are simplified bonus damage values based on AoE2 armor class system
+const BONUS_DAMAGE = {
+  // Spearman line bonus vs cavalry
+  spearman: {
+    scout: 15,
+    'light-cavalry': 15,
+    hussar: 15,
+    knight: 22,
+    cavalier: 22,
+    paladin: 22,
+    'camel-rider': 15,
+    'heavy-camel': 15,
+    'imperial-camel': 15,
+    'battle-elephant': 25,
+    'elite-battle-elephant': 25,
+    'steppe-lancer': 15,
+    'elite-steppe-lancer': 15,
+  },
+  pikeman: {
+    scout: 22,
+    'light-cavalry': 22,
+    hussar: 22,
+    knight: 32,
+    cavalier: 32,
+    paladin: 32,
+    'camel-rider': 22,
+    'heavy-camel': 22,
+    'imperial-camel': 22,
+    'battle-elephant': 47,
+    'elite-battle-elephant': 47,
+    'steppe-lancer': 22,
+    'elite-steppe-lancer': 22,
+  },
+  halberdier: {
+    scout: 32,
+    'light-cavalry': 32,
+    hussar: 32,
+    knight: 47,
+    cavalier: 47,
+    paladin: 47,
+    'camel-rider': 32,
+    'heavy-camel': 32,
+    'imperial-camel': 32,
+    'battle-elephant': 60,
+    'elite-battle-elephant': 60,
+    'steppe-lancer': 32,
+    'elite-steppe-lancer': 32,
+  },
+  // Camel bonus vs cavalry
+  'camel-rider': {
+    scout: 9,
+    'light-cavalry': 9,
+    hussar: 9,
+    knight: 9,
+    cavalier: 9,
+    paladin: 9,
+  },
+  'heavy-camel': {
+    scout: 18,
+    'light-cavalry': 18,
+    hussar: 18,
+    knight: 18,
+    cavalier: 18,
+    paladin: 18,
+  },
+  'imperial-camel': {
+    scout: 18,
+    'light-cavalry': 18,
+    hussar: 18,
+    knight: 18,
+    cavalier: 18,
+    paladin: 18,
+  },
+  // Skirmisher bonus vs archers
+  skirmisher: {
+    archer: 3,
+    crossbowman: 3,
+    arbalester: 3,
+    'cavalry-archer': 3,
+    'heavy-cavalry-archer': 3,
+    slinger: 3,
+  },
+  'elite-skirmisher': {
+    archer: 4,
+    crossbowman: 4,
+    arbalester: 4,
+    'cavalry-archer': 4,
+    'heavy-cavalry-archer': 4,
+    slinger: 4,
+  },
+  'imperial-skirmisher': {
+    archer: 5,
+    crossbowman: 5,
+    arbalester: 5,
+    'cavalry-archer': 5,
+    'heavy-cavalry-archer': 5,
+    slinger: 5,
+  },
+  // Siege bonus vs buildings (not relevant here, but including for completeness)
+  // Mangonel/Onager bonus vs archers (area damage makes them effective)
+  mangonel: {
+    archer: 12,
+    crossbowman: 12,
+    arbalester: 12,
+    skirmisher: 12,
+    'elite-skirmisher': 12,
+  },
+  onager: {
+    archer: 12,
+    crossbowman: 12,
+    arbalester: 12,
+    skirmisher: 12,
+    'elite-skirmisher': 12,
+  },
+  'siege-onager': {
+    archer: 12,
+    crossbowman: 12,
+    arbalester: 12,
+    skirmisher: 12,
+    'elite-skirmisher': 12,
+  },
+};
+
+/**
+ * Get bonus damage for attacker vs defender
+ */
+const getBonusDamage = (attackerUnitId, defenderUnitId) => {
+  const attackerBonuses = BONUS_DAMAGE[attackerUnitId];
+  if (attackerBonuses && attackerBonuses[defenderUnitId]) {
+    return attackerBonuses[defenderUnitId];
+  }
+  return 0;
+};
+
 /**
  * Determine if a unit is ranged or melee based on range stat
  */
@@ -63,9 +199,10 @@ const calculateTotalHP = (armyUnits) => armyUnits.reduce((total, { quantity, sta
 
 /**
  * Calculate total DPS for an army against a specific defender
+ * Now includes bonus damage calculations for unit counters
  */
 const calculateTotalDPS = (attackingArmy, defendingArmy) => {
-  // Simplified: calculate average armor of defending army
+  // Calculate weighted average armor and track defender composition
   const totalDefenders = defendingArmy.reduce((sum, { quantity }) => sum + quantity, 0);
 
   if (totalDefenders === 0) {
@@ -77,12 +214,22 @@ const calculateTotalDPS = (attackingArmy, defendingArmy) => {
   const avgPierceArmor =
     defendingArmy.reduce((sum, { quantity, stats }) => sum + stats.pierceArmor * quantity, 0) / totalDefenders;
 
+  // Calculate DPS with bonus damage applied
   return attackingArmy.reduce((totalDPS, { unit, quantity, stats }) => {
     const attackType = getAttackType(stats);
     const armor = attackType === ATTACK_TYPE.ranged ? avgPierceArmor : avgMeleeArmor;
-    const damagePerHit = Math.max(1, stats.attack - armor);
+    const baseDamagePerHit = Math.max(1, stats.attack - armor);
+
+    // Calculate average bonus damage against defending army
+    let avgBonusDamage = 0;
+    defendingArmy.forEach(({ unit: defenderUnit, quantity: defQuantity }) => {
+      const bonusDmg = getBonusDamage(unit.id, defenderUnit.id);
+      avgBonusDamage += (bonusDmg * defQuantity) / totalDefenders;
+    });
+
+    const totalDamagePerHit = baseDamagePerHit + avgBonusDamage;
     const reloadTime = RELOAD_TIMES[unit.category.toLowerCase()] || 2.0;
-    const dps = (damagePerHit / reloadTime) * quantity;
+    const dps = (totalDamagePerHit / reloadTime) * quantity;
     return totalDPS + dps;
   }, 0);
 };

@@ -255,8 +255,7 @@ export default function CombatSimulator({ embedded = false }) {
 
       {/* Disclaimer */}
       <div className="text-xs text-gray-500 dark:text-gray-400 italic">
-        Note: This is a simplified simulation. Actual combat outcomes depend on micro, positioning, terrain, and other
-        factors. Bonus damage (e.g., pikemen vs cavalry) not yet included.
+        Note: This simulation includes bonus damage for unit counters (e.g., pikemen vs cavalry). Actual combat outcomes also depend on micro, positioning, terrain, and other factors.
       </div>
     </div>
   );

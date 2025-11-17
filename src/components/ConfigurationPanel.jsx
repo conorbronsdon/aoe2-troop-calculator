@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { civilizations } from '../data/civilizations';
 import { LIMITS, AGES as ALL_AGES } from '../constants';
@@ -6,6 +7,7 @@ import CivilizationSelector from './CivilizationSelector';
 const AGES = ALL_AGES.filter((age) => age !== 'dark'); // Exclude Dark Age for army planning
 
 export default function ConfigurationPanel() {
+  const { t } = useTranslation();
   const { state, dispatch } = useArmy();
   const { config } = state;
 
@@ -34,7 +36,7 @@ export default function ConfigurationPanel() {
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 transition-colors duration-300">
-      <h2 className="text-lg font-semibold mb-3 text-gray-700 dark:text-gray-200">Configuration</h2>
+      <h2 className="text-lg font-semibold mb-3 text-gray-700 dark:text-gray-200">{t('configuration.title')}</h2>
 
       <div className="space-y-4">
         {/* Civilization Selection - Most important, first */}
@@ -42,7 +44,7 @@ export default function ConfigurationPanel() {
           <div className="mb-2">
             <h3 className="text-sm font-bold text-amber-900 dark:text-amber-200 flex items-center gap-1">
               <span>🏛️</span>
-              Civilization
+              {t('configuration.civilization')}
             </h3>
           </div>
           <CivilizationSelector
@@ -57,7 +59,7 @@ export default function ConfigurationPanel() {
         <div className="grid grid-cols-2 gap-3">
           <div>
             <label htmlFor="ageSelect" className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Age
+              {t('configuration.age')}
             </label>
             <select
               id="ageSelect"
@@ -68,7 +70,7 @@ export default function ConfigurationPanel() {
             >
               {AGES.map((age) => (
                 <option key={age} value={age} className="capitalize">
-                  {age}
+                  {t(`ages.${age}`)}
                 </option>
               ))}
             </select>
@@ -76,7 +78,7 @@ export default function ConfigurationPanel() {
 
           <div>
             <label htmlFor="populationCap" className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Pop Cap
+              {t('configuration.popCap')}
             </label>
             <input
               id="populationCap"
@@ -93,7 +95,7 @@ export default function ConfigurationPanel() {
         {/* Display Mode */}
         <div>
           <label htmlFor="displayModeSelect" className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Display Mode
+            {t('configuration.displayMode')}
           </label>
           <select
             id="displayModeSelect"
@@ -104,16 +106,16 @@ export default function ConfigurationPanel() {
             }
             aria-label="Select display mode"
           >
-            <option value="units">⚔️ Units Only</option>
-            <option value="both">⚔️🏰 Units & Fortifications</option>
-            <option value="fortifications">🏰 Fortifications Only</option>
+            <option value="units">⚔️ {t('displayModes.units')}</option>
+            <option value="both">⚔️🏰 {t('displayModes.both')}</option>
+            <option value="fortifications">🏰 {t('displayModes.fortifications')}</option>
           </select>
         </div>
 
         {/* Resource Limit Mode */}
         <div>
           <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Resource Mode
+            {t('configuration.resourceMode')}
           </label>
           <div className="flex gap-3 text-sm">
             <label className="flex items-center cursor-pointer text-gray-900 dark:text-gray-100">
@@ -125,7 +127,7 @@ export default function ConfigurationPanel() {
                 onChange={(e) => updateConfig({ resourceLimitMode: e.target.value })}
                 className="mr-1.5"
               />
-              <span>Total</span>
+              <span>{t('configuration.total')}</span>
             </label>
             <label className="flex items-center cursor-pointer text-gray-900 dark:text-gray-100">
               <input
@@ -136,7 +138,7 @@ export default function ConfigurationPanel() {
                 onChange={(e) => updateConfig({ resourceLimitMode: e.target.value })}
                 className="mr-1.5"
               />
-              <span>Individual</span>
+              <span>{t('configuration.individual')}</span>
             </label>
           </div>
         </div>
@@ -148,7 +150,7 @@ export default function ConfigurationPanel() {
               htmlFor="totalResourceLimit"
               className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1"
             >
-              Total Resource Limit
+              {t('configuration.totalResourceLimit')}
             </label>
             <input
               id="totalResourceLimit"
@@ -170,7 +172,7 @@ export default function ConfigurationPanel() {
           <div>
             <fieldset>
               <legend className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Resource Limits
+                {t('configuration.resourceLimits')}
               </legend>
               <div className="grid grid-cols-2 gap-2">
                 {['food', 'wood', 'gold', 'stone'].map((resource) => (
@@ -179,7 +181,7 @@ export default function ConfigurationPanel() {
                       htmlFor={`resource-${resource}`}
                       className="text-xs text-gray-600 dark:text-gray-400 capitalize"
                     >
-                      {resource}
+                      {t(`resources.${resource}`)}
                     </label>
                     <input
                       id={`resource-${resource}`}
@@ -216,7 +218,7 @@ export default function ConfigurationPanel() {
             />
             <span className="flex items-center gap-1.5">
               <span role="img" aria-label="gear">⚙️</span>
-              <span className="font-medium">Technology Panel</span>
+              <span className="font-medium">{t('configuration.technologyPanel')}</span>
             </span>
           </label>
         </div>
@@ -232,7 +234,7 @@ export default function ConfigurationPanel() {
             />
             <span className="flex items-center gap-1.5">
               <span role="img" aria-label="stats">📊</span>
-              <span className="font-medium">Show Unit Card Stats</span>
+              <span className="font-medium">{t('configuration.showUnitCardStats')}</span>
             </span>
           </label>
         </div>
