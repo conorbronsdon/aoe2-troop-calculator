@@ -1,0 +1,260 @@
+{
+  "app": {
+    "title": "帝国时代2决定版：军队 + 部队组成计算器",
+    "subtitle": "100+ 单位 · 51 文明 · 精确加成 · 资源追踪 · 保存军队预设",
+    "enjoyingCalculator": "喜欢这个计算器吗？",
+    "copyright": "帝国时代 II © Microsoft",
+    "createdBy": "创建者"
+  },
+  "header": {
+    "undo": "撤销",
+    "redo": "重做",
+    "keyboardShortcuts": "键盘快捷键",
+    "github": "GitHub"
+  },
+  "configuration": {
+    "title": "配置",
+    "civilization": "文明",
+    "alliedCivilizations": "盟友文明",
+    "teamBonuses": "团队加成",
+    "selectAllies": "选择最多3个盟友以获得团队加成",
+    "noAlliesSelected": "未选择盟友",
+    "age": "时代",
+    "popCap": "人口上限",
+    "displayMode": "显示模式",
+    "resourceMode": "资源模式",
+    "total": "总计",
+    "individual": "个别",
+    "totalResourceLimit": "总资源限制",
+    "resourceLimits": "资源限制",
+    "technologyPanel": "科技面板",
+    "showUnitCardStats": "显示单位卡片统计",
+    "civComparison": "文明比较",
+    "combatAnalysis": "战斗分析"
+  },
+  "ages": {
+    "dark": "黑暗",
+    "feudal": "封建",
+    "castle": "城堡",
+    "imperial": "帝王"
+  },
+  "displayModes": {
+    "units": "仅单位",
+    "both": "单位和防御工事",
+    "fortifications": "仅防御工事"
+  },
+  "resources": {
+    "food": "食物",
+    "wood": "木材",
+    "gold": "黄金",
+    "stone": "石头",
+    "total": "总计",
+    "population": "人口"
+  },
+  "bonuses": {
+    "title": "文明加成",
+    "costBonuses": "成本加成",
+    "statBonuses": "属性加成",
+    "economicBonuses": "经济加成",
+    "teamBonus": "团队加成",
+    "active": "激活",
+    "filterByType": "按类型筛选",
+    "all": "全部",
+    "cost": "成本",
+    "stat": "属性",
+    "economic": "经济",
+    "searchBonuses": "搜索加成...",
+    "noBonusesFound": "未找到加成"
+  },
+  "units": {
+    "title": "单位选择",
+    "searchPlaceholder": "按名称或类别搜索单位...",
+    "noUnitsFound": "未找到单位",
+    "filterByCategory": "按类别筛选",
+    "allCategories": "所有类别",
+    "categories": {
+      "Infantry": "步兵",
+      "Cavalry": "骑兵",
+      "Archer": "弓箭手",
+      "Siege": "攻城武器",
+      "Naval": "海军",
+      "Monk": "僧侣",
+      "Unique": "特殊单位",
+      "Other": "其他"
+    }
+  },
+  "army": {
+    "title": "军队状态",
+    "summary": "军队组成摘要",
+    "analysis": "军队组成分析",
+    "noUnits": "尚未添加单位",
+    "totalUnits": "单位总数",
+    "categoryBreakdown": "类别细分",
+    "combatAnalysis": "战斗分析"
+  },
+  "tools": {
+    "title": "工具和预设",
+    "comparison": "文明比较",
+    "presets": "预设",
+    "saveLoad": "保存/加载"
+  },
+  "actions": {
+    "apply": "应用",
+    "clear": "清除",
+    "save": "保存",
+    "load": "加载",
+    "export": "导出",
+    "import": "导入",
+    "delete": "删除",
+    "cancel": "取消",
+    "confirm": "确认",
+    "addUnit": "添加单位",
+    "removeUnit": "移除单位",
+    "reset": "重置"
+  },
+  "notifications": {
+    "undone": "已撤销",
+    "redone": "已重做",
+    "saved": "已保存",
+    "exported": "已导出为JSON",
+    "compositionCleared": "组成已清除",
+    "searchFocused": "搜索已聚焦",
+    "themeToggled": "主题已切换",
+    "noUnitsToSave": "没有单位可保存",
+    "noUnitsToExport": "没有单位可导出",
+    "teamBonusApplied": "团队加成已应用",
+    "alliesUpdated": "盟友文明已更新"
+  },
+  "teamBonuses": {
+    "title": "团队加成",
+    "fromAllies": "来自盟友文明",
+    "yourBonus": "你的团队加成（与盟友共享）",
+    "noTeamBonus": "无团队加成",
+    "combinedBonuses": "组合团队加成",
+    "selectAllies": "选择盟友以查看团队加成"
+  },
+  "language": {
+    "title": "语言",
+    "select": "选择语言"
+  },
+  "fortifications": {
+    "title": "防御工事",
+    "walls": "城墙",
+    "towers": "塔楼",
+    "castles": "城堡"
+  },
+  "technologies": {
+    "title": "科技",
+    "researched": "已研究",
+    "available": "可用",
+    "requirements": "需求"
+  },
+  "shortcuts": {
+    "title": "键盘快捷键",
+    "undoAction": "撤销",
+    "redoAction": "重做",
+    "saveComposition": "快速保存",
+    "exportJson": "导出JSON",
+    "clearComposition": "全部清除",
+    "focusSearch": "聚焦搜索",
+    "toggleDarkMode": "切换深色模式",
+    "showHelp": "显示帮助",
+    "close": "关闭"
+  },
+  "accessibility": {
+    "discount": "折扣",
+    "hitPoints": "生命值",
+    "attack": "攻击",
+    "range": "射程",
+    "dismissInstallPrompt": "关闭安装提示",
+    "closeHelp": "关闭键盘快捷键帮助",
+    "toggleTheme": "切换主题",
+    "searchBonuses": "搜索加成",
+    "search": "搜索",
+    "bonusTypeFilters": "加成类型筛选",
+    "toggleMilitaryBonuses": "切换军事加成",
+    "toggleEconomicBonuses": "切换经济加成",
+    "toggleCostBonuses": "切换成本加成",
+    "showOnlyActive": "仅显示激活的加成",
+    "compactResourceTracker": "紧凑资源追踪器",
+    "undoLastAction": "撤销上一步操作",
+    "redoLastAction": "重做上一步操作",
+    "showKeyboardShortcuts": "显示键盘快捷键",
+    "resources": "资源",
+    "resourceUsage": "资源使用",
+    "populationUsage": "人口使用",
+    "population": "人口",
+    "combat": "战斗",
+    "analysis": "分析",
+    "warning": "警告",
+    "strength": "优势",
+    "balance": "平衡",
+    "economy": "经济",
+    "suggestions": "建议",
+    "selectGameAge": "选择游戏时代",
+    "selectDisplayMode": "选择显示模式",
+    "gear": "齿轮",
+    "stats": "统计",
+    "team": "团队",
+    "comparison": "比较",
+    "meleeUnits": "近战单位",
+    "rangedUnits": "远程单位",
+    "technology": "科技",
+    "searchTechnologies": "搜索科技",
+    "unique": "特殊",
+    "copyLink": "复制链接",
+    "error": "错误",
+    "tryToRecover": "尝试从错误中恢复",
+    "reloadPage": "重新加载页面",
+    "dismissCoffeeButton": "关闭Buy Me a Coffee按钮",
+    "supportDevelopment": "请我喝杯咖啡以支持开发",
+    "closeModal": "关闭",
+    "resourceTracker": "资源追踪器"
+  },
+  "tooltips": {
+    "statsModified": "统计数据已被科技或文明加成修改",
+    "importComposition": "从文件或URL导入组成",
+    "saveComposition": "保存当前组成",
+    "copyShareableLink": "复制可分享链接",
+    "exportComposition": "导出组成",
+    "undoShortcut": "撤销 (Ctrl+Z)",
+    "redoShortcut": "重做 (Ctrl+Shift+Z)",
+    "keyboardShortcutsShortcut": "键盘快捷键 (?)",
+    "jumpToArmyCompositions": "跳转到军队组成",
+    "starOnGithub": "在GitHub上给我们点星",
+    "food": "食物",
+    "wood": "木材",
+    "gold": "黄金",
+    "stone": "石头"
+  },
+  "labels": {
+    "population": "人口",
+    "food": "食物",
+    "wood": "木材",
+    "gold": "黄金",
+    "stone": "石头",
+    "pop": "人口",
+    "current": "当前",
+    "noBonuses": "无加成",
+    "analysis": "分析",
+    "vulnerabilities": "弱点",
+    "strengths": "优势",
+    "compositionBalance": "组成平衡",
+    "suggestions": "建议"
+  },
+  "notes": {
+    "costBonusesApplied": "成本加成已自动应用于单位计算。",
+    "selectCivilizationImportant": "选择并应用上方的文明以解锁特殊"
+  },
+  "pwa": {
+    "installTitle": "安装应用",
+    "installDescription": "在您的设备上安装此应用以获得最佳体验",
+    "installButton": "安装",
+    "notNowButton": "暂时不要"
+  },
+  "errors": {
+    "title": "出了点问题",
+    "tryAgain": "重试",
+    "reloadPage": "重新加载页面"
+  }
+}

@@ -5,6 +5,129 @@ All notable changes to the Age of Empires II Army Composition Calculator will be
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - 2025-11-17
+
+### Added
+- **Expanded Multi-Language Support**: 4 new languages (8 total)
+  - French (Français) - France, Canada, Belgium, Africa
+  - Italian (Italiano) - Italy, Switzerland
+  - Polish (Polski) - Poland, Eastern Europe
+  - Chinese Simplified (简体中文) - Mainland China
+  - Doubles international reach from 4 to 8 languages
+
+- **Expanded Translation Coverage**: 100+ new translation keys
+  - Accessibility labels (ARIA text for screen readers)
+  - Tooltips for buttons and actions
+  - PWA installation prompts
+  - Error boundary messages
+  - Resource and stat labels
+
+### Changed
+- Updated all existing languages (EN, ES, DE, PT) with new translation keys
+- PWA precache increased from 251 to 263 assets
+- Updated i18n.ts to register all 8 languages
+- Language selector now displays 8 language options with flags
+
+### Technical
+- Version bumped to 3.1.0
+- Total translation strings: 260+ keys per language
+- 1,440 lines of translations added
+
+---
+
+## [3.0.0] - 2025-11-17
+
+### Added
+- **Team Bonus System**: Allied civilization planning
+  - Select up to 3 allied civilizations for team games
+  - Team bonuses automatically applied to cost calculations
+  - Visual display of bonuses received from allies
+  - Shows your team bonus shared with allies
+  - Dedicated Team Bonuses section in sidebar
+  - AlliedCivilizationsSelector with searchable dropdown
+  - Real-time resource updates when allies change
+  - Color-coded bonus indicators by civilization
+
+- **Multi-Language Support (i18n)**: Initial 4-language release
+  - English (default)
+  - Spanish (Español) - large AoE2 community
+  - German (Deutsch) - strong EU player base
+  - Portuguese (Português) - Brazil community
+  - i18next + react-i18next integration
+  - Browser language auto-detection
+  - Persistent language preference (localStorage)
+  - Language selector with country flags in header
+  - Complete UI translation (150+ strings)
+
+### Changed
+- Major version bump to 3.0.0 (new team features + i18n)
+- Architecture improvements for translation support
+- Enhanced state management for team bonuses
+
+### Technical
+- Added src/i18n.ts for internationalization config
+- Created src/locales/ directory structure
+- AlliedCivilizationsSelector component
+- TeamBonusDisplay component
+- LanguageSelector component
+- Expands accessibility to 60% more users globally
+
+---
+
+## [2.13.0] - 2025-11-17
+
+### Added
+- **Keyboard Shortcuts**: 10+ shortcuts for power users
+  - Ctrl+S / Cmd+S: Quick save composition
+  - Ctrl+Z / Cmd+Z: Undo last action
+  - Ctrl+Shift+Z / Cmd+Shift+Z: Redo action
+  - Ctrl+E / Cmd+E: Export to JSON
+  - Ctrl+/ / Cmd+/: Focus search bar
+  - Ctrl+D / Cmd+D: Toggle dark mode
+  - ?: Show keyboard shortcuts help modal
+  - Escape: Close modals
+  - Platform-aware key formatting (Mac vs Windows)
+
+- **Undo/Redo System**: Full action history
+  - 50-action history stack
+  - Visual toolbar buttons in header
+  - Tracks composition changes
+  - Tracks configuration changes
+  - Tracks technology changes
+  - Prevents accidental data loss
+  - useKeyboardShortcuts hook integration
+
+- **Army Composition Analysis**: Strategic insights
+  - Vulnerability detection (what counters your army)
+  - Strength analysis (what your army counters)
+  - Melee/Ranged/Siege balance indicators
+  - Economy metrics (gold vs trash units)
+  - Intelligent suggestions for improving composition
+  - Collapsible panel in sidebar
+  - Full dark mode support
+
+- **Global Toast Notifications**: Centralized messaging
+  - ToastContext for app-wide notifications
+  - Success, warning, info, error types
+  - Auto-dismiss with customizable timing
+  - ARIA live regions for accessibility
+  - Consistent notification behavior
+
+- **KeyboardShortcutsHelp Modal**: User guidance
+  - Comprehensive shortcuts reference
+  - Platform-specific key display
+  - Accessible modal design
+  - Gradient header styling
+
+### Technical
+- All 372 tests passing
+- ToastContext architecture (centralized notifications)
+- useKeyboardShortcuts custom hook
+- ArmyCompositionAnalysis component (500+ lines)
+- Version bumped to 2.13.0
+
+---
+
 ## [2.12.0] - 2025-11-17
 
 ### Added

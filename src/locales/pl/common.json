@@ -1,0 +1,260 @@
+{
+  "app": {
+    "title": "Age of Empires II Definitive Edition: Kalkulator Składu Armii + Oddziałów",
+    "subtitle": "100+ jednostek · 51 cywilizacji · Dokładne bonusy · Śledzenie zasobów · Zapisane armie",
+    "enjoyingCalculator": "Podoba Ci się kalkulator?",
+    "copyright": "Age of Empires II © Microsoft",
+    "createdBy": "Stworzone przez"
+  },
+  "header": {
+    "undo": "Cofnij",
+    "redo": "Ponów",
+    "keyboardShortcuts": "Skróty Klawiszowe",
+    "github": "GitHub"
+  },
+  "configuration": {
+    "title": "Konfiguracja",
+    "civilization": "Cywilizacja",
+    "alliedCivilizations": "Sojusznicze Cywilizacje",
+    "teamBonuses": "Bonusy Drużynowe",
+    "selectAllies": "Wybierz do 3 sojuszników dla bonusów drużynowych",
+    "noAlliesSelected": "Nie wybrano sojuszników",
+    "age": "Epoka",
+    "popCap": "Limit Populacji",
+    "displayMode": "Tryb Wyświetlania",
+    "resourceMode": "Tryb Zasobów",
+    "total": "Suma",
+    "individual": "Indywidualny",
+    "totalResourceLimit": "Całkowity Limit Zasobów",
+    "resourceLimits": "Limity Zasobów",
+    "technologyPanel": "Panel Technologii",
+    "showUnitCardStats": "Pokaż Statystyki Jednostek",
+    "civComparison": "Porównanie Cywilizacji",
+    "combatAnalysis": "Analiza Walki"
+  },
+  "ages": {
+    "dark": "Ciemna",
+    "feudal": "Feudalna",
+    "castle": "Zamek",
+    "imperial": "Imperialna"
+  },
+  "displayModes": {
+    "units": "Tylko Jednostki",
+    "both": "Jednostki i Fortyfikacje",
+    "fortifications": "Tylko Fortyfikacje"
+  },
+  "resources": {
+    "food": "Żywność",
+    "wood": "Drewno",
+    "gold": "Złoto",
+    "stone": "Kamień",
+    "total": "Suma",
+    "population": "Populacja"
+  },
+  "bonuses": {
+    "title": "Bonusy Cywilizacji",
+    "costBonuses": "Bonusy Kosztów",
+    "statBonuses": "Bonusy Statystyk",
+    "economicBonuses": "Bonusy Ekonomiczne",
+    "teamBonus": "Bonus Drużynowy",
+    "active": "AKTYWNY",
+    "filterByType": "Filtruj według typu",
+    "all": "Wszystkie",
+    "cost": "Koszt",
+    "stat": "Statystyka",
+    "economic": "Ekonomiczny",
+    "searchBonuses": "Szukaj bonusów...",
+    "noBonusesFound": "Nie znaleziono bonusów"
+  },
+  "units": {
+    "title": "Wybór Jednostek",
+    "searchPlaceholder": "Szukaj jednostek po nazwie lub kategorii...",
+    "noUnitsFound": "Nie znaleziono jednostek",
+    "filterByCategory": "Filtruj według kategorii",
+    "allCategories": "Wszystkie Kategorie",
+    "categories": {
+      "Infantry": "Piechota",
+      "Cavalry": "Kawaleria",
+      "Archer": "Łucznicy",
+      "Siege": "Oblężnicze",
+      "Naval": "Morskie",
+      "Monk": "Mnich",
+      "Unique": "Unikalna",
+      "Other": "Inne"
+    }
+  },
+  "army": {
+    "title": "Stan Armii",
+    "summary": "Podsumowanie Składu Armii",
+    "analysis": "Analiza Składu Armii",
+    "noUnits": "Nie dodano jeszcze jednostek",
+    "totalUnits": "Łączna Liczba Jednostek",
+    "categoryBreakdown": "Podział na Kategorie",
+    "combatAnalysis": "Analiza Walki"
+  },
+  "tools": {
+    "title": "Narzędzia i Ustawienia",
+    "comparison": "Porównanie Cywilizacji",
+    "presets": "Ustawienia",
+    "saveLoad": "Zapisz/Wczytaj"
+  },
+  "actions": {
+    "apply": "Zastosuj",
+    "clear": "Wyczyść",
+    "save": "Zapisz",
+    "load": "Wczytaj",
+    "export": "Eksportuj",
+    "import": "Importuj",
+    "delete": "Usuń",
+    "cancel": "Anuluj",
+    "confirm": "Potwierdź",
+    "addUnit": "Dodaj Jednostkę",
+    "removeUnit": "Usuń Jednostkę",
+    "reset": "Resetuj"
+  },
+  "notifications": {
+    "undone": "Cofnięto",
+    "redone": "Ponowiono",
+    "saved": "Zapisano",
+    "exported": "Wyeksportowano do JSON",
+    "compositionCleared": "Skład wyczyszczony",
+    "searchFocused": "Wyszukiwarka aktywna",
+    "themeToggled": "Motyw zmieniony",
+    "noUnitsToSave": "Brak jednostek do zapisania",
+    "noUnitsToExport": "Brak jednostek do eksportu",
+    "teamBonusApplied": "Zastosowano bonus drużynowy",
+    "alliesUpdated": "Zaktualizowano sojusznicze cywilizacje"
+  },
+  "teamBonuses": {
+    "title": "Bonusy Drużynowe",
+    "fromAllies": "Od Sojuszniczych Cywilizacji",
+    "yourBonus": "Twój Bonus Drużynowy (dzielony z sojusznikami)",
+    "noTeamBonus": "Brak bonusu drużynowego",
+    "combinedBonuses": "Połączone Bonusy Drużynowe",
+    "selectAllies": "Wybierz sojuszników, aby zobaczyć bonusy drużynowe"
+  },
+  "language": {
+    "title": "Język",
+    "select": "Wybierz Język"
+  },
+  "fortifications": {
+    "title": "Fortyfikacje",
+    "walls": "Mury",
+    "towers": "Wieże",
+    "castles": "Zamki"
+  },
+  "technologies": {
+    "title": "Technologie",
+    "researched": "Zbadane",
+    "available": "Dostępne",
+    "requirements": "Wymagania"
+  },
+  "shortcuts": {
+    "title": "Skróty Klawiszowe",
+    "undoAction": "Cofnij",
+    "redoAction": "Ponów",
+    "saveComposition": "Szybki Zapis",
+    "exportJson": "Eksportuj JSON",
+    "clearComposition": "Wyczyść Wszystko",
+    "focusSearch": "Aktywuj Wyszukiwarkę",
+    "toggleDarkMode": "Przełącz Tryb Ciemny",
+    "showHelp": "Pokaż Pomoc",
+    "close": "Zamknij"
+  },
+  "accessibility": {
+    "discount": "Zniżka",
+    "hitPoints": "Punkty Życia",
+    "attack": "Atak",
+    "range": "Zasięg",
+    "dismissInstallPrompt": "Odrzuć monit instalacji",
+    "closeHelp": "Zamknij pomoc skrótów klawiszowych",
+    "toggleTheme": "Przełącz motyw",
+    "searchBonuses": "Szukaj bonusów",
+    "search": "Szukaj",
+    "bonusTypeFilters": "Filtry typu bonusu",
+    "toggleMilitaryBonuses": "Przełącz bonusy militarne",
+    "toggleEconomicBonuses": "Przełącz bonusy ekonomiczne",
+    "toggleCostBonuses": "Przełącz bonusy kosztów",
+    "showOnlyActive": "Pokaż tylko aktywne bonusy",
+    "compactResourceTracker": "Kompaktowy Tracker Zasobów",
+    "undoLastAction": "Cofnij ostatnią akcję",
+    "redoLastAction": "Ponów ostatnią akcję",
+    "showKeyboardShortcuts": "Pokaż skróty klawiszowe",
+    "resources": "Zasoby",
+    "resourceUsage": "Użycie zasobów",
+    "populationUsage": "Użycie populacji",
+    "population": "Populacja",
+    "combat": "walka",
+    "analysis": "Analiza",
+    "warning": "Ostrzeżenie",
+    "strength": "Siła",
+    "balance": "Równowaga",
+    "economy": "Ekonomia",
+    "suggestions": "Sugestie",
+    "selectGameAge": "Wybierz epokę gry",
+    "selectDisplayMode": "Wybierz tryb wyświetlania",
+    "gear": "zębatka",
+    "stats": "statystyki",
+    "team": "drużyna",
+    "comparison": "porównanie",
+    "meleeUnits": "Jednostki wręcz",
+    "rangedUnits": "Jednostki dystansowe",
+    "technology": "technologia",
+    "searchTechnologies": "Szukaj technologii",
+    "unique": "unikalna",
+    "copyLink": "Kopiuj link",
+    "error": "Błąd",
+    "tryToRecover": "Spróbuj naprawić błąd",
+    "reloadPage": "Przeładuj stronę",
+    "dismissCoffeeButton": "Odrzuć przycisk Buy Me a Coffee",
+    "supportDevelopment": "Kup mi kawę, aby wesprzeć rozwój",
+    "closeModal": "Zamknij",
+    "resourceTracker": "Tracker Zasobów"
+  },
+  "tooltips": {
+    "statsModified": "Statystyki zmodyfikowane przez technologie lub bonusy cywilizacji",
+    "importComposition": "Importuj skład z pliku lub URL",
+    "saveComposition": "Zapisz obecny skład",
+    "copyShareableLink": "Kopiuj link do udostępnienia",
+    "exportComposition": "Eksportuj skład",
+    "undoShortcut": "Cofnij (Ctrl+Z)",
+    "redoShortcut": "Ponów (Ctrl+Shift+Z)",
+    "keyboardShortcutsShortcut": "Skróty Klawiszowe (?)",
+    "jumpToArmyCompositions": "Przejdź do Składów Armii",
+    "starOnGithub": "Daj nam gwiazdkę na GitHub",
+    "food": "Żywność",
+    "wood": "Drewno",
+    "gold": "Złoto",
+    "stone": "Kamień"
+  },
+  "labels": {
+    "population": "Populacja",
+    "food": "Żywność",
+    "wood": "Drewno",
+    "gold": "Złoto",
+    "stone": "Kamień",
+    "pop": "Pop",
+    "current": "Obecny",
+    "noBonuses": "Brak bonusów",
+    "analysis": "Analiza",
+    "vulnerabilities": "Słabości",
+    "strengths": "Mocne Strony",
+    "compositionBalance": "Równowaga Składu",
+    "suggestions": "Sugestie"
+  },
+  "notes": {
+    "costBonusesApplied": "Bonusy kosztów są automatycznie stosowane do obliczeń jednostek.",
+    "selectCivilizationImportant": "Wybierz i zastosuj cywilizację powyżej, aby odblokować unikalne"
+  },
+  "pwa": {
+    "installTitle": "Zainstaluj Aplikację",
+    "installDescription": "Zainstaluj tę aplikację na swoim urządzeniu dla najlepszego doświadczenia",
+    "installButton": "Zainstaluj",
+    "notNowButton": "Nie teraz"
+  },
+  "errors": {
+    "title": "Coś poszło nie tak",
+    "tryAgain": "Spróbuj Ponownie",
+    "reloadPage": "Przeładuj Stronę"
+  }
+}
