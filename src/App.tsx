@@ -17,15 +17,15 @@ import SaveLoadPanel from './components/SaveLoadPanel';
 import PresetSelector from './components/PresetSelector';
 import SocialShareButtons from './components/SocialShareButtons';
 import BuyMeCoffee from './components/BuyMeCoffee';
-import CivilizationComparison from './components/CivilizationComparison';
-import ThemeToggle from './components/ThemeToggle';
 import CombatAnalysis from './components/CombatAnalysis';
+import CivilizationComparison from './components/CivilizationComparison';
 import PWAInstallPrompt from './components/PWAInstallPrompt';
 import MobileSidebarSection from './components/MobileSidebarSection';
 import KeyboardShortcutsHelp from './components/KeyboardShortcutsHelp';
 import AlliedCivilizationsSelector from './components/AlliedCivilizationsSelector';
 import TeamBonusDisplay from './components/TeamBonusDisplay';
 import LanguageSelector from './components/LanguageSelector';
+import CompactResourceBar from './components/CompactResourceBar';
 import { units } from './data/units';
 import { civilizations } from './data/civilizations';
 import { validateGameData } from './utils/validators';
@@ -35,7 +35,7 @@ import { ExportService } from './services/export.service';
 import { StorageService } from './services/storage.service';
 import { initializeAnalytics } from './utils/analytics';
 import { analyticsConfig } from './config/analytics.config';
-import { FaGithub, FaStar, FaUndo, FaRedo, FaKeyboard } from 'react-icons/fa';
+import { FaGithub, FaStar } from 'react-icons/fa';
 import { useSavedCompositions } from './hooks/useSavedCompositions';
 import { useKeyboardShortcuts, KEYBOARD_SHORTCUTS } from './hooks/useKeyboardShortcuts';
 import './i18n'; // Initialize i18n
@@ -46,6 +46,7 @@ function AppContent(): JSX.Element {
   const { config, composition } = state;
   const { count: savedCompositionsCount } = useSavedCompositions();
   const { showToast } = useToast();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { toggleTheme } = useTheme();
   const [showShortcutsHelp, setShowShortcutsHelp] = useState<boolean>(false);
 
@@ -176,44 +177,6 @@ function AppContent(): JSX.Element {
               </p>
             </div>
             <div className="flex items-center gap-3">
-              {/* Undo/Redo Buttons */}
-              <div className="flex items-center gap-1">
-                <button
-                  onClick={handleUndo}
-                  disabled={!canUndo}
-                  className={`p-2 rounded-lg transition-colors ${
-                    canUndo
-                      ? 'bg-white/10 hover:bg-white/20 text-white'
-                      : 'bg-white/5 text-white/30 cursor-not-allowed'
-                  }`}
-                  title="Undo (Ctrl+Z)"
-                  aria-label="Undo last action"
-                >
-                  <FaUndo className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={handleRedo}
-                  disabled={!canRedo}
-                  className={`p-2 rounded-lg transition-colors ${
-                    canRedo
-                      ? 'bg-white/10 hover:bg-white/20 text-white'
-                      : 'bg-white/5 text-white/30 cursor-not-allowed'
-                  }`}
-                  title="Redo (Ctrl+Shift+Z)"
-                  aria-label="Redo last action"
-                >
-                  <FaRedo className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={handleShowHelp}
-                  className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
-                  title="Keyboard Shortcuts (?)"
-                  aria-label="Show keyboard shortcuts"
-                >
-                  <FaKeyboard className="w-4 h-4" />
-                </button>
-              </div>
-              <ThemeToggle />
               <LanguageSelector />
               <div className="flex flex-col items-end gap-1">
                 <span className="text-xs text-blue-100 dark:text-gray-300 hidden sm:inline">
@@ -239,11 +202,11 @@ function AppContent(): JSX.Element {
       </header>
 
       {/* Main Two-Column Layout */}
-      <div className="container mx-auto px-4 py-6">
-        <div className="flex flex-col lg:flex-row gap-6" id="calculator">
+      <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-6">
+        <div className="flex flex-col lg:flex-row gap-4 sm:gap-6" id="calculator">
           {/* Left Sidebar - Configuration & Status */}
-          <aside className="lg:w-96 xl:w-[420px] flex-shrink-0">
-            <div className="lg:sticky lg:top-4 space-y-4 max-h-[calc(100vh-2rem)] lg:overflow-y-auto lg:pr-2">
+          <aside className="lg:w-80 xl:w-96 2xl:w-[420px] flex-shrink-0">
+            <div className="lg:sticky lg:top-4 space-y-3 sm:space-y-4 max-h-[calc(100vh-2rem)] lg:overflow-y-auto lg:pr-2 scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent">
               {/* Configuration Section - High priority, open by default on mobile */}
               <MobileSidebarSection
                 title={t('configuration.title')}
@@ -254,18 +217,20 @@ function AppContent(): JSX.Element {
                 <ConfigurationPanel />
               </MobileSidebarSection>
 
-              {/* Team Bonuses Section - New for v3.0 */}
-              <MobileSidebarSection
-                title={t('teamBonuses.title')}
-                icon="🤝"
-                defaultOpen={false}
-                priority="normal"
-              >
-                <div className="space-y-4">
-                  <AlliedCivilizationsSelector />
-                  <TeamBonusDisplay />
-                </div>
-              </MobileSidebarSection>
+              {/* Team Bonuses Section - Conditional */}
+              {config.showTeamBonuses && (
+                <MobileSidebarSection
+                  title={t('teamBonuses.title')}
+                  icon="🤝"
+                  defaultOpen={false}
+                  priority="normal"
+                >
+                  <div className="space-y-4">
+                    <AlliedCivilizationsSelector />
+                    <TeamBonusDisplay />
+                  </div>
+                </MobileSidebarSection>
+              )}
 
               {/* Army Status Section - Shows current army state */}
               <MobileSidebarSection
@@ -294,15 +259,27 @@ function AppContent(): JSX.Element {
                 </MobileSidebarSection>
               )}
 
-              {/* Tools Section - Comparison, saves, presets */}
+              {/* Civilization Comparison Section - Conditional */}
+              {config.showCivComparison && (
+                <MobileSidebarSection
+                  title={t('tools.comparison')}
+                  icon="⚖️"
+                  defaultOpen={false}
+                  priority="normal"
+                >
+                  <CivilizationComparison />
+                </MobileSidebarSection>
+              )}
+
+              {/* Tools Section - saves, presets */}
               <MobileSidebarSection
                 title={t('tools.title')}
                 icon="🧰"
                 defaultOpen={false}
                 priority="low"
+                badge={savedCompositionsCount > 0 ? savedCompositionsCount : undefined}
               >
                 <div className="space-y-4">
-                  <CivilizationComparison />
                   {/* SaveLoadPanel appears above presets when compositions exist, below otherwise */}
                   {savedCompositionsCount > 0 && <SaveLoadPanel hideSaveButton={true} />}
                   <PresetSelector />
@@ -317,8 +294,8 @@ function AppContent(): JSX.Element {
             {/* Resource Tracker at top of main content */}
             <ResourceTracker />
 
-            {/* Consolidated Combat Analysis Panel */}
-            <CombatAnalysis />
+            {/* Consolidated Combat Analysis Panel - Conditional */}
+            {config.showCombatAnalysis && <CombatAnalysis />}
 
             {/* Conditionally show Units and/or Fortifications based on display mode */}
             {(config.displayMode === 'units' || config.displayMode === 'both') && <UnitSelection />}
@@ -329,13 +306,22 @@ function AppContent(): JSX.Element {
         </div>
       </div>
 
-      {/* Spacer for fixed footer */}
+      {/* Spacer for fixed bottom bar */}
       <div className="h-24" />
 
-      {/* Footer - Fixed at bottom */}
-      <footer className="fixed bottom-0 left-0 right-0 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg z-40">
+      {/* Compact Resource Bar - Fixed at bottom with controls */}
+      <CompactResourceBar
+        onUndo={handleUndo}
+        onRedo={handleRedo}
+        canUndo={canUndo}
+        canRedo={canRedo}
+        onShowKeyboardShortcuts={handleShowHelp}
+      />
+
+      {/* Footer - Attribution (scrolls with content) */}
+      <footer className="border-t border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-900">
         <div className="container mx-auto px-4 py-3">
-          <div className="flex items-center justify-start gap-3 text-xs text-gray-600 dark:text-gray-400 flex-wrap">
+          <div className="flex items-center justify-center gap-3 text-xs text-gray-600 dark:text-gray-400 flex-wrap">
             <span>
               Created by{' '}
               <a

@@ -28,7 +28,9 @@
     "totalResourceLimit": "Limite Total de Recursos",
     "resourceLimits": "Limites de Recursos",
     "technologyPanel": "Painel de Tecnologia",
-    "showUnitCardStats": "Mostrar Estatísticas das Unidades"
+    "showUnitCardStats": "Mostrar Estatísticas das Unidades",
+    "civComparison": "Comparação de Civilizações",
+    "combatAnalysis": "Análise de Combate"
   },
   "ages": {
     "dark": "Trevas",

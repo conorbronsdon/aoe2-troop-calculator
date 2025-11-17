@@ -28,7 +28,9 @@
     "totalResourceLimit": "Límite Total de Recursos",
     "resourceLimits": "Límites de Recursos",
     "technologyPanel": "Panel de Tecnología",
-    "showUnitCardStats": "Mostrar Estadísticas de Unidades"
+    "showUnitCardStats": "Mostrar Estadísticas de Unidades",
+    "civComparison": "Comparación de Civilizaciones",
+    "combatAnalysis": "Análisis de Combate"
   },
   "ages": {
     "dark": "Oscura",

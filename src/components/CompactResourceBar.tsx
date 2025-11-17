@@ -9,13 +9,29 @@ import { fortifications } from '../data/fortifications';
 import { calculateTechCost } from '../data/technologies';
 import { RESOURCES } from '../constants';
 import ResourceIcon from './ResourceIcon';
+import ThemeToggle from './ThemeToggle';
 import { ResourceCost as ResourceCostType, ResourceType } from '../types';
+import { FaUndo, FaRedo, FaKeyboard } from 'react-icons/fa';
+
+interface CompactResourceBarProps {
+  onUndo: () => void;
+  onRedo: () => void;
+  canUndo: boolean;
+  canRedo: boolean;
+  onShowKeyboardShortcuts: () => void;
+}
 
 /**
  * Compact resource and population tracking bar for bottom of page
  * Shows total resources and population at a glance without individual progress bars
  */
-export default function CompactResourceBar(): JSX.Element {
+export default function CompactResourceBar({
+  onUndo,
+  onRedo,
+  canUndo,
+  canRedo,
+  onShowKeyboardShortcuts,
+}: CompactResourceBarProps): JSX.Element {
   const { state } = useArmy();
   const { composition, fortificationComposition, config, researchedTechs } = state;
 
@@ -111,6 +127,45 @@ export default function CompactResourceBar(): JSX.Element {
     >
       <div className="container mx-auto max-w-7xl px-4 py-3">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+          {/* Controls Section - Undo/Redo, Theme Toggle, Keyboard Shortcuts */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onUndo}
+              disabled={!canUndo}
+              className={`p-2 rounded-lg transition-colors ${
+                canUndo
+                  ? 'bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
+              }`}
+              title="Undo (Ctrl+Z)"
+              aria-label="Undo last action"
+            >
+              <FaUndo className="w-4 h-4" />
+            </button>
+            <button
+              onClick={onRedo}
+              disabled={!canRedo}
+              className={`p-2 rounded-lg transition-colors ${
+                canRedo
+                  ? 'bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
+              }`}
+              title="Redo (Ctrl+Shift+Z)"
+              aria-label="Redo last action"
+            >
+              <FaRedo className="w-4 h-4" />
+            </button>
+            <button
+              onClick={onShowKeyboardShortcuts}
+              className="p-2 rounded-lg bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 transition-colors"
+              title="Keyboard Shortcuts (?)"
+              aria-label="Show keyboard shortcuts"
+            >
+              <FaKeyboard className="w-4 h-4" />
+            </button>
+            <ThemeToggle />
+          </div>
+
           {/* Total Resources Section */}
           <div className="flex items-center gap-4 w-full sm:w-auto">
             <div className="flex items-center gap-2">
