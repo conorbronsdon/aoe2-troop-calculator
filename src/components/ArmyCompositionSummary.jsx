@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
+import { useArmy } from '../context/ArmyContext';
 import { getUnitById } from '../data/units';
 import { calculateUnitCost } from '../utils/calculations';
 import { ExportService } from '../services/export.service';
@@ -38,10 +38,6 @@ export default function ArmyCompositionSummary() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [showExportMenu]);
-
-  const resetComposition = () => {
-    dispatch({ type: ACTION_TYPES.RESET_COMPOSITION });
-  };
 
   const handleSaveComposition = () => {
     if (!saveName.trim()) {
@@ -159,18 +155,18 @@ export default function ArmyCompositionSummary() {
           <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-200">Army Composition</h2>
           <div className="flex gap-2 flex-wrap">
             <button
-              onClick={() => setShowSaveDialog(!showSaveDialog)}
-              className="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-colors"
-              title="Save current composition"
-            >
-              💾 Save Current
-            </button>
-            <button
               onClick={() => setIsImportModalOpen(true)}
               className="bg-indigo-500 hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white px-4 py-2 rounded text-sm transition-colors"
               title="Import composition from file or URL"
             >
               📤 Import
+            </button>
+            <button
+              onClick={() => setShowSaveDialog(!showSaveDialog)}
+              className="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-colors"
+              title="Save current composition"
+            >
+              💾 Save
             </button>
             <button
               onClick={handleShare}
@@ -209,12 +205,6 @@ export default function ArmyCompositionSummary() {
                 </div>
               )}
             </div>
-            <button
-              onClick={resetComposition}
-              className="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white px-4 py-2 rounded text-sm transition-colors"
-            >
-              Reset All
-            </button>
           </div>
         </div>
 
