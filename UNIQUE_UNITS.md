@@ -1351,9 +1351,9 @@ Each unique unit listing includes:
 ---
 
 **Last Updated:** November 2025
-**Version:** 2.8.0
+**Version:** 2.12.0
 **Total Unique Units:** 90+ base units, 180+ including elite upgrades
-**Civilizations Covered:** 45
+**Civilizations Covered:** 51
 
 For more information about civilization bonuses and how they affect unique units, see [CIV_BONUSES.md](CIV_BONUSES.md).
 

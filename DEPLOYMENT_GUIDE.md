@@ -1,26 +1,25 @@
-# 🚀 Deployment Guide - AoE2 Army Calculator v2.0
+# 🚀 Deployment Guide - AoE2 Army Calculator
 
-## Quick Test Deployment
+## Quick Deployment Options
 
 ### Option 1: GitHub Pages (Recommended - Free & Automatic)
 
-#### Step 1: Merge the Changes
-The code is ready and tested on branch: `claude/plan-phase-two-features-013i4R9KPAKzTfB8mhaEbpUz`
-
+#### Step 1: Merge Your Changes
 **Via GitHub Web UI:**
 1. Go to: https://github.com/conorbronsdon/aoe2-troop-calculator/compare
-2. Select: `base: main` ← `compare: claude/plan-phase-two-features-013i4R9KPAKzTfB8mhaEbpUz`
+2. Select: `base: main` ← `compare: your-feature-branch`
 3. Click "Create pull request"
 4. Review changes and merge
 
 **Or via Command Line:**
 ```bash
 git checkout main
-git merge claude/plan-phase-two-features-013i4R9KPAKzTfB8mhaEbpUz
+git pull origin main
+git merge your-feature-branch
 git push origin main
 ```
 
-#### Step 2: Enable GitHub Pages
+#### Step 2: Enable GitHub Pages (First Time Only)
 1. Go to repository Settings: https://github.com/conorbronsdon/aoe2-troop-calculator/settings/pages
 2. Under "Source", select: **GitHub Actions**
 3. Click "Save"
@@ -37,10 +36,10 @@ git push origin main
 
 ### Option 2: Netlify Drop (Fastest - 30 seconds)
 
-1. Go to: https://app.netlify.com/drop
-2. Drag and drop the entire `dist/` folder from this repository
-3. Get instant public URL (e.g., `https://random-name.netlify.app`)
-4. Works immediately, no configuration needed
+1. Build locally: `npm run build`
+2. Go to: https://app.netlify.com/drop
+3. Drag and drop the entire `dist/` folder
+4. Get instant public URL (e.g., `https://random-name.netlify.app`)
 
 **Pros:**
 - Instant deployment
@@ -99,14 +98,22 @@ Then open: http://localhost:4173
 After deployment, verify these features work:
 
 - [ ] Page loads without errors
-- [ ] Can select different civilizations
+- [ ] PWA installs correctly (install prompt appears)
+- [ ] Can select different civilizations (51 total)
 - [ ] Can add/remove units
 - [ ] Resource tracking updates in real-time
 - [ ] Progress bars show correct colors
 - [ ] Civilization bonuses apply correctly (test Mayans archers)
 - [ ] Population counter works
+- [ ] Combat stats display on unit cards
+- [ ] Technology selection and stat calculation
+- [ ] Preset army compositions load correctly
+- [ ] Export to CSV/JSON works
+- [ ] Share composition via URL works
+- [ ] Import/Export compositions works
+- [ ] Responsive on mobile
+- [ ] Dark mode toggle works
 - [ ] Reset button clears composition
-- [ ] Responsive on mobile (if accessible)
 
 ---
 
@@ -116,10 +123,6 @@ After deployment, verify these features work:
 - Check that GitHub Pages is enabled in Settings
 - Ensure source is set to "GitHub Actions"
 - Wait 2-3 minutes after merge for first deploy
-
-### "403 Error" when pushing to main
-- This is expected on certain protected branches
-- Use the PR merge method via GitHub UI instead
 
 ### Build fails on GitHub Actions
 - Check the Actions tab for error logs
@@ -131,38 +134,31 @@ After deployment, verify these features work:
 - For GitHub Pages, should be: `base: '/aoe2-troop-calculator/'`
 - For custom domain, should be: `base: '/'`
 
----
+### PWA not installing
+- Ensure HTTPS is enabled
+- Check service worker registration in browser dev tools
+- Clear cache and reload
 
-## Current Status
-
-✅ **Code Ready:**
-- Branch: `claude/plan-phase-two-features-013i4R9KPAKzTfB8mhaEbpUz`
-- Build tested: Successful (165KB, 54KB gzipped)
-- Feature parity: Verified
-
-✅ **Files Ready:**
-- `dist/` folder contains production build
-- GitHub Actions workflow configured
-- All dependencies installed
-
-⏳ **Waiting For:**
-- Merge to main branch
-- GitHub Pages to be enabled
+### Tests failing
+- Run `npm test` locally to see failures
+- Run `npm run lint` to check for code issues
+- Run `npm run format:check` for formatting issues
 
 ---
 
-## Next Steps After Deployment
+## Current Version
 
-Once the test deployment is live and verified:
+**Version:** 2.12.0
 
-1. **Test all features** using the checklist above
-2. **Share the URL** with stakeholders for feedback
-3. **Start Phase 2 development:**
-   - Add more civilizations and units
-   - Implement save/load functionality
-   - Add CSV export
-   - Build shareable link feature
-   - Create unit counter suggestions
+**Features:**
+- 51 civilizations with complete bonuses
+- 100+ units with stats
+- 90+ unique units
+- Technology system with stat calculations
+- Combat statistics display
+- PWA with offline support
+- Preset army compositions
+- Import/Export functionality
 
 ---
 
@@ -171,7 +167,10 @@ Once the test deployment is live and verified:
 - Build issues? Check: `npm run build` output
 - Deployment issues? Check: GitHub Actions logs
 - Feature issues? Test locally first with `npm run dev`
+- Test failures? Run: `npm test` for details
 
 ---
 
-**Ready to deploy!** Choose any option above to get your test version live. 🚀
+**Ready to deploy!** Choose any option above to get your version live. 🚀
+
+**Last Updated**: November 2025
