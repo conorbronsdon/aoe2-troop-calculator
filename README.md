@@ -147,7 +147,7 @@ Plan your armies • Calculate costs • Compare civilizations • Optimize reso
 ### 📱 Progressive Web App (NEW in v2.10.0)
 - **Install on Any Device**: Add to home screen on desktop, tablet, or mobile
 - **Full Offline Support**: Plan your armies without internet connection
-  - 251 precached assets for complete offline functionality
+  - 263 precached assets for complete offline functionality
   - Cache-first strategy for fast load times
 - **Auto Updates**: Get notified when new version is available
 - **Install Prompt**: Friendly install UI with "Not now" dismissal (7-day cooldown)
@@ -227,12 +227,12 @@ Plan your armies • Calculate costs • Compare civilizations • Optimize reso
   - Strategic team composition planning
   - Color-coded bonus indicators by civilization
 - **Multi-Language Support** (NEW in v3.0.0):
-  - 4 languages supported: English, Spanish, German, Portuguese
+  - 8 languages supported: English, Spanish, German, Portuguese, French, Italian, Polish, Chinese
   - Automatic language detection from browser settings
   - Persistent language preference saved locally
   - Language selector in header with flag icons
   - Translations for all UI elements and notifications
-  - Expands accessibility to 60% more users globally
+  - Expands accessibility to 100%+ more users globally
 
 ## 📖 How to Use
 
@@ -341,7 +341,11 @@ src/
 │   ├── en/common.json        # English translations
 │   ├── es/common.json        # Spanish translations
 │   ├── de/common.json        # German translations
-│   └── pt/common.json        # Portuguese translations
+│   ├── pt/common.json        # Portuguese translations
+│   ├── fr/common.json        # French translations
+│   ├── it/common.json        # Italian translations
+│   ├── pl/common.json        # Polish translations
+│   └── zh/common.json        # Chinese translations
 ├── services/          # Business logic services
 │   ├── import.service.js      # Import validation & parsing
 │   ├── export.service.js      # Export to CSV/JSON
@@ -483,7 +487,7 @@ This section documents the sources of visual assets used in the calculator for e
   - Load/Merge modes for flexibility
   - 60 new tests for presets
 - ✅ **Progressive Web App v2.10.0** (November 2025):
-  - Full offline functionality (251 cached assets)
+  - Full offline functionality (263 cached assets)
   - Install prompt for desktop/mobile
   - Auto-update notifications
   - Service worker with Workbox
@@ -517,28 +521,27 @@ This section documents the sources of visual assets used in the calculator for e
     - AlliedCivilizationsSelector with searchable dropdown
     - Real-time resource updates when allies change
   - **Multi-Language Support (i18n)**:
-    - 4 languages: English, Spanish (Español), German (Deutsch), Portuguese (Português)
+    - 8 languages: English, Spanish (Español), German (Deutsch), Portuguese (Português), French (Français), Italian (Italiano), Polish (Polski), Chinese (简体中文)
     - Automatic browser language detection
     - Persistent language preference in localStorage
     - Language selector with country flags in header
-    - Complete UI translation (150+ strings)
+    - Complete UI translation (260+ strings per language)
     - i18next integration with react-i18next
-    - Expands accessibility to Spanish, German, and Portuguese communities (60% more users)
+    - Expands accessibility to global communities (100%+ more users)
 
 </details>
 
 <details>
 <summary><b>🔜 Next Steps</b></summary>
 
-### 1. Additional Languages
-- [ ] French language support
-- [ ] Italian language support
-- [ ] Polish language support
-- [ ] Simplified Chinese support
-- [ ] **Unit & Civilization Name Translations** (100+ units, 51 civs)
+### 1. Unit & Civilization Name Translations
+- [ ] **Unit Name Translations** (100+ units)
   - Currently unit names remain in English for all languages
   - Would require extensive data file refactoring
   - High effort but complete localization experience
+- [ ] **Civilization Name Translations** (51 civs)
+  - Translate civilization names to all 8 languages
+  - Include region names and bonus descriptions
 
 ### 2. Enhanced Team Features
 - [ ] Team game presets (2v2, 3v3, 4v4 compositions)
@@ -681,13 +684,13 @@ Found a bug or have a suggestion?
 
 ### 📊 Project Stats
 
-![Version](https://img.shields.io/badge/Version-3.0.0-brightgreen?style=flat)
+![Version](https://img.shields.io/badge/Version-3.1.0-brightgreen?style=flat)
 ![Last Updated](https://img.shields.io/badge/Last_Updated-November_2025-blue?style=flat)
 ![Status](https://img.shields.io/badge/Status-Production_Ready-success?style=flat)
 ![PWA](https://img.shields.io/badge/PWA-Offline_Ready-4F46E5?style=flat)
-![Languages](https://img.shields.io/badge/Languages-4-orange?style=flat)
+![Languages](https://img.shields.io/badge/Languages-8-orange?style=flat)
 
-**100+ Units • 90+ Unique Units • 51 Civilizations • Team Bonuses • 4 Languages • 24 Meta Presets • Offline Support • Mobile Optimized**
+**100+ Units • 90+ Unique Units • 51 Civilizations • Team Bonuses • 8 Languages • 24 Meta Presets • Offline Support • Mobile Optimized**
 
 ---
 
