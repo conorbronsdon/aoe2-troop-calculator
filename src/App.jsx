@@ -16,8 +16,7 @@ import SocialShareButtons from './components/SocialShareButtons';
 import BuyMeCoffee from './components/BuyMeCoffee';
 import CivilizationComparison from './components/CivilizationComparison';
 import ThemeToggle from './components/ThemeToggle';
-import ArmyCombatStats from './components/ArmyCombatStats';
-import CombatSimulator from './components/CombatSimulator';
+import CombatAnalysis from './components/CombatAnalysis';
 import PWAInstallPrompt from './components/PWAInstallPrompt';
 import MobileSidebarSection from './components/MobileSidebarSection';
 import { units } from './data/units';
@@ -147,9 +146,8 @@ function AppContent() {
             {/* Resource Tracker at top of main content */}
             <ResourceTracker />
 
-            {/* Army Combat Stats Summary */}
-            <ArmyCombatStats />
-            <CombatSimulator />
+            {/* Consolidated Combat Analysis Panel */}
+            <CombatAnalysis />
 
             {/* Conditionally show Units and/or Fortifications based on display mode */}
             {(config.displayMode === 'units' || config.displayMode === 'both') && <UnitSelection />}

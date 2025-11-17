@@ -151,10 +151,11 @@ describe('UnitCard', () => {
       expect(screen.getByText('Archer')).toBeInTheDocument();
     });
 
-    it('should render unit age', () => {
+    it('should not render unit age indicator (removed for cleaner UI)', () => {
       renderWithProvider(mockUnit);
 
-      expect(screen.getByText('feudal Age')).toBeInTheDocument();
+      // Age indicator was removed to reduce card clutter
+      expect(screen.queryByText('feudal Age')).not.toBeInTheDocument();
     });
 
     it('should render population cost', () => {
@@ -299,31 +300,32 @@ describe('UnitCard', () => {
     });
   });
 
-  describe('Counter information', () => {
-    it('should render counter toggle button when unit has counter info', () => {
+  describe('More Info section (consolidated counters and stats)', () => {
+    it('should render More Info toggle button when unit has counter info', () => {
       renderWithProvider(mockUnit);
 
-      const toggleButton = screen.getByText('Counters & Weaknesses');
+      const toggleButton = screen.getByText('More Info');
       expect(toggleButton).toBeInTheDocument();
     });
 
-    it('should not render counter toggle when unit has no counter info', () => {
+    it('should not render More Info toggle when unit has no counter info and no stats', () => {
       renderWithProvider(mockMilitia);
 
-      expect(screen.queryByText('Counters & Weaknesses')).not.toBeInTheDocument();
+      // mockMilitia has empty counters and weakTo arrays, and stats are mocked to null
+      expect(screen.queryByText('More Info')).not.toBeInTheDocument();
     });
 
     it('should be collapsed by default', () => {
       renderWithProvider(mockUnit);
 
-      expect(screen.queryByText('Strong Against:')).not.toBeInTheDocument();
-      expect(screen.queryByText('Weak To:')).not.toBeInTheDocument();
+      expect(screen.queryByText(/Strong Against:/)).not.toBeInTheDocument();
+      expect(screen.queryByText(/Weak To:/)).not.toBeInTheDocument();
     });
 
     it('should expand when toggle button is clicked', () => {
       renderWithProvider(mockUnit);
 
-      const toggleButton = screen.getByText('Counters & Weaknesses');
+      const toggleButton = screen.getByText('More Info');
       fireEvent.click(toggleButton);
 
       expect(screen.getByText(/Strong Against:/)).toBeInTheDocument();
@@ -333,7 +335,7 @@ describe('UnitCard', () => {
     it('should display counter unit names', () => {
       renderWithProvider(mockUnit);
 
-      const toggleButton = screen.getByText('Counters & Weaknesses');
+      const toggleButton = screen.getByText('More Info');
       fireEvent.click(toggleButton);
 
       expect(screen.getByText('Skirmisher')).toBeInTheDocument();
@@ -342,7 +344,7 @@ describe('UnitCard', () => {
     it('should display weakness unit names', () => {
       renderWithProvider(mockUnit);
 
-      const toggleButton = screen.getByText('Counters & Weaknesses');
+      const toggleButton = screen.getByText('More Info');
       fireEvent.click(toggleButton);
 
       expect(screen.getByText('Knight')).toBeInTheDocument();
@@ -351,7 +353,7 @@ describe('UnitCard', () => {
     it('should collapse when toggle is clicked again', () => {
       renderWithProvider(mockUnit);
 
-      const toggleButton = screen.getByText('Counters & Weaknesses');
+      const toggleButton = screen.getByText('More Info');
       fireEvent.click(toggleButton);
       fireEvent.click(toggleButton);
 
@@ -361,9 +363,9 @@ describe('UnitCard', () => {
     it('should show expand indicator when collapsed', () => {
       renderWithProvider(mockUnit);
 
-      // Find the counters section by its button text
-      const countersButton = screen.getByText('Counters & Weaknesses');
-      const buttonContainer = countersButton.parentElement;
+      // Find the More Info section by its button text
+      const moreInfoButton = screen.getByText('More Info');
+      const buttonContainer = moreInfoButton.parentElement;
 
       // The expand indicator should be in the same container
       expect(buttonContainer.textContent).toContain('►');
@@ -372,7 +374,7 @@ describe('UnitCard', () => {
     it('should show collapse indicator when expanded', () => {
       renderWithProvider(mockUnit);
 
-      const toggleButton = screen.getByText('Counters & Weaknesses');
+      const toggleButton = screen.getByText('More Info');
       fireEvent.click(toggleButton);
 
       const buttonContainer = toggleButton.parentElement;
@@ -443,7 +445,8 @@ describe('UnitCard', () => {
 
       // Should render without crashing
       expect(screen.getByText('Archer')).toBeInTheDocument();
-      expect(screen.queryByText('Counters & Weaknesses')).not.toBeInTheDocument();
+      // More Info still shows if stats are available (mocked to null here)
+      expect(screen.queryByText('More Info')).not.toBeInTheDocument();
     });
 
     it('should handle unit with empty counters array', () => {
@@ -456,7 +459,8 @@ describe('UnitCard', () => {
       renderWithProvider(unitEmptyCounters);
 
       expect(screen.getByText('Archer')).toBeInTheDocument();
-      expect(screen.queryByText('Counters & Weaknesses')).not.toBeInTheDocument();
+      // More Info won't show if no counters/weakTo and stats are mocked to null
+      expect(screen.queryByText('More Info')).not.toBeInTheDocument();
     });
 
     it('should handle only counters without weaknesses', () => {
