@@ -12,8 +12,7 @@ import ResourceCost from './ResourceCost';
 export default function UnitCard({ unit }) {
   const { state, dispatch } = useArmy();
   const { composition, config, researchedTechs } = state;
-  const [showCounters, setShowCounters] = useState(false);
-  const [showStats, setShowStats] = useState(false);
+  const [showMoreInfo, setShowMoreInfo] = useState(false);
 
   const adjustedCost = calculateUnitCost(unit, config.selectedCiv, config.selectedAge);
   const baseCost = unit.cost;
@@ -92,7 +91,6 @@ export default function UnitCard({ unit }) {
               </span>
             )}
           </div>
-          <div className="text-xs text-gray-500 dark:text-gray-400 capitalize">{unit.age} Age</div>
           {hasBonuses && showDiscount && (
             <div className="text-xs text-blue-600 font-semibold mt-1">
               <span role="img" aria-label="Discount">
@@ -176,15 +174,15 @@ export default function UnitCard({ unit }) {
         <ResourceCost cost={adjustedCost} baseCost={baseCost} showDiscount={showDiscount} />
       </div>
 
-      {/* Combat Stats Section */}
-      {unitStats && (
+      {/* More Info Section - Consolidated Stats and Counters */}
+      {(unitStats || hasCounterInfo) && (
         <div className="mb-3 border-t pt-2">
           <button
-            onClick={() => setShowStats(!showStats)}
+            onClick={() => setShowMoreInfo(!showMoreInfo)}
             className="text-xs text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 font-medium flex items-center gap-1 w-full"
           >
-            <span>{showStats ? '▼' : '►'}</span>
-            <span>Combat Stats</span>
+            <span>{showMoreInfo ? '▼' : '►'}</span>
+            <span>More Info</span>
             {hasStatsChanged && (
               <span className="ml-auto text-green-600 dark:text-green-400 text-xs font-semibold">
                 Modified
@@ -192,228 +190,85 @@ export default function UnitCard({ unit }) {
             )}
           </button>
 
-          {showStats && (
-            <div className="mt-2 space-y-1 bg-gray-50 dark:bg-gray-700/50 rounded p-2">
-              {/* HP */}
-              <div className="flex justify-between text-xs">
-                <span className="text-gray-600 dark:text-gray-400">
-                  <span role="img" aria-label="health">
-                    ❤️
-                  </span>{' '}
-                  HP:
-                </span>
-                <span
-                  className={
-                    hasStatsChanged && unitStats.modified.hp !== unitStats.base.hp
-                      ? 'text-green-600 dark:text-green-400 font-semibold'
-                      : ''
-                  }
-                >
-                  {unitStats.base.hp !== unitStats.modified.hp ? (
-                    <>
-                      <span className="text-gray-400 line-through mr-1">{unitStats.base.hp}</span>
-                      {formatStatValue('hp', unitStats.modified.hp)}
-                    </>
-                  ) : (
-                    formatStatValue('hp', unitStats.modified.hp)
-                  )}
-                </span>
-              </div>
-
-              {/* Attack */}
-              <div className="flex justify-between text-xs">
-                <span className="text-gray-600 dark:text-gray-400">
-                  <span role="img" aria-label="attack">
-                    ⚔️
-                  </span>{' '}
-                  Attack:
-                </span>
-                <span
-                  className={
-                    hasStatsChanged && unitStats.modified.attack !== unitStats.base.attack
-                      ? 'text-green-600 dark:text-green-400 font-semibold'
-                      : ''
-                  }
-                >
-                  {unitStats.base.attack !== unitStats.modified.attack ? (
-                    <>
-                      <span className="text-gray-400 line-through mr-1">
-                        {unitStats.base.attack}
+          {showMoreInfo && (
+            <div className="mt-2 space-y-3">
+              {/* Combat Stats */}
+              {unitStats && (
+                <div className="space-y-1 bg-gray-50 dark:bg-gray-700/50 rounded p-2">
+                  <div className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Combat Stats</div>
+                  <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-xs">
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">❤️</span>
+                      <span className={hasStatsChanged && unitStats.modified.hp !== unitStats.base.hp ? 'text-green-600 dark:text-green-400 font-semibold' : ''}>
+                        {Math.round(unitStats.modified.hp)}
                       </span>
-                      {formatStatValue('attack', unitStats.modified.attack)}
-                    </>
-                  ) : (
-                    formatStatValue('attack', unitStats.modified.attack)
-                  )}
-                </span>
-              </div>
-
-              {/* Armor */}
-              <div className="flex justify-between text-xs">
-                <span className="text-gray-600 dark:text-gray-400">
-                  <span role="img" aria-label="armor">
-                    🛡️
-                  </span>{' '}
-                  Armor:
-                </span>
-                <span
-                  className={
-                    unitStats.modified.meleeArmor !== unitStats.base.meleeArmor ||
-                    unitStats.modified.pierceArmor !== unitStats.base.pierceArmor
-                      ? 'text-green-600 dark:text-green-400 font-semibold'
-                      : ''
-                  }
-                >
-                  {unitStats.base.meleeArmor !== unitStats.modified.meleeArmor ||
-                  unitStats.base.pierceArmor !== unitStats.modified.pierceArmor ? (
-                    <>
-                      <span className="text-gray-400 line-through mr-1">
-                        {unitStats.base.meleeArmor}/{unitStats.base.pierceArmor}
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">⚔️</span>
+                      <span className={hasStatsChanged && unitStats.modified.attack !== unitStats.base.attack ? 'text-green-600 dark:text-green-400 font-semibold' : ''}>
+                        {unitStats.modified.attack}
                       </span>
-                      {formatStatValue('meleeArmor', unitStats.modified.meleeArmor)}/
-                      {formatStatValue('pierceArmor', unitStats.modified.pierceArmor)}
-                    </>
-                  ) : (
-                    `${formatStatValue('meleeArmor', unitStats.modified.meleeArmor)}/${formatStatValue('pierceArmor', unitStats.modified.pierceArmor)}`
-                  )}
-                </span>
-              </div>
-
-              {/* Range (only for ranged units) */}
-              {unitStats.base.range > 0 && (
-                <div className="flex justify-between text-xs">
-                  <span className="text-gray-600 dark:text-gray-400">
-                    <span role="img" aria-label="range">
-                      🎯
-                    </span>{' '}
-                    Range:
-                  </span>
-                  <span
-                    className={
-                      unitStats.modified.range !== unitStats.base.range
-                        ? 'text-green-600 dark:text-green-400 font-semibold'
-                        : ''
-                    }
-                  >
-                    {unitStats.base.range !== unitStats.modified.range ? (
-                      <>
-                        <span className="text-gray-400 line-through mr-1">
-                          {unitStats.base.range}
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">🛡️</span>
+                      <span className={unitStats.modified.meleeArmor !== unitStats.base.meleeArmor || unitStats.modified.pierceArmor !== unitStats.base.pierceArmor ? 'text-green-600 dark:text-green-400 font-semibold' : ''}>
+                        {unitStats.modified.meleeArmor}/{unitStats.modified.pierceArmor}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">🏃</span>
+                      <span className={Math.abs(unitStats.modified.speed - unitStats.base.speed) > 0.001 ? 'text-green-600 dark:text-green-400 font-semibold' : ''}>
+                        {formatStatValue('speed', unitStats.modified.speed)}
+                      </span>
+                    </div>
+                    {unitStats.base.range > 0 && (
+                      <div className="flex justify-between col-span-2">
+                        <span className="text-gray-500">🎯 Range</span>
+                        <span className={unitStats.modified.range !== unitStats.base.range ? 'text-green-600 dark:text-green-400 font-semibold' : ''}>
+                          {unitStats.modified.range}
                         </span>
-                        {formatStatValue('range', unitStats.modified.range)}
-                      </>
-                    ) : (
-                      formatStatValue('range', unitStats.modified.range)
+                      </div>
                     )}
-                  </span>
+                  </div>
                 </div>
               )}
 
-              {/* Speed */}
-              <div className="flex justify-between text-xs">
-                <span className="text-gray-600 dark:text-gray-400">
-                  <span role="img" aria-label="speed">
-                    🏃
-                  </span>{' '}
-                  Speed:
-                </span>
-                <span
-                  className={
-                    Math.abs(unitStats.modified.speed - unitStats.base.speed) > 0.001
-                      ? 'text-green-600 dark:text-green-400 font-semibold'
-                      : ''
-                  }
-                >
-                  {Math.abs(unitStats.modified.speed - unitStats.base.speed) > 0.001 ? (
-                    <>
-                      <span className="text-gray-400 line-through mr-1">
-                        {formatStatValue('speed', unitStats.base.speed)}
-                      </span>
-                      {formatStatValue('speed', unitStats.modified.speed)}
-                    </>
-                  ) : (
-                    formatStatValue('speed', unitStats.modified.speed)
+              {/* Counter Information */}
+              {hasCounterInfo && (
+                <div className="space-y-2">
+                  {unit.counters && unit.counters.length > 0 && (
+                    <div>
+                      <div className="text-xs font-semibold text-green-700 dark:text-green-400 mb-1">
+                        ✅ Strong Against:
+                      </div>
+                      <div className="flex flex-wrap gap-1">
+                        {unit.counters.map((counterId) => (
+                          <span
+                            key={counterId}
+                            className="inline-block text-xs px-2 py-0.5 bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-200 rounded-full border border-green-300 dark:border-green-700"
+                          >
+                            {getUnitName(counterId)}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   )}
-                </span>
-              </div>
 
-              {/* Breakdown of bonuses */}
-              {hasStatsChanged && (
-                <div className="mt-2 pt-2 border-t border-gray-200 dark:border-gray-600">
-                  <div className="text-xs font-semibold text-indigo-700 dark:text-indigo-300 mb-1">
-                    Bonuses Applied:
-                  </div>
-                  <div className="space-y-0.5">
-                    {Object.entries(unitStats.breakdown).map(([stat, bonuses]) =>
-                      bonuses.map((bonus) => (
-                        <div
-                          key={`${stat}-${bonus.source}`}
-                          className="text-xs text-gray-600 dark:text-gray-400"
-                        >
-                          <span className="text-green-600 dark:text-green-400">{bonus.value}</span>{' '}
-                          {stat === 'meleeArmor'
-                            ? 'Melee Armor'
-                            : stat === 'pierceArmor'
-                              ? 'Pierce Armor'
-                              : stat.charAt(0).toUpperCase() + stat.slice(1)}{' '}
-                          from {bonus.source}
-                        </div>
-                      ))
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Counter Information */}
-      {hasCounterInfo && (
-        <div className="mb-3 border-t pt-2">
-          <button
-            onClick={() => setShowCounters(!showCounters)}
-            className="text-xs text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 font-medium flex items-center gap-1 w-full"
-          >
-            <span>{showCounters ? '▼' : '►'}</span>
-            <span>Counters & Weaknesses</span>
-          </button>
-
-          {showCounters && (
-            <div className="mt-2 space-y-2">
-              {unit.counters && unit.counters.length > 0 && (
-                <div>
-                  <div className="text-xs font-semibold text-green-700 dark:text-green-400 mb-1">
-                    ✅ Strong Against:
-                  </div>
-                  <div className="flex flex-wrap gap-1">
-                    {unit.counters.map((counterId) => (
-                      <span
-                        key={counterId}
-                        className="inline-block text-xs px-2 py-0.5 bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-200 rounded-full border border-green-300 dark:border-green-700"
-                        title={`Effective against ${getUnitName(counterId)}`}
-                      >
-                        {getUnitName(counterId)}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {unit.weakTo && unit.weakTo.length > 0 && (
-                <div>
-                  <div className="text-xs font-semibold text-red-700 dark:text-red-400 mb-1">⚠️ Weak To:</div>
-                  <div className="flex flex-wrap gap-1">
-                    {unit.weakTo.map((weakId) => (
-                      <span
-                        key={weakId}
-                        className="inline-block text-xs px-2 py-0.5 bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-200 rounded-full border border-red-300 dark:border-red-700"
-                        title={`Vulnerable to ${getUnitName(weakId)}`}
-                      >
-                        {getUnitName(weakId)}
-                      </span>
-                    ))}
-                  </div>
+                  {unit.weakTo && unit.weakTo.length > 0 && (
+                    <div>
+                      <div className="text-xs font-semibold text-red-700 dark:text-red-400 mb-1">⚠️ Weak To:</div>
+                      <div className="flex flex-wrap gap-1">
+                        {unit.weakTo.map((weakId) => (
+                          <span
+                            key={weakId}
+                            className="inline-block text-xs px-2 py-0.5 bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-200 rounded-full border border-red-300 dark:border-red-700"
+                          >
+                            {getUnitName(weakId)}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
