@@ -166,8 +166,8 @@ function AppContent() {
       {/* Footer - Fixed at bottom */}
       <footer className="fixed bottom-0 left-0 right-0 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg z-40">
         <div className="container mx-auto px-4 py-3">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
-            <p className="text-xs text-gray-600 dark:text-gray-400">
+          <div className="flex items-center justify-start gap-3 text-xs text-gray-600 dark:text-gray-400 flex-wrap">
+            <span>
               Created by{' '}
               <a
                 href="https://conorbronsdon.com/"
@@ -177,45 +177,45 @@ function AppContent() {
               >
                 Conor Bronsdon
               </a>
-              {' '}• Age of Empires II © Microsoft
-            </p>
-            <div className="flex items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
-              <a
-                href="https://github.com/conorbronsdon/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              >
-                GitHub
-              </a>
-              <span className="text-gray-300 dark:text-gray-600">•</span>
-              <a
-                href="https://x.com/ConorBronsdon"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              >
-                Twitter
-              </a>
-              <span className="text-gray-300 dark:text-gray-600">•</span>
-              <a
-                href="https://www.linkedin.com/in/conorbronsdon/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              >
-                LinkedIn
-              </a>
-              <span className="text-gray-300 dark:text-gray-600">•</span>
-              <a
-                href="https://conorbronsdon.substack.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              >
-                Substack
-              </a>
-            </div>
+            </span>
+            <span className="text-gray-300 dark:text-gray-600">•</span>
+            <a
+              href="https://github.com/conorbronsdon/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              GitHub
+            </a>
+            <span className="text-gray-300 dark:text-gray-600">•</span>
+            <a
+              href="https://x.com/ConorBronsdon"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              Twitter
+            </a>
+            <span className="text-gray-300 dark:text-gray-600">•</span>
+            <a
+              href="https://www.linkedin.com/in/conorbronsdon/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              LinkedIn
+            </a>
+            <span className="text-gray-300 dark:text-gray-600">•</span>
+            <a
+              href="https://conorbronsdon.substack.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              Substack
+            </a>
+            <span className="text-gray-300 dark:text-gray-600">•</span>
+            <span className="text-gray-500 dark:text-gray-400">Age of Empires II © Microsoft</span>
           </div>
         </div>
       </footer>

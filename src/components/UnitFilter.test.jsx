@@ -57,10 +57,12 @@ describe('UnitFilter', () => {
     it('should show collapsed summary with active filters', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
       expandFilter();
-      fireEvent.click(screen.getByText('Infantry'));
+      // Set a filter that appears in collapsed summary (search term)
+      const input = screen.getByPlaceholderText('Search units by name...');
+      fireEvent.change(input, { target: { value: 'knight' } });
       fireEvent.click(screen.getByText('▼ Collapse'));
-      // Should show summary of active filters (check for the summary icon prefix)
-      expect(screen.getByText(/📁.*Infantry/)).toBeInTheDocument();
+      // Should show summary of search term (categories are always visible now, not summarized)
+      expect(screen.getByText(/🔍.*knight/)).toBeInTheDocument();
     });
   });
 
@@ -76,9 +78,9 @@ describe('UnitFilter', () => {
       expect(screen.getByPlaceholderText('Search units by name...')).toBeInTheDocument();
     });
 
-    it('should render category buttons when expanded', () => {
+    it('should render category buttons always visible', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
-      expandFilter();
+      // Categories are always visible, no need to expand
       expect(screen.getByText('Infantry')).toBeInTheDocument();
       expect(screen.getByText('Cavalry')).toBeInTheDocument();
       expect(screen.getByText('Archer')).toBeInTheDocument();
@@ -88,10 +90,10 @@ describe('UnitFilter', () => {
       expect(screen.getByText('Other')).toBeInTheDocument();
     });
 
-    it('should render hide naval checkbox when expanded', () => {
+    it('should render hide naval checkbox always visible', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
-      expandFilter();
-      expect(screen.getByText('Hide Naval Units')).toBeInTheDocument();
+      // Hide Naval is always visible, no need to expand
+      expect(screen.getByText('Hide Naval')).toBeInTheDocument();
     });
 
     it('should render cost type dropdown with all options when expanded', () => {
@@ -166,7 +168,7 @@ describe('UnitFilter', () => {
   describe('Category selection', () => {
     it('should toggle category when clicked', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
-      expandFilter();
+      // Categories are always visible now
       const infantryButton = screen.getByText('Infantry');
 
       fireEvent.click(infantryButton);
@@ -178,7 +180,7 @@ describe('UnitFilter', () => {
 
     it('should allow multiple categories', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
-      expandFilter();
+      // Categories are always visible now
 
       fireEvent.click(screen.getByText('Infantry'));
       fireEvent.click(screen.getByText('Cavalry'));
@@ -190,7 +192,7 @@ describe('UnitFilter', () => {
 
     it('should remove category when clicked again', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
-      expandFilter();
+      // Categories are always visible now
 
       fireEvent.click(screen.getByText('Infantry'));
       fireEvent.click(screen.getByText('Infantry'));
@@ -202,7 +204,7 @@ describe('UnitFilter', () => {
 
     it('should show clear filters button when category is selected', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
-      expandFilter();
+      // Categories are always visible now
 
       fireEvent.click(screen.getByText('Archer'));
 
@@ -211,7 +213,7 @@ describe('UnitFilter', () => {
 
     it('should apply selected styling to active categories', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
-      expandFilter();
+      // Categories are always visible now
       const infantryButton = screen.getByText('Infantry');
 
       expect(infantryButton).toHaveClass('bg-gray-200');
@@ -273,7 +275,7 @@ describe('UnitFilter', () => {
   describe('Hide naval checkbox', () => {
     it('should toggle hide naval on click', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
-      expandFilter();
+      // Hide Naval is always visible now
       const checkbox = screen.getByRole('checkbox');
 
       fireEvent.click(checkbox);
@@ -283,7 +285,7 @@ describe('UnitFilter', () => {
 
     it('should show clear filters button when hide naval is checked', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
-      expandFilter();
+      // Hide Naval is always visible now
       const checkbox = screen.getByRole('checkbox');
 
       fireEvent.click(checkbox);
@@ -295,7 +297,7 @@ describe('UnitFilter', () => {
   describe('Clear filters', () => {
     it('should clear all filters when clicked', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
-      expandFilter();
+      // Categories are always visible now
 
       // Apply some filters
       fireEvent.click(screen.getByText('Infantry'));
@@ -335,7 +337,7 @@ describe('UnitFilter', () => {
 
     it('should hide clear button after clearing', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
-      expandFilter();
+      // Categories are always visible now
 
       fireEvent.click(screen.getByText('Infantry'));
       fireEvent.click(screen.getByText('Clear'));
@@ -349,11 +351,11 @@ describe('UnitFilter', () => {
       render(<UnitFilter onFilterChange={mockOnFilterChange} />);
       expandFilter();
 
-      // Set up initial category
+      // Set up initial category (always visible now)
       fireEvent.click(screen.getByText('Infantry'));
       mockOnFilterChange.mockClear();
 
-      // Change age filter
+      // Change age filter (requires expand)
       const ageSelect = screen.getAllByRole('combobox')[1];
       fireEvent.change(ageSelect, { target: { value: 'feudal' } });
 
