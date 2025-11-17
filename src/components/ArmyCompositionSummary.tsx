@@ -151,26 +151,24 @@ export default function ArmyCompositionSummary(): React.ReactElement {
     return (
       <>
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-colors duration-300">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-200">Army Composition</h2>
-            <div className="flex gap-2">
-              <button
-                onClick={() => setIsImportModalOpen(true)}
-                className="bg-indigo-500 hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white px-4 py-2 rounded text-sm transition-colors"
-                title="Import composition from file or URL"
-              >
-                📤 Import
-              </button>
-            </div>
-          </div>
+          <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-4 whitespace-nowrap">Army Composition</h2>
           <p className="text-gray-500 dark:text-gray-400 text-center py-8">
             No units selected. Add units from the list above or import a composition.
           </p>
           {importMessage && (
-            <div className="text-sm text-center">
+            <div className="text-sm text-center mb-4">
               <span className="text-indigo-600 dark:text-indigo-400">{importMessage}</span>
             </div>
           )}
+          <div className="flex gap-2 flex-wrap justify-center">
+            <button
+              onClick={() => setIsImportModalOpen(true)}
+              className="bg-indigo-500 hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white px-4 py-2 rounded text-sm transition-colors"
+              title="Import composition from file or URL"
+            >
+              📤 Import
+            </button>
+          </div>
         </div>
         <ImportModal
           isOpen={isImportModalOpen}
@@ -186,62 +184,7 @@ export default function ArmyCompositionSummary(): React.ReactElement {
   return (
     <>
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-colors duration-300">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-200">Army Composition</h2>
-          <div className="flex gap-2 flex-wrap">
-            <button
-              onClick={() => setIsImportModalOpen(true)}
-              className="bg-indigo-500 hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white px-4 py-2 rounded text-sm transition-colors"
-              title="Import composition from file or URL"
-            >
-              📤 Import
-            </button>
-            <button
-              onClick={() => setShowSaveDialog(!showSaveDialog)}
-              className="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-colors"
-              title="Save current composition"
-            >
-              💾 Save
-            </button>
-            <button
-              onClick={handleShare}
-              className="bg-cyan-500 hover:bg-cyan-600 dark:bg-cyan-600 dark:hover:bg-cyan-700 text-white px-4 py-2 rounded text-sm transition-colors"
-              title="Copy shareable link"
-            >
-              📋 Share
-            </button>
-            <div className="relative" ref={exportMenuRef}>
-              <button
-                onClick={() => setShowExportMenu(!showExportMenu)}
-                className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-4 py-2 rounded text-sm transition-colors flex items-center gap-1"
-                title="Export composition"
-                aria-expanded={showExportMenu}
-                aria-haspopup="true"
-              >
-                📥 Export
-                <span className="text-xs">{showExportMenu ? '▲' : '▼'}</span>
-              </button>
-              {showExportMenu && (
-                <div className="absolute right-0 mt-1 w-40 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-600 z-10 overflow-hidden">
-                  <button
-                    onClick={handleExportCSV}
-                    className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center gap-2"
-                  >
-                    <span className="text-green-600 dark:text-green-400">📄</span>
-                    Download CSV
-                  </button>
-                  <button
-                    onClick={handleExportJSON}
-                    className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center gap-2"
-                  >
-                    <span className="text-purple-600 dark:text-purple-400">📋</span>
-                    Download JSON
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+        <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-4 whitespace-nowrap">Army Composition</h2>
 
         {/* Status messages */}
         {(shareMessage || exportMessage || importMessage || saveMessage) && (
@@ -334,8 +277,63 @@ export default function ArmyCompositionSummary(): React.ReactElement {
       </div>
 
       <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600">
-        <div className="text-sm text-gray-600 dark:text-gray-300">
+        <div className="text-sm text-gray-600 dark:text-gray-300 mb-4">
           <strong className="text-gray-900 dark:text-gray-100">Total Units:</strong> {totalUnits}
+        </div>
+
+        {/* Action buttons row */}
+        <div className="flex gap-2 flex-wrap">
+          <button
+            onClick={() => setIsImportModalOpen(true)}
+            className="bg-indigo-500 hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white px-4 py-2 rounded text-sm transition-colors"
+            title="Import composition from file or URL"
+          >
+            📤 Import
+          </button>
+          <button
+            onClick={() => setShowSaveDialog(!showSaveDialog)}
+            className="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-colors"
+            title="Save current composition"
+          >
+            💾 Save
+          </button>
+          <button
+            onClick={handleShare}
+            className="bg-cyan-500 hover:bg-cyan-600 dark:bg-cyan-600 dark:hover:bg-cyan-700 text-white px-4 py-2 rounded text-sm transition-colors"
+            title="Copy shareable link"
+          >
+            📋 Share
+          </button>
+          <div className="relative" ref={exportMenuRef}>
+            <button
+              onClick={() => setShowExportMenu(!showExportMenu)}
+              className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-4 py-2 rounded text-sm transition-colors flex items-center gap-1"
+              title="Export composition"
+              aria-expanded={showExportMenu}
+              aria-haspopup="true"
+            >
+              📥 Export
+              <span className="text-xs">{showExportMenu ? '▲' : '▼'}</span>
+            </button>
+            {showExportMenu && (
+              <div className="absolute left-0 mt-1 w-40 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-600 z-10 overflow-hidden">
+                <button
+                  onClick={handleExportCSV}
+                  className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center gap-2"
+                >
+                  <span className="text-green-600 dark:text-green-400">📄</span>
+                  Download CSV
+                </button>
+                <button
+                  onClick={handleExportJSON}
+                  className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center gap-2"
+                >
+                  <span className="text-purple-600 dark:text-purple-400">📋</span>
+                  Download JSON
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       </div>
