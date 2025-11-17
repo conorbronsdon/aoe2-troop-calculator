@@ -133,33 +133,51 @@ Unit statistics calculation system with technology bonuses.
 ---
 
 ### Progressive Web App (PWA) Support
-**Status:** Not Started
+**Status:** ✅ Complete (v2.10.0)
 **Priority:** High
 **Complexity:** Medium
 
 Convert the application into a Progressive Web App for offline functionality.
 
-**Features:**
-- Service worker for offline caching
-- Install prompt for "Add to Home Screen"
-- Offline army composition planning
-- Background sync when connection restored
-- Faster load times with cached assets
+**Completed Implementation:**
 
-**Technical Requirements:**
-- Add service worker registration in `main.jsx`
-- Create `manifest.json` with app metadata
-- Configure Vite PWA plugin or manual service worker
-- Cache critical assets (unit data, icons, styles)
-- Handle offline/online state transitions
+1. **Service Worker (via vite-plugin-pwa):**
+   - ✅ Auto-generated service worker with Workbox
+   - ✅ 251 precached assets for complete offline functionality
+   - ✅ Cache-first strategy for Google Fonts
+   - ✅ Auto-update notification when new version available
+   - ✅ Graceful offline/online state handling
+
+2. **PWA Manifest:**
+   - ✅ Complete manifest with app metadata (name, description, theme)
+   - ✅ Multiple icon sizes (192x192, 512x512) with maskable support
+   - ✅ Standalone display mode for native app experience
+   - ✅ Categories: games, utilities, productivity
+   - ✅ Screenshots for app store listings
+
+3. **Install Prompt Component:**
+   - ✅ PWAInstallPrompt component with friendly install UI
+   - ✅ "Install App" and "Not now" options
+   - ✅ Dismissal persistence (don't show again for 7 days)
+   - ✅ Automatic detection of app installation status
+   - ✅ Slide-up animation for smooth appearance
+   - ✅ 18 comprehensive component tests
+
+4. **Technical Implementation:**
+   - ✅ vite-plugin-pwa for automatic SW generation
+   - ✅ Service worker registration in main.jsx with update prompts
+   - ✅ TypeScript declarations for virtual modules
+   - ✅ Base path configuration for GitHub Pages deployment
+   - ✅ Large file exclusion (OG image) from precaching
 
 **Impact:** Users can plan armies without internet connection, perfect for gaming sessions.
 
 **Acceptance Criteria:**
-- App installable on desktop/mobile
-- Full functionality available offline
-- Saved compositions persist across sessions
-- Cache invalidation on new versions
+- ✅ App installable on desktop/mobile
+- ✅ Full functionality available offline (251 cached assets)
+- ✅ Saved compositions persist across sessions (localStorage)
+- ✅ Cache invalidation on new versions (auto-update prompts)
+- ✅ All 368 tests pass
 
 ---
 
@@ -459,7 +477,7 @@ With 100+ units, browsing is cumbersome. Add search and filter functionality.
 ## 🎯 Medium Priority
 
 ### UI Polish & Usability Improvements
-**Status:** In Progress
+**Status:** ✅ Partially Complete (v2.10.0)
 **Priority:** Medium
 **Complexity:** Low-Medium
 
@@ -467,11 +485,12 @@ A collection of UI improvements to enhance user experience and reduce visual clu
 
 **Identified Improvements:**
 
-1. **ArmyCompositionSummary Action Button Consolidation** ✅ In Progress
-   - Currently has 6 buttons (Save, Import, Share, CSV, JSON, Reset) in a row
-   - Group CSV/JSON export actions into a dropdown menu
-   - Reduces visual clutter while maintaining functionality
-   - Expected completion: Current sprint
+1. **ArmyCompositionSummary Action Button Consolidation** ✅ Complete
+   - ✅ Grouped CSV/JSON export actions into a single "Export" dropdown menu
+   - ✅ Dropdown shows on click with "Download CSV" and "Download JSON" options
+   - ✅ Reduces visual clutter from 6 buttons to 4 buttons (Import, Save, Share, Export)
+   - ✅ Click-outside handling to close dropdown
+   - ✅ Proper ARIA attributes (aria-expanded, aria-haspopup)
 
 2. **ResourceTracker Visibility Enhancement**
    - Currently at top of main content, users must scroll past it
@@ -1251,6 +1270,24 @@ Track application performance metrics.
 
 ## Recently Completed ✅
 
+### Progressive Web App (PWA) Support (v2.10.0 - November 2025)
+Complete offline functionality and installable app experience:
+- ✅ **Service Worker:** Auto-generated with Workbox, 251 precached assets
+- ✅ **Offline Support:** Full app functionality without internet connection
+- ✅ **Install Prompt:** PWAInstallPrompt component with friendly UI and dismissal persistence
+- ✅ **Auto Updates:** Notification when new version available with one-click update
+- ✅ **Manifest:** Complete PWA manifest with icons, screenshots, and categories
+- ✅ **Cache Strategy:** CacheFirst for fonts, precaching for all critical assets
+- ✅ **Testing:** 18 new component tests (368 total tests passing)
+- ✅ **Dependencies:** vite-plugin-pwa and workbox-window integration
+
+### UI Polish - Export Button Consolidation (v2.10.0 - November 2025)
+Streamlined action buttons for better UX:
+- ✅ **Export Dropdown Menu:** CSV and JSON export options consolidated into single dropdown
+- ✅ **Reduced Clutter:** From 6 buttons to 4 buttons in ArmyCompositionSummary header
+- ✅ **Accessibility:** Proper ARIA attributes (aria-expanded, aria-haspopup)
+- ✅ **Click-Outside Handling:** Dropdown closes when clicking outside
+
 ### Preset Army Compositions (v2.9.0 - November 2025)
 Complete pre-configured meta builds for common strategies:
 - ✅ **24 Preset Compositions:** Castle Age Rushes, Imperial Compositions, Civ-Specific Builds, Beginner Templates
@@ -1373,7 +1410,7 @@ For questions or suggestions about the roadmap, open a discussion on GitHub.
 
 ---
 
-**Last Updated:** November 16, 2025
-**Current Version:** 2.9.0
+**Last Updated:** November 17, 2025
+**Current Version:** 2.10.0
 **Total Roadmap Items:** 35+ features across 4 priority levels
-**Next Major Focus:** PWA Support, Unit Statistics Display
+**Next Major Focus:** Unit Statistics Display UI, Team Bonus System

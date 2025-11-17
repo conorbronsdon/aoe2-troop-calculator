@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { useArmy } from '../context/ArmyContext';
+import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { getUnitById } from '../data/units';
 import { calculateUnitCost } from '../utils/calculations';
 import { ExportService } from '../services/export.service';
