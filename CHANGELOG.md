@@ -5,6 +5,69 @@ All notable changes to the Age of Empires II Army Composition Calculator will be
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.12.0] - 2025-11-17
+
+### Added
+- **Combat Statistics Display**: Unit stats shown directly on cards
+  - HP, Attack, Melee Armor, Pierce Armor, Range, Speed display
+  - Technology effects applied to unit stats via statCalculator.js
+  - Army-level aggregate stats via ArmyCombatStats component
+  - Visual indicators for tech-modified stats (green highlights)
+  - Expandable combat panels with stat breakdown
+
+- **Toggle Combat Stats**: User control over stat visibility
+  - New toggle to show/hide combat stats on unit cards
+  - Reduces visual clutter for users who don't need detailed stats
+  - Preference saved during session
+
+- **Consolidated Combat Panels**: Cleaner UI organization
+  - Unified combat stats display
+  - Collapsible sections for better information hierarchy
+  - Simplified UnitCard interface
+
+### Changed
+- **ESLint 9.x Migration**: Updated to flat config format
+  - Removed deprecated .eslintrc.json
+  - New eslint.config.js with flat configuration
+  - Updated npm scripts for ESLINT_USE_FLAT_CONFIG
+
+- **Footer Improvements**:
+  - Persistent footer fixed at bottom of viewport
+  - Text-based social links (reverted from icons)
+  - Improved layout and organization
+
+- **UnitFilter Organization**: Better logical grouping of filter options
+
+### Technical
+- Version bumped to 2.12.0
+- Stat calculation engine integrated with UI components
+
+---
+
+## [2.11.0] - 2025-11-17
+
+### Added
+- **Floating BuyMeCoffee Button**: Less intrusive support CTA
+  - Positioned as floating element instead of inline
+  - Respects user experience while maintaining visibility
+  - Smooth hover animations
+
+- **Mobile Sidebar Accordion Navigation**:
+  - Collapsible sections for mobile menu
+  - Logical section grouping (Units, Configuration, Resources)
+  - Smooth expand/collapse animations
+  - Improved touch targets for mobile users
+
+### Changed
+- Support CTA redesigned for better UX
+- Mobile navigation more intuitive with accordion pattern
+- Reduced cognitive load on mobile interfaces
+
+### Technical
+- Version bumped to 2.11.0
+
+---
+
 ## [2.10.0] - 2025-11-17
 
 ### Added

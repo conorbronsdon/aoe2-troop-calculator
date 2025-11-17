@@ -450,29 +450,30 @@ This section documents the sources of visual assets used in the calculator for e
   - Mobile sidebar accordion navigation
   - Logical section grouping for mobile
   - Smooth animations and transitions
+- ✅ **Combat Statistics Display v2.12.0** (November 2025):
+  - Unit stat display on cards (HP, Attack, Armor, Range, Speed)
+  - Technology effects applied to unit stats
+  - Army-level aggregate stats via ArmyCombatStats component
+  - Visual indicators for tech-modified stats (green highlights)
+  - Toggle to show/hide combat stats on unit cards
+  - Consolidated combat panels with expandable sections
 
 </details>
 
 <details>
 <summary><b>🔜 Next Steps</b></summary>
 
-### 1. Unit Statistics Display UI
-- [ ] Add HP progress bars to unit cards
-- [ ] Unit comparison modal for side-by-side analysis
-- [ ] Enhanced tooltips with calculation breakdown
-- [ ] (Note: Stat calculation engine already complete)
-
-### 2. Team Bonus System
+### 1. Team Bonus System
 - [ ] Select allied civilizations for team games
 - [ ] Apply team bonus effects to calculations
 - [ ] Show which ally provides which bonus
 
-### 3. Keyboard Shortcuts
+### 2. Keyboard Shortcuts
 - [ ] Quick navigation shortcuts (Ctrl+S save, Ctrl+/ search)
 - [ ] Help modal showing available shortcuts
 - [ ] Focus management for accessibility
 
-### 4. Undo/Redo System
+### 3. Undo/Redo System
 - [ ] History stack for composition changes
 - [ ] Keyboard shortcuts (Ctrl+Z, Ctrl+Shift+Z)
 - [ ] Enable experimentation without fear
@@ -608,7 +609,7 @@ Found a bug or have a suggestion?
 
 ### 📊 Project Stats
 
-![Version](https://img.shields.io/badge/Version-2.11.0-brightgreen?style=flat)
+![Version](https://img.shields.io/badge/Version-2.12.0-brightgreen?style=flat)
 ![Last Updated](https://img.shields.io/badge/Last_Updated-November_2025-blue?style=flat)
 ![Status](https://img.shields.io/badge/Status-Production_Ready-success?style=flat)
 ![PWA](https://img.shields.io/badge/PWA-Offline_Ready-4F46E5?style=flat)

@@ -686,25 +686,77 @@ Full technology support with stat calculations:
 
 ---
 
+## UI Polish - v2.11.0
+
+### Enhanced User Experience
+
+1. **Floating BuyMeCoffee Button**:
+   - Less intrusive support CTA
+   - Positioned as floating element
+   - Smooth hover animations
+   - Respects user experience
+
+2. **Mobile Sidebar Accordion**:
+   - Collapsible sections for mobile menu
+   - Logical section grouping (Units, Configuration, Resources)
+   - Smooth expand/collapse animations
+   - Improved touch targets
+
+---
+
+## Combat Statistics Display - v2.12.0
+
+### Unit Stats on Cards
+
+Comprehensive combat statistics display:
+
+1. **Individual Unit Stats**:
+   - HP (Hit Points)
+   - Attack damage
+   - Melee Armor
+   - Pierce Armor
+   - Range
+   - Speed
+
+2. **Technology Effects**:
+   - Stats modified by researched technologies
+   - Green highlights for enhanced stats
+   - Clear indication of bonuses applied
+
+3. **Army-Level Stats**:
+   - Aggregate combat stats via ArmyCombatStats component
+   - Total army damage potential
+   - Combined defensive capabilities
+
+4. **Toggle Visibility**:
+   - Show/hide combat stats on unit cards
+   - Reduces visual clutter when not needed
+   - User preference control
+
+5. **Consolidated Panels**:
+   - Expandable combat sections
+   - Simplified UnitCard interface
+   - Better information hierarchy
+
+---
+
 ## Limitations & Known Issues
 
 ### Current Limitations
 
-1. **Unit Stats Display**:
-   - Stat calculation engine complete (14K LOC)
-   - Visual HP bars not yet implemented
-   - Side-by-side comparison modal pending
-   - Rich tooltips with breakdowns pending
-
-2. **Team Bonuses**:
+1. **Team Bonuses**:
    - Team bonus data exists in civ data
    - UI for selecting allies not implemented
    - Team bonus calculations not applied
 
-3. **Battle Simulation**:
+2. **Battle Simulation**:
    - No combat outcome predictions
    - Requires complex micro/positioning calculations
    - Lower priority feature
+
+3. **Unit Comparison**:
+   - Side-by-side comparison modal pending
+   - Rich tooltips with calculation breakdowns pending
 
 ### Reporting Issues
 
@@ -717,4 +769,4 @@ Found a bug? Please report:
 ---
 
 **Last Updated**: November 2025
-**Version**: 2.10.0
+**Version**: 2.12.0
