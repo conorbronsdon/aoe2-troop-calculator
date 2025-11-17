@@ -130,7 +130,7 @@ export const ExportService: ExportServiceInterface = {
       if (quantity > 0) {
         const unit = getUnitById(unitId);
         if (unit) {
-          const cost = calculateUnitCost(unit, config.selectedCiv, config.selectedAge);
+          const cost = calculateUnitCost(unit, config.selectedCiv, config.selectedAge, config.alliedCivs || []);
 
           rows.push([
             unit.name,
@@ -252,7 +252,7 @@ export const ExportService: ExportServiceInterface = {
       if (quantity > 0) {
         const unit = getUnitById(unitId);
         if (unit) {
-          const cost = calculateUnitCost(unit, config.selectedCiv, config.selectedAge);
+          const cost = calculateUnitCost(unit, config.selectedCiv, config.selectedAge, config.alliedCivs || []);
 
           units.push({
             id: unitId,

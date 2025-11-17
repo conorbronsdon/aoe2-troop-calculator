@@ -605,18 +605,29 @@ Create comprehensive documentation showcasing unique units.
 ---
 
 ### Team Bonus System
-**Status:** Not Started
+**Status:** ✅ Partially Complete (UI Complete, Calculations Partial)
 **Priority:** Medium
 **Complexity:** Medium
 
 Allow planning for team games by selecting allied civilizations.
 
-**Features:**
-- UI to select up to 3 allied civilizations (for 4v4)
-- Display active team bonuses from allies
-- Apply team bonus effects to calculations
-- Show which ally provides which bonus
-- Toggle team bonuses on/off
+**Completed Features:**
+- ✅ UI to select up to 3 allied civilizations (AlliedCivilizationsSelector component)
+- ✅ Display active team bonuses from allies (TeamBonusDisplay component)
+- ✅ Ally selection integrated into main app (Configuration sidebar)
+- ✅ Show which ally provides which bonus with civilization insignias
+- ✅ Team bonus cost effects applied to unit calculations
+- ✅ UnitCard and ArmyCompositionSummary calculate costs with allied team bonuses
+- ✅ ResourceTracker includes team bonus cost adjustments
+
+**Current Implementation Status:**
+- **UI:** Fully implemented
+- **Display:** Team bonuses shown in TeamBonusDisplay component
+- **Calculations:** Partially implemented
+  - ✅ Cost-type team bonuses with structured values ARE applied
+  - ⏳ Production speed bonuses are DISPLAY ONLY (no structured values)
+  - ⏳ Vision bonuses are DISPLAY ONLY (no structured values)
+  - ⏳ Other non-cost bonuses are DISPLAY ONLY (no structured values)
 
 **Example:**
 ```
@@ -624,11 +635,28 @@ Your Civ: Mayans
 Allies: Huns (cavalry +20% HP), Celts (siege speed +20%), Britons (archery ranges work 20% faster)
 ```
 
+**What's Needed for Full Calculation Support:**
+1. **Data Structure Enhancement:**
+   - Add `value` or `ages` fields to all team bonuses in civilization data
+   - Similar to how regular civilization bonuses have structured effects
+   - Currently, many team bonuses only have `description` strings
+
+2. **Calculation Engine Updates:**
+   - Extend `applyTeamBonuses()` to handle production speed modifiers
+   - Extend stat calculator to apply HP/stat bonuses from allies
+   - Add vision range calculations
+
+3. **Testing:**
+   - Verify all team bonus types calculate correctly
+   - Test team bonus stacking and interactions
+   - Validate against AoE2 game data
+
 **Technical Notes:**
-- Team bonuses already documented in civilization data
-- Need UI for ally selection
-- Some team bonuses affect production, not unit stats (display only)
-- Some affect costs (implement calculation)
+- Team bonuses already documented in civilization data with descriptions
+- Cost-type team bonuses with structured values are already applied in calculations
+- See `applyTeamBonuses()` in `src/utils/calculations.ts` for implementation details
+- Some team bonuses affect production (not unit stats) - these will remain display-only
+- Infrastructure in place: `config.alliedCivs` tracked in ArmyContext
 
 ---
 

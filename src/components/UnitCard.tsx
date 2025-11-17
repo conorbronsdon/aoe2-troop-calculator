@@ -37,7 +37,7 @@ export default function UnitCard({ unit }: UnitCardProps): JSX.Element {
   const { composition, config, researchedTechs } = state;
   const [showMoreInfo, setShowMoreInfo] = useState<boolean>(false);
 
-  const adjustedCost = calculateUnitCost(unit, config.selectedCiv, config.selectedAge);
+  const adjustedCost = calculateUnitCost(unit, config.selectedCiv, config.selectedAge, config.alliedCivs);
   const baseCost = unit.cost;
   const showDiscount = hasDiscount(unit, adjustedCost);
 

@@ -293,7 +293,7 @@ export default function ArmyCompositionSummary(): React.ReactElement {
             return null;
           }
 
-          const adjustedCost = calculateUnitCost(unit, config.selectedCiv, config.selectedAge) as UnitCost;
+          const adjustedCost = calculateUnitCost(unit, config.selectedCiv, config.selectedAge, config.alliedCivs) as UnitCost;
           const totalUnitCost: UnitCost = {
             food: adjustedCost.food * quantity,
             wood: adjustedCost.wood * quantity,

@@ -21,6 +21,25 @@ interface TotalsResult {
 
 /**
  * Apply team bonuses from allied civilizations
+ *
+ * IMPORTANT LIMITATIONS:
+ * - Team bonuses are currently PARTIALLY IMPLEMENTED for calculations
+ * - Only cost-type team bonuses with structured 'value' or 'ages' fields are applied
+ * - Many team bonuses are DISPLAY ONLY (shown in TeamBonusDisplay component)
+ * - Full calculation support requires adding structured data to all team bonuses
+ * - This is similar to how regular civilization bonuses have structured effects
+ *
+ * CURRENT SUPPORT:
+ * - Cost bonuses with 'type: cost' are applied to unit costs
+ * - Requires teamBonus.value (percentage) or teamBonus.ages (age-specific values)
+ * - Supports specific resources (food, wood, gold, stone) or 'all'
+ *
+ * TODO FOR FULL SUPPORT:
+ * - Add structured values to production speed bonuses
+ * - Add structured values to vision bonuses
+ * - Add structured values to other non-cost team bonuses
+ * - Update civilization data with complete team bonus value fields
+ *
  * @param cost - Unit cost object
  * @param unit - Unit object
  * @param alliedCivs - Array of allied civilization IDs

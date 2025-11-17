@@ -16,6 +16,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Elite unit variants properly translated
   - Translation helper utilities (getTranslatedUnitName, getTranslatedCivName)
 
+- **Team Bonus Calculation Support**: Allied civilization bonuses now applied
+  - Team bonus cost effects now applied to unit calculations
+  - UnitCard displays costs adjusted for allied team bonuses
+  - ArmyCompositionSummary shows totals with team bonus discounts
+  - Export functions (CSV/JSON) preserve team bonus cost adjustments
+  - Comprehensive documentation of current implementation and limitations
+
 ### Changed
 - All 12+ components updated to use translated names
   - UnitCard: Unit names now displayed in selected language
@@ -28,6 +35,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Search functionality enhanced to work with translated content
 - Accessibility: All aria-labels now use translated names
 - Enhanced i18n infrastructure with translation utilities
+- UnitCard and ArmyCompositionSummary now pass alliedCivs to cost calculations
+- Export service includes team bonus cost adjustments
 
 ### Technical
 - Created src/utils/translationHelpers.ts
@@ -35,6 +44,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added civilizationNames section to all 8 translation files (408+ translation keys added)
 - Total new translation keys: 1,720+ across 8 languages (13,760 total translations)
 - PWA precache assets: 263 (includes all translation files)
+- Enhanced applyTeamBonuses() documentation with implementation notes
+- Updated ROADMAP.md with Team Bonus System status and future enhancements
+- Team bonus calculations integrated throughout cost calculation pipeline
 
 ---
 
