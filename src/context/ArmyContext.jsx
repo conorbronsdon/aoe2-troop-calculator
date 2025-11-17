@@ -1,4 +1,4 @@
-import { createContext, useReducer, useContext, useEffect } from 'react';
+import { createContext, useReducer, useContext, useEffect, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { logger } from '../utils/errorHandler';
 
@@ -50,9 +50,24 @@ export const ACTION_TYPES = {
   UNRESEARCH_TECH: 'UNRESEARCH_TECH',
   SET_RESEARCHED_TECHS: 'SET_RESEARCHED_TECHS',
   RESET_TECHS: 'RESET_TECHS',
+  // Undo/Redo actions
+  UNDO: 'UNDO',
+  REDO: 'REDO',
   // Deprecated - kept for backwards compatibility
   TOGGLE_FORTIFICATION_MODE: 'TOGGLE_FORTIFICATION_MODE',
 };
+
+// Actions that should NOT be added to undo history
+const NON_UNDOABLE_ACTIONS = new Set([
+  ACTION_TYPES.UNDO,
+  ACTION_TYPES.REDO,
+  ACTION_TYPES.SET_SAVED_COMPOSITIONS,
+  ACTION_TYPES.TOGGLE_COMPARISON_MODE,
+  ACTION_TYPES.UPDATE_COMPARISON_ARMY,
+]);
+
+// Maximum number of undo history entries
+const MAX_HISTORY_SIZE = 50;
 
 // Reducer function
 function armyReducer(state, action) {
@@ -267,17 +282,133 @@ function armyReducer(state, action) {
 }
 
 /**
- * Army Context Provider
+ * Army Context Provider with Undo/Redo support
  */
 export function ArmyProvider({ children }) {
-  const [state, dispatch] = useReducer(armyReducer, initialState);
+  const [state, baseDispatch] = useReducer(armyReducer, initialState);
+
+  // History management
+  const historyRef = useRef([initialState]);
+  const historyIndexRef = useRef(0);
+
+  // Wrap dispatch with history tracking
+  const dispatch = useCallback(
+    (action) => {
+      if (action.type === ACTION_TYPES.UNDO) {
+        if (historyIndexRef.current > 0) {
+          historyIndexRef.current--;
+          const previousState = historyRef.current[historyIndexRef.current];
+          // Restore the previous state directly
+          baseDispatch({
+            type: ACTION_TYPES.LOAD_COMPOSITION,
+            composition: previousState.composition,
+            config: previousState.config,
+          });
+          // Also restore fortifications and techs
+          baseDispatch({
+            type: ACTION_TYPES.SET_RESEARCHED_TECHS,
+            techIds: previousState.researchedTechs,
+          });
+          logger.debug('Undo performed', {
+            index: historyIndexRef.current,
+            historyLength: historyRef.current.length,
+          });
+        }
+        return;
+      }
+
+      if (action.type === ACTION_TYPES.REDO) {
+        if (historyIndexRef.current < historyRef.current.length - 1) {
+          historyIndexRef.current++;
+          const nextState = historyRef.current[historyIndexRef.current];
+          // Restore the next state directly
+          baseDispatch({
+            type: ACTION_TYPES.LOAD_COMPOSITION,
+            composition: nextState.composition,
+            config: nextState.config,
+          });
+          // Also restore fortifications and techs
+          baseDispatch({
+            type: ACTION_TYPES.SET_RESEARCHED_TECHS,
+            techIds: nextState.researchedTechs,
+          });
+          logger.debug('Redo performed', {
+            index: historyIndexRef.current,
+            historyLength: historyRef.current.length,
+          });
+        }
+        return;
+      }
+
+      // Execute the action
+      baseDispatch(action);
+    },
+    [baseDispatch]
+  );
+
+  // Update history after state changes (for undoable actions)
+  const lastActionRef = useRef(null);
+  const updateHistory = useCallback(
+    (newState) => {
+      // Only add to history if the state actually changed
+      const currentHistoryState = historyRef.current[historyIndexRef.current];
+      const hasChanged =
+        JSON.stringify(newState.composition) !== JSON.stringify(currentHistoryState.composition) ||
+        JSON.stringify(newState.config) !== JSON.stringify(currentHistoryState.config) ||
+        JSON.stringify(newState.researchedTechs) !==
+          JSON.stringify(currentHistoryState.researchedTechs);
+
+      if (hasChanged) {
+        // Clear any redo history
+        historyRef.current = historyRef.current.slice(0, historyIndexRef.current + 1);
+
+        // Add new state to history
+        historyRef.current.push({
+          composition: { ...newState.composition },
+          config: { ...newState.config },
+          researchedTechs: [...newState.researchedTechs],
+        });
+
+        // Trim history if it exceeds max size
+        if (historyRef.current.length > MAX_HISTORY_SIZE) {
+          historyRef.current = historyRef.current.slice(-MAX_HISTORY_SIZE);
+        }
+
+        historyIndexRef.current = historyRef.current.length - 1;
+
+        logger.debug('History updated', {
+          index: historyIndexRef.current,
+          historyLength: historyRef.current.length,
+        });
+      }
+    },
+    []
+  );
+
+  // Track state changes for history
+  useEffect(() => {
+    updateHistory(state);
+  }, [state, updateHistory]);
 
   // Log state changes in development
   useEffect(() => {
     logger.debug('Army state updated', state);
   }, [state]);
 
-  return <ArmyContext.Provider value={{ state, dispatch }}>{children}</ArmyContext.Provider>;
+  // Provide undo/redo capabilities
+  const canUndo = historyIndexRef.current > 0;
+  const canRedo = historyIndexRef.current < historyRef.current.length - 1;
+
+  const contextValue = {
+    state,
+    dispatch,
+    canUndo,
+    canRedo,
+    historyLength: historyRef.current.length,
+    historyIndex: historyIndexRef.current,
+  };
+
+  return <ArmyContext.Provider value={contextValue}>{children}</ArmyContext.Provider>;
 }
 
 ArmyProvider.propTypes = {
