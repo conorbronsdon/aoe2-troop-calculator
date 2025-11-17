@@ -35,14 +35,14 @@ const BuyMeCoffee: React.FC = () => {
 
   return (
     <div
-      className="fixed bottom-20 right-4 z-40 lg:bottom-6 lg:right-6"
+      className="relative inline-block"
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
     >
       {/* Dismiss button */}
       <button
         onClick={handleDismiss}
-        className="absolute -top-2 -right-2 w-6 h-6 bg-gray-600 hover:bg-gray-700 text-white rounded-full flex items-center justify-center text-xs shadow-lg transition-opacity duration-200 opacity-0 group-hover:opacity-100"
+        className="absolute -top-2 -right-2 w-6 h-6 bg-gray-600 hover:bg-gray-700 text-white rounded-full flex items-center justify-center text-xs shadow-lg transition-opacity duration-200 opacity-0 group-hover:opacity-100 z-10"
         style={{ opacity: isExpanded ? 1 : 0 }}
         aria-label="Dismiss Buy Me a Coffee button"
       >

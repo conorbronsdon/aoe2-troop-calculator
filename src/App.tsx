@@ -306,8 +306,17 @@ function AppContent(): JSX.Element {
         </div>
       </div>
 
-      {/* Spacer for fixed bottom bar */}
-      <div className="h-24" />
+      {/* Spacer for fixed bottom bar and buy me a coffee button */}
+      <div className="h-32" />
+
+      {/* Buy Me a Coffee - Positioned above fixed bottom bar */}
+      <div className="fixed bottom-16 left-0 right-0 z-40 pointer-events-none">
+        <div className="container mx-auto px-4 flex justify-center">
+          <div className="pointer-events-auto">
+            <BuyMeCoffee />
+          </div>
+        </div>
+      </div>
 
       {/* Compact Resource Bar - Fixed at bottom with controls */}
       <CompactResourceBar
@@ -318,7 +327,7 @@ function AppContent(): JSX.Element {
         onShowKeyboardShortcuts={handleShowHelp}
       />
 
-      {/* Footer - Attribution (scrolls with content) */}
+      {/* Footer - Attribution (scrolls with content, appears at very bottom) */}
       <footer className="border-t border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-900">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-center gap-3 text-xs text-gray-600 dark:text-gray-400 flex-wrap">
@@ -377,9 +386,6 @@ function AppContent(): JSX.Element {
 
       {/* PWA Install Prompt */}
       <PWAInstallPrompt />
-
-      {/* Floating Buy Me a Coffee button */}
-      <BuyMeCoffee />
 
       {/* Keyboard Shortcuts Help Modal */}
       <KeyboardShortcutsHelp
