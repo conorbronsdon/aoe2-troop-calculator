@@ -1,13 +1,13 @@
 import { useState, useMemo } from 'react';
-import { useArmy } from '../context/ArmyContext';
+import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { getUnitsForCiv } from '../data/units';
 import { groupUnitsByCategory } from '../utils/calculations';
 import UnitCard from './UnitCard';
 import UnitFilter from './UnitFilter';
 
 export default function UnitSelection() {
-  const { state } = useArmy();
-  const { config } = state;
+  const { state, dispatch } = useArmy();
+  const { config, composition } = state;
   const [filters, setFilters] = useState({
     searchTerm: '',
     categories: [],
@@ -15,6 +15,12 @@ export default function UnitSelection() {
     ageFilter: 'all',
     hideNaval: false,
   });
+
+  const resetComposition = () => {
+    dispatch({ type: ACTION_TYPES.RESET_COMPOSITION });
+  };
+
+  const hasUnitsSelected = Object.values(composition).some((quantity) => quantity > 0);
 
   // Filter units by age and civilization (includes unique units)
   const availableUnits = getUnitsForCiv(config.selectedCiv, config.selectedAge);
@@ -74,18 +80,28 @@ export default function UnitSelection() {
       <UnitFilter onFilterChange={setFilters} />
 
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-6 transition-colors duration-300">
-        <h2 className="text-2xl font-semibold mb-4 text-gray-700 dark:text-gray-200">
-          Select Units
-          {filters.searchTerm ||
-          filters.categories.length > 0 ||
-          filters.costType !== 'all' ||
-          filters.ageFilter !== 'all' ||
-          filters.hideNaval ? (
-            <span className="text-sm font-normal text-gray-500 dark:text-gray-400 ml-2">
-              ({filteredUnits.length} {filteredUnits.length === 1 ? 'unit' : 'units'} found)
-            </span>
-          ) : null}
-        </h2>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            Select Units
+            {filters.searchTerm ||
+            filters.categories.length > 0 ||
+            filters.costType !== 'all' ||
+            filters.ageFilter !== 'all' ||
+            filters.hideNaval ? (
+              <span className="text-sm font-normal text-gray-500 dark:text-gray-400 ml-2">
+                ({filteredUnits.length} {filteredUnits.length === 1 ? 'unit' : 'units'} found)
+              </span>
+            ) : null}
+          </h2>
+          {hasUnitsSelected && (
+            <button
+              onClick={resetComposition}
+              className="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white px-4 py-2 rounded text-sm transition-colors"
+            >
+              Reset All
+            </button>
+          )}
+        </div>
 
         {!hasResults ? (
           <div className="text-center py-8 text-gray-500 dark:text-gray-400">
