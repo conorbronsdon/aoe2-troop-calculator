@@ -2,13 +2,66 @@ import { getCivilizationById } from '../data/civilizations';
 import { getUnitById } from '../data/units';
 
 /**
+ * Apply team bonuses from allied civilizations
+ * @param {Object} cost - Unit cost object
+ * @param {Object} unit - Unit object
+ * @param {Array} alliedCivs - Array of allied civilization IDs
+ * @param {string} age - Current age
+ * @returns {Object} Adjusted cost after team bonuses
+ */
+export const applyTeamBonuses = (cost, unit, alliedCivs, age) => {
+  if (!alliedCivs || alliedCivs.length === 0) {
+    return cost;
+  }
+
+  const adjustedCost = { ...cost };
+
+  alliedCivs.forEach((allyCivId) => {
+    const allyCiv = getCivilizationById(allyCivId);
+    if (allyCiv && allyCiv.teamBonus) {
+      const teamBonus = allyCiv.teamBonus;
+
+      // Apply cost-type team bonuses
+      if (teamBonus.type === 'cost') {
+        const appliesToUnit =
+          !teamBonus.units || teamBonus.units === 'all' || teamBonus.units.includes(unit.id);
+
+        if (appliesToUnit) {
+          let discount = 0;
+
+          if (teamBonus.ages) {
+            discount = teamBonus.ages[age] || 0;
+          } else {
+            discount = teamBonus.value || 0;
+          }
+
+          if (teamBonus.resource === 'all') {
+            adjustedCost.food = Math.round(adjustedCost.food * (1 - discount));
+            adjustedCost.wood = Math.round(adjustedCost.wood * (1 - discount));
+            adjustedCost.gold = Math.round(adjustedCost.gold * (1 - discount));
+            adjustedCost.stone = Math.round(adjustedCost.stone * (1 - discount));
+          } else if (teamBonus.resource) {
+            adjustedCost[teamBonus.resource] = Math.round(
+              adjustedCost[teamBonus.resource] * (1 - discount)
+            );
+          }
+        }
+      }
+    }
+  });
+
+  return adjustedCost;
+};
+
+/**
  * Calculate unit cost with civilization bonuses applied
  * @param {Object} unit - Unit object
  * @param {string} civId - Civilization ID
  * @param {string} age - Current age
+ * @param {Array} alliedCivs - Optional array of allied civilization IDs
  * @returns {Object} Adjusted cost { food, wood, gold, stone }
  */
-export const calculateUnitCost = (unit, civId, age) => {
+export const calculateUnitCost = (unit, civId, age, alliedCivs = []) => {
   const civ = getCivilizationById(civId);
   const cost = { ...unit.cost };
 
@@ -46,7 +99,10 @@ export const calculateUnitCost = (unit, civId, age) => {
     });
   }
 
-  return cost;
+  // Apply team bonuses from allies
+  const finalCost = applyTeamBonuses(cost, unit, alliedCivs, age);
+
+  return finalCost;
 };
 
 /**
@@ -54,9 +110,10 @@ export const calculateUnitCost = (unit, civId, age) => {
  * @param {Object} composition - Army composition { unitId: quantity }
  * @param {string} civId - Civilization ID
  * @param {string} age - Current age
+ * @param {Array} alliedCivs - Optional array of allied civilization IDs
  * @returns {Object} { totalCost: { food, wood, gold, stone }, totalPopulation }
  */
-export const calculateTotals = (composition, civId, age) => {
+export const calculateTotals = (composition, civId, age, alliedCivs = []) => {
   const totalCost = { food: 0, wood: 0, gold: 0, stone: 0 };
   let totalPopulation = 0;
 
@@ -64,7 +121,7 @@ export const calculateTotals = (composition, civId, age) => {
     if (quantity > 0) {
       const unit = getUnitById(unitId);
       if (unit) {
-        const adjustedCost = calculateUnitCost(unit, civId, age);
+        const adjustedCost = calculateUnitCost(unit, civId, age, alliedCivs);
 
         totalCost.food += adjustedCost.food * quantity;
         totalCost.wood += adjustedCost.wood * quantity;
@@ -109,6 +166,7 @@ export const calculateFortificationCosts = (fortificationComposition, fortificat
  * @param {string} civId - Civilization ID
  * @param {string} age - Current age
  * @param {Array} fortifications - Array of all fortifications
+ * @param {Array} alliedCivs - Optional array of allied civilization IDs
  * @returns {Object} { totalCost: { food, wood, gold, stone }, totalPopulation }
  */
 export const calculateCombinedTotals = (
@@ -116,9 +174,10 @@ export const calculateCombinedTotals = (
   fortificationComposition,
   civId,
   age,
-  fortifications
+  fortifications,
+  alliedCivs = []
 ) => {
-  const unitTotals = calculateTotals(composition, civId, age);
+  const unitTotals = calculateTotals(composition, civId, age, alliedCivs);
   const fortificationCosts = calculateFortificationCosts(fortificationComposition, fortifications);
 
   return {

@@ -67,9 +67,10 @@ export default function ResourceTracker() {
         fortificationComposition,
         config.selectedCiv,
         config.selectedAge,
-        fortifications
+        fortifications,
+        config.alliedCivs || []
       ),
-    [composition, fortificationComposition, config.selectedCiv, config.selectedAge]
+    [composition, fortificationComposition, config.selectedCiv, config.selectedAge, config.alliedCivs]
   );
 
   // Calculate technology costs

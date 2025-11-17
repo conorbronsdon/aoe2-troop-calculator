@@ -14,7 +14,7 @@
  * Application version - update this when releasing new versions
  * IMPORTANT: Keep in sync with package.json version
  */
-export const APP_VERSION = '2.13.0';
+export const APP_VERSION = '3.0.0';
 
 export const APP_NAME = 'AoE2 Troop Calculator';
 export const APP_DISPLAY_NAME = 'Age of Empires II Army Calculator';

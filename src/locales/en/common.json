@@ -1,0 +1,162 @@
+{
+  "app": {
+    "title": "Age of Empires II Definitive Edition: Army + Troop Composition Calculator",
+    "subtitle": "100+ units · 51 civilizations · Accurate bonuses · Resource tracking · Saved army presets",
+    "enjoyingCalculator": "Enjoying the calculator?",
+    "copyright": "Age of Empires II © Microsoft",
+    "createdBy": "Created by"
+  },
+  "header": {
+    "undo": "Undo",
+    "redo": "Redo",
+    "keyboardShortcuts": "Keyboard Shortcuts",
+    "github": "GitHub"
+  },
+  "configuration": {
+    "title": "Configuration",
+    "civilization": "Civilization",
+    "alliedCivilizations": "Allied Civilizations",
+    "teamBonuses": "Team Bonuses",
+    "selectAllies": "Select up to 3 allies for team bonuses",
+    "noAlliesSelected": "No allies selected",
+    "age": "Age",
+    "popCap": "Pop Cap",
+    "displayMode": "Display Mode",
+    "resourceMode": "Resource Mode",
+    "total": "Total",
+    "individual": "Individual",
+    "totalResourceLimit": "Total Resource Limit",
+    "resourceLimits": "Resource Limits",
+    "technologyPanel": "Technology Panel",
+    "showUnitCardStats": "Show Unit Card Stats"
+  },
+  "ages": {
+    "dark": "Dark",
+    "feudal": "Feudal",
+    "castle": "Castle",
+    "imperial": "Imperial"
+  },
+  "displayModes": {
+    "units": "Units Only",
+    "both": "Units & Fortifications",
+    "fortifications": "Fortifications Only"
+  },
+  "resources": {
+    "food": "Food",
+    "wood": "Wood",
+    "gold": "Gold",
+    "stone": "Stone",
+    "total": "Total",
+    "population": "Population"
+  },
+  "bonuses": {
+    "title": "Civilization Bonuses",
+    "costBonuses": "Cost Bonuses",
+    "statBonuses": "Stat Bonuses",
+    "economicBonuses": "Economic Bonuses",
+    "teamBonus": "Team Bonus",
+    "active": "ACTIVE",
+    "filterByType": "Filter by type",
+    "all": "All",
+    "cost": "Cost",
+    "stat": "Stat",
+    "economic": "Economic",
+    "searchBonuses": "Search bonuses...",
+    "noBonusesFound": "No bonuses found"
+  },
+  "units": {
+    "title": "Unit Selection",
+    "searchPlaceholder": "Search units by name or category...",
+    "noUnitsFound": "No units found",
+    "filterByCategory": "Filter by category",
+    "allCategories": "All Categories",
+    "categories": {
+      "Infantry": "Infantry",
+      "Cavalry": "Cavalry",
+      "Archer": "Archer",
+      "Siege": "Siege",
+      "Naval": "Naval",
+      "Monk": "Monk",
+      "Unique": "Unique",
+      "Other": "Other"
+    }
+  },
+  "army": {
+    "title": "Army Status",
+    "summary": "Army Composition Summary",
+    "analysis": "Army Composition Analysis",
+    "noUnits": "No units added yet",
+    "totalUnits": "Total Units",
+    "categoryBreakdown": "Category Breakdown",
+    "combatAnalysis": "Combat Analysis"
+  },
+  "tools": {
+    "title": "Tools & Presets",
+    "comparison": "Civilization Comparison",
+    "presets": "Presets",
+    "saveLoad": "Save/Load"
+  },
+  "actions": {
+    "apply": "Apply",
+    "clear": "Clear",
+    "save": "Save",
+    "load": "Load",
+    "export": "Export",
+    "import": "Import",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "addUnit": "Add Unit",
+    "removeUnit": "Remove Unit",
+    "reset": "Reset"
+  },
+  "notifications": {
+    "undone": "Undone",
+    "redone": "Redone",
+    "saved": "Saved",
+    "exported": "Exported to JSON",
+    "compositionCleared": "Composition cleared",
+    "searchFocused": "Search focused",
+    "themeToggled": "Theme toggled",
+    "noUnitsToSave": "No units to save",
+    "noUnitsToExport": "No units to export",
+    "teamBonusApplied": "Team bonus applied",
+    "alliesUpdated": "Allied civilizations updated"
+  },
+  "teamBonuses": {
+    "title": "Team Bonuses",
+    "fromAllies": "From Allied Civilizations",
+    "yourBonus": "Your Team Bonus (shared with allies)",
+    "noTeamBonus": "No team bonus",
+    "combinedBonuses": "Combined Team Bonuses",
+    "selectAllies": "Select allies to see team bonuses"
+  },
+  "language": {
+    "title": "Language",
+    "select": "Select Language"
+  },
+  "fortifications": {
+    "title": "Fortifications",
+    "walls": "Walls",
+    "towers": "Towers",
+    "castles": "Castles"
+  },
+  "technologies": {
+    "title": "Technologies",
+    "researched": "Researched",
+    "available": "Available",
+    "requirements": "Requirements"
+  },
+  "shortcuts": {
+    "title": "Keyboard Shortcuts",
+    "undoAction": "Undo",
+    "redoAction": "Redo",
+    "saveComposition": "Quick Save",
+    "exportJson": "Export JSON",
+    "clearComposition": "Clear All",
+    "focusSearch": "Focus Search",
+    "toggleDarkMode": "Toggle Dark Mode",
+    "showHelp": "Show Help",
+    "close": "Close"
+  }
+}
