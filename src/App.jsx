@@ -17,6 +17,7 @@ import BuyMeCoffee from './components/BuyMeCoffee';
 import CivilizationComparison from './components/CivilizationComparison';
 import ThemeToggle from './components/ThemeToggle';
 import ArmyCombatStats from './components/ArmyCombatStats';
+import PWAInstallPrompt from './components/PWAInstallPrompt';
 import { units } from './data/units';
 import { civilizations } from './data/civilizations';
 import { validateGameData } from './utils/validators';
@@ -197,6 +198,9 @@ function AppContent() {
           </div>
         </div>
       </footer>
+
+      {/* PWA Install Prompt */}
+      <PWAInstallPrompt />
     </div>
   );
 }
