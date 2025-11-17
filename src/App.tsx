@@ -17,7 +17,6 @@ import SaveLoadPanel from './components/SaveLoadPanel';
 import PresetSelector from './components/PresetSelector';
 import SocialShareButtons from './components/SocialShareButtons';
 import BuyMeCoffee from './components/BuyMeCoffee';
-import CivilizationComparison from './components/CivilizationComparison';
 import CombatAnalysis from './components/CombatAnalysis';
 import PWAInstallPrompt from './components/PWAInstallPrompt';
 import MobileSidebarSection from './components/MobileSidebarSection';
@@ -217,18 +216,20 @@ function AppContent(): JSX.Element {
                 <ConfigurationPanel />
               </MobileSidebarSection>
 
-              {/* Team Bonuses Section - New for v3.0 */}
-              <MobileSidebarSection
-                title={t('teamBonuses.title')}
-                icon="🤝"
-                defaultOpen={false}
-                priority="normal"
-              >
-                <div className="space-y-4">
-                  <AlliedCivilizationsSelector />
-                  <TeamBonusDisplay />
-                </div>
-              </MobileSidebarSection>
+              {/* Team Bonuses Section - Conditional */}
+              {config.showTeamBonuses && (
+                <MobileSidebarSection
+                  title={t('teamBonuses.title')}
+                  icon="🤝"
+                  defaultOpen={false}
+                  priority="normal"
+                >
+                  <div className="space-y-4">
+                    <AlliedCivilizationsSelector />
+                    <TeamBonusDisplay />
+                  </div>
+                </MobileSidebarSection>
+              )}
 
               {/* Army Status Section - Shows current army state */}
               <MobileSidebarSection
@@ -257,7 +258,7 @@ function AppContent(): JSX.Element {
                 </MobileSidebarSection>
               )}
 
-              {/* Tools Section - Comparison, saves, presets */}
+              {/* Tools Section - saves, presets */}
               <MobileSidebarSection
                 title={t('tools.title')}
                 icon="🧰"
@@ -265,7 +266,6 @@ function AppContent(): JSX.Element {
                 priority="low"
               >
                 <div className="space-y-4">
-                  <CivilizationComparison />
                   {/* SaveLoadPanel appears above presets when compositions exist, below otherwise */}
                   {savedCompositionsCount > 0 && <SaveLoadPanel hideSaveButton={true} />}
                   <PresetSelector />

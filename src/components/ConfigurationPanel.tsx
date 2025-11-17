@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useArmy, ACTION_TYPES, ArmyConfig } from '../context/ArmyContext';
 import { LIMITS, AGES as ALL_AGES } from '../constants';
 import CivilizationSelector from './CivilizationSelector';
+import CivilizationComparison from './CivilizationComparison';
 import { Age, DisplayMode } from '../types';
 
 const AGES = ALL_AGES.filter((age) => age !== 'dark'); // Exclude Dark Age for army planning
@@ -238,6 +239,27 @@ export default function ConfigurationPanel(): React.ReactElement {
               <span className="font-medium">{t('configuration.showUnitCardStats')}</span>
             </span>
           </label>
+        </div>
+
+        {/* Team Bonuses Toggle */}
+        <div>
+          <label className="flex items-center cursor-pointer p-2 rounded border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-gray-900 dark:text-gray-100 text-sm">
+            <input
+              type="checkbox"
+              checked={config.showTeamBonuses || false}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateConfig({ showTeamBonuses: e.target.checked })}
+              className="mr-2 rounded text-indigo-600 focus:ring-indigo-500"
+            />
+            <span className="flex items-center gap-1.5">
+              <span role="img" aria-label="team">🤝</span>
+              <span className="font-medium">{t('configuration.teamBonuses')}</span>
+            </span>
+          </label>
+        </div>
+
+        {/* Civilization Comparison */}
+        <div>
+          <CivilizationComparison />
         </div>
       </div>
     </div>

@@ -25,6 +25,7 @@ export interface ArmyConfig {
   displayMode: DisplayMode;
   showTechPanel: boolean;
   showUnitCardStats: boolean;
+  showTeamBonuses: boolean;
 }
 
 export interface ArmyState {
@@ -157,6 +158,7 @@ const initialState: ArmyState = {
     displayMode: 'units',
     showTechPanel: false,
     showUnitCardStats: false,
+    showTeamBonuses: false,
   },
   savedCompositions: [],
   comparisonMode: false,
