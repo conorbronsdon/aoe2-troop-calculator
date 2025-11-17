@@ -8,6 +8,7 @@ import { ImportService } from '../services/import.service';
 import { StorageService } from '../services/storage.service';
 import ResourceIcon from './ResourceIcon';
 import ImportModal from './ImportModal';
+import { getTranslatedUnitName } from '../utils/translationHelpers';
 
 interface ImportConfig {
   selectedAge: string;
@@ -292,7 +293,7 @@ export default function ArmyCompositionSummary(): React.ReactElement {
             return null;
           }
 
-          const adjustedCost = calculateUnitCost(unit, config.selectedCiv, config.selectedAge) as UnitCost;
+          const adjustedCost = calculateUnitCost(unit, config.selectedCiv, config.selectedAge, config.alliedCivs) as UnitCost;
           const totalUnitCost: UnitCost = {
             food: adjustedCost.food * quantity,
             wood: adjustedCost.wood * quantity,
@@ -304,7 +305,7 @@ export default function ArmyCompositionSummary(): React.ReactElement {
             <div key={unitId} className="border border-gray-200 dark:border-gray-600 rounded p-3 flex justify-between items-center bg-white dark:bg-gray-700/50">
               <div className="flex items-center space-x-3">
                 <span className="font-semibold text-lg text-gray-900 dark:text-gray-100">{quantity}x</span>
-                <span className="font-medium text-gray-800 dark:text-gray-200">{unit.name}</span>
+                <span className="font-medium text-gray-800 dark:text-gray-200">{getTranslatedUnitName(unit.id)}</span>
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-300 flex items-center">
                 {totalUnitCost.food > 0 && (

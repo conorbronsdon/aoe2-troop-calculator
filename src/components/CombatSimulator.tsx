@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useArmy } from '../context/ArmyContext';
 import { calculateCombatOutcome, getQuickAnalysis } from '../services/combat.service';
-import { units } from '../data/units';
+import { getTranslatedUnitName } from '../utils/translationHelpers';
 
 interface CombatSimulatorProps {
   embedded?: boolean;
@@ -9,7 +9,6 @@ interface CombatSimulatorProps {
 
 interface CommonUnit {
   id: string;
-  name: string;
   category: string;
 }
 
@@ -43,14 +42,14 @@ interface CombatOutcomeResult {
 }
 
 const COMMON_UNITS: CommonUnit[] = [
-  { id: 'knight', name: 'Knight', category: 'Cavalry' },
-  { id: 'crossbowman', name: 'Crossbowman', category: 'Archer' },
-  { id: 'pikeman', name: 'Pikeman', category: 'Infantry' },
-  { id: 'mangonel', name: 'Mangonel', category: 'Siege' },
-  { id: 'archer', name: 'Archer', category: 'Archer' },
-  { id: 'scout', name: 'Scout', category: 'Cavalry' },
-  { id: 'skirmisher', name: 'Skirmisher', category: 'Archer' },
-  { id: 'halberdier', name: 'Halberdier', category: 'Infantry' },
+  { id: 'knight', category: 'Cavalry' },
+  { id: 'crossbowman', category: 'Archer' },
+  { id: 'pikeman', category: 'Infantry' },
+  { id: 'mangonel', category: 'Siege' },
+  { id: 'archer', category: 'Archer' },
+  { id: 'scout', category: 'Cavalry' },
+  { id: 'skirmisher', category: 'Archer' },
+  { id: 'halberdier', category: 'Infantry' },
 ];
 
 export default function CombatSimulator({ embedded = false }: CombatSimulatorProps): React.ReactElement | null {
@@ -109,8 +108,7 @@ export default function CombatSimulator({ embedded = false }: CombatSimulatorPro
   };
 
   const getUnitName = (unitId: string): string => {
-    const unit = units.find((u) => u.id === unitId);
-    return unit ? unit.name : unitId;
+    return getTranslatedUnitName(unitId);
   };
 
   const getConfidenceColor = (confidence: string): string => {
@@ -165,7 +163,7 @@ export default function CombatSimulator({ embedded = false }: CombatSimulatorPro
             <option value="">Select unit...</option>
             {COMMON_UNITS.map((unit) => (
               <option key={unit.id} value={unit.id}>
-                {unit.name} ({unit.category})
+                {getTranslatedUnitName(unit.id)} ({unit.category})
               </option>
             ))}
           </select>

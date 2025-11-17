@@ -3,6 +3,7 @@ import { useArmy } from '../context/ArmyContext';
 import { civilizations } from '../data/civilizations';
 import { getCivilizationIconUrl, FALLBACK_ICON, getRegionColors } from '../data/civilizationIcons';
 import { CivilizationBonus, CostBonus, StatBonus, EconomicBonus } from '../types';
+import { getTranslatedCivName } from '../utils/translationHelpers';
 
 interface CostBonusWithActive extends CostBonus {
   isActive: boolean;
@@ -142,7 +143,7 @@ export default function CivilizationBonuses(): JSX.Element | null {
             {civIconUrl && !iconError ? (
               <img
                 src={civIconUrl}
-                alt={`${currentCiv.name} insignia`}
+                alt={`${getTranslatedCivName(currentCiv.id)} insignia`}
                 className="w-16 h-16 object-contain drop-shadow-lg"
                 onError={() => setIconError(true)}
               />
@@ -159,7 +160,7 @@ export default function CivilizationBonuses(): JSX.Element | null {
           {/* Civilization Info */}
           <div>
             <h3 className="text-xl font-bold text-amber-900 dark:text-amber-100">
-              {currentCiv.name}
+              {getTranslatedCivName(currentCiv.id)}
             </h3>
             <div className="flex flex-wrap items-center gap-2 mt-1">
               <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${regionColors.bg} ${regionColors.border} ${regionColors.text} border`}>

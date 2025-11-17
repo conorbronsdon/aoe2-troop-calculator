@@ -3,6 +3,7 @@ import { useArmy } from '../context/ArmyContext';
 import { getCivilizationById } from '../data/civilizations';
 import { FaHandshake, FaGift, FaInfoCircle } from 'react-icons/fa';
 import { Civilization, TeamBonus } from '../types';
+import { getTranslatedCivName } from '../utils/translationHelpers';
 
 interface TeamBonusInfo {
   civName: string;
@@ -22,7 +23,7 @@ export default function TeamBonusDisplay(): JSX.Element {
   const teamBonusesFromAllies: TeamBonusInfo[] = alliedCivs
     .filter((civ) => civ.teamBonus)
     .map((civ) => ({
-      civName: civ.name,
+      civName: getTranslatedCivName(civ.id),
       civId: civ.id,
       bonus: civ.teamBonus as TeamBonus,
     }));
@@ -90,7 +91,7 @@ export default function TeamBonusDisplay(): JSX.Element {
           <div className="bg-white dark:bg-gray-800 rounded p-2 border border-indigo-100 dark:border-indigo-800">
             <div className="flex items-center justify-between mb-1">
               <span className="text-xs font-semibold text-indigo-600 dark:text-indigo-400">
-                {selectedCiv.name}
+                {getTranslatedCivName(selectedCiv.id)}
               </span>
               <span className="text-xs bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 px-1.5 py-0.5 rounded">
                 {ourTeamBonus.type}

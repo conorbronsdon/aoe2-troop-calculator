@@ -2,12 +2,12 @@ import { useState, useMemo, ChangeEvent } from 'react';
 import { useArmy, ACTION_TYPES } from '../context/ArmyContext';
 import { calculateUnitCost, hasDiscount } from '../utils/calculations';
 import { civilizations } from '../data/civilizations';
-import { getUnitById } from '../data/units';
 import { LIMITS } from '../constants';
 import { calculateUnitStats, formatStatValue } from '../utils/statCalculator';
 import UnitIcon from './UnitIcon';
 import ResourceCost from './ResourceCost';
 import { Unit, Civilization, CostBonus } from '../types';
+import { getTranslatedUnitName, getTranslatedCivName } from '../utils/translationHelpers';
 
 interface UnitCardProps {
   unit: Unit;
@@ -37,7 +37,7 @@ export default function UnitCard({ unit }: UnitCardProps): JSX.Element {
   const { composition, config, researchedTechs } = state;
   const [showMoreInfo, setShowMoreInfo] = useState<boolean>(false);
 
-  const adjustedCost = calculateUnitCost(unit, config.selectedCiv, config.selectedAge);
+  const adjustedCost = calculateUnitCost(unit, config.selectedCiv, config.selectedAge, config.alliedCivs);
   const baseCost = unit.cost;
   const showDiscount = hasDiscount(unit, adjustedCost);
 
@@ -89,8 +89,7 @@ export default function UnitCard({ unit }: UnitCardProps): JSX.Element {
 
   // Get unit names for counters and weaknesses
   const getUnitName = (unitId: string): string => {
-    const foundUnit = getUnitById(unitId);
-    return foundUnit ? foundUnit.name : unitId;
+    return getTranslatedUnitName(unitId);
   };
 
   const hasCounterInfo =
@@ -106,11 +105,11 @@ export default function UnitCard({ unit }: UnitCardProps): JSX.Element {
         <div className="flex-1">
           <div className="font-semibold text-sm flex items-center gap-2 text-gray-900 dark:text-gray-100">
             <UnitIcon unitId={unit.id} category={unit.category} size="lg" />
-            <span>{unit.name}</span>
+            <span>{getTranslatedUnitName(unit.id)}</span>
             {hasBonuses && (
               <span
                 className="text-xs px-1.5 py-0.5 bg-blue-500 text-white rounded-full font-bold cursor-help"
-                title={`${currentCiv?.name} bonuses:\n${applicableBonuses.map((b) => b.description).join('\n')}`}
+                title={`${currentCiv ? getTranslatedCivName(currentCiv.id) : ''} bonuses:\n${applicableBonuses.map((b) => b.description).join('\n')}`}
               >
                 🏛️
               </span>
@@ -121,7 +120,7 @@ export default function UnitCard({ unit }: UnitCardProps): JSX.Element {
               <span role="img" aria-label="Discount">
                 💰
               </span>{' '}
-              {currentCiv?.name} discount applied
+              {currentCiv ? getTranslatedCivName(currentCiv.id) : ''} discount applied
             </div>
           )}
         </div>
@@ -305,7 +304,7 @@ export default function UnitCard({ unit }: UnitCardProps): JSX.Element {
         <button
           onClick={removeUnit}
           className="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white px-2 py-1 rounded text-sm"
-          aria-label={`Remove one ${unit.name}`}
+          aria-label={`Remove one ${getTranslatedUnitName(unit.id)}`}
         >
           -
         </button>
@@ -316,12 +315,12 @@ export default function UnitCard({ unit }: UnitCardProps): JSX.Element {
           className="flex-1 border border-gray-300 dark:border-gray-600 rounded px-2 py-1 text-sm text-center bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           value={quantity}
           onChange={(e: ChangeEvent<HTMLInputElement>) => setQuantity(e.target.value)}
-          aria-label={`Quantity of ${unit.name}`}
+          aria-label={`Quantity of ${getTranslatedUnitName(unit.id)}`}
         />
         <button
           onClick={addUnit}
           className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-2 py-1 rounded text-sm"
-          aria-label={`Add one ${unit.name}`}
+          aria-label={`Add one ${getTranslatedUnitName(unit.id)}`}
         >
           +
         </button>

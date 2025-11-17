@@ -5,6 +5,7 @@ import { groupUnitsByCategory } from '../utils/calculations';
 import UnitCard from './UnitCard';
 import UnitFilter from './UnitFilter';
 import { Unit } from '../types';
+import { getTranslatedUnitName } from '../utils/translationHelpers';
 
 interface FilterState {
   searchTerm: string;
@@ -46,7 +47,7 @@ export default function UnitSelection(): JSX.Element {
     // Search filter
     if (filters.searchTerm) {
       const searchLower = filters.searchTerm.toLowerCase();
-      filtered = filtered.filter((unit) => unit.name.toLowerCase().includes(searchLower));
+      filtered = filtered.filter((unit) => getTranslatedUnitName(unit.id).toLowerCase().includes(searchLower));
     }
 
     // Category filter
