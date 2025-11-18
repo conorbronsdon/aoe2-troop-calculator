@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 import { registerSW } from 'virtual:pwa-register';
+import { logger } from './utils/errorHandler';
 
 // Register service worker for PWA functionality
 const updateSW = registerSW({
@@ -12,13 +13,13 @@ const updateSW = registerSW({
     }
   },
   onOfflineReady(): void {
-    console.log('App ready to work offline');
+    logger.info('App ready to work offline');
   },
   onRegistered(registration: ServiceWorkerRegistration | undefined): void {
-    console.log('Service Worker registered:', registration);
+    logger.info('Service Worker registered', registration);
   },
   onRegisterError(error: unknown): void {
-    console.error('Service Worker registration error:', error);
+    logger.error('Service Worker registration error', error);
   },
 });
 

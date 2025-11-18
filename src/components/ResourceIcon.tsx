@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { logger } from '../utils/errorHandler';
 
 type ResourceType = 'food' | 'wood' | 'gold' | 'stone';
 type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -58,7 +59,7 @@ export default function ResourceIcon({ resource, size = 'md', className = '' }: 
   const config = RESOURCE_CONFIG[resource];
 
   if (!config) {
-    console.warn(`Unknown resource type: ${resource}`);
+    logger.warn(`Unknown resource type: ${resource}`);
     return null;
   }
 
