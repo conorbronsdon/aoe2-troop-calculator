@@ -699,3 +699,9 @@ Found a bug or have a suggestion?
 [![Star this repo](https://img.shields.io/github/stars/conorbronsdon/aoe2-troop-calculator?style=social)](https://github.com/conorbronsdon/aoe2-troop-calculator)
 
 </div>
+
+---
+
+## Disclaimer
+
+*All views, opinions, and statements expressed on this account are solely my own and are made in my personal capacity. They do not reflect, and should not be construed as reflecting, the views, positions, or policies of Modular. This account is not affiliated with, authorized by, or endorsed by Modular in any way.*
