@@ -43,6 +43,7 @@ export const unitToGameId: Record<string, number> = {
   'elite-genitour': 1012, // EGENITO
 
   // Scout line
+  scout: 448, // SCOUT (cavalry data file uses id 'scout')
   'scout-cavalry': 448, // SCOUT
   'light-cavalry': 546, // LTCAV
   hussar: 441, // HUSSAR
