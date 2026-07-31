@@ -598,13 +598,13 @@ This calculator is created under Microsoft's Game Content Usage Rules and is not
 
 <div align="center">
 
-### Created by [Conor Bronsdon](https://conorbronsdon.com/) (with Claude Code)
+### Created by [Conor Bronsdon](https://conorbronsdon.com/?utm_source=github&utm_medium=referral&utm_campaign=repo-readme&utm_content=aoe2-troop-calculator) (with Claude Code)
 
 [![GitHub](https://img.shields.io/badge/GitHub-conorbronsdon-181717?style=flat&logo=github)](https://github.com/conorbronsdon/)
 [![Twitter](https://img.shields.io/badge/Twitter-@ConorBronsdon-1DA1F2?style=flat&logo=twitter)](https://x.com/ConorBronsdon)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-conorbronsdon-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/conorbronsdon/)
 [![Substack](https://img.shields.io/badge/Substack-conorbronsdon-FF6719?style=flat&logo=substack)](https://conorbronsdon.substack.com/)
-[![Website](https://img.shields.io/badge/Website-conorbronsdon.com-4F46E5?style=flat&logo=google-chrome)](https://conorbronsdon.com/)
+[![Website](https://img.shields.io/badge/Website-conorbronsdon.com-4F46E5?style=flat&logo=google-chrome)](https://conorbronsdon.com/?utm_source=github&utm_medium=referral&utm_campaign=repo-readme&utm_content=aoe2-troop-calculator)
 
 </div>
 
